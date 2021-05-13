@@ -10,53 +10,86 @@ use Scalar::Util qw(looks_like_number);
 use Getopt::Long;
 use DateTime;
 use DateTime::Format::Epoch;
-use Data::Dumper;
+use Term::ProgressBar;
 use DBI;
+use Data::Dumper;
 
-my ($o_help,$o_verb,$o_update,$o_newleagues,$o_leagueinfo,$o_leaguerookies,$o_updatedb);
-my ($tradedb,$transtradelist,$transpicklist,$transignorelist,$translist,$leaguehashlist,$players1,$players2,$players3,$draftrounds);
+my ($o_help,$o_verb,$o_update,$o_newleagues,$o_leagueinfo,$o_leaguerookies,$o_updatedb,$o_expandusersearch);
+my ($tradedb,$transtradelist,$transpicklist,$transignorelist,$translist,$leaguehashlist,$userhashlist,$players1,$players2,$players3,$draftrounds);
 my (@LeagueList,@playerstemp,@LeagueSearchList,@UserSearchList,@LeagueNameList);
 my %dlist;
 
 my $sport = "nfl";
 my $season = "2021";
+
+# Default thresholds
 my $o_maxleagues = 50;
 my $o_refreshage = 5;
 my $o_currentweek = 1;
 my $maxIteminTrade = 5;
 
-my $database =          "XXXXX";
-my $database_hostname = "XXXXX";
-my $database_port =     "XXXXX";
-my $database_user =     "XXXXX";
-my $database_password = "XXXXX";
+check_options(); #Check for the arguments
 
-check_options();
+#Database configuration
+my $database =          "XXXX";
+my $database_hostname = "XXXX";
+my $database_port =     "XXXX";
+my $database_user =     "XXXX";
+my $database_password = "XXXX";
+
+my $dbh = DBI->connect("DBI:mysql:database=$database;host=$database_hostname;port=$database_port", $database_user, $database_password,{PrintError => 1, RaiseError => 1}) || die  "ERROR: Error de conexion a la BBDD ${database_hostname}:${database_port} - ${database}\n";
+
+# DateTime variables
 my $dt = DateTime->new( year => 1970, month => 1, day => 1 );
 my $formatter = DateTime::Format::Epoch->new(epoch => $dt,unit => 'milliseconds');
 my $dtnow = DateTime->now()->epoch();
 my $dtold = DateTime->now()->subtract(days => $o_refreshage)->epoch();
 
-my $dbh = DBI->connect("DBI:mysql:database=$database;host=$database_hostname;port=$database_port", $database_user, $database_password,{PrintError => 1, RaiseError => 1}) || die  "ERROR: Error de conexion a la BBDD ${database_hostname}:${database_port} - ${database}\n";;
+get_sleeperplayers() if (defined($o_updatedb)); # Test to update PlayerDB.
 
-get_sleeperplayers() if (defined($o_updatedb));
-
-if ($o_newleagues){
+if ($o_newleagues){ #To find new leagues
   $leaguehashlist = $dbh->selectall_hashref ("SELECT LeagueID FROM Leagues","LeagueID");
+  $userhashlist = $dbh->selectall_hashref ("SELECT UserID FROM SearchedUsers","UserID");
   my $newleagueuser = get_userid($o_newleagues);
   get_leagues($newleagueuser);
-  foreach my $leaguesearch ( @LeagueSearchList ) { #For each league, get all users in those leagues
-    next if (exists($leaguehashlist->{$leaguesearch}));
-    get_leagueusers($leaguesearch);
+  if (scalar(@LeagueSearchList)>0){
+    my $currentLeag = 0;
+    my $nextLeagupdate = 0;
+    my $progressLeag = Term::ProgressBar->new({name  => 'Searching Users', count => scalar(@LeagueSearchList), ETA   => 'linear', remove => 1});
+    $progressLeag->max_update_rate(1);
+    $progressLeag->message("Searching Users for ".scalar(@LeagueSearchList)." Leagues");
+    foreach my $leaguesearch ( @LeagueSearchList ) { #For each league, get all users in those leagues
+      $currentLeag++;
+      $nextLeagupdate = $progressLeag->update($currentLeag) if $currentLeag > $nextLeagupdate;
+      if (!(defined($o_expandusersearch))){
+        next if (exists($leaguehashlist->{$leaguesearch})); #To skip recheck leagues already in the DB (but it could expand the search).
+      }
+      get_leagueusers($leaguesearch);
+    }
   }
-  foreach my $useritem (@UserSearchList){ #For each user in one of those leagues gets their leagues
-    get_leagues($useritem);
+  if (scalar(@UserSearchList)>0){
+    my $currentUser = 0;
+    my $nextUserupdate = 0;
+    my $progressUser = Term::ProgressBar->new({name  => 'Searching Leagues', count => scalar(@UserSearchList), ETA   => 'linear', remove => 1});
+    $progressUser->max_update_rate(1);
+    $progressUser->message("Searching Leagues for ".scalar(@UserSearchList)." Users");
+    foreach my $useritem (@UserSearchList){ #For each user in one of those leagues gets their leagues
+      next if (exists($userhashlist->{$useritem}));
+      get_leagues($useritem);
+      insert_searchedUser($useritem); #Adds them to the "ignore" list.
+      $currentUser++;
+      $nextUserupdate = $progressUser->update($currentUser) if $currentUser > $nextUserupdate;
+    }
+    $progressUser->update(scalar(@UserSearchList)) if scalar(@UserSearchList) >= $nextUserupdate;
   }
+  my $leaguecount = 0;
   foreach my $newleague ( @LeagueSearchList ) {
-    next if (exists($leaguehashlist->{$newleague}));
-    verb ("$newleague");
+    next if (exists($leaguehashlist->{$newleague})); # Only add leagues not already in the DB.
+    verb ("Found new league: $newleague");
     insert_newleague($newleague);
+    $leaguecount++;
   }
+  print "$leaguecount new leagues (from ". scalar(@LeagueSearchList)." found) added from the query of user ${o_newleagues}\n";
 }
 
 if ($o_update){
@@ -65,16 +98,40 @@ if ($o_update){
   $transignorelist = $dbh->selectall_hashref ("SELECT TradeID FROM RevertedTrades","TradeID");
   $translist = { %$transpicklist, %$transtradelist, %$transignorelist };
   get_leaguelist($o_maxleagues);
-  foreach my $leagueN (@LeagueList){
-    get_trades($leagueN,$o_currentweek);
+  if (scalar(@LeagueList) > 0){
+    my $currentLeague = 0;
+    my $next_update = 0;
+    my $progress = Term::ProgressBar->new({name  => 'Searching Trades', count => scalar(@LeagueList), ETA   => 'linear', remove => 1});
+    $progress->max_update_rate(1);
+    $progress->message("Searching for Trades for ".scalar(@LeagueList)." Leagues (still ".get_leaguePendingUpdate()." pending)\n");
+    foreach my $leagueN (@LeagueList){
+      $currentLeague++;
+      get_trades($leagueN,$o_currentweek);
+      $next_update = $progress->update($currentLeague) if $currentLeague > $next_update;
+    }
+    $progress->update(scalar(@LeagueList)) if scalar(@LeagueList) >= $next_update;
+    insert_tradeHash();
+  }else{
+    print ("No leagues pending to update\n");
   }
-  insert_tradeHash();
 }
 
 if ($o_leagueinfo){
   get_leaguelistUpdateInfo($o_maxleagues);
-  foreach my $leagueU (@LeagueNameList){
-    get_leagueinfo($leagueU);
+  if (scalar(@LeagueNameList) > 0){
+    my $currentInfo = 0;
+    my $nextInfoupdate = 0;
+    my $progressInfo = Term::ProgressBar->new({name  => 'Finding League Info', count => scalar(@LeagueNameList), ETA   => 'linear', remove => 1});
+    $progressInfo->max_update_rate(1);
+    $progressInfo->message("Searching for Info  for ".scalar(@LeagueNameList)." Leagues\n");
+    foreach my $leagueU (@LeagueNameList){
+      get_leagueinfo($leagueU);
+      $currentInfo++;
+      $nextInfoupdate = $progressInfo->update($currentInfo) if $currentInfo > $nextInfoupdate;
+    }
+    $progressInfo->update(scalar(@LeagueNameList)) if scalar(@LeagueNameList) >= $nextInfoupdate;
+  }else{
+    print "No League info pending to update\n";
   }
 }
 
@@ -90,7 +147,7 @@ exit;
 
 sub get_leaguelistUpdateInfo{ #Get the LeagueList from the MySQL
   my $leaguelimit = shift;
-  my $query = qq/SELECT LeagueID FROM Leagues WHERE LastUpdate IS NULL LIMIT $leaguelimit/;
+  my $query = qq/SELECT LeagueID FROM Leagues WHERE name IS NULL LIMIT $leaguelimit/;
   my $sth = $dbh->prepare($query);
   $sth->execute();
   while(my $row = $sth->fetchrow_hashref) {
@@ -149,24 +206,24 @@ sub get_leagueinfo { #Get All leagues from a User
   verb ("Query: ${query}");
   $sth->execute();
   $sth->finish;
-  verb ("League $league_id");
-  verb ("league_name: $league_name");
-  verb ("league_total_rosters: $league_total_rosters");
-  verb ("league_taxi_slots: $league_taxi_slots");
-  verb ("league_rec: $league_rec");
-  verb ("league_bonus_rec_wr: $league_bonus_rec_wr");
-  verb ("league_bonus_rec_te: $league_bonus_rec_te");
-  verb ("league_bonus_rec_rb: $league_bonus_rec_rb");
-  verb ("league_pass_td: $league_pass_td");
-  verb ("league_pass_int: $league_pass_int");
-  verb ("Positions_QB: $Positions_QB");
-  verb ("Positions_RB: $Positions_RB");
-  verb ("Positions_WR: $Positions_WR");
-  verb ("Positions_TE: $Positions_TE");
-  verb ("Positions_FLEX: $Positions_FLEX");
-  verb ("Positions_SUPER_FLEX: $Positions_SUPER_FLEX");
-  verb ("Positions_BN: $Positions_BN");
-  verb ("total_players: $total_players");
+  verb ("League ${league_id}");
+  verb ("league_name: ${league_name}");
+  verb ("league_total_rosters: ${league_total_rosters}");
+  verb ("league_taxi_slots: ${league_taxi_slots}");
+  verb ("league_rec: ${league_rec}");
+  verb ("league_bonus_rec_wr: ${league_bonus_rec_wr}");
+  verb ("league_bonus_rec_te: ${league_bonus_rec_te}");
+  verb ("league_bonus_rec_rb: ${league_bonus_rec_rb}");
+  verb ("league_pass_td: ${league_pass_td}");
+  verb ("league_pass_int: ${league_pass_int}");
+  verb ("Positions_QB: ${Positions_QB}");
+  verb ("Positions_RB: ${Positions_RB}");
+  verb ("Positions_WR: ${Positions_WR}");
+  verb ("Positions_TE: ${Positions_TE}");
+  verb ("Positions_FLEX: ${Positions_FLEX}");
+  verb ("Positions_SUPER_FLEX: ${Positions_SUPER_FLEX}");
+  verb ("Positions_BN: ${Positions_BN}");
+  verb ("total_players: ${total_players}");
   return;
 }
 
@@ -197,7 +254,7 @@ sub insert_tradeHash{ # Imports  all the %TradeDB to the MySQL
   }
 }
 
-sub get_LeagueDraftstest { # Gets draft slots from the league of that year
+sub get_LeagueDrafts { # Gets draft slots from the league of that year
   my $league_id = shift;
   my $drafts_json_string = undef;
   my $drafts_url = "https://api.sleeper.app/v1/league/$league_id/drafts";
@@ -239,6 +296,7 @@ sub get_LeagueDraftstest { # Gets draft slots from the league of that year
   }
   return;
 }
+
 sub get_player{ # Gets the Player String from Sleeper_ID
   my $splayer_id = shift;
   return unless (looks_like_number($splayer_id));
@@ -263,6 +321,16 @@ sub get_leaguelist{ #Get the LeagueList from the MySQL
     push @LeagueList,$row->{LeagueID};
   }
   $sth->finish;
+}
+
+sub get_leaguePendingUpdate{ #Get the LeagueList from the MySQL
+  my $leaguelimit = shift;
+  my $query = qq/SELECT COUNT(LeagueID) FROM Leagues WHERE PossibleDeleted = FALSE AND LastUpdate < $dtold OR LastUpdate IS NULL/;
+  my $sth = $dbh->prepare($query);
+  $sth->execute();
+  my $pendingleagues = $sth->fetchrow;
+  $sth->finish;
+  return $pendingleagues;
 }
 
 sub get_updateleaguelistdrafts{ #Get the LeagueList from the MySQL
@@ -317,7 +385,7 @@ sub get_trades { #Get All trades from a League
           my $picktext = undef;
           if ($keypicks->{season} eq $season){
             if (!exists($tradedb->{$league_id}->{drafts})){
-              get_LeagueDraftstest($league_id);
+              get_LeagueDrafts($league_id);
             }
             if (scalar(keys %{%$tradedb{$league_id}->{drafts}}) == 1){
               foreach my $leaguekeys (keys %{%$tradedb{$league_id}->{drafts}}) {
@@ -350,16 +418,16 @@ sub get_trades { #Get All trades from a League
                   }
                 }
               }
-              verb("Has Choosen ${current_draft} draftID for the trade date: ".$drafttime->dmy('/')." with draft date: ". $formatter->parse_datetime($tradedb->{$league_id}->{drafts}->{$current_draft}->{last_picked})->dmy('/'));
+              verb("Finish de Revision, se ha escogido ${current_draft} para el trade ".$drafttime->dmy('/')." con fecha ". $formatter->parse_datetime($tradedb->{$league_id}->{drafts}->{$current_draft}->{last_picked})->dmy('/'));
               ($oldtime,$newtime,$drafttime)=undef;
             }
             if (exists($tradedb->{$league_id}->{drafts}->{$current_draft}->{slots}->{$keypicks->{roster_id}})){
-              $picktext = "$keypicks->{season}-$keypicks->{round}.$tradedb->{$league_id}->{drafts}->{$current_draft}->{slots}->{$keypicks->{roster_id}}";
+              $picktext = "$keypicks->{season}-".sprintf("%02d",$keypicks->{round}).".".sprintf("%02d",$tradedb->{$league_id}->{drafts}->{$current_draft}->{slots}->{$keypicks->{roster_id}});
             }else{
-              $picktext = "$keypicks->{season}-$keypicks->{round}";
+              $picktext = "$keypicks->{season}-".sprintf("%02d",$keypicks->{round});
             }
           }else{
-            $picktext = "$keypicks->{season}-$keypicks->{round}";
+            $picktext = "$keypicks->{season}-".sprintf("%02d",$keypicks->{round});
           }
           push @{$tradedb->{$league_id}->{$trade->{transaction_id}}->{$keypicks->{owner_id}}}, $picktext;
           verb("Picks ${picktext}");
@@ -374,6 +442,7 @@ sub get_trades { #Get All trades from a League
   update_leagueTime($league_id);
   return;
 }
+
 sub update_leagueTime{#Inserts in the MySQL the CurrentTime after updating
   my $league_id = shift;
   my $query = qq/UPDATE Leagues SET LastUpdate = $dtnow WHERE LeagueID = $league_id/;
@@ -383,13 +452,13 @@ sub update_leagueTime{#Inserts in the MySQL the CurrentTime after updating
   verb("Updating time of league ${league_id}");
 }
 
-sub update_PossibleDeleted{#Inserts in the MySQL the CurrentTime after updating
+sub update_PossibleDeleted{#Inserts in the MySQL the Possible Delete Status
   my $league_id = shift;
   my $query = qq/UPDATE Leagues SET PossibleDeleted = TRUE WHERE LeagueID = $league_id/;
   my $sth = $dbh->prepare($query);
   $sth->execute();
   $sth->finish;
-  verb("Updating time of league ${league_id}");
+  verb("Updating Possible Deleted league ${league_id}");
 }
 
 sub insert_newtrade{ #Inserts one Trades into MySQL
@@ -440,7 +509,15 @@ sub insert_newleague{ # Adds a new League to the list
   my $sth = $dbh->prepare(q{INSERT IGNORE INTO Leagues(LeagueID) VALUES (?)},{},);
   $sth->execute($new_league);
   $sth->finish;
-  verb("Inserting ${new_league}");
+  # verb("Inserting league ${new_league} into the DB");
+}
+
+sub insert_searchedUser{ # Adds a new League to the list
+  my $new_user = shift;
+  my $sth = $dbh->prepare(q{INSERT IGNORE INTO SearchedUsers(UserID,ScrapeDate) VALUES (?,?)},{},);
+  $sth->execute($new_user,$dtnow);
+  $sth->finish;
+  # verb("Inserting ${new_user}");
 }
 
 sub get_leagues { #Get All leagues from a User
@@ -456,17 +533,19 @@ sub get_leagues { #Get All leagues from a User
   if ($league_response->is_success){
     $league_json_string = $league_response->content;
   }elsif ($league_response->is_error){
-    print "CRITICAL: Error-> $league_url\n";
+    print "CRITICAL: Error: $league_url\n";
     verb($league_response->error_as_HTML);
     next;
   }
   my $leaguejson = decode_json($league_json_string);
   foreach my $leagueitem ( @$leaguejson ) {
-    next unless (ref($leagueitem->{roster_positions}) eq 'ARRAY' and grep { $_ eq "SUPER_FLEX" } @{ $leagueitem->{roster_positions} }); #Revisa que las ligas sean Superflex
     next unless ($leagueitem->{settings}->{type} == 2); # Only DynastyLeagues
-    next unless ( ($leagueitem->{settings}->{num_teams} eq "12") || ($leagueitem->{settings}->{num_teams} eq "14") );
-    push(@LeagueSearchList, $leagueitem->{league_id});
-    verb("Adding League $leagueitem->{league_id}");
+    next unless (ref($leagueitem->{roster_positions}) eq 'ARRAY' and grep { $_ eq "SUPER_FLEX" } @{ $leagueitem->{roster_positions} }); #Only Superflex Leagues
+    next unless ( ($leagueitem->{settings}->{num_teams} eq "12") || ($leagueitem->{settings}->{num_teams} eq "14") ); # Only 12/14 Player Leagues
+    next unless (scalar @{ $leagueitem->{roster_positions} } > 20); #min 20 players per team
+    next unless ((grep { $_ eq "QB" or $_ eq "RB" or $_ eq "WR" or $_ eq "TE" or $_ eq "FLEX" or $_ eq "REC_FLEX" or $_ eq "SUPER_FLEX" } @{ $leagueitem->{roster_positions} }) >= 8); # Min 8 Starters
+    push(@LeagueSearchList, $leagueitem->{league_id}); #Add them to the LeagueList
+    verb("Adding league $leagueitem->{league_id} to arraysearch");
   }
   return;
 }
@@ -484,13 +563,14 @@ sub get_leagueusers { #Gets all Users from a League
   if ($league_response->is_success){
     $league_json_string = $league_response->content;
   }elsif ($league_response->is_error){
-    print "CRITICAL: Error-> $league_url\n";
+    print "CRITICAL: Error: $league_url\n";
     verb($league_response->error_as_HTML);
     return;
   }
   my $leaguejson = decode_json($league_json_string);
   foreach my $leagueuser ( @$leaguejson ) {
-    push(@UserSearchList, $leagueuser->{"user_id"});
+    my $usersearch = $leagueuser->{"user_id"};
+    push(@UserSearchList, $leagueuser->{"user_id"}) unless(!(grep(/^$usersearch$/,@UserSearchList)));
   }
   return;
 }
@@ -516,7 +596,7 @@ sub get_userid { #Get the UserID from a username
   return $userjson->{"user_id"};
 }
 
-####################################################### STILL NOT IMPLEMENTED ###################################################
+
 sub get_sleeperplayers { #Get the Sleeper Player Ids
   my $players_json_string = undef;
   my $players_url = "https://adenetwork.pw/PFF/nfl.json";
@@ -543,7 +623,7 @@ sub get_sleeperplayers { #Get the Sleeper Player Ids
   foreach my $players ( $playersjson ) {
     # print Dumper ($playerid);
     foreach my $playerid (keys %$players) {
-
+      ####################################################### AUN NO IMPLEMENTADO ###################################################
       # print "$tete\n";
       # my $dbst = $dbh->prepare(
       #   q{
@@ -553,7 +633,7 @@ sub get_sleeperplayers { #Get the Sleeper Player Ids
       #       (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
       #   }, {},
       # );
-      # $dbst->execute($playerid, )or die $dbst->errstr; # TODO: TRY TO IMPROVE THE ERROR
+      # $dbst->execute($playerid, )or die $dbst->errstr; # TODO MIRAR DE MEJORAR EL ERROR
       # $dbst->finish;
       print $playerid->{$playerid}->{position};
       print "\n";
@@ -561,7 +641,6 @@ sub get_sleeperplayers { #Get the Sleeper Player Ids
   }
   return;
 }
-####################################################### STILL NOT IMPLEMENTED ###################################################
 
 sub check_options {
   Getopt::Long::Configure ("bundling");
@@ -569,11 +648,12 @@ sub check_options {
       'h'     => \$o_help,            'help'            => \$o_help,
       'm:i'   => \$o_maxleagues,      'maxleagues:i'    => \$o_maxleagues,
       'r:i'   => \$o_refreshage,      'refreshage:i'    => \$o_refreshage,
-      'n:s'   => \$o_newleagues,      'newleagues:s'    => \$o_newleagues,
+      'l:s'   => \$o_newleagues,      'newleagues:s'    => \$o_newleagues,
+      'e'     => \$o_expandusersearch,'expandsearch'    => \$o_expandusersearch,
       'w:i'   => \$o_currentweek,     'currentweek:i'   => \$o_currentweek,
       'd'     => \$o_updatedb,        'updateplayerdb'  => \$o_updatedb,
       'i'     => \$o_leagueinfo,      'leagueinfo'      => \$o_leagueinfo,
-      'f'     => \$o_leaguerookies,   'rookieinfo'      => \$o_leaguerookies,
+      'R'     => \$o_leaguerookies,   'rookieinfo'      => \$o_leaguerookies,
       'u'     => \$o_update,          'update'          => \$o_update,
       'v'     => \$o_verb,            'verbose'         => \$o_verb
   );
@@ -602,21 +682,23 @@ sub help {
   print_usage();
   print <<EOT;
 -h, --help
-    Print this help message
+    Print this help message.
 -u, --update
-    Mode to Update
--n, --newleagues <S>
-    Username to find new leagues that he and his teammates are in
+    Mode to Update.
+-e, --expandsearch
+    Expand search to already added leagues.
+-l, --newleagues <S>
+    Username to find new leagues that he and his teammates are in.
 -m, --maxleagues <I>
-    Max number of leagues to update (to throttle) (default 5)
+    Max number of leagues to update (to throttle) (default 5).
 -r, --refreshage <I>
-    How Fresh has to be the data to refresh (default 5 Days)
+    How Fresh has to be the data to refresh (default 5 Days).
 -i, --leagueinfo
-    Update the info of the Leagues in the MySQL
--f, --rookieinfo
-    Update the info of the Rookie Drafts in the MySQL
+    Update the info of the Leagues in the MySQL.
+-R, --rookieinfo
+    Update the info of the Rookie Drafts in the MySQL.
 -w, --currentweek <I>
-    Week to update transactions
+    Week to update transactions.
 -v, --verbose
     Verbose mode.
 EOT
