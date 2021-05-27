@@ -692,10 +692,10 @@ sub export_data{
   csv (out => "${gitrepodir}/Leagues.csv", sep_char => ";", headers => [qw( leagueid name rosters qb rb wr te flex sflex bn total_players taxi_slots rec_bonus rec_rb rec_wr rec_te pass_td pass_int old_leagueid )], in => $dbh->selectall_arrayref ("SELECT LeagueID,name,total_rosters,roster_positions_QB,roster_positions_RB,roster_positions_WR,roster_positions_TE,roster_positions_FLEX,roster_positions_SUPER_FLEX,roster_positions_BN,total_players,taxi_slots,pass_td,rec_bonus,bonus_rec_te,bonus_rec_rb,bonus_rec_wr,pass_int,previous_league_id FROM Leagues"));
   csv (out => "${gitrepodir}/Trades.csv", sep_char => ";", headers => [qw( tradeid time leagueid items1 items2 owner1 owner2 )], in => $dbh->selectall_arrayref ("SELECT TradeID,Time,League,Items1,Items2,Items1Owner,Items2Owner FROM Trades"));
   csv (out => "${gitrepodir}/PickTrades.csv", sep_char => ";", headers => [qw( tradeid time leagueid items1 items2 owner1 owner2 rounds )], in => $dbh->selectall_arrayref ("SELECT TradeID,Time,League,Items1,Items2,Items1Owner,Items2Owner,DraftRounds FROM PickTrades"));
-  printtofile("${gitrepodir}/Date.csv",DateTime->now()->dmy("/")."\n");
+  printtofile("${gitrepodir}/Date.csv",DateTime->now()->mdy("/"));
   my $repo = Git::Repository->new( work_tree => $gitrepodir);
   $repo->run( add => '.' );
-  $repo->run( commit => '-m', DateTime->now()->dmy("/")." Trades" );
+  $repo->run( commit => '-m', DateTime->now()->mdy("/")." Trades" );
   $repo->run ( 'push', '-u' => { origin => 'master' } );
 }
 
