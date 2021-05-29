@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 
+use DBI;
 use LWP::UserAgent;
 use HTTP::Request;
 use JSON::XS 'decode_json';
@@ -11,19 +12,14 @@ use Getopt::Long;
 use DateTime;
 use DateTime::Format::Epoch;
 use Term::ProgressBar;
-use DBI;
 use Text::CSV_XS qw( csv );
 use Git::Repository;
-use Data::Dumper;
+# use Data::Dumper;
 
-my ($o_help,$o_verb,$o_update,$o_newleagues,$o_leagueinfo,$o_leaguerookies,$o_updatedb,$o_expandusersearch,$o_rosteridinfo,$o_export);
+my ($o_help,$o_verb,$o_update,$o_newleagues,$o_leagueinfo,$o_expandusersearch,$o_leaguerookies,$o_updatedb,$o_rosteridinfo,$o_export);
 my ($tradedb,$transtradelist,$transpicklist,$transignorelist,$translist,$leaguehashlist,$userhashlist,$players1,$players2,$players3,$owner1,$owner2,$owner3,$draftrounds);
 my (@LeagueList,@playerstemp,@LeagueSearchList,@UserSearchList,@LeagueNameList,@LeagueRosterIDList);
 my %dlist;
-
-my $sport = "nfl";
-my $season = "2021";
-my $gitrepodir = "XXXX";
 
 # Default thresholds
 my $o_maxleagues = 50;
@@ -32,7 +28,9 @@ my $o_refreshrosterids = 90;
 my $o_currentweek = 1;
 my $maxIteminTrade = 5;
 
-check_options(); #Check for the arguments
+my $sport = "nfl";
+my $season = "2021";
+my $gitrepodir = "XXXX";
 
 #Database configuration
 my $database =          "XXXX";
@@ -40,6 +38,8 @@ my $database_hostname = "XXXX";
 my $database_port =     "XXXX";
 my $database_user =     "XXXX";
 my $database_password = "XXXX";
+
+check_options(); #Check for the arguments
 
 my $dbh = DBI->connect("DBI:mysql:database=$database;host=$database_hostname;port=$database_port", $database_user, $database_password,{PrintError => 1, RaiseError => 1}) || die  "ERROR: Error de conexion a la BBDD ${database_hostname}:${database_port} - ${database}\n";
 
@@ -71,6 +71,7 @@ if ($o_newleagues){ #To find new leagues
     }
     $progressLeag->update(scalar(@LeagueSearchList)) if scalar(@LeagueSearchList) >= $nextLeagupdate;
   }
+  verb("found ".scalar(@UserSearchList)." new usersto search leagues");
   if (scalar(@UserSearchList)>0){
     my $currentUser = 0;
     my $nextUserupdate = 0;
@@ -94,6 +95,52 @@ if ($o_newleagues){ #To find new leagues
     $leaguecount++;
   }
   print "$leaguecount new leagues (from ". scalar(@LeagueSearchList)." found) added from the query of user ${o_newleagues}\n";
+  $o_maxleagues = $leaguecount;
+}
+
+if ($o_leagueinfo or $o_newleagues){
+  get_leaguelistUpdateInfo($o_maxleagues);
+  if (scalar(@LeagueNameList) > 0){
+    my $currentInfo = 0;
+    my $nextInfoupdate = 0;
+    my $progressInfo = Term::ProgressBar->new({name  => 'Finding League Info', count => scalar(@LeagueNameList), ETA   => 'linear', remove => 1});
+    $progressInfo->max_update_rate(1);
+    $progressInfo->message("Searching for Info  for ".scalar(@LeagueNameList)." Leagues (still ".get_CountleaguelistUpdateInfo()." pending)\n");
+    foreach my $leagueU (@LeagueNameList){
+      get_leagueinfo($leagueU);
+      $currentInfo++;
+      $nextInfoupdate = $progressInfo->update($currentInfo) if $currentInfo > $nextInfoupdate;
+    }
+    $progressInfo->update(scalar(@LeagueNameList)) if scalar(@LeagueNameList) >= $nextInfoupdate;
+  }else{
+    print "No League info pending to update\n";
+  }
+}
+
+if ($o_rosteridinfo or $o_newleagues){
+  get_leaguelistUpdateRosterID($o_maxleagues);
+  if (scalar(@LeagueRosterIDList) > 0){
+    my $currentRosterID = 0;
+    my $nextRosterIDupdate = 0;
+    my $progressRosterID = Term::ProgressBar->new({name  => 'Finding RosterID data', count => scalar(@LeagueRosterIDList), ETA   => 'linear', remove => 1});
+    $progressRosterID->max_update_rate(1);
+    $progressRosterID->message("Searching for RosterIDs for ".scalar(@LeagueRosterIDList)." Leagues\n");
+    foreach my $leagueU (@LeagueRosterIDList){
+      get_leaguerosterID($leagueU);
+      $currentRosterID++;
+      $nextRosterIDupdate = $progressRosterID->update($currentRosterID) if $currentRosterID > $nextRosterIDupdate;
+    }
+    $progressRosterID->update(scalar(@LeagueRosterIDList)) if scalar(@LeagueRosterIDList) >= $nextRosterIDupdate;
+  }else{
+    print "No League RosterID info pending to update\n";
+  }
+}
+
+if ($o_leaguerookies){
+  get_updateleaguelistdrafts($o_maxleagues);
+  foreach my $leagueU (@LeagueNameList){
+    get_leagueinfo($leagueU);
+  }
 }
 
 if ($o_update){
@@ -120,52 +167,12 @@ if ($o_update){
   }
 }
 
-if ($o_leagueinfo){
-  get_leaguelistUpdateInfo($o_maxleagues);
-  if (scalar(@LeagueNameList) > 0){
-    my $currentInfo = 0;
-    my $nextInfoupdate = 0;
-    my $progressInfo = Term::ProgressBar->new({name  => 'Finding League Info', count => scalar(@LeagueNameList), ETA   => 'linear', remove => 1});
-    $progressInfo->max_update_rate(1);
-    $progressInfo->message("Searching for Info  for ".scalar(@LeagueNameList)." Leagues\n");
-    foreach my $leagueU (@LeagueNameList){
-      get_leagueinfo($leagueU);
-      $currentInfo++;
-      $nextInfoupdate = $progressInfo->update($currentInfo) if $currentInfo > $nextInfoupdate;
-    }
-    $progressInfo->update(scalar(@LeagueNameList)) if scalar(@LeagueNameList) >= $nextInfoupdate;
-  }else{
-    print "No League info pending to update\n";
-  }
+if ($o_export){
+  clean_data(); #Clean the Database of Reversed/duplicate trades
+  export_data(); #ExportDatatoCSV
 }
 
-if ($o_rosteridinfo){
-  get_leaguelistUpdateRosterID($o_maxleagues);
-  if (scalar(@LeagueRosterIDList) > 0){
-    my $currentRosterID = 0;
-    my $nextRosterIDupdate = 0;
-    my $progressRosterID = Term::ProgressBar->new({name  => 'Finding RosterID data', count => scalar(@LeagueRosterIDList), ETA   => 'linear', remove => 1});
-    $progressRosterID->max_update_rate(1);
-    $progressRosterID->message("Searching for RosterIDs for ".scalar(@LeagueRosterIDList)." Leagues\n");
-    foreach my $leagueU (@LeagueRosterIDList){
-      get_leaguerosterID($leagueU);
-      $currentRosterID++;
-      $nextRosterIDupdate = $progressRosterID->update($currentRosterID) if $currentRosterID > $nextRosterIDupdate;
-    }
-    $progressRosterID->update(scalar(@LeagueRosterIDList)) if scalar(@LeagueRosterIDList) >= $nextRosterIDupdate;
-  }else{
-    print "No League RosterID info pending to update\n";
-  }
-}
-
-if ($o_leaguerookies){
-  get_updateleaguelistdrafts($o_maxleagues);
-  foreach my $leagueU (@LeagueNameList){
-    get_leagueinfo($leagueU);
-  }
-}
-
-export_data() if (defined($o_export)); #ExportDatatoCSV
+get_sleeperplayers() if (defined($o_updatedb)); # Test to update PlayerDB.
 
 exit;
 
@@ -178,6 +185,17 @@ sub get_leaguelistUpdateInfo{ #Get the LeagueList from the MySQL
     push @LeagueNameList,$row->{LeagueID};
   }
   $sth->finish;
+}
+
+
+sub get_CountleaguelistUpdateInfo{ #Get the LeagueList from the MySQL
+  my $leaguelimit = shift;
+  my $query = qq/SELECT COUNT(LeagueID) FROM Leagues WHERE trade_deadline IS NULL/;
+  my $sth = $dbh->prepare($query);
+  $sth->execute();
+  my $pendingleagues = $sth->fetchrow;
+  $sth->finish;
+  return $pendingleagues;
 }
 
 sub get_leaguelistUpdateRosterID{ #Get the LeagueList from the MySQL
@@ -631,6 +649,8 @@ sub get_leagues { #Get All leagues from a User
   }
   my $leaguejson = decode_json($league_json_string);
   foreach my $leagueitem ( @$leaguejson ) {
+    next if (grep(/\bfree\b/i,$leagueitem->{name})); #Skip league if has Free or mock in the name
+    next if (grep(/\bmock\b/i,$leagueitem->{name}));
     next unless ($leagueitem->{settings}->{type} == 2); # Only DynastyLeagues
     next unless (ref($leagueitem->{roster_positions}) eq 'ARRAY' and grep { $_ eq "SUPER_FLEX" } @{ $leagueitem->{roster_positions} }); #Only Superflex Leagues
     next unless ( ($leagueitem->{settings}->{num_teams} eq "12") || ($leagueitem->{settings}->{num_teams} eq "14") ); # Only 12/14 Player Leagues
@@ -662,7 +682,8 @@ sub get_leagueusers { #Gets all Users from a League
   my $leaguejson = decode_json($league_json_string);
   foreach my $leagueuser ( @$leaguejson ) {
     my $usersearch = $leagueuser->{"user_id"};
-    push(@UserSearchList, $leagueuser->{"user_id"}) unless(!(grep(/^$usersearch$/,@UserSearchList)));
+    # verb("Searching user $usersearch");
+    push(@UserSearchList, $leagueuser->{"user_id"}) unless(grep(/^$usersearch$/,@UserSearchList));
   }
   return;
 }
@@ -688,6 +709,33 @@ sub get_userid { #Get the UserID from a username
   return $userjson->{"user_id"};
 }
 
+sub clean_data{
+  verb("Adding Empty Trades to RevertedTrades");
+  $dbh->do('INSERT IGNORE INTO RevertedTrades SELECT TradeID FROM Trades WHERE Items1 = "" OR Items2 = ""');
+  verb("Adding Empty Picktrades to RevertedTrades");
+  $dbh->do('INSERT IGNORE INTO RevertedTrades SELECT TradeID FROM PickTrades WHERE Items1 = "" OR Items2 = ""');
+  verb("Adding Picktrades with empty rounds to RevertedTrades");
+  $dbh->do('INSERT IGNORE INTO RevertedTrades SELECT TradeID FROM PickTrades WHERE DraftRounds = 0');
+  verb("Adding Duplicate Trades to RevertedTrades");
+  $dbh->do('INSERT IGNORE INTO RevertedTrades SELECT TradeID FROM Trades GROUP BY TradeID HAVING COUNT(*) > 1');
+  verb("Adding Duplicate PickTrades to RevertedTrades");
+  $dbh->do('INSERT IGNORE INTO RevertedTrades SELECT TradeID FROM PickTrades GROUP BY TradeID HAVING COUNT(*) > 1');
+  verb("Adding trades reversed to RevertedTrades");
+  $dbh->do('INSERT IGNORE INTO RevertedTrades SELECT t.TradeID FROM Sleeper.Trades t JOIN (SELECT Items1, Items2, League, count(*) as NumDuplicates FROM Trades GROUP BY Items1, Items2, League HAVING NumDuplicates > 1 ) tsum ON t.Items1 = tsum.Items1 AND t.Items2 = tsum.Items2 AND t.League = tsum.League');
+  verb("Adding Picktrades reversed to RevertedTrades");
+  $dbh->do('INSERT IGNORE INTO RevertedTrades SELECT t.TradeID FROM Sleeper.PickTrades t JOIN (SELECT Items1, Items2, League, count(*) as NumDuplicates FROM Trades GROUP BY Items1, Items2, League HAVING NumDuplicates > 1 ) tsum ON t.Items1 = tsum.Items1 AND t.Items2 = tsum.Items2 AND t.League = tsum.League');
+  verb("Cleaning Trades");
+  $dbh->do('DELETE FROM Trades WHERE TradeID IN (SELECT r.TradeID FROM RevertedTrades r WHERE r.TradeID IS NOT NULL)');
+  verb("Cleaning Picktrades");
+  $dbh->do('DELETE FROM PickTrades WHERE TradeID IN (SELECT r.TradeID FROM RevertedTrades r WHERE r.TradeID IS NOT NULL)');
+  verb("Cleaning Ignored Leagues");
+  $dbh->do('DELETE FROM Leagues WHERE LeagueID IN (SELECT i.LeagueID FROM IgnoredLeagues i WHERE i.LeagueID IS NOT NULL)');
+  verb("Cleaning Trades from IngoredLeagues");
+  $dbh->do('DELETE FROM Trades WHERE League IN (SELECT i.LeagueID FROM IgnoredLeagues i WHERE i.LeagueID IS NOT NULL)');
+  verb("Cleaning PickTrades from Ignored Leagues");
+  $dbh->do('DELETE FROM PickTrades WHERE League IN (SELECT i.LeagueID FROM IgnoredLeagues i WHERE i.LeagueID IS NOT NULL)');
+}
+
 sub export_data{
   csv (out => "${gitrepodir}/Leagues.csv", sep_char => ";", headers => [qw( leagueid name rosters qb rb wr te flex sflex bn total_players taxi_slots rec_bonus rec_rb rec_wr rec_te pass_td pass_int old_leagueid )], in => $dbh->selectall_arrayref ("SELECT LeagueID,name,total_rosters,roster_positions_QB,roster_positions_RB,roster_positions_WR,roster_positions_TE,roster_positions_FLEX,roster_positions_SUPER_FLEX,roster_positions_BN,total_players,taxi_slots,pass_td,rec_bonus,bonus_rec_te,bonus_rec_rb,bonus_rec_wr,pass_int,previous_league_id FROM Leagues"));
   csv (out => "${gitrepodir}/Trades.csv", sep_char => ";", headers => [qw( tradeid time leagueid items1 items2 owner1 owner2 )], in => $dbh->selectall_arrayref ("SELECT TradeID,Time,League,Items1,Items2,Items1Owner,Items2Owner FROM Trades"));
@@ -697,6 +745,56 @@ sub export_data{
   $repo->run( add => '.' );
   $repo->run( commit => '-m', DateTime->now()->mdy("/")." Trades" );
   $repo->run ( 'push', '-u' => { origin => 'master' } );
+}
+
+sub get_sleeperplayers { #Get the Sleeper Player Ids
+  my $players_json_string = undef;
+  if(!(prompt_yn("Do you want to continue"))){
+    print "Ok, exiting the player database update.";
+    exit;
+  }
+  my $players_url = "https://api.sleeper.app/v1/players/nfl";
+  # my $players_url = "https://adenetwork.pw/PFF/nfl.json";
+  my $players_ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
+  my $players_header = HTTP::Request->new(GET => $players_url);
+  $players_header->header(content_type => "application/json",
+                         accept => "application/json");
+  my $players_request = HTTP::Request->new('GET', $players_url, $players_header);
+  my $players_response = $players_ua->request($players_request);
+  if ($players_response->is_success){
+    $players_json_string = $players_response->content;
+  }elsif ($players_response->is_error){
+    print "CRITICAL: Error: $players_url\n";
+    verb($players_response->error_as_HTML);
+    return;
+  }
+  my $query = qq/TRUNCATE TABLE Players;/;
+  my $sth = $dbh->prepare($query);
+  $sth->execute();
+  $sth->finish;
+  verb("Truncated table PlayersTest");
+  my $playersjson = decode_json($players_json_string);
+  my $progressPlayers = Term::ProgressBar->new({name  => 'Searching Users', count => scalar(keys(%$playersjson)), ETA   => 'linear', remove => 1});
+  my $currentPlayer = 0;
+  my $nextPlayerupdate = 0;
+  $progressPlayers->max_update_rate(1);
+  $progressPlayers->message("Adding ".scalar(keys(%$playersjson))." players to the Database");
+  foreach my $playerid (keys %$playersjson) {
+    $currentPlayer++;
+    $nextPlayerupdate = $progressPlayers->update($currentPlayer) if $currentPlayer > $nextPlayerupdate;
+    my $dbst = $dbh->prepare(
+      q{
+        INSERT IGNORE INTO Players
+          (player_id,first_name,last_name,position,team,weight,status,sport,fantasy_positions,college,practice_description,rotowire_id,active,number,height,injury_status,injury_body_part,injury_notes,practice_participation,high_school,sportradar_id,yahoo_id,years_exp,fantasy_data_id,hashtag,search_last_name,birth_city,espn_id,birth_date,search_first_name,birth_state,gsis_id,news_updated,birth_country,search_full_name,depth_chart_position,rotoworld_id,depth_chart_order,injury_start_date,stats_id,search_rank,pandascore_id,metadata,full_name,age)
+        VALUES
+          (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+      }, {},
+    );
+    $dbst->execute($playersjson->{$playerid}->{player_id},$playersjson->{$playerid}->{first_name},$playersjson->{$playerid}->{last_name},$playersjson->{$playerid}->{position},$playersjson->{$playerid}->{team},$playersjson->{$playerid}->{weight},$playersjson->{$playerid}->{status},$playersjson->{$playerid}->{sport},$playersjson->{$playerid}->{fantasy_positions}[0],$playersjson->{$playerid}->{college},$playersjson->{$playerid}->{practice_description},$playersjson->{$playerid}->{rotowire_id},$playersjson->{$playerid}->{active},$playersjson->{$playerid}->{number},$playersjson->{$playerid}->{height},$playersjson->{$playerid}->{injury_status},$playersjson->{$playerid}->{injury_body_part},$playersjson->{$playerid}->{injury_notes},$playersjson->{$playerid}->{practice_participation},$playersjson->{$playerid}->{high_school},$playersjson->{$playerid}->{sportradar_id},$playersjson->{$playerid}->{yahoo_id},$playersjson->{$playerid}->{years_exp},$playersjson->{$playerid}->{fantasy_data_id},$playersjson->{$playerid}->{hashtag},$playersjson->{$playerid}->{search_last_name},$playersjson->{$playerid}->{birth_city},$playersjson->{$playerid}->{espn_id},$playersjson->{$playerid}->{birth_date},$playersjson->{$playerid}->{search_first_name},$playersjson->{$playerid}->{birth_state},$playersjson->{$playerid}->{gsis_id},$playersjson->{$playerid}->{news_updated},$playersjson->{$playerid}->{birth_country},$playersjson->{$playerid}->{search_full_name},$playersjson->{$playerid}->{depth_chart_position},$playersjson->{$playerid}->{rotoworld_id},$playersjson->{$playerid}->{depth_chart_order},$playersjson->{$playerid}->{injury_start_date},$playersjson->{$playerid}->{stats_id},$playersjson->{$playerid}->{search_rank},$playersjson->{$playerid}->{pandascore_id},$playersjson->{$playerid}->{metadata},$playersjson->{$playerid}->{full_name},$playersjson->{$playerid}->{age})or die $dbst->errstr;
+    $dbst->finish;
+  }
+  $progressPlayers->update(scalar(keys(%$playersjson))) if scalar(keys(%$playersjson)) >= $nextPlayerupdate;
+  return;
 }
 
 sub check_options {
@@ -734,6 +832,20 @@ sub printtofile{
   open(my $fh, '>', $filename);
   print $fh "${text}";
   close $fh;
+}
+
+sub prompt {
+  my ($query) = @_; # take a prompt string as argument
+  local $| = 1; # activate autoflush to immediately show the prompt
+  print $query;
+  chomp(my $answer = <STDIN>);
+  return $answer;
+}
+
+sub prompt_yn {
+  my ($query) = @_;
+  my $answer = prompt("$query (Y/N): ");
+  return lc($answer) eq 'y';
 }
 
 sub verb {
