@@ -14,33 +14,29 @@ use DateTime::Format::Epoch;
 use Term::ProgressBar;
 use Text::CSV_XS qw( csv );
 use Git::Repository;
-# use Data::Dumper;
+use Data::Dumper;
 
-my ($o_help,$o_verb,$o_update,$o_newleagues,$o_leagueinfo,$o_expandusersearch,$o_leaguerookies,$o_updatedb,$o_rosteridinfo,$o_export);
+my ($o_help,$o_verb,$o_update,$o_searchleagues,$o_leagueinfo,$o_expandusersearch,$o_updatedb,$o_rosteridinfo,$o_export,$o_currentweek);
 my ($tradedb,$transtradelist,$transpicklist,$transignorelist,$translist,$leaguehashlist,$userhashlist,$players1,$players2,$players3,$owner1,$owner2,$owner3,$draftrounds);
 my (@LeagueList,@playerstemp,@LeagueSearchList,@UserSearchList,@LeagueNameList,@LeagueRosterIDList);
 my %dlist;
 
 # Default thresholds
-my $o_maxleagues = 50;
+my $season = 2021;
 my $o_refreshage = 5;
-my $o_refreshrosterids = 90;
-my $o_currentweek = 1;
+my $o_refreshagerosterids = 90;
+my $o_maxleagues = 50;
 my $maxIteminTrade = 5;
+my $gitrepodir = "$ENV{HOME}/Repositories/AdeTrades";
 
-my $sport = "nfl";
-my $season = "2021";
-my $gitrepodir = "XXXX";
+check_options(); # Check for the arguments
 
-#Database configuration
+# Database configuration
 my $database =          "XXXX";
 my $database_hostname = "XXXX";
 my $database_port =     "XXXX";
 my $database_user =     "XXXX";
 my $database_password = "XXXX";
-
-check_options(); #Check for the arguments
-
 my $dbh = DBI->connect("DBI:mysql:database=$database;host=$database_hostname;port=$database_port", $database_user, $database_password,{PrintError => 1, RaiseError => 1}) || die  "ERROR: Error de conexion a la BBDD ${database_hostname}:${database_port} - ${database}\n";
 
 # DateTime variables
@@ -48,24 +44,23 @@ my $dt = DateTime->new( year => 1970, month => 1, day => 1 );
 my $formatter = DateTime::Format::Epoch->new(epoch => $dt,unit => 'milliseconds');
 my $dtnow = DateTime->now()->epoch();
 my $dtold = DateTime->now()->subtract(days => $o_refreshage)->epoch();
-my $dtoldrosters = DateTime->now()->subtract(days => $o_refreshrosterids)->epoch();
+my $dtoldrosters = DateTime->now()->subtract(days => $o_refreshagerosterids)->epoch();
 
-if ($o_newleagues){ #To find new leagues
+if ($o_searchleagues){ # To find new leagues
   $leaguehashlist = $dbh->selectall_hashref ("SELECT LeagueID FROM Leagues","LeagueID");
   $userhashlist = $dbh->selectall_hashref ("SELECT UserID FROM SearchedUsers","UserID");
-  my $newleagueuser = get_userid($o_newleagues);
-  get_leagues($newleagueuser);
+  get_leagues(get_userid($o_searchleagues));
   if (scalar(@LeagueSearchList)>0){
     my $currentLeag = 0;
     my $nextLeagupdate = 0;
     my $progressLeag = Term::ProgressBar->new({name  => 'Searching Users', count => scalar(@LeagueSearchList), ETA   => 'linear', remove => 1});
     $progressLeag->max_update_rate(1);
     $progressLeag->message("Searching Users for ".scalar(@LeagueSearchList)." Leagues");
-    foreach my $leaguesearch ( @LeagueSearchList ) { #For each league, get all users in those leagues
+    foreach my $leaguesearch ( @LeagueSearchList ) { # For each league, get all users in those leagues
       $currentLeag++;
       $nextLeagupdate = $progressLeag->update($currentLeag) if $currentLeag > $nextLeagupdate;
       if (!(defined($o_expandusersearch))){
-        next if (exists($leaguehashlist->{$leaguesearch})); #To skip recheck leagues already in the DB (but it could expand the search).
+        next if (exists($leaguehashlist->{$leaguesearch})); # To skip recheck leagues already in the DB (but it could expand the search).
       }
       get_leagueusers($leaguesearch);
     }
@@ -78,10 +73,10 @@ if ($o_newleagues){ #To find new leagues
     my $progressUser = Term::ProgressBar->new({name  => 'Searching Leagues', count => scalar(@UserSearchList), ETA   => 'linear', remove => 1});
     $progressUser->max_update_rate(1);
     $progressUser->message("Searching Leagues for ".scalar(@UserSearchList)." Users");
-    foreach my $useritem (@UserSearchList){ #For each user in one of those leagues gets their leagues
+    foreach my $useritem (@UserSearchList){ # For each user in one of those leagues gets their leagues
       next if (exists($userhashlist->{$useritem}));
       get_leagues($useritem);
-      insert_searchedUser($useritem); #Adds them to the "ignore" list.
+      insert_searchedUser($useritem); # Adds them to the "ignore" list.
       $currentUser++;
       $nextUserupdate = $progressUser->update($currentUser) if $currentUser > $nextUserupdate;
     }
@@ -94,11 +89,11 @@ if ($o_newleagues){ #To find new leagues
     insert_newleague($newleague);
     $leaguecount++;
   }
-  print "$leaguecount new leagues (from ". scalar(@LeagueSearchList)." found) added from the query of user ${o_newleagues}\n";
+  print "$leaguecount new leagues (from ". scalar(@LeagueSearchList)." found) added from the query of user ${o_searchleagues}\n";
   $o_maxleagues = $leaguecount;
 }
 
-if ($o_leagueinfo or $o_newleagues){
+if ($o_leagueinfo or $o_searchleagues){
   get_leaguelistUpdateInfo($o_maxleagues);
   if (scalar(@LeagueNameList) > 0){
     my $currentInfo = 0;
@@ -117,7 +112,7 @@ if ($o_leagueinfo or $o_newleagues){
   }
 }
 
-if ($o_rosteridinfo or $o_newleagues){
+if ($o_rosteridinfo or $o_searchleagues){
   get_leaguelistUpdateRosterID($o_maxleagues);
   if (scalar(@LeagueRosterIDList) > 0){
     my $currentRosterID = 0;
@@ -136,18 +131,11 @@ if ($o_rosteridinfo or $o_newleagues){
   }
 }
 
-if ($o_leaguerookies){
-  get_updateleaguelistdrafts($o_maxleagues);
-  foreach my $leagueU (@LeagueNameList){
-    get_leagueinfo($leagueU);
-  }
-}
-
 if ($o_update){
   $transpicklist = $dbh->selectall_hashref ("SELECT TradeID FROM Trades","TradeID");
   $transtradelist = $dbh->selectall_hashref ("SELECT TradeID FROM PickTrades","TradeID");
   $transignorelist = $dbh->selectall_hashref ("SELECT TradeID FROM RevertedTrades","TradeID");
-  $translist = { %$transpicklist, %$transtradelist, %$transignorelist };
+  $translist = {%$transpicklist, %$transtradelist, %$transignorelist};
   get_leaguelist($o_maxleagues);
   if (scalar(@LeagueList) > 0){
     my $currentLeague = 0;
@@ -157,6 +145,7 @@ if ($o_update){
     $progress->message("Searching for Trades for ".scalar(@LeagueList)." Leagues (still ".get_leaguePendingUpdate()." pending)\n");
     foreach my $leagueN (@LeagueList){
       $currentLeague++;
+      get_currentstate() if (!(defined($o_currentweek)));
       get_trades($leagueN,$o_currentweek);
       $next_update = $progress->update($currentLeague) if $currentLeague > $next_update;
     }
@@ -168,97 +157,16 @@ if ($o_update){
 }
 
 if ($o_export){
-  clean_data(); #Clean the Database of Reversed/duplicate trades
-  export_data(); #ExportDatatoCSV
+  clean_data(); # Clean the Database of Reversed/duplicate trades
+  export_data(); # ExportDatatoCSV
 }
 
-get_sleeperplayers() if (defined($o_updatedb)); # Test to update PlayerDB.
-
+export_sleeperplayers() if (defined($o_updatedb)); # Test to update PlayerDB.
 exit;
 
-sub get_leaguelistUpdateInfo{ #Get the LeagueList from the MySQL
-  my $leaguelimit = shift;
-  my $query = qq/SELECT LeagueID FROM Leagues WHERE trade_deadline IS NULL LIMIT $leaguelimit/;
-  my $sth = $dbh->prepare($query);
-  $sth->execute();
-  while(my $row = $sth->fetchrow_hashref) {
-    push @LeagueNameList,$row->{LeagueID};
-  }
-  $sth->finish;
-}
-
-
-sub get_CountleaguelistUpdateInfo{ #Get the LeagueList from the MySQL
-  my $leaguelimit = shift;
-  my $query = qq/SELECT COUNT(LeagueID) FROM Leagues WHERE trade_deadline IS NULL/;
-  my $sth = $dbh->prepare($query);
-  $sth->execute();
-  my $pendingleagues = $sth->fetchrow;
-  $sth->finish;
-  return $pendingleagues;
-}
-
-sub get_leaguelistUpdateRosterID{ #Get the LeagueList from the MySQL
-  my $leaguelimit = shift;
-  my $query = qq/  SELECT DISTINCT l.LeagueID FROM Leagues l LEFT JOIN RosterID_Reference r ON r.LeagueID = l.LeagueID WHERE r.LeagueID IS NULL AND (r.LastUpdate < $dtoldrosters OR r.LastUpdate IS NULL) LIMIT $leaguelimit/;
-  my $sth = $dbh->prepare($query);
-  $sth->execute();
-  while(my $row = $sth->fetchrow_hashref) {
-    push @LeagueRosterIDList,$row->{LeagueID};
-  }
-  $sth->finish;
-}
-
-sub get_leaguerosterID{
+sub get_leagueinfo{ # Get All leagues from a User
   my $league_id = shift;
-  verb ("League: ${league_id}");
-  my $rosterid_json_string = undef;
-  my $rosterid_url = "https://api.sleeper.app/v1/league/$league_id/rosters";
-  my $rosterid_ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
-  my $rosterid_header = HTTP::Request->new(GET => $rosterid_url);
-  $rosterid_header->header(content_type => "application/json",
-                         accept => "application/json");
-  my $rosterid_request = HTTP::Request->new('GET', $rosterid_url, $rosterid_header);
-  my $rosterid_response = $rosterid_ua->request($rosterid_request);
-  if ($rosterid_response->is_success){
-    $rosterid_json_string = $rosterid_response->content;
-    my $rosteridjson = decode_json($rosterid_json_string);
-    my $sth = $dbh->prepare(q{INSERT IGNORE INTO RosterID_Reference(LeagueID) VALUES (?)},{},);
-    $sth->execute($league_id);
-    $sth->finish;
-    foreach my $roster( @$rosteridjson ) {
-      my $ownerid;
-      if (defined($roster->{owner_id})){ $ownerid = $roster->{owner_id} }else{ $ownerid = "0" };
-      if (!(defined($roster->{owner_id}))){next;};
-      my $sts = $dbh->prepare(qq/UPDATE RosterID_Reference SET RosterID$roster->{roster_id} = $ownerid WHERE LeagueID = $league_id ;/);
-      $sts->execute();
-      $sts->finish;
-    }
-    my $stq = $dbh->prepare(qq/UPDATE RosterID_Reference SET LastUpdate = $dtnow WHERE LeagueID = $league_id/);
-    $stq->execute();
-    $stq->finish;
-  }
-}
-
-sub get_leagueinfo { #Get All leagues from a User
-  my $league_id = shift;
-  my $league_json_string = undef;
-  my $league_url = "https://api.sleeper.app/v1/league/${league_id}";
-  my $league_ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
-  my $league_header = HTTP::Request->new(GET => $league_url);
-  $league_header->header(content_type => "application/json",
-                         accept => "application/json");
-  my $league_request = HTTP::Request->new('GET', $league_url, $league_header);
-  my $league_response = $league_ua->request($league_request);
-  if ($league_response->is_success){
-    $league_json_string = $league_response->content;
-  }elsif ($league_response->is_error){
-    print "CRITICAL: Error: $league_url\n";
-    update_PossibleDeleted($league_id);
-    verb($league_response->error_as_HTML);
-    return;
-  }
-  my $leaguejson = decode_json($league_json_string);
+  my $leaguejson = get_json("https://api.sleeper.app/v1/league/${league_id}",$league_id);
   my ($league_name,$league_total_rosters,$league_taxi_slots,$league_rec,$league_bonus_rec_wr,$league_bonus_rec_te,$league_bonus_rec_rb,$league_pass_td,$league_pass_int,$league_draftrounds,$league_status,$league_draftid,$league_tradedl,$league_previousleague);
   if (exists($leaguejson->{name})){ $league_name = $leaguejson->{name} }else{ $league_name = "NoName" };
   if (exists($leaguejson->{total_rosters})){ $league_total_rosters =$leaguejson->{total_rosters} }else{ $league_total_rosters = 0 };
@@ -284,110 +192,56 @@ sub get_leagueinfo { #Get All leagues from a User
   my $Positions_BN = grep { $_ eq "BN" } @{ $leaguejson->{roster_positions} };
   my $total_players = $Positions_QB + $Positions_RB + $Positions_WR + $Positions_TE + $Positions_FLEX + $Positions_SUPER_FLEX + $Positions_BN;
   my $league_name_q = $dbh->quote($league_name);
-  my $query = qq/UPDATE Leagues SET name = $league_name_q, total_rosters = $league_total_rosters, taxi_slots = $league_taxi_slots, rec_bonus = $league_rec, bonus_rec_wr = $league_bonus_rec_wr, bonus_rec_te = $league_bonus_rec_te, bonus_rec_rb = $league_bonus_rec_rb, pass_td = $league_pass_td, pass_int = $league_pass_int, roster_positions_QB = $Positions_QB, roster_positions_RB = $Positions_RB, roster_positions_WR = $Positions_WR, roster_positions_TE = $Positions_TE, roster_positions_FLEX = $Positions_FLEX, roster_positions_SUPER_FLEX = $Positions_SUPER_FLEX, roster_positions_BN = $Positions_BN, total_players = $total_players, RookieRounds = $league_draftrounds, RookieTimeUpdate = $dtnow, RookieStatus = "$league_status", RookieDraft = $league_draftid, trade_deadline = $league_tradedl, previous_league_id = $league_previousleague WHERE LeagueID = $league_id;/;
-  my $sth = $dbh->prepare($query);
-  verb ("Query: ${query}");
+  my $sth = $dbh->prepare(qq/UPDATE Leagues SET name = $league_name_q, total_rosters = $league_total_rosters, taxi_slots = $league_taxi_slots, rec_bonus = $league_rec, bonus_rec_wr = $league_bonus_rec_wr, bonus_rec_te = $league_bonus_rec_te, bonus_rec_rb = $league_bonus_rec_rb, pass_td = $league_pass_td, pass_int = $league_pass_int, roster_positions_QB = $Positions_QB, roster_positions_RB = $Positions_RB, roster_positions_WR = $Positions_WR, roster_positions_TE = $Positions_TE, roster_positions_FLEX = $Positions_FLEX, roster_positions_SUPER_FLEX = $Positions_SUPER_FLEX, roster_positions_BN = $Positions_BN, total_players = $total_players, RookieRounds = $league_draftrounds, RookieTimeUpdate = $dtnow, RookieStatus = "$league_status", RookieDraft = $league_draftid, trade_deadline = $league_tradedl, previous_league_id = $league_previousleague WHERE LeagueID = $league_id;/);
   $sth->execute();
   $sth->finish;
-  verb ("League ${league_id}");
-  verb ("league_name: ${league_name}");
-  verb ("league_total_rosters: ${league_total_rosters}");
-  verb ("league_taxi_slots: ${league_taxi_slots}");
-  verb ("league_rec: ${league_rec}");
-  verb ("league_bonus_rec_wr: ${league_bonus_rec_wr}");
-  verb ("league_bonus_rec_te: ${league_bonus_rec_te}");
-  verb ("league_bonus_rec_rb: ${league_bonus_rec_rb}");
-  verb ("league_pass_td: ${league_pass_td}");
-  verb ("league_pass_int: ${league_pass_int}");
-  verb ("Positions_QB: ${Positions_QB}");
-  verb ("Positions_RB: ${Positions_RB}");
-  verb ("Positions_WR: ${Positions_WR}");
-  verb ("Positions_TE: ${Positions_TE}");
-  verb ("Positions_FLEX: ${Positions_FLEX}");
-  verb ("Positions_SUPER_FLEX: ${Positions_SUPER_FLEX}");
-  verb ("Positions_BN: ${Positions_BN}");
-  verb ("total_players: ${total_players}");
-  return;
+  verb ("League ${league_id}\nleague_name: ${league_name}\nleague_total_rosters: ${league_total_rosters}\nleague_taxi_slots: ${league_taxi_slots}\nleague_rec: ${league_rec}\nleague_bonus_rec_wr: ${league_bonus_rec_wr}\nleague_bonus_rec_te: ${league_bonus_rec_te}\nleague_bonus_rec_rb: ${league_bonus_rec_rb}\nleague_pass_td: ${league_pass_td}\nleague_pass_int: ${league_pass_int}\nPositions_QB: ${Positions_QB}\nPositions_RB: ${Positions_RB}\nPositions_WR: ${Positions_WR}\nPositions_TE: ${Positions_TE}\nPositions_FLEX: ${Positions_FLEX}\nPositions_SUPER_FLEX: ${Positions_SUPER_FLEX}\nPositions_BN: ${Positions_BN}\ntotal_players: ${total_players}");
 }
 
-sub insert_tradeHash{ # Imports  all the %TradeDB to the MySQL
-  foreach my $leaguehash (keys %$tradedb) {
-    foreach my $transhash (keys %{%$tradedb{$leaguehash}}) {
-      if (looks_like_number($transhash)){
-        foreach my $ownershash (keys %{%$tradedb{$leaguehash}->{$transhash}}) {
-          if (looks_like_number($ownershash)){
-            for my $playerhash (@{$tradedb->{$leaguehash}->{$transhash}->{$ownershash}}) {
-              push (@playerstemp,$playerhash);
-            }
-            if (!defined $players1){$players1 = join("; ",@playerstemp)}elsif(!defined $players2){$players2 = join("; ",@playerstemp)}else{$players3 = join("; ",@playerstemp)};
-            if (!defined $owner1){$owner1 = $ownershash}elsif(!defined $owner2){$owner2 = $ownershash}else{$owner3 = $ownershash};
-            @playerstemp = ();
-          }
-        }
-        if (exists($tradedb->{$leaguehash}->{$transhash}->{draftrounds})){ $draftrounds = $tradedb->{$leaguehash}->{$transhash}->{draftrounds} }else{ $draftrounds = 0 };
-        verb("League: ${leaguehash} Transaction ${transhash} Time $$tradedb{$leaguehash}->{$transhash}->{date}");
-        verb ("Players1: ${players1}") if defined($players1);
-        verb ("Owner1: ${owner1}") if defined($owner1);
-        verb ("Players2: ${players2}") if defined($players2);
-        verb ("Owner2: ${owner2}") if defined($owner2);
-        verb ("Players3: ${players3}") if defined($players3);
-        verb ("Owner3: ${owner3}") if defined($owner3);
-        verb ("DraftRounds: ${draftrounds}") if defined($draftrounds);
-        insert_newtrade($transhash,$leaguehash,$tradedb->{$leaguehash}->{$transhash}->{date},$players1,$players2,$players3,$owner1,$owner2,$owner3,$draftrounds);
-        ($players1,$players2,$players3,$owner1,$owner2,$owner3,$draftrounds) = undef;
-      }
-    }
-  }
-}
-
-sub get_LeagueDrafts { # Gets draft slots from the league of that year
+sub get_leaguedrafts{ # Gets draft slots from the league of that year
   my $league_id = shift;
-  my $drafts_json_string = undef;
-  my $drafts_url = "https://api.sleeper.app/v1/league/$league_id/drafts";
-  my $drafts_ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
-  my $drafts_header = HTTP::Request->new(GET => $drafts_url);
-  $drafts_header->header(content_type => "application/json",
-                         accept => "application/json");
-  my $drafts_request = HTTP::Request->new('GET', $drafts_url, $drafts_header);
-  my $drafts_response = $drafts_ua->request($drafts_request);
-  if ($drafts_response->is_success){
-    $drafts_json_string = $drafts_response->content;
-    my $draftsjson = decode_json($drafts_json_string);
-    foreach my $draft( @$draftsjson ) {
-      next unless ($draft->{season} eq $season);
-      my $draft_ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
-      my $draft_url = "https://api.sleeper.app/v1/draft/$draft->{draft_id}";
-      my $draft_json_string = undef;
-      my $draft_header = HTTP::Request->new(GET => $draft_url);
-      $draft_header->header(content_type => "application/json",
-                            accept => "application/json");
-      my $draft_request = HTTP::Request->new('GET', $draft_url, $draft_header);
-      my $draft_response = $draft_ua->request($draft_request);
-      if ($draft_response->is_success){
-        $draft_json_string = $draft_response->content;
-        my $draftjson = decode_json($draft_json_string);
-        $tradedb->{$league_id}->{drafts}->{$draft->{draft_id}}->{draftrounds} = $draftjson->{settings}->{rounds} if (exists( $draftjson->{settings}->{rounds}));
-        $tradedb->{$league_id}->{drafts}->{$draft->{draft_id}}->{last_picked} = $draftjson->{last_picked} if (exists( $draftjson->{last_picked}));
-        if (exists( $draftjson->{slot_to_roster_id})){
-          foreach my $slots( $draftjson->{slot_to_roster_id} ) {
-            for my $slot (keys(%$slots)) {
-              $tradedb->{$league_id}->{drafts}->{$draft->{draft_id}}->{slots}->{$slots->{$slot}} = $slot unless ($slot eq '' );
-            }
-          }
-        }else{
-          $tradedb->{$league_id}->{drafts}->{$draft->{draft_id}}->{slots} = "0";
+  my $draftsjson = get_json("https://api.sleeper.app/v1/league/$league_id/drafts");
+  foreach my $draft( @$draftsjson ) {
+    next unless ($draft->{season} eq $season);
+    my $draftjson = get_json("https://api.sleeper.app/v1/draft/$draft->{draft_id}");
+    $tradedb->{$league_id}->{drafts}->{$draft->{draft_id}}->{draftrounds} = $draftjson->{settings}->{rounds} if (exists( $draftjson->{settings}->{rounds}));
+    $tradedb->{$league_id}->{drafts}->{$draft->{draft_id}}->{last_picked} = $draftjson->{last_picked} if (exists( $draftjson->{last_picked}));
+    if (exists( $draftjson->{slot_to_roster_id})){
+      foreach my $slots( $draftjson->{slot_to_roster_id} ) {
+        for my $slot (keys(%$slots)) {
+          $tradedb->{$league_id}->{drafts}->{$draft->{draft_id}}->{slots}->{$slots->{$slot}} = $slot unless ($slot eq '' );
         }
       }
+    }else{
+      $tradedb->{$league_id}->{drafts}->{$draft->{draft_id}}->{slots} = "0";
     }
   }
-  return;
+}
+
+sub get_leaguerosterID{
+  my $league_id = shift;
+  verb ("Getting RosterID from league: ${league_id}");
+  my $rosteridjson = get_json("https://api.sleeper.app/v1/league/$league_id/rosters",$league_id);
+  my $sth = $dbh->prepare(q{INSERT IGNORE INTO RosterID_Reference(LeagueID) VALUES (?)},{},);
+  $sth->execute($league_id);
+  $sth->finish;
+  foreach my $roster( @$rosteridjson ) {
+    my $ownerid;
+    if (defined($roster->{owner_id})){ $ownerid = $roster->{owner_id} }else{ $ownerid = "0" };
+    if (!(defined($roster->{owner_id}))){next;};
+    my $sts = $dbh->prepare(qq/UPDATE RosterID_Reference SET RosterID$roster->{roster_id} = $ownerid WHERE LeagueID = $league_id;/);
+    $sts->execute();
+    $sts->finish;
+  }
+  my $stq = $dbh->prepare(qq/UPDATE RosterID_Reference SET LastUpdate = $dtnow WHERE LeagueID = $league_id/);
+  $stq->execute();
+  $stq->finish;
 }
 
 sub get_player{ # Gets the Player String from Sleeper_ID
   my $splayer_id = shift;
   return unless (looks_like_number($splayer_id));
-  my $query = qq/SELECT first_name,last_name,fantasy_positions,team FROM Players WHERE player_id=$splayer_id/;
-  my $sth = $dbh->prepare($query);
+  my $sth = $dbh->prepare(qq/SELECT first_name,last_name,fantasy_positions,team FROM Players WHERE player_id=$splayer_id/);
   $sth->execute();
   my ($qfname,$qlname,$qpos,$qteam) = $sth->fetchrow;
   $sth->finish;
@@ -395,6 +249,7 @@ sub get_player{ # Gets the Player String from Sleeper_ID
     print "Error: the player ${splayer_id} has not been found";
     return;
   }
+  $qteam = '' if (!(defined($qteam)));
   return "$qfname $qlname,$qpos,$qteam";
 }
 
@@ -403,74 +258,21 @@ sub get_ownerid{ # Gets the owner of the RosterID
   my $sleague_id = shift;
   return unless (looks_like_number($sroster_id));
   return unless (looks_like_number($sleague_id));
-  if ($sroster_id > 14){
-    return $sroster_id;
-  }
-  my $query = qq/SELECT RosterID${sroster_id} FROM RosterID_Reference WHERE LeagueID=${sleague_id}/;
-  my $sth = $dbh->prepare($query);
+  return $sroster_id if ($sroster_id > 14);
+  my $sth = $dbh->prepare(qq/SELECT RosterID${sroster_id} FROM RosterID_Reference WHERE LeagueID=${sleague_id}/);
   $sth->execute();
   my $qownerid = $sth->fetchrow;
   $sth->finish;
-  if (!(defined($qownerid))){
-    return $sroster_id;
-  }
+  return $sroster_id if (!(defined($qownerid)));
   return $qownerid;
 }
 
-sub get_leaguelist{ #Get the LeagueList from the MySQL
-  my $leaguelimit = shift;
-  my $query = qq/SELECT LeagueID FROM Leagues WHERE PossibleDeleted = FALSE AND LastUpdate < $dtold OR LastUpdate IS NULL LIMIT $leaguelimit/;
-  my $sth = $dbh->prepare($query);
-  $sth->execute();
-  while(my $row = $sth->fetchrow_hashref) {
-    push @LeagueList,$row->{LeagueID};
-  }
-  $sth->finish;
-}
-
-sub get_leaguePendingUpdate{ #Get the LeagueList from the MySQL
-  my $leaguelimit = shift;
-  my $query = qq/SELECT COUNT(LeagueID) FROM Leagues WHERE PossibleDeleted = FALSE AND LastUpdate < $dtold OR LastUpdate IS NULL/;
-  my $sth = $dbh->prepare($query);
-  $sth->execute();
-  my $pendingleagues = $sth->fetchrow;
-  $sth->finish;
-  return $pendingleagues;
-}
-
-sub get_updateleaguelistdrafts{ #Get the LeagueList from the MySQL
-  my $leaguelimit = shift;
-  my $query = qq/SELECT LeagueID FROM Leagues WHERE RookieStatus = 'pre_draft' AND (RookieTimeUpdate < '$dtold' OR RookieTimeUpdate IS NULL) AND PossibleDeleted = FALSE LIMIT $leaguelimit/;
-  my $sth = $dbh->prepare($query);
-  $sth->execute();
-  while(my $row = $sth->fetchrow_hashref) {
-    push @LeagueNameList,$row->{LeagueID};
-  }
-  $sth->finish;
-}
-
-sub get_trades { #Get All trades from a League
+sub get_trades { # Get All trades from a League
   my $league_id = shift;
   my $WeekID = shift;
-  my $league_json_string = undef;
   my $current_draft = undef;
   verb("Getting trades of $league_id");
-  my $league_url = "https://api.sleeper.app/v1/league/${league_id}/transactions/${WeekID}";
-  my $league_ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
-  my $league_header = HTTP::Request->new(GET => $league_url);
-  $league_header->header(content_type => "application/json",
-                         accept => "application/json");
-  my $league_request = HTTP::Request->new('GET', $league_url, $league_header);
-  my $league_response = $league_ua->request($league_request);
-  if ($league_response->is_success){
-    $league_json_string = $league_response->content;
-  }elsif ($league_response->is_error){
-    print "CRITICAL: Error: $league_url\n";
-    update_PossibleDeleted($league_id);
-    verb($league_response->error_as_HTML);
-    next;
-  }
-  my $tradesjson = decode_json($league_json_string);
+  my $tradesjson = get_json("https://api.sleeper.app/v1/league/${league_id}/transactions/${WeekID}",$league_id);
   foreach my $trade( @$tradesjson ) {
     next unless ($trade->{type} eq "trade");
     next unless ($trade->{status} eq "complete");
@@ -490,9 +292,7 @@ sub get_trades { #Get All trades from a League
         for my $keypicks (@$tradetpicks) {
           my $picktext = undef;
           if ($keypicks->{season} eq $season){
-            if (!exists($tradedb->{$league_id}->{drafts})){
-              get_LeagueDrafts($league_id);
-            }
+            get_leaguedrafts($league_id) if (!exists($tradedb->{$league_id}->{drafts}));
             if (scalar(keys %{%$tradedb{$league_id}->{drafts}}) == 1){
               foreach my $leaguekeys (keys %{%$tradedb{$league_id}->{drafts}}) {
                 $current_draft = $leaguekeys;
@@ -538,80 +338,96 @@ sub get_trades { #Get All trades from a League
           my $userpickownerid = get_ownerid($keypicks->{owner_id},$league_id);
           push @{$tradedb->{$league_id}->{$trade->{transaction_id}}->{$userpickownerid}}, $picktext;
           verb("Picks ${picktext}");
-          if (defined($current_draft)){
-            $tradedb->{$league_id}->{$trade->{transaction_id}}->{draftrounds} = $tradedb->{$league_id}->{drafts}->{$current_draft}->{draftrounds};
-          }
+          $tradedb->{$league_id}->{$trade->{transaction_id}}->{draftrounds} = $tradedb->{$league_id}->{drafts}->{$current_draft}->{draftrounds} if (defined($current_draft));
           verb("Current Rounds: ". $tradedb->{$league_id}->{drafts}->{$current_draft}->{draftrounds})if (defined($current_draft));
         }
       }
     }
   }
   update_leagueTime($league_id);
-  return;
 }
 
-sub update_leagueTime{#Inserts in the MySQL the CurrentTime after updating
-  my $league_id = shift;
-  my $query = qq/UPDATE Leagues SET LastUpdate = $dtnow WHERE LeagueID = $league_id/;
-  my $sth = $dbh->prepare($query);
-  $sth->execute();
-  $sth->finish;
-  verb("Updating time of league ${league_id}");
-}
-
-sub update_PossibleDeleted{#Inserts in the MySQL the Possible Delete Status
-  my $league_id = shift;
-  my $query = qq/UPDATE Leagues SET PossibleDeleted = TRUE WHERE LeagueID = $league_id/;
-  my $sth = $dbh->prepare($query);
-  $sth->execute();
-  $sth->finish;
-  verb("Updating Possible Deleted league ${league_id}");
-}
-
-sub insert_newtrade{ #Inserts one Trades into MySQL
-  my $transactions_id = shift;
-  my $league_id = shift;
-  my $trans_time = shift;
-  my $items1 = shift;
-  my $items2 = shift;
-  my $items3 = shift;
-  my $owners1 = shift;
-  my $owners2 = shift;
-  my $owners3 = shift;
-  my $draftrounds = shift;
-  if ((!(defined($items1))) or (!(defined($items2)))){
-    return;
+sub get_leagues { # Get All leagues from a User
+  my $userID = shift;
+  my $leaguejson = get_json("https://api.sleeper.app/v1/user/${userID}/leagues/nfl/${season}");
+  foreach my $leagueitem ( @$leaguejson ) {
+    next if (grep(/\bfree\b/i,$leagueitem->{name})); # Skip league if has Free (case insensitive) in the name
+    next if (grep(/\bmock\b/i,$leagueitem->{name}));  # Skip league if has mock (case insensitive) in the name
+    next unless ($leagueitem->{settings}->{type} == 2); # Only DynastyLeagues
+    next unless (ref($leagueitem->{roster_positions}) eq 'ARRAY' and grep { $_ eq "SUPER_FLEX" } @{ $leagueitem->{roster_positions} }); # Only Superflex Leagues
+    next unless ( ($leagueitem->{settings}->{num_teams} eq "12") || ($leagueitem->{settings}->{num_teams} eq "14") ); # Only 12/14 Player Leagues
+    next unless (scalar @{ $leagueitem->{roster_positions} } > 20); # Min 20 players per team
+    next unless ((grep { $_ eq "QB" or $_ eq "RB" or $_ eq "WR" or $_ eq "TE" or $_ eq "FLEX" or $_ eq "REC_FLEX" or $_ eq "SUPER_FLEX" } @{ $leagueitem->{roster_positions} }) >= 8); # Min 8 Starters
+    push(@LeagueSearchList, $leagueitem->{league_id}); # Add them to the LeagueList
+    verb("Adding league $leagueitem->{league_id} to arraysearch");
   }
-  my $countitems1 = () = $items1 =~ /\Q;/g;
-  my $countitems2 = () = $items2 =~ /\Q;/g;
+}
 
-  return if (($countitems1 > $maxIteminTrade) or ($countitems2 > $maxIteminTrade));
-
-  if ((!($items1 =~ m/.*,.*/)) and (!($items2 =~ m/.*,.*/))){
-    my $dbst = $dbh->prepare(
-      q{
-        INSERT INTO PickTrades
-          (TradeID,League,Time,Items1,Items2,Items3,Items1Owner,Items2Owner,Items3Owner,DraftRounds)
-        VALUES
-          (?,?,?,?,?,?,?,?,?,?)
-      }, {},
-    );
-    verb("inserting ${transactions_id} in PICKS");
-    $dbst->execute($transactions_id, $league_id, $trans_time, $items1, $items2, $items3, $owner1, $owner2, $owner3, $draftrounds)or die $dbst->errstr; # TODO MIRAR DE MEJORAR EL ERROR
-    $dbst->finish;
-  }else{
-    my $dbst = $dbh->prepare(
-      q{
-        INSERT INTO Trades
-          (TradeID,League,Time,Items1,Items2,Items3,Items1Owner,Items2Owner,Items3Owner,DraftRounds)
-        VALUES
-          (?,?,?,?,?,?,?,?,?,?)
-      }, {},
-    );
-    verb("inserting ${transactions_id} in TRADES");
-    $dbst->execute($transactions_id, $league_id, $trans_time, $items1, $items2, $items3, $owner1, $owner2, $owner3, $draftrounds)or die $dbst->errstr; # TODO MIRAR DE MEJORAR EL ERROR
-    $dbst->finish;
+sub get_leaguelist{ # Get the LeagueList from the MySQL that hasn't updated in X time
+  my $leaguelimit = shift;
+  my $sth = $dbh->prepare(qq/SELECT LeagueID FROM Leagues WHERE PossibleDeleted = FALSE AND LastUpdate < $dtold OR LastUpdate IS NULL LIMIT $leaguelimit/);
+  $sth->execute();
+  while(my $row = $sth->fetchrow_hashref) {
+    push @LeagueList,$row->{LeagueID};
   }
+  $sth->finish;
+}
+
+sub get_leaguelistUpdateInfo{ # Get the LeagueList from the MySQL
+  my $leaguelimit = shift;
+  my $sth = $dbh->prepare(qq/SELECT LeagueID FROM Leagues WHERE name IS NULL LIMIT $leaguelimit/);
+  $sth->execute();
+  while(my $row = $sth->fetchrow_hashref) {
+    push @LeagueNameList,$row->{LeagueID};
+  }
+  $sth->finish;
+}
+
+sub get_CountleaguelistUpdateInfo{ # Get the LeagueList missing information from the MySQL
+  my $leaguelimit = shift;
+  my $sth = $dbh->prepare(qq/SELECT COUNT(LeagueID) FROM Leagues WHERE name IS NULL/);
+  $sth->execute();
+  my $pendingleagues = $sth->fetchrow;
+  $sth->finish;
+  return $pendingleagues;
+}
+
+sub get_leaguelistUpdateRosterID{ # Get the LeagueList without rosterID information from the MySQL
+  my $leaguelimit = shift;
+  my $sth = $dbh->prepare(qq/SELECT DISTINCT l.LeagueID FROM Leagues l LEFT JOIN RosterID_Reference r ON r.LeagueID = l.LeagueID WHERE r.LeagueID IS NULL AND (r.LastUpdate < $dtoldrosters OR r.LastUpdate IS NULL) LIMIT $leaguelimit/);
+  $sth->execute();
+  while(my $row = $sth->fetchrow_hashref) {
+    push @LeagueRosterIDList,$row->{LeagueID};
+  }
+  $sth->finish;
+}
+
+sub get_leaguePendingUpdate{ # Get Number of leagues missing update
+  my $leaguelimit = shift;
+  my $sth = $dbh->prepare(qq/SELECT COUNT(LeagueID) FROM Leagues WHERE PossibleDeleted = FALSE AND LastUpdate < $dtold OR LastUpdate IS NULL/);
+  $sth->execute();
+  my $pendingleagues = $sth->fetchrow;
+  $sth->finish;
+  return $pendingleagues;
+}
+
+sub get_leagueusers { # Gets all Users from a League
+  my $league_id = shift;
+  my $leaguejson = get_json("https://api.sleeper.app/v1/league/${league_id}/users",$league_id);
+  foreach my $leagueuser ( @$leaguejson ) {
+    push(@UserSearchList, $leagueuser->{user_id}) unless(grep(/^$leagueuser->{user_id}$/,@UserSearchList));
+  }
+}
+
+sub get_userid { # Get the UserID from a username
+  my $username = shift;
+  my $userjson = get_json("https://api.sleeper.app/v1/user/$username");
+  return $userjson->{user_id};
+}
+
+sub get_currentstate{
+  my $status_json = get_json("https://api.sleeper.app/v1/state/nfl");
+  $o_currentweek = $status_json->{display_week};
 }
 
 sub insert_newleague{ # Adds a new League to the list
@@ -619,7 +435,6 @@ sub insert_newleague{ # Adds a new League to the list
   my $sth = $dbh->prepare(q{INSERT IGNORE INTO Leagues(LeagueID) VALUES (?)},{},);
   $sth->execute($new_league);
   $sth->finish;
-  # verb("Inserting league ${new_league} into the DB");
 }
 
 sub insert_searchedUser{ # Adds a new League to the list
@@ -627,86 +442,66 @@ sub insert_searchedUser{ # Adds a new League to the list
   my $sth = $dbh->prepare(q{INSERT IGNORE INTO SearchedUsers(UserID,ScrapeDate) VALUES (?,?)},{},);
   $sth->execute($new_user,$dtnow);
   $sth->finish;
-  # verb("Inserting ${new_user}");
 }
 
-sub get_leagues { #Get All leagues from a User
-  my $userID = shift;
-  my $league_json_string = undef;
-  my $league_url = "https://api.sleeper.app/v1/user/${userID}/leagues/${sport}/${season}";
-  my $league_ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
-  my $league_header = HTTP::Request->new(GET => $league_url);
-  $league_header->header(content_type => "application/json",
-                         accept => "application/json");
-  my $league_request = HTTP::Request->new('GET', $league_url, $league_header);
-  my $league_response = $league_ua->request($league_request);
-  if ($league_response->is_success){
-    $league_json_string = $league_response->content;
-  }elsif ($league_response->is_error){
-    print "CRITICAL: Error: $league_url\n";
-    verb($league_response->error_as_HTML);
-    next;
-  }
-  my $leaguejson = decode_json($league_json_string);
-  foreach my $leagueitem ( @$leaguejson ) {
-    next if (grep(/\bfree\b/i,$leagueitem->{name})); #Skip league if has Free or mock in the name
-    next if (grep(/\bmock\b/i,$leagueitem->{name}));
-    next unless ($leagueitem->{settings}->{type} == 2); # Only DynastyLeagues
-    next unless (ref($leagueitem->{roster_positions}) eq 'ARRAY' and grep { $_ eq "SUPER_FLEX" } @{ $leagueitem->{roster_positions} }); #Only Superflex Leagues
-    next unless ( ($leagueitem->{settings}->{num_teams} eq "12") || ($leagueitem->{settings}->{num_teams} eq "14") ); # Only 12/14 Player Leagues
-    next unless (scalar @{ $leagueitem->{roster_positions} } > 20); #min 20 players per team
-    next unless ((grep { $_ eq "QB" or $_ eq "RB" or $_ eq "WR" or $_ eq "TE" or $_ eq "FLEX" or $_ eq "REC_FLEX" or $_ eq "SUPER_FLEX" } @{ $leagueitem->{roster_positions} }) >= 8); # Min 8 Starters
-    push(@LeagueSearchList, $leagueitem->{league_id}); #Add them to the LeagueList
-    verb("Adding league $leagueitem->{league_id} to arraysearch");
-  }
-  return;
+sub insert_newtrade{ # Inserts one Trades into MySQL
+  my ($transactions_id,$league_id,$trans_time,$items1,$items2,$items3,$owners1,$owners2,$owners3,$draftrounds) = (@_);
+  my $TradeDatabase = "Trades";
+  return if ((!(defined($items1))) or (!(defined($items2))));
+  my $countitems1 = () = $items1 =~ /\Q;/g;
+  my $countitems2 = () = $items2 =~ /\Q;/g;
+  return if (($countitems1 > $maxIteminTrade) or ($countitems2 > $maxIteminTrade));
+  $TradeDatabase = "PickTrades" if ((!($items1 =~ m/.*,.*/)) and (!($items2 =~ m/.*,.*/)));
+  my $dbst = $dbh->prepare(qq{INSERT INTO $TradeDatabase(TradeID,League,Time,Items1,Items2,Items3,Items1Owner,Items2Owner,Items3Owner,DraftRounds) VALUES (?,?,?,?,?,?,?,?,?,?)},{},);
+  verb("inserting ${transactions_id} in $TradeDatabase");
+  $dbst->execute($transactions_id, $league_id, $trans_time, $items1, $items2, $items3, $owner1, $owner2, $owner3, $draftrounds)or die $dbst->errstr;
+  $dbst->finish;
 }
 
-sub get_leagueusers { #Gets all Users from a League
-  my $leagueID = shift;
-  my $league_json_string = undef;
-  my $league_url = "https://api.sleeper.app/v1/league/${leagueID}/users";
-  my $league_ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
-  my $league_header = HTTP::Request->new(GET => $league_url);
-  $league_header->header(content_type => "application/json",
-                         accept => "application/json");
-  my $league_request = HTTP::Request->new('GET', $league_url, $league_header);
-  my $league_response = $league_ua->request($league_request);
-  if ($league_response->is_success){
-    $league_json_string = $league_response->content;
-  }elsif ($league_response->is_error){
-    print "CRITICAL: Error: $league_url\n";
-    verb($league_response->error_as_HTML);
-    return;
+sub insert_tradeHash{ # Imports  all the %TradeDB to the MySQL
+  foreach my $leaguehash (keys %$tradedb) {
+    foreach my $transhash (keys %{%$tradedb{$leaguehash}}) {
+      if (looks_like_number($transhash)){
+        foreach my $ownershash (keys %{%$tradedb{$leaguehash}->{$transhash}}) {
+          if (looks_like_number($ownershash)){
+            for my $playerhash (@{$tradedb->{$leaguehash}->{$transhash}->{$ownershash}}) {
+              push (@playerstemp,$playerhash);
+            }
+            if (!defined $players1){$players1 = join("; ",@playerstemp)}elsif(!defined $players2){$players2 = join("; ",@playerstemp)}else{$players3 = join("; ",@playerstemp)};
+            if (!defined $owner1){$owner1 = $ownershash}elsif(!defined $owner2){$owner2 = $ownershash}else{$owner3 = $ownershash};
+            @playerstemp = ();
+          }
+        }
+        if (exists($tradedb->{$leaguehash}->{$transhash}->{draftrounds})){ $draftrounds = $tradedb->{$leaguehash}->{$transhash}->{draftrounds} }else{ $draftrounds = 0 };
+        verb("League: ${leaguehash} Transaction ${transhash} Time $$tradedb{$leaguehash}->{$transhash}->{date}");
+        verb ("Players1: ${players1}") if defined($players1);
+        verb ("Owner1: ${owner1}") if defined($owner1);
+        verb ("Players2: ${players2}") if defined($players2);
+        verb ("Owner2: ${owner2}") if defined($owner2);
+        verb ("Players3: ${players3}") if defined($players3);
+        verb ("Owner3: ${owner3}") if defined($owner3);
+        verb ("DraftRounds: ${draftrounds}") if defined($draftrounds);
+        insert_newtrade($transhash,$leaguehash,$tradedb->{$leaguehash}->{$transhash}->{date},$players1,$players2,$players3,$owner1,$owner2,$owner3,$draftrounds);
+        ($players1,$players2,$players3,$owner1,$owner2,$owner3,$draftrounds) = undef;
+      }
+    }
   }
-  my $leaguejson = decode_json($league_json_string);
-  foreach my $leagueuser ( @$leaguejson ) {
-    my $usersearch = $leagueuser->{"user_id"};
-    # verb("Searching user $usersearch");
-    push(@UserSearchList, $leagueuser->{"user_id"}) unless(grep(/^$usersearch$/,@UserSearchList));
-  }
-  return;
 }
 
-sub get_userid { #Get the UserID from a username
-  my $username = shift;
-  my $user_json_string = undef;
-  my $user_url = "https://api.sleeper.app/v1/user/$username";
-  my $user_ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
-  my $user_header = HTTP::Request->new(GET => $user_url);
-  $user_header->header(content_type => "application/json",
-                       accept => "application/json");
-  my $user_request = HTTP::Request->new('GET', $user_url, $user_header);
-  my $user_response = $user_ua->request($user_request);
-  if ($user_response->is_success){
-    $user_json_string = $user_response->content;
-  }elsif ($user_response->is_error){
-    print "CRITICAL: Error:$user_url\n";
-    verb($user_response->error_as_HTML);
-    return;
-  }
-  my $userjson = decode_json($user_json_string);
-  return $userjson->{"user_id"};
+sub update_leagueTime{ # Inserts in the MySQL the CurrentTime after updating
+  my $league_id = shift;
+  my $sth = $dbh->prepare(qq/UPDATE Leagues SET LastUpdate = $dtnow WHERE LeagueID = $league_id/);
+  $sth->execute();
+  $sth->finish;
+  verb("Updating time of league ${league_id}");
+}
+
+sub update_PossibleDeleted{ # Inserts in the MySQL the Possible Delete Status
+  my $league_id = shift;
+  my $sth = $dbh->prepare(qq/UPDATE Leagues SET PossibleDeleted = TRUE WHERE LeagueID = $league_id/);
+  $sth->execute();
+  $sth->finish;
+  verb("Updating Possible Deleted league ${league_id}");
 }
 
 sub clean_data{
@@ -736,44 +531,34 @@ sub clean_data{
   $dbh->do('DELETE FROM PickTrades WHERE League IN (SELECT i.LeagueID FROM IgnoredLeagues i WHERE i.LeagueID IS NOT NULL)');
 }
 
-sub export_data{
+sub export_data{ # Generate CSV and push them to the Repository
+  my $repo = Git::Repository->new( work_tree => $gitrepodir);
+  $repo->run( 'pull' );
   csv (out => "${gitrepodir}/Leagues.csv", sep_char => ";", headers => [qw( leagueid name rosters qb rb wr te flex sflex bn total_players taxi_slots rec_bonus rec_rb rec_wr rec_te pass_td pass_int old_leagueid )], in => $dbh->selectall_arrayref ("SELECT LeagueID,name,total_rosters,roster_positions_QB,roster_positions_RB,roster_positions_WR,roster_positions_TE,roster_positions_FLEX,roster_positions_SUPER_FLEX,roster_positions_BN,total_players,taxi_slots,pass_td,rec_bonus,bonus_rec_te,bonus_rec_rb,bonus_rec_wr,pass_int,previous_league_id FROM Leagues"));
   csv (out => "${gitrepodir}/Trades.csv", sep_char => ";", headers => [qw( tradeid time leagueid items1 items2 owner1 owner2 )], in => $dbh->selectall_arrayref ("SELECT TradeID,Time,League,Items1,Items2,Items1Owner,Items2Owner FROM Trades"));
   csv (out => "${gitrepodir}/PickTrades.csv", sep_char => ";", headers => [qw( tradeid time leagueid items1 items2 owner1 owner2 rounds )], in => $dbh->selectall_arrayref ("SELECT TradeID,Time,League,Items1,Items2,Items1Owner,Items2Owner,DraftRounds FROM PickTrades"));
-  printtofile("${gitrepodir}/Date.csv",DateTime->now()->mdy("/"));
-  my $repo = Git::Repository->new( work_tree => $gitrepodir);
-  $repo->run( add => '.' );
-  $repo->run( commit => '-m', DateTime->now()->mdy("/")." Trades" );
-  $repo->run ( 'push', '-u' => { origin => 'master' } );
+  my $repostatus = $repo->run( 'status' );
+  if ($repostatus =~ "nothing to commit"){
+    print "No new Trades exported.\n";
+  }else{
+    printtofile("${gitrepodir}/Date.csv",DateTime->now()->mdy("/"));
+    $repo->run( add => '.' );
+    $repo->run( commit => '-m', DateTime->now()->mdy("/")." Trades" );
+    my $pushstatus = $repo->command ( 'push', '-u' => { origin => 'master' } );
+    print "Pushed new trades to he repository.\n"
+  }
 }
 
-sub get_sleeperplayers { #Get the Sleeper Player Ids
-  my $players_json_string = undef;
+sub export_sleeperplayers { # Get the Sleeper Player Ids
   if(!(prompt_yn("Do you want to continue"))){
-    print "Ok, exiting the player database update.";
+    print "Ok, exiting the player database update.\n";
     exit;
   }
-  my $players_url = "https://api.sleeper.app/v1/players/nfl";
-  # my $players_url = "https://adenetwork.pw/PFF/nfl.json";
-  my $players_ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
-  my $players_header = HTTP::Request->new(GET => $players_url);
-  $players_header->header(content_type => "application/json",
-                         accept => "application/json");
-  my $players_request = HTTP::Request->new('GET', $players_url, $players_header);
-  my $players_response = $players_ua->request($players_request);
-  if ($players_response->is_success){
-    $players_json_string = $players_response->content;
-  }elsif ($players_response->is_error){
-    print "CRITICAL: Error: $players_url\n";
-    verb($players_response->error_as_HTML);
-    return;
-  }
-  my $query = qq/TRUNCATE TABLE Players;/;
-  my $sth = $dbh->prepare($query);
+  my $playersjson = get_json("https://api.sleeper.app/v1/players/nfl");
+  my $sth = $dbh->prepare(qq/TRUNCATE TABLE Players;/);
   $sth->execute();
   $sth->finish;
   verb("Truncated table PlayersTest");
-  my $playersjson = decode_json($players_json_string);
   my $progressPlayers = Term::ProgressBar->new({name  => 'Searching Users', count => scalar(keys(%$playersjson)), ETA   => 'linear', remove => 1});
   my $currentPlayer = 0;
   my $nextPlayerupdate = 0;
@@ -794,34 +579,24 @@ sub get_sleeperplayers { #Get the Sleeper Player Ids
     $dbst->finish;
   }
   $progressPlayers->update(scalar(keys(%$playersjson))) if scalar(keys(%$playersjson)) >= $nextPlayerupdate;
-  return;
 }
 
-sub check_options {
-  Getopt::Long::Configure ("bundling");
-  GetOptions(
-      'h'     => \$o_help,            'help'            => \$o_help,
-      'm:i'   => \$o_maxleagues,      'maxleagues:i'    => \$o_maxleagues,
-      'r:i'   => \$o_refreshage,      'refreshage:i'    => \$o_refreshage,
-      'l:s'   => \$o_newleagues,      'newleagues:s'    => \$o_newleagues,
-      'U'     => \$o_expandusersearch,'expandsearch'    => \$o_expandusersearch,
-      'w:i'   => \$o_currentweek,     'currentweek:i'   => \$o_currentweek,
-      'd'     => \$o_updatedb,        'updateplayerdb'  => \$o_updatedb,
-      'i'     => \$o_leagueinfo,      'leagueinfo'      => \$o_leagueinfo,
-      'R'     => \$o_leaguerookies,   'rookieinfo'      => \$o_leaguerookies,
-      'I'     => \$o_rosteridinfo,    'rosteridinfo'    => \$o_rosteridinfo,
-      'e'     => \$o_export,          'export'          => \$o_export,
-      'u'     => \$o_update,          'update'          => \$o_update,
-      'v'     => \$o_verb,            'verbose'         => \$o_verb
-  );
-  if(defined($o_help)) {
-    help();
-    exit 0;
-  }
-  if ($o_leagueinfo and $o_leaguerookies){
-    print "You must choose only one option -f or -i";
-    help();
-    exit 0;
+sub get_json{
+  my $url = shift;
+  my $possibledeleted = shift;
+  my $ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
+  my $header = HTTP::Request->new(GET => $url);
+  $header->header(content_type => "application/json",
+                         accept => "application/json");
+  my $request = HTTP::Request->new('GET', $url, $header);
+  my $response = $ua->request($request);
+  if ($response->is_success){
+    return decode_json($response->content);
+  }elsif ($response->is_error){
+    print "CRITICAL: Error: $url\n";
+    update_PossibleDeleted($possibledeleted) if ($possibledeleted);
+    verb($response->error_as_HTML);
+    return("");
   }
 }
 
@@ -835,8 +610,8 @@ sub printtofile{
 }
 
 sub prompt {
-  my ($query) = @_; # take a prompt string as argument
-  local $| = 1; # activate autoflush to immediately show the prompt
+  my ($query) = @_; # Take a prompt string as argument
+  local $| = 1; # Activate autoflush to immediately show the prompt
   print $query;
   chomp(my $answer = <STDIN>);
   return $answer;
@@ -849,41 +624,62 @@ sub prompt_yn {
 }
 
 sub verb {
-    my $t=shift;
-    print STDOUT $t,"\n" if defined($o_verb);
+  my $t=shift;
+  print STDOUT $t,"\n" if defined($o_verb);
+}
+
+sub check_options {
+  Getopt::Long::Configure ("bundling");
+  GetOptions(
+      'h'     => \$o_help,            'help'            => \$o_help,
+      'm:i'   => \$o_maxleagues,      'maxleagues:i'    => \$o_maxleagues,
+      'r:i'   => \$o_refreshage,      'refreshage:i'    => \$o_refreshage,
+      'w:i'   => \$o_currentweek,     'currentweek:i'   => \$o_currentweek,
+      's:s'   => \$o_searchleagues,   'searchleagues:s' => \$o_searchleagues,
+      'd'     => \$o_updatedb,        'updateplayerdb'  => \$o_updatedb,
+      'i'     => \$o_leagueinfo,      'leagueinfo'      => \$o_leagueinfo,
+      'I'     => \$o_rosteridinfo,    'rosteridinfo'    => \$o_rosteridinfo,
+      'e'     => \$o_export,          'export'          => \$o_export,
+      'u'     => \$o_update,          'update'          => \$o_update,
+      'E'     => \$o_expandusersearch,'expandsearch'    => \$o_expandusersearch,
+      'v'     => \$o_verb,            'verbose'         => \$o_verb
+  );
+  help() if(defined($o_help));
+  help() if (!((defined($o_searchleagues))||(defined($o_updatedb))||(defined($o_leagueinfo))||(defined($o_rosteridinfo))||(defined($o_export))||(defined($o_update))));
 }
 
 sub print_usage {
-  print "Usage: $0  [-l <USERMANE>] [-m <INT>] [-r <DAYS>] [-w <WEEK>] [-u] [-U] [-i] [-R] [-e] [-v] [-h]\n";
+  print "Usage: $0  [-s <USERMANE>] [-m <INT>] [-r <DAYS>] [-w <WEEK>] [-u] [-i] [-I] [-e] [-E] [-v] [-h]\n";
 }
 
 sub help {
-  print "\nSearch Sleeper Trades $0\n";
+  print "Search Sleeper Trades $0\n";
   print_usage();
   print <<EOT;
 -h, --help
     Print this help message.
--l, --newleagues <S>
+-s, --searchleagues <S>
     Username to find new leagues that he and his teammates are in.
 -m, --maxleagues <I>
     Max number of leagues to update (to throttle) (default 5).
 -r, --refreshage <I>
     How Fresh has to be the data to refresh (default 5 Days).
 -w, --currentweek <I>
-    Week to update transactions.
+    Week to update transactions. (if not defined it gets the one reported from the sleeper API).
 -u, --update
-    Mode to Update.
--U, --expandsearch
-    Expand search to already added leagues.
+    Update the trades from the leagues that hasn't updated in the last refreshage days.
 -i, --leagueinfo
-    Update the info of the Leagues in the MySQL.
+    Update the settings of the Leagues that have no info
 -I, --rosteridinfo
-    Update the RosterID reference information.
--R, --rookieinfo
-    Update the info of the Rookie Drafts in the MySQL.
+    Update the RosterID settings of the Leagues that have no roster info
 -e, --export
-    Export CSV from tables and commit to git repository
+    Export CSV from tables and commit to git repository.
+-d, --updateplayerdb
+    Export the Sleeper PlayerDB to the MySQL
+-E, --expandsearch
+    Expand search to already added leagues.
 -v, --verbose
     Verbose mode.
 EOT
+exit 0;
 }
