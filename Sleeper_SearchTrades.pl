@@ -34,12 +34,7 @@ my $gitrepodir = "$ENV{HOME}/Repositories/AdeTrades";
 check_options(); # Check for the arguments
 
 # Database configuration
-my $database =          "XXXX";
-my $database_hostname = "localhost";
-my $database_port =     "3306";
-my $database_user =     "XXXX";
-my $database_password = "XXXX";
-my $dbh = DBI->connect("DBI:mysql:database=$database;host=$database_hostname;port=$database_port", $database_user, $database_password,{PrintError => 1, RaiseError => 1}) || die  "ERROR: Error de conexion a la BBDD ${database_hostname}:${database_port} - ${database}\n";
+my $dbh = DBI->connect("DBI:mysql:database=Sleeper;mysql_read_default_file=$ENV{HOME}/.my.cnf;mysql_read_default_group=Sleeper",undef,undef) or die "Something went wrong ($DBI::errstr)";
 
 # DateTime variables
 my $dt = DateTime->new( year => 1970, month => 1, day => 1 );
@@ -588,7 +583,7 @@ sub export_sleeperplayers { # Get the Sleeper Player Ids
   $progressPlayers->update(scalar(keys(%$playersjson))) if scalar(keys(%$playersjson)) >= $nextPlayerupdate;
 }
 
-sub ()
+# sub ()
 
 
 sub get_json{
