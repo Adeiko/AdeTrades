@@ -113,58 +113,6 @@ CREATE TABLE `Players` (
   KEY `Players_first_name_IDX` (`first_name`,`last_name`,`fantasy_positions`,`team`,`player_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Sleeper Player Database';
 
--- Sleeper.PlayersTest definition
-
-CREATE TABLE `PlayersTest` (
-  `player_id` int(20) DEFAULT NULL,
-  `first_name` varchar(30) DEFAULT NULL,
-  `last_name` varchar(30) DEFAULT NULL,
-  `position` varchar(6) DEFAULT NULL,
-  `team` varchar(10) DEFAULT NULL,
-  `weight` int(20) DEFAULT NULL,
-  `status` varchar(60) DEFAULT NULL,
-  `sport` varchar(8) DEFAULT NULL,
-  `fantasy_positions` varchar(6) DEFAULT NULL,
-  `college` varchar(30) DEFAULT NULL,
-  `practice_description` varchar(50) DEFAULT NULL,
-  `rotowire_id` int(20) DEFAULT NULL,
-  `active` varchar(10) DEFAULT NULL,
-  `number` int(20) DEFAULT NULL,
-  `height` varchar(10) DEFAULT NULL,
-  `injury_status` varchar(20) DEFAULT NULL,
-  `injury_body_part` varchar(20) DEFAULT NULL,
-  `injury_notes` varchar(200) DEFAULT NULL,
-  `practice_participation` varchar(200) DEFAULT NULL,
-  `high_school` varchar(100) DEFAULT NULL,
-  `sportradar_id` varchar(50) DEFAULT NULL,
-  `yahoo_id` int(20) DEFAULT NULL,
-  `years_exp` int(20) DEFAULT NULL,
-  `fantasy_data_id` int(20) DEFAULT NULL,
-  `hashtag` varchar(50) DEFAULT NULL,
-  `search_last_name` varchar(30) DEFAULT NULL,
-  `birth_city` varchar(30) DEFAULT NULL,
-  `espn_id` int(20) DEFAULT NULL,
-  `birth_date` varchar(20) DEFAULT NULL,
-  `search_first_name` varchar(30) DEFAULT NULL,
-  `birth_state` varchar(20) DEFAULT NULL,
-  `gsis_id` varchar(20) DEFAULT NULL,
-  `news_updated` double DEFAULT NULL,
-  `birth_country` varchar(20) DEFAULT NULL,
-  `search_full_name` varchar(50) DEFAULT NULL,
-  `depth_chart_position` varchar(6) DEFAULT NULL,
-  `rotoworld_id` int(20) DEFAULT NULL,
-  `depth_chart_order` int(50) DEFAULT NULL,
-  `injury_start_date` varchar(20) DEFAULT NULL,
-  `stats_id` int(20) DEFAULT NULL,
-  `search_rank` int(11) DEFAULT NULL,
-  `pandascore_id` varchar(11) DEFAULT NULL,
-  `metadata` varchar(200) DEFAULT NULL,
-  `full_name` varchar(200) DEFAULT NULL,
-  `age` int(11) DEFAULT NULL,
-  UNIQUE KEY `PlayersTest_player_id_IDX` (`player_id`) USING BTREE,
-  KEY `Players_first_name_IDX` (`first_name`,`last_name`,`fantasy_positions`,`team`,`player_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Sleeper Player Database';
-
 -- Sleeper.RevertedTrades definition
 
 CREATE TABLE `RevertedTrades` (

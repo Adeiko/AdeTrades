@@ -73,8 +73,8 @@ if ($o_searchleagues){ # To find new leagues
     $progressUser->message("Searching Leagues for ".scalar(@UserSearchList)." Users");
     foreach my $useritem (@UserSearchList){ # For each user in one of those leagues gets their leagues
       next if (exists($userhashlist->{$useritem}));
-      $userhashlist->{$useritem} = $useritem; # Add to the Hash so if duplicated in the array do not redo.
       get_leagues($useritem);
+      $userhashlist->{$useritem} = $useritem; # Add to the Hash so if duplicated in the array do not redo.
       insert_searchedUser($useritem); # Adds them to the "ignore" list.
       $currentUser++;
       $nextUserupdate = $progressUser->update($currentUser) if $currentUser > $nextUserupdate;
@@ -132,7 +132,7 @@ if ($o_rosteridinfo or ($leaguecount > 0)){
   }
 }
 
-if ($o_update){
+if ($o_update or ($leaguecount > 0)){
   $transpicklist = $dbh->selectall_hashref ("SELECT TradeID FROM Trades","TradeID");
   $transtradelist = $dbh->selectall_hashref ("SELECT TradeID FROM PickTrades","TradeID");
   $transignorelist = $dbh->selectall_hashref ("SELECT TradeID FROM RevertedTrades","TradeID");
