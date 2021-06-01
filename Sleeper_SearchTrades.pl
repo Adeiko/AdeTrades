@@ -8,6 +8,7 @@ use LWP::UserAgent;
 use HTTP::Request;
 use JSON::XS 'decode_json';
 use Scalar::Util qw(looks_like_number);
+use List::MoreUtils qw(any uniq);
 use Getopt::Long;
 use DateTime;
 use DateTime::Format::Epoch;
@@ -16,25 +17,26 @@ use Text::CSV_XS qw( csv );
 use Git::Repository;
 use Data::Dumper;
 
-my ($o_help,$o_verb,$o_update,$o_searchleagues,$o_leagueinfo,$o_expandusersearch,$o_updatedb,$o_rosteridinfo,$o_export,$o_currentweek);
+my ($o_help,$o_verb,$o_update,$o_searchleagues,$o_leagueinfo,$o_expandusersearch,$o_updatedb,$o_rosteridinfo,$o_export,$o_currentweek,$o_debugverb);
 my ($tradedb,$transtradelist,$transpicklist,$transignorelist,$translist,$leaguehashlist,$userhashlist,$players1,$players2,$players3,$owner1,$owner2,$owner3,$draftrounds);
 my (@LeagueList,@playerstemp,@LeagueSearchList,@UserSearchList,@LeagueNameList,@LeagueRosterIDList);
 my %dlist;
 
-# Default thresholds
+# Default values
 my $season = 2021;
 my $o_refreshage = 5;
 my $o_refreshagerosterids = 90;
 my $o_maxleagues = 50;
 my $maxIteminTrade = 5;
+my $leaguecount = 0;
 my $gitrepodir = "$ENV{HOME}/Repositories/AdeTrades";
 
 check_options(); # Check for the arguments
 
 # Database configuration
 my $database =          "XXXX";
-my $database_hostname = "XXXX";
-my $database_port =     "XXXX";
+my $database_hostname = "localhost";
+my $database_port =     "3306";
 my $database_user =     "XXXX";
 my $database_password = "XXXX";
 my $dbh = DBI->connect("DBI:mysql:database=$database;host=$database_hostname;port=$database_port", $database_user, $database_password,{PrintError => 1, RaiseError => 1}) || die  "ERROR: Error de conexion a la BBDD ${database_hostname}:${database_port} - ${database}\n";
@@ -53,6 +55,7 @@ if ($o_searchleagues){ # To find new leagues
   if (scalar(@LeagueSearchList)>0){
     my $currentLeag = 0;
     my $nextLeagupdate = 0;
+    @LeagueSearchList = uniq(@LeagueSearchList);
     my $progressLeag = Term::ProgressBar->new({name  => 'Searching Users', count => scalar(@LeagueSearchList), ETA   => 'linear', remove => 1});
     $progressLeag->max_update_rate(1);
     $progressLeag->message("Searching Users for ".scalar(@LeagueSearchList)." Leagues");
@@ -66,15 +69,16 @@ if ($o_searchleagues){ # To find new leagues
     }
     $progressLeag->update(scalar(@LeagueSearchList)) if scalar(@LeagueSearchList) >= $nextLeagupdate;
   }
-  verb("found ".scalar(@UserSearchList)." new usersto search leagues");
   if (scalar(@UserSearchList)>0){
     my $currentUser = 0;
     my $nextUserupdate = 0;
+    @UserSearchList = uniq(@UserSearchList);
     my $progressUser = Term::ProgressBar->new({name  => 'Searching Leagues', count => scalar(@UserSearchList), ETA   => 'linear', remove => 1});
     $progressUser->max_update_rate(1);
     $progressUser->message("Searching Leagues for ".scalar(@UserSearchList)." Users");
     foreach my $useritem (@UserSearchList){ # For each user in one of those leagues gets their leagues
       next if (exists($userhashlist->{$useritem}));
+      $userhashlist->{$useritem} = $useritem; # Add to the Hash so if duplicated in the array do not redo.
       get_leagues($useritem);
       insert_searchedUser($useritem); # Adds them to the "ignore" list.
       $currentUser++;
@@ -82,10 +86,12 @@ if ($o_searchleagues){ # To find new leagues
     }
     $progressUser->update(scalar(@UserSearchList)) if scalar(@UserSearchList) >= $nextUserupdate;
   }
-  my $leaguecount = 0;
+  $leaguecount = 0;
+  @LeagueSearchList = uniq(@LeagueSearchList);
   foreach my $newleague ( @LeagueSearchList ) {
     next if (exists($leaguehashlist->{$newleague})); # Only add leagues not already in the DB.
-    verb ("Found new league: $newleague");
+    $leaguehashlist->{$newleague} = $newleague; # Add to the hash so no if duplicated do not repeat.
+    verb("Found new league: $newleague");
     insert_newleague($newleague);
     $leaguecount++;
   }
@@ -93,7 +99,7 @@ if ($o_searchleagues){ # To find new leagues
   $o_maxleagues = $leaguecount;
 }
 
-if ($o_leagueinfo or $o_searchleagues){
+if ($o_leagueinfo or ($leaguecount > 0)){
   get_leaguelistUpdateInfo($o_maxleagues);
   if (scalar(@LeagueNameList) > 0){
     my $currentInfo = 0;
@@ -112,7 +118,7 @@ if ($o_leagueinfo or $o_searchleagues){
   }
 }
 
-if ($o_rosteridinfo or $o_searchleagues){
+if ($o_rosteridinfo or ($leaguecount > 0)){
   get_leaguelistUpdateRosterID($o_maxleagues);
   if (scalar(@LeagueRosterIDList) > 0){
     my $currentRosterID = 0;
@@ -158,10 +164,11 @@ if ($o_update){
 
 if ($o_export){
   clean_data(); # Clean the Database of Reversed/duplicate trades
-  export_data(); # ExportDatatoCSV
+  export_data(); # Export Data to CSV and commit
 }
 
-export_sleeperplayers() if (defined($o_updatedb)); # Test to update PlayerDB.
+export_sleeperplayers() if (defined($o_updatedb)); # Update the MySQL PlayerDB with Sleeper Data.
+
 exit;
 
 sub get_leagueinfo{ # Get All leagues from a User
@@ -195,7 +202,7 @@ sub get_leagueinfo{ # Get All leagues from a User
   my $sth = $dbh->prepare(qq/UPDATE Leagues SET name = $league_name_q, total_rosters = $league_total_rosters, taxi_slots = $league_taxi_slots, rec_bonus = $league_rec, bonus_rec_wr = $league_bonus_rec_wr, bonus_rec_te = $league_bonus_rec_te, bonus_rec_rb = $league_bonus_rec_rb, pass_td = $league_pass_td, pass_int = $league_pass_int, roster_positions_QB = $Positions_QB, roster_positions_RB = $Positions_RB, roster_positions_WR = $Positions_WR, roster_positions_TE = $Positions_TE, roster_positions_FLEX = $Positions_FLEX, roster_positions_SUPER_FLEX = $Positions_SUPER_FLEX, roster_positions_BN = $Positions_BN, total_players = $total_players, RookieRounds = $league_draftrounds, RookieTimeUpdate = $dtnow, RookieStatus = "$league_status", RookieDraft = $league_draftid, trade_deadline = $league_tradedl, previous_league_id = $league_previousleague WHERE LeagueID = $league_id;/);
   $sth->execute();
   $sth->finish;
-  verb ("League ${league_id}\nleague_name: ${league_name}\nleague_total_rosters: ${league_total_rosters}\nleague_taxi_slots: ${league_taxi_slots}\nleague_rec: ${league_rec}\nleague_bonus_rec_wr: ${league_bonus_rec_wr}\nleague_bonus_rec_te: ${league_bonus_rec_te}\nleague_bonus_rec_rb: ${league_bonus_rec_rb}\nleague_pass_td: ${league_pass_td}\nleague_pass_int: ${league_pass_int}\nPositions_QB: ${Positions_QB}\nPositions_RB: ${Positions_RB}\nPositions_WR: ${Positions_WR}\nPositions_TE: ${Positions_TE}\nPositions_FLEX: ${Positions_FLEX}\nPositions_SUPER_FLEX: ${Positions_SUPER_FLEX}\nPositions_BN: ${Positions_BN}\ntotal_players: ${total_players}");
+  dverb("League ${league_id}\nleague_name: ${league_name}\nleague_total_rosters: ${league_total_rosters}\nleague_taxi_slots: ${league_taxi_slots}\nleague_rec: ${league_rec}\nleague_bonus_rec_wr: ${league_bonus_rec_wr}\nleague_bonus_rec_te: ${league_bonus_rec_te}\nleague_bonus_rec_rb: ${league_bonus_rec_rb}\nleague_pass_td: ${league_pass_td}\nleague_pass_int: ${league_pass_int}\nPositions_QB: ${Positions_QB}\nPositions_RB: ${Positions_RB}\nPositions_WR: ${Positions_WR}\nPositions_TE: ${Positions_TE}\nPositions_FLEX: ${Positions_FLEX}\nPositions_SUPER_FLEX: ${Positions_SUPER_FLEX}\nPositions_BN: ${Positions_BN}\ntotal_players: ${total_players}");
 }
 
 sub get_leaguedrafts{ # Gets draft slots from the league of that year
@@ -220,7 +227,7 @@ sub get_leaguedrafts{ # Gets draft slots from the league of that year
 
 sub get_leaguerosterID{
   my $league_id = shift;
-  verb ("Getting RosterID from league: ${league_id}");
+  verb("Getting RosterID from league: ${league_id}");
   my $rosteridjson = get_json("https://api.sleeper.app/v1/league/$league_id/rosters",$league_id);
   my $sth = $dbh->prepare(q{INSERT IGNORE INTO RosterID_Reference(LeagueID) VALUES (?)},{},);
   $sth->execute($league_id);
@@ -305,26 +312,26 @@ sub get_trades { # Get All trades from a League
                   $oldtime = $formatter->parse_datetime($tradedb->{$league_id}->{drafts}->{$leaguekeys}->{last_picked});
                   $current_draft = $leaguekeys;
                 }else{
-                  verb("TradeDate: ".${drafttime}->dmy('/')." NewTime: ".${newtime}->dmy('/')." and OldTime: ".${oldtime}->dmy('/'));
+                  dverb("TradeDate: ".${drafttime}->dmy('/')." NewTime: ".${newtime}->dmy('/')." and OldTime: ".${oldtime}->dmy('/'));
                   if (($drafttime > $oldtime) and ($oldtime > $newtime)){
-                    verb("Case 1: Trade is NEWER than the OldDraft || the OldDraft is NEWER than the NewDraft - Keep Old");
+                    dverb("Case 1: Trade is NEWER than the OldDraft || the OldDraft is NEWER than the NewDraft - Keep Old");
                   }elsif(($drafttime < $oldtime) and ($oldtime > $newtime) and ($drafttime > $newtime)){
-                    verb("Case 2: Trade is OLDER than the OldDraft || the OldDraft is NEWER than the NewDraft || The Trade is NEWER than the NewDraft - Keep Old");
+                    dverb("Case 2: Trade is OLDER than the OldDraft || the OldDraft is NEWER than the NewDraft || The Trade is NEWER than the NewDraft - Keep Old");
                   }elsif(($drafttime < $oldtime) and ($oldtime > $newtime) and ($drafttime < $newtime)){
-                    verb("Case 3: Trade is OLDER than the OldDraft || the OldDraft is NEWER than the NewDraft || The Trade is OLDER than the NewDraft - Go New");
+                    dverb("Case 3: Trade is OLDER than the OldDraft || the OldDraft is NEWER than the NewDraft || The Trade is OLDER than the NewDraft - Go New");
                     $current_draft = $leaguekeys;
                   }elsif(($drafttime > $oldtime) and ($oldtime < $newtime) and ($drafttime > $newtime)){
-                    verb("Case 4: Trade is NEWER than the OldDraft || the OldDraft is OLDER than the NewDraft || The Trade is NEWER than the NewDraft - Go New");
+                    dverb("Case 4: Trade is NEWER than the OldDraft || the OldDraft is OLDER than the NewDraft || The Trade is NEWER than the NewDraft - Go New");
                     $current_draft = $leaguekeys;
                   }elsif(($drafttime > $oldtime) and ($oldtime < $newtime) and ($drafttime < $newtime)){
-                    verb("Case 5: Trade is NEWER than the OldDraft || the OldDraft is OLDER than the NewDraft || The Trade is OLDER than the NewDraft - Go New");
+                    dverb("Case 5: Trade is NEWER than the OldDraft || the OldDraft is OLDER than the NewDraft || The Trade is OLDER than the NewDraft - Go New");
                     $current_draft = $leaguekeys;
                   }elsif(($drafttime < $oldtime) and ($oldtime < $newtime)){
-                    verb("Case 6: Trade is OLDER than the OldDraft || the OldDraft is OLDER than the NewDraft - Keep Old");
+                    dverb("Case 6: Trade is OLDER than the OldDraft || the OldDraft is OLDER than the NewDraft - Keep Old");
                   }
                 }
               }
-              verb("Finish de Revision, se ha escogido ${current_draft} para el trade ".$drafttime->dmy('/')." con fecha ". $formatter->parse_datetime($tradedb->{$league_id}->{drafts}->{$current_draft}->{last_picked})->dmy('/'));
+              dverb("Finish de Revision, se ha escogido ${current_draft} para el trade ".$drafttime->dmy('/')." con fecha ". $formatter->parse_datetime($tradedb->{$league_id}->{drafts}->{$current_draft}->{last_picked})->dmy('/'));
               ($oldtime,$newtime,$drafttime)=undef;
             }
             if (exists($tradedb->{$league_id}->{drafts}->{$current_draft}->{slots}->{$keypicks->{roster_id}})){
@@ -337,9 +344,9 @@ sub get_trades { # Get All trades from a League
           }
           my $userpickownerid = get_ownerid($keypicks->{owner_id},$league_id);
           push @{$tradedb->{$league_id}->{$trade->{transaction_id}}->{$userpickownerid}}, $picktext;
-          verb("Picks ${picktext}");
+          dverb("Picks ${picktext}");
           $tradedb->{$league_id}->{$trade->{transaction_id}}->{draftrounds} = $tradedb->{$league_id}->{drafts}->{$current_draft}->{draftrounds} if (defined($current_draft));
-          verb("Current Rounds: ". $tradedb->{$league_id}->{drafts}->{$current_draft}->{draftrounds})if (defined($current_draft));
+          dverb("Current Rounds: ". $tradedb->{$league_id}->{drafts}->{$current_draft}->{draftrounds})if (defined($current_draft));
         }
       }
     }
@@ -358,7 +365,7 @@ sub get_leagues { # Get All leagues from a User
     next unless ( ($leagueitem->{settings}->{num_teams} eq "12") || ($leagueitem->{settings}->{num_teams} eq "14") ); # Only 12/14 Player Leagues
     next unless (scalar @{ $leagueitem->{roster_positions} } > 20); # Min 20 players per team
     next unless ((grep { $_ eq "QB" or $_ eq "RB" or $_ eq "WR" or $_ eq "TE" or $_ eq "FLEX" or $_ eq "REC_FLEX" or $_ eq "SUPER_FLEX" } @{ $leagueitem->{roster_positions} }) >= 8); # Min 8 Starters
-    push(@LeagueSearchList, $leagueitem->{league_id}); # Add them to the LeagueList
+    push(@LeagueSearchList, $leagueitem->{league_id}) unless(grep(/^$leagueitem->{league_id}$/,@LeagueSearchList)); # Add them to the LeagueList unless already exists
     verb("Adding league $leagueitem->{league_id} to arraysearch");
   }
 }
@@ -453,7 +460,7 @@ sub insert_newtrade{ # Inserts one Trades into MySQL
   return if (($countitems1 > $maxIteminTrade) or ($countitems2 > $maxIteminTrade));
   $TradeDatabase = "PickTrades" if ((!($items1 =~ m/.*,.*/)) and (!($items2 =~ m/.*,.*/)));
   my $dbst = $dbh->prepare(qq{INSERT INTO $TradeDatabase(TradeID,League,Time,Items1,Items2,Items3,Items1Owner,Items2Owner,Items3Owner,DraftRounds) VALUES (?,?,?,?,?,?,?,?,?,?)},{},);
-  verb("inserting ${transactions_id} in $TradeDatabase");
+  dverb("inserting ${transactions_id} in $TradeDatabase");
   $dbst->execute($transactions_id, $league_id, $trans_time, $items1, $items2, $items3, $owner1, $owner2, $owner3, $draftrounds)or die $dbst->errstr;
   $dbst->finish;
 }
@@ -473,14 +480,14 @@ sub insert_tradeHash{ # Imports  all the %TradeDB to the MySQL
           }
         }
         if (exists($tradedb->{$leaguehash}->{$transhash}->{draftrounds})){ $draftrounds = $tradedb->{$leaguehash}->{$transhash}->{draftrounds} }else{ $draftrounds = 0 };
-        verb("League: ${leaguehash} Transaction ${transhash} Time $$tradedb{$leaguehash}->{$transhash}->{date}");
-        verb ("Players1: ${players1}") if defined($players1);
-        verb ("Owner1: ${owner1}") if defined($owner1);
-        verb ("Players2: ${players2}") if defined($players2);
-        verb ("Owner2: ${owner2}") if defined($owner2);
-        verb ("Players3: ${players3}") if defined($players3);
-        verb ("Owner3: ${owner3}") if defined($owner3);
-        verb ("DraftRounds: ${draftrounds}") if defined($draftrounds);
+        dverb("League: ${leaguehash} Transaction ${transhash} Time $$tradedb{$leaguehash}->{$transhash}->{date}");
+        dverb ("Players1: ${players1}") if defined($players1);
+        dverb ("Owner1: ${owner1}") if defined($owner1);
+        dverb ("Players2: ${players2}") if defined($players2);
+        dverb ("Owner2: ${owner2}") if defined($owner2);
+        dverb ("Players3: ${players3}") if defined($players3);
+        dverb ("Owner3: ${owner3}") if defined($owner3);
+        dverb ("DraftRounds: ${draftrounds}") if defined($draftrounds);
         insert_newtrade($transhash,$leaguehash,$tradedb->{$leaguehash}->{$transhash}->{date},$players1,$players2,$players3,$owner1,$owner2,$owner3,$draftrounds);
         ($players1,$players2,$players3,$owner1,$owner2,$owner3,$draftrounds) = undef;
       }
@@ -581,6 +588,9 @@ sub export_sleeperplayers { # Get the Sleeper Player Ids
   $progressPlayers->update(scalar(keys(%$playersjson))) if scalar(keys(%$playersjson)) >= $nextPlayerupdate;
 }
 
+sub ()
+
+
 sub get_json{
   my $url = shift;
   my $possibledeleted = shift;
@@ -628,6 +638,11 @@ sub verb {
   print STDOUT $t,"\n" if defined($o_verb);
 }
 
+sub dverb {
+  my $t=shift;
+  print STDOUT $t,"\n" if defined($o_debugverb);
+}
+
 sub check_options {
   Getopt::Long::Configure ("bundling");
   GetOptions(
@@ -642,9 +657,11 @@ sub check_options {
       'e'     => \$o_export,          'export'          => \$o_export,
       'u'     => \$o_update,          'update'          => \$o_update,
       'E'     => \$o_expandusersearch,'expandsearch'    => \$o_expandusersearch,
-      'v'     => \$o_verb,            'verbose'         => \$o_verb
+      'v'     => \$o_verb,            'verbose'         => \$o_verb,
+      'V'    => \$o_debugverb,        'debugverbose'    => \$o_debugverb
   );
   help() if(defined($o_help));
+  $o_verb = 1 if ($o_debugverb);
   help() if (!((defined($o_searchleagues))||(defined($o_updatedb))||(defined($o_leagueinfo))||(defined($o_rosteridinfo))||(defined($o_export))||(defined($o_update))));
 }
 
