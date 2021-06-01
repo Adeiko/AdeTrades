@@ -377,7 +377,7 @@ sub get_leaguelist{ # Get the LeagueList from the MySQL that hasn't updated in X
 
 sub get_leaguelistUpdateInfo{ # Get the LeagueList from the MySQL
   my $leaguelimit = shift;
-  my $sth = $dbh->prepare(qq/SELECT LeagueID FROM Leagues WHERE name IS NULL LIMIT $leaguelimit/);
+  my $sth = $dbh->prepare(qq/SELECT LeagueID FROM Leagues WHERE PossibleDeleted = FALSE AND name IS NULL LIMIT $leaguelimit/);
   $sth->execute();
   while(my $row = $sth->fetchrow_hashref) {
     push @LeagueNameList,$row->{LeagueID};
@@ -387,7 +387,7 @@ sub get_leaguelistUpdateInfo{ # Get the LeagueList from the MySQL
 
 sub get_CountleaguelistUpdateInfo{ # Get the LeagueList missing information from the MySQL
   my $leaguelimit = shift;
-  my $sth = $dbh->prepare(qq/SELECT COUNT(LeagueID) FROM Leagues WHERE name IS NULL/);
+  my $sth = $dbh->prepare(qq/SELECT COUNT(LeagueID) FROM Leagues WHERE PossibleDeleted = FALSE AND name IS NULL/);
   $sth->execute();
   my $pendingleagues = $sth->fetchrow;
   $sth->finish;
@@ -427,7 +427,7 @@ sub get_userid { # Get the UserID from a username
   return $userjson->{user_id};
 }
 
-sub get_currentstate{
+sub get_currentstate{ #Get Current Week from SleeperAPI
   my $status_json = get_json("https://api.sleeper.app/v1/state/nfl");
   $o_currentweek = $status_json->{display_week};
 }
@@ -439,7 +439,7 @@ sub insert_newleague{ # Adds a new League to the list
   $sth->finish;
 }
 
-sub insert_searchedUser{ # Adds a new League to the list
+sub insert_searchedUser{ # Adds a new user to the searched list
   my $new_user = shift;
   my $sth = $dbh->prepare(q{INSERT IGNORE INTO SearchedUsers(UserID,ScrapeDate) VALUES (?,?)},{},);
   $sth->execute($new_user,$dtnow);
@@ -583,9 +583,6 @@ sub export_sleeperplayers { # Get the Sleeper Player Ids
   $progressPlayers->update(scalar(keys(%$playersjson))) if scalar(keys(%$playersjson)) >= $nextPlayerupdate;
 }
 
-# sub ()
-
-
 sub get_json{
   my $url = shift;
   my $possibledeleted = shift;
@@ -661,15 +658,13 @@ sub check_options {
 }
 
 sub print_usage {
-  print "Usage: $0  [-s <USERMANE>] [-m <INT>] [-r <DAYS>] [-w <WEEK>] [-u] [-i] [-I] [-e] [-E] [-v] [-h]\n";
+  print "Usage: $0  [-s <USERMANE>] [-m <INT>] [-r <DAYS>] [-w <WEEK>] [-u] [-i] [-I] [-e] [-E] [-v] [-V] [-h]\n";
 }
 
 sub help {
   print "Search Sleeper Trades $0\n";
   print_usage();
   print <<EOT;
--h, --help
-    Print this help message.
 -s, --searchleagues <S>
     Username to find new leagues that he and his teammates are in.
 -m, --maxleagues <I>
@@ -686,12 +681,16 @@ sub help {
     Update the RosterID settings of the Leagues that have no roster info
 -e, --export
     Export CSV from tables and commit to git repository.
--d, --updateplayerdb
-    Export the Sleeper PlayerDB to the MySQL
 -E, --expandsearch
     Expand search to already added leagues.
+-d, --updateplayerdb
+    Export the Sleeper PlayerDB to the MySQL
 -v, --verbose
     Verbose mode.
+-V, --debugverbose
+    Verbose Mode for Debugging (Much more verbose).
+-h, --help
+    Print this help message.
 EOT
 exit 0;
 }
