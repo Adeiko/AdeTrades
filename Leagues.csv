@@ -1,4 +1,4 @@
-leagueid;name;rosters;qb;rb;wr;te;flex;sflex;bn;total_players;start_players;taxi_slots;rec_bonus;rec_rb;rec_wr;rec_te;pass_td;pass_int;old_leagueid
+League_ID;Name;Rosters;QB;RB;WR;TE;Flex;SFlex;BN;Total_Players;Start_Players;Taxi_Slots;Rec_Bonus;Rec_RB;Rec_WR;Rec_TE;Pass_TD;Pass_Int;Old_League_ID
 642193452871884800;"Gentlemen Bastards";12;1;1;2;1;3;1;19;28;9;6;4.0;1.0;0.0;0.0;0.0;-2.0;0
 647596761971535872;"The League of Misfit Redditors";12;1;2;3;1;1;1;19;28;9;0;4.0;1.0;0.0;0.0;0.0;-1.0;0
 650132739923738624;"Super Heroes' Super Dynasty";12;1;2;2;1;3;1;15;25;10;6;6.0;0.5;0.0;0.0;0.0;-2.0;0
