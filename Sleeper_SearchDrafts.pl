@@ -27,14 +27,8 @@ my @correctScorings = ("dynasty","dynasty_2qb","dynasty_ppr","dynasty_half_ppr",
 
 check_options();
 
-#Database configuration
-my $database =          "XXXX";
-my $database_hostname = "XXXX";
-my $database_port =     "XXXX";
-my $database_user =     "XXXX";
-my $database_password = "XXXX";
-
-my $dbh = DBI->connect("DBI:mysql:database=${database};host=${database_hostname};port=${database_port}", $database_user, $database_password,{PrintError => 1, RaiseError => 1}) || die  "ERROR: Error de conexion a la BBDD ${database_hostname}:${database_port} - ${database}\n";
+# Database configuration
+my $dbh = DBI->connect("DBI:mysql:database=Sleeper;mysql_read_default_file=$ENV{HOME}/.my.cnf;mysql_read_default_group=Sleeper",undef,undef) or die "Something went wrong ($DBI::errstr)";
 
 # DateTime variables
 my $dt = DateTime->new( year => 1970, month => 1, day => 1 );
@@ -101,39 +95,13 @@ exit;
 
 sub get_userid { #Get the UserID from a username
   my $username = shift;
-  my $user_json_string = undef;
-  my $user_url = "https://api.sleeper.app/v1/user/${username}";
-  my $user_ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
-  my $user_header = HTTP::Request->new(GET => $user_url);
-  $user_header->header(content_type => "application/json",
-                       accept => "application/json");
-  my $user_request = HTTP::Request->new('GET', $user_url, $user_header);
-  my $user_response = $user_ua->request($user_request);
-  if ($user_response->is_success){
-    $user_json_string = $user_response->content;
-  }elsif ($user_response->is_error){
-    print "CRITICAL: Error:${user_url}\n".$user_response->error_as_HTML;
-  }
-  my $userjson = decode_json($user_json_string);
+  my $userjson = get_json("https://api.sleeper.app/v1/user/${username}");
   return $userjson->{user_id};
 }
 
 sub get_leagues { #Get All leagues from a User
   my $userID = shift;
-  my $league_json_string = undef;
-  my $league_url = "https://api.sleeper.app/v1/user/${userID}/leagues/${sport}/${season}";
-  my $league_ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
-  my $league_header = HTTP::Request->new(GET => $league_url);
-  $league_header->header(content_type => "application/json",
-                         accept => "application/json");
-  my $league_request = HTTP::Request->new('GET', $league_url, $league_header);
-  my $league_response = $league_ua->request($league_request);
-  if ($league_response->is_success){
-    $league_json_string = $league_response->content;
-  }elsif ($league_response->is_error){
-    print "CRITICAL: Error:${league_url}\n".$league_response->error_as_HTML;
-  }
-  my $leaguejson = decode_json($league_json_string);
+  my $leaguejson = get_json("https://api.sleeper.app/v1/user/${userID}/leagues/${sport}/${season}");
   foreach my $leagueitem (@$leaguejson){
     push(@leaguelist, $leagueitem->{league_id});
   }
@@ -142,20 +110,7 @@ sub get_leagues { #Get All leagues from a User
 
 sub get_numberpicks {
   my $leagueID = shift;
-  my $draftpicks_json_string = undef;
-  my $draftpicks_url = "https://api.sleeper.app/v1/draft/${leagueID}/picks";
-  my $draftpicks_ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
-  my $draftpicks_header = HTTP::Request->new(GET => $draftpicks_url);
-  $draftpicks_header->header(content_type => "application/json",
-                             accept => "application/json");
-  my $draftpicks_request = HTTP::Request->new('GET', $draftpicks_url, $draftpicks_header);
-  my $draftpicks_response = $draftpicks_ua->request($draftpicks_request);
-  if ($draftpicks_response->is_success){
-    $draftpicks_json_string = $draftpicks_response->content;
-  }elsif ($draftpicks_response->is_error){
-    print "CRITICAL: Error: ${draftpicks_url}\n".$draftpicks_response->error_as_HTML;
-  }
-  my $draftpicksjson = decode_json($draftpicks_json_string);
+  my $draftpicksjson = get_json("https://api.sleeper.app/v1/draft/${leagueID}/picks");
   if (defined($o_rookie)){
     my @BannedPicks = ('4046','6797','1466','6794','4034'); #If Mahomes/Herbert/Kelce/Jefferson/CMC and Rookie, return 0.
     foreach my $draftpick ( @$draftpicksjson ) {
@@ -170,20 +125,7 @@ sub get_numberpicks {
 
 sub get_leagueusers { #Gets all Users from a League
   my $leagueID = shift;
-  my $league_json_string = undef;
-  my $league_url = "https://api.sleeper.app/v1/league/${leagueID}/users";
-  my $league_ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
-  my $league_header = HTTP::Request->new(GET => $league_url);
-  $league_header->header(content_type => "application/json",
-                         accept => "application/json");
-  my $league_request = HTTP::Request->new('GET', $league_url, $league_header);
-  my $league_response = $league_ua->request($league_request);
-  if ($league_response->is_success){
-    $league_json_string = $league_response->content;
-  }elsif ($league_response->is_error){
-    print "CRITICAL: Error: ${league_url}\n".$league_response->error_as_HTML;
-  }
-  my $leaguejson = decode_json($league_json_string);
+  my $leaguejson = get_json("https://api.sleeper.app/v1/league/${leagueID}/users");
   foreach my $leagueuser ( @$leaguejson ) {
     push(@possibleusers, $leagueuser->{user_id});
   }
@@ -192,21 +134,8 @@ sub get_leagueusers { #Gets all Users from a League
 
 sub get_Drafts { #Gets All Draft for a User With certain settings
   my $user_id = shift;
-  my $drafts_json_string = undef;
   insert_newuser($user_id);
-  my $drafts_url = "https://api.sleeper.app/v1/user/${user_id}/drafts/${sport}/${season}";
-  my $drafts_ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
-  my $drafts_header = HTTP::Request->new(GET => $drafts_url);
-  $drafts_header->header(content_type => "application/json",
-                         accept => "application/json");
-  my $drafts_request = HTTP::Request->new('GET', $drafts_url, $drafts_header);
-  my $drafts_response = $drafts_ua->request($drafts_request);
-  if ($drafts_response->is_success){
-    $drafts_json_string = $drafts_response->content;
-  }elsif ($drafts_response->is_error){
-    print "CRITICAL: Error:$drafts_url\n".$drafts_response->error_as_HTML;
-  }
-  my $draftsjson = decode_json($drafts_json_string);
+  my $draftsjson = get_json("https://api.sleeper.app/v1/user/${user_id}/drafts/${sport}/${season}");
   foreach my $draft( @$draftsjson ) {
     $countdrafts++;
     next unless (!exists($blist->{$draft->{draft_id}})); #Check for DraftID in Blacklist (empty if not defined on -b)
@@ -277,7 +206,6 @@ sub insert_newdraft{ # Adds a new League to the list
   my $sth = $dbh->prepare(q{INSERT IGNORE INTO DraftsIgnored(DraftID,ScrapeDate) VALUES (?,?)},{},);
   $sth->execute($new_draft,$dtnow);
   $sth->finish;
-  # verb("Inserting league ${new_league} into the DB");
 }
 
 sub insert_newuser{ # Adds a new League to the list
@@ -290,6 +218,23 @@ sub insert_newuser{ # Adds a new League to the list
     $sth->execute($new_user,$dtnow);
   }
   return;
+}
+
+sub get_json{
+  my $url = shift;
+  my $ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
+  my $header = HTTP::Request->new(GET => $url);
+  $header->header(content_type => "application/json",
+                         accept => "application/json");
+  my $request = HTTP::Request->new('GET', $url, $header);
+  my $response = $ua->request($request);
+  if ($response->is_success){
+    return decode_json($response->content);
+  }elsif ($response->is_error){
+    print "CRITICAL: Error: $url\n";
+    verb($response->error_as_HTML);
+    return("");
+  }
 }
 
 sub verb {
