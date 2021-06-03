@@ -162,9 +162,9 @@ if ($o_updatetrades or ($leaguecount > 0)){
 }
 export_sleeperplayers() if ($o_updatedb); # Update the MySQL PlayerDB with Sleeper Data.
 
-updateTradeValues()if ($o_tradevalues or $o_tradevalueslm);
+updateTradeValues() if ($o_tradevalues or $o_tradevalueslm); #Update the Trade Stats using queries to the DB
 
-update_ADP if ($o_updateadp);
+update_ADP() if ($o_updateadp); #Update the ADP from Google Sheet
 
 if ($o_export){
   clean_data();  # Clean the Database of Reversed/duplicate trades
