@@ -19,7 +19,7 @@ use Google::RestApi;
 use Google::RestApi::SheetsApi4;
 use Google::RestApi::Auth::OAuth2Client;
 use YAML::Tiny;
-use Data::Dumper;
+# use Data::Dumper;
 
 my ($o_help,$o_verb,$o_updatetrades,$o_searchleagues,$o_leagueinfo,$o_expandusersearch,$o_updatedb,$o_rosteridinfo,$o_tradevalues,$o_tradevalueslm,$o_export,$o_currentweek,$o_debugverb,$o_updateadp);
 my ($tradedb,$transtradelist,$transpicklist,$transignorelist,$translist,$leaguehashlist,$userhashlist,$players1,$players2,$players3,$owner1,$owner2,$owner3,$draftrounds);
@@ -35,7 +35,7 @@ my $maxIteminTrade = 5;
 my $leaguecount = 0;
 my $gitrepodir = "$ENV{HOME}/Repositories/AdeTrades";
 
-check_options(); # Check for the arguments
+check_options(); # Check for the arguments to the script
 
 # Database configuration
 my $dbh = DBI->connect("DBI:mysql:database=Sleeper;mysql_read_default_file=$ENV{HOME}/.my.cnf;mysql_read_default_group=Sleeper",undef,undef) or die "Something went wrong ($DBI::errstr)";
@@ -46,6 +46,7 @@ my $formatter = DateTime::Format::Epoch->new(epoch => $dt,unit => 'milliseconds'
 my $dtnow = DateTime->now()->epoch();
 my $dtold = DateTime->now()->subtract(days => $o_refreshage)->epoch();
 my $dtoldrosters = DateTime->now()->subtract(days => $o_refreshagerosterids)->epoch();
+
 
 if ($o_searchleagues){ # To find new leagues
   $leaguehashlist = $dbh->selectall_hashref ("SELECT LeagueID FROM Leagues","LeagueID");
@@ -117,7 +118,7 @@ if ($o_leagueinfo or ($leaguecount > 0)){
   }
 }
 
-if ($o_rosteridinfo or ($leaguecount > 0)){
+if ($o_rosteridinfo or ($leaguecount > 0)){ # Scrape the relation between RosterID and UserID for leagues
   get_leaguelistUpdateRosterID($o_maxleagues);
   if (scalar(@LeagueRosterIDList) > 0){
     my $currentRosterID = 0;
@@ -140,7 +141,7 @@ if ($o_updatetrades or ($leaguecount > 0)){
   $transpicklist = $dbh->selectall_hashref ("SELECT TradeID FROM Trades","TradeID");
   $transtradelist = $dbh->selectall_hashref ("SELECT TradeID FROM PickTrades","TradeID");
   $transignorelist = $dbh->selectall_hashref ("SELECT TradeID FROM RevertedTrades","TradeID");
-  $translist = {%$transpicklist, %$transtradelist, %$transignorelist};
+  $translist = {%$transpicklist, %$transtradelist, %$transignorelist}; # Get a Hash of Trades to be ignored
   get_leaguelist($o_maxleagues);
   if (scalar(@LeagueList) > 0){
     my $currentLeague = 0;
@@ -160,11 +161,10 @@ if ($o_updatetrades or ($leaguecount > 0)){
     print ("No leagues pending to update\n");
   }
 }
+
 export_sleeperplayers() if ($o_updatedb); # Update the MySQL PlayerDB with Sleeper Data.
-
-updateTradeValues() if ($o_tradevalues or $o_tradevalueslm); #Update the Trade Stats using queries to the DB
-
-update_ADP() if ($o_updateadp); #Update the ADP from Google Sheet
+updateTradeValues() if ($o_tradevalues or $o_tradevalueslm); # Update the Trade Stats using queries to the DB
+update_ADP() if ($o_updateadp); # Update the ADP from Google Sheet
 
 if ($o_export){
   clean_data();  # Clean the Database of Reversed/duplicate trades
@@ -227,7 +227,7 @@ sub get_leaguedrafts{ # Gets draft slots from the league of that year
   }
 }
 
-sub get_leaguerosterID{
+sub get_leaguerosterID{ # Update the MySQL RosterID reference Table
   my $league_id = shift;
   verb("Getting RosterID from league: ${league_id}");
   my $rosteridjson = get_json("https://api.sleeper.app/v1/league/$league_id/rosters",$league_id);
@@ -313,7 +313,7 @@ sub get_trades { # Get All trades from a League
                 if (!(defined($oldtime))){
                   $oldtime = $formatter->parse_datetime($tradedb->{$league_id}->{drafts}->{$leaguekeys}->{last_picked});
                   $current_draft = $leaguekeys;
-                }else{
+                }else{ # Trying to check if the draft newer or older.
                   dverb("TradeDate: ".${drafttime}->dmy('/')." NewTime: ".${newtime}->dmy('/')." and OldTime: ".${oldtime}->dmy('/'));
                   if (($drafttime > $oldtime) and ($oldtime > $newtime)){
                     dverb("Case 1: Trade is NEWER than the OldDraft || the OldDraft is NEWER than the NewDraft - Keep Old");
@@ -333,7 +333,7 @@ sub get_trades { # Get All trades from a League
                   }
                 }
               }
-              dverb("Finish de Revision, se ha escogido ${current_draft} para el trade ".$drafttime->dmy('/')." con fecha ". $formatter->parse_datetime($tradedb->{$league_id}->{drafts}->{$current_draft}->{last_picked})->dmy('/'));
+              dverb("Have chosen ${current_draft} for the trade ".$drafttime->dmy('/')." with date ". $formatter->parse_datetime($tradedb->{$league_id}->{drafts}->{$current_draft}->{last_picked})->dmy('/'));
               ($oldtime,$newtime,$drafttime)=undef;
             }
             if (exists($tradedb->{$league_id}->{drafts}->{$current_draft}->{slots}->{$keypicks->{roster_id}})){
@@ -353,7 +353,7 @@ sub get_trades { # Get All trades from a League
       }
     }
   }
-  update_leagueTime($league_id);
+  update_leagueTime($league_id); # Update the time to not scrape it again in X days
 }
 
 sub get_leagues { # Get All leagues from a User
@@ -417,6 +417,11 @@ sub get_leaguePendingUpdate{ # Get Number of leagues missing update
   $sth->execute();
   my $pendingleagues = $sth->fetchrow;
   $sth->finish;
+  if ($pendingleagues > $o_maxleagues){
+    $pendingleagues = $pendingleagues-$o_maxleagues;
+  }else{
+    $pendingleagues = 0;
+  }
   return $pendingleagues;
 }
 
@@ -436,7 +441,12 @@ sub get_userid { # Get the UserID from a username
 
 sub get_currentstate{ #Get Current Week from SleeperAPI
   my $status_json = get_json("https://api.sleeper.app/v1/state/nfl");
-  $o_currentweek = $status_json->{display_week};
+  if ($status_json->{display_week} > 0){
+    $o_currentweek = $status_json->{display_week};
+  }
+  else{
+    $o_currentweek = 1;
+  }
 }
 
 sub insert_newleague{ # Adds a new League to the list
@@ -551,6 +561,7 @@ sub Update_TradeStatsADP{ # Insert the ADP in the TradeStats file
 sub updateTradeValues{ # Generate the trade count for each player in the 12 diferent months
   my $query = qq/SELECT PlayerName FROM TradeStats Where LastCount < $dtold OR LastCount IS NULL/;
   $query = qq/SELECT PlayerName FROM TradeStats/ if ($o_tradevalueslm);
+  verb("Upgrading TradeValues");
   my $sth = $dbh->prepare($query);
   $sth->execute();
   if ($sth->rows>0){
@@ -585,7 +596,7 @@ sub updateTradeValues{ # Generate the trade count for each player in the 12 dife
   $sth->finish;
 }
 
-sub get_count{ #Count number of trades for X players
+sub get_count{ # Count number of trades for X players
   my $splayer = shift;
   my $mintime = shift;
   my $maxtime = shift;
@@ -596,7 +607,7 @@ sub get_count{ #Count number of trades for X players
   return $splayercount;
 }
 
-sub update_count{ #Insert in the Tradestats a value in X column
+sub update_count{ # Insert in the Tradestats a value in X column
   my $splayer = shift;
   my $scolumn = shift;
   my $svalue = shift;
@@ -606,7 +617,7 @@ sub update_count{ #Insert in the Tradestats a value in X column
   $sth->finish;
 }
 
-sub clean_data{ #Cleaning trade Tables of wrong data
+sub clean_data{ # Cleaning trade Tables of wrong data
   verb("Adding Empty Trades to RevertedTrades");
   $dbh->do('INSERT IGNORE INTO RevertedTrades SELECT TradeID FROM Trades WHERE Items1 = "" OR Items2 = ""');
   verb("Adding Empty Picktrades to RevertedTrades");
@@ -635,7 +646,7 @@ sub clean_data{ #Cleaning trade Tables of wrong data
 
 sub export_data{ # Generate CSV and push them to the Repository
   my $repo = Git::Repository->new( work_tree => $gitrepodir);
-  $repo->run( 'pull' );
+  my $repopull = $repo->run( 'pull' );
   csv (out => "${gitrepodir}/Leagues.csv", sep_char => ";", headers => [qw( League_ID Name Rosters QB RB WR TE Flex SFlex BN Total_Players Start_Players Taxi_Slots Rec_Bonus Rec_RB Rec_WR Rec_TE Pass_TD Pass_Int Old_League_ID )], in => $dbh->selectall_arrayref ("SELECT LeagueID,name,total_rosters,roster_positions_QB,roster_positions_RB,roster_positions_WR,roster_positions_TE,roster_positions_FLEX,roster_positions_SUPER_FLEX,roster_positions_BN,total_players,total_players - roster_positions_BN AS Start_Players,taxi_slots,pass_td,rec_bonus,bonus_rec_te,bonus_rec_rb,bonus_rec_wr,pass_int,previous_league_id FROM Leagues"));
   csv (out => "${gitrepodir}/Trades.csv", sep_char => ";", headers => [qw( Trade_ID Time Day Items1 Items2 All_Items Items1_Owner Items2_Owner League_ID Total_Rosters Total_Players Start_Players Rec_Bonus Rec_Bonus_TE Pass_TD Old_League_ID )], in => $dbh->selectall_arrayref ("SELECT t.TradeID, t.Time,(t.Time/86400000)+25569 AS 'Day', t.Items1, t.Items2,CONCAT(t.Items1,'; ',t.Items2) AS AllItems, t.Items1Owner, t.Items2Owner, t.League, l.total_rosters, l.total_players, l.total_players - roster_positions_BN AS Start_Players, l.rec_bonus, l.bonus_rec_te, l.pass_td, l.previous_league_id FROM Trades t INNER JOIN Leagues l ON t.League = l.LeagueID ORDER BY t.Time DESC"));
   csv (out => "${gitrepodir}/PickTrades.csv", sep_char => ";", headers => [qw( Trade_ID Time Day Items1 Items2 All_Items Items1_Owner Items2_Owner League_ID Draft_Rounds Total_Rosters Total_Players Start_Players Rec_Bonus Rec_Bonus_TE Pass_TD )], in => $dbh->selectall_arrayref ("SELECT p.TradeID,p.Time,(p.time/86400000)+25569 AS 'Day',p.Items1,p.Items2,CONCAT(p.Items1,'; ',p.Items2) AS AllItems,p.Items1Owner,p.Items2Owner,p.League,p.DraftRounds,l.total_rosters,l.total_players,l.total_players - roster_positions_BN AS Start_Players,l.rec_bonus,l.bonus_rec_te,l.pass_td FROM PickTrades p INNER JOIN Leagues l ON p.League = l.LeagueID ORDER BY p.Time DESC"));
@@ -657,7 +668,7 @@ sub export_sleeperplayers { # Get the Sleeper Player Ids in the MySQLDB
     print "Ok, exiting the player database update.\n";
     exit;
   }
-  my $playersjson = get_json("https://api.sleeper.app/v1/players/nfl");
+  my $playersjson = get_json("https://api.sleeper.app/v1/players/nfl") or die;
   my $sth = $dbh->prepare(qq/TRUNCATE TABLE Players;/);
   $sth->execute();
   $sth->finish;
@@ -699,11 +710,11 @@ sub get_json{ # General Function to get decoded JSON from URL
     print "CRITICAL: Error: $url\n";
     update_PossibleDeleted($possibledeleted) if ($possibledeleted);
     verb($response->error_as_HTML);
-    return("");
+    return();
   }
 }
 
-sub printtofile{
+sub printtofile{ # Print text to file (not appending!!)
   my $filename = $_[0];
   my $text = $_[1];
   print "${text}" unless (!$o_verb);
@@ -739,30 +750,31 @@ sub dverb { # Debug Verbose
 sub check_options {
   Getopt::Long::Configure ("bundling");
   GetOptions(
-      'h'     => \$o_help,            'help'            => \$o_help,
-      'm:i'   => \$o_maxleagues,      'maxleagues:i'    => \$o_maxleagues,
-      'r:i'   => \$o_refreshage,      'refreshage:i'    => \$o_refreshage,
-      'w:i'   => \$o_currentweek,     'currentweek:i'   => \$o_currentweek,
-      's:s'   => \$o_searchleagues,   'searchleagues:s' => \$o_searchleagues,
-      'd'     => \$o_updatedb,        'updateplayerdb'  => \$o_updatedb,
-      'i'     => \$o_leagueinfo,      'leagueinfo'      => \$o_leagueinfo,
-      'I'     => \$o_rosteridinfo,    'rosteridinfo'    => \$o_rosteridinfo,
-      't'     => \$o_tradevalueslm,   'tradevalueslm'   => \$o_tradevalueslm,
-      'T'     => \$o_tradevalues,     'tradevalues'     => \$o_tradevalues,
-      'a'     => \$o_updateadp,       'updateadp'       => \$o_updateadp,
-      'e'     => \$o_export,          'export'          => \$o_export,
-      'u'     => \$o_updatetrades,    'updatetrades'    => \$o_updatetrades,
-      'E'     => \$o_expandusersearch,'expandsearch'    => \$o_expandusersearch,
-      'v'     => \$o_verb,            'verbose'         => \$o_verb,
-      'V'     => \$o_debugverb,       'debugverbose'    => \$o_debugverb
+      'h'     => \$o_help,              'help'                => \$o_help,
+      'm:i'   => \$o_maxleagues,        'maxleagues:i'        => \$o_maxleagues,
+      'r:i'   => \$o_refreshage,        'refreshage:i'        => \$o_refreshage,
+      'w:i'   => \$o_currentweek,       'currentweek:i'       => \$o_currentweek,
+      's:s'   => \$o_searchleagues,     'searchleagues:s'     => \$o_searchleagues,
+      'S:s'   => \$o_expandusersearch,  'searchleaguesexp:s'  => \$o_expandusersearch,
+      'd'     => \$o_updatedb,          'updateplayerdb'      => \$o_updatedb,
+      'i'     => \$o_leagueinfo,        'leagueinfo'          => \$o_leagueinfo,
+      'I'     => \$o_rosteridinfo,      'rosteridinfo'        => \$o_rosteridinfo,
+      't'     => \$o_tradevalueslm,     'tradevalueslm'       => \$o_tradevalueslm,
+      'T'     => \$o_tradevalues,       'tradevalues'         => \$o_tradevalues,
+      'a'     => \$o_updateadp,         'updateadp'           => \$o_updateadp,
+      'e'     => \$o_export,            'export'              => \$o_export,
+      'u'     => \$o_updatetrades,      'updatetrades'        => \$o_updatetrades,
+      'v'     => \$o_verb,              'verbose'             => \$o_verb,
+      'V'     => \$o_debugverb,         'debugverbose'        => \$o_debugverb
   );
   help() if(defined($o_help));
   $o_verb = 1 if ($o_debugverb);
+  $o_searchleagues = $o_expandusersearch if ($o_expandusersearch);
   help() if (!((defined($o_searchleagues))||(defined($o_updatedb))||(defined($o_leagueinfo))||(defined($o_rosteridinfo))||(defined($o_export))||(defined($o_tradevalueslm))||(defined($o_tradevalues))||(defined($o_updatetrades))));
 }
 
 sub print_usage {
-  print "Usage: $0  [-s <USERMANE>] [-m <INT>] [-r <DAYS>] [-w <WEEK>] [-u] [-T] [-i] [-I] [-e] [-E] [-v] [-V] [-h]\n";
+  print "Usage: $0 [-s <USERMANE>] [-S <USERNAME>] [-m <INT>] [-r <DAYS>] [-w <WEEK>] [-u] [-t] [-T] [-i] [-I] [-a] [-e]  [-v] [-V] [-h]\n";
 }
 
 sub help {
@@ -771,6 +783,8 @@ sub help {
   print <<EOT;
 -s, --searchleagues <S>
     Username to find new leagues that he and his teammates are in.
+-S, --searchleaguesexp <S>
+    Username to find new leagues that he and his teammates are in Expanded to already added leagues.
 -m, --maxleagues <I>
     Max number of leagues to update (to throttle) (default 5).
 -r, --refreshage <I>
@@ -779,18 +793,20 @@ sub help {
     Week to update transactions. (if not defined it gets the one reported from the sleeper API).
 -u, --updatetrades
     Update the trades from the leagues that hasn't updated in the last refreshage days.
--t, --tradevalues
-    Update the Trade Count values of all the players in the DB
+-t, --tradevalueslm
+    Update the Trade Count values of all the players in the DB from Last Month.
+-T, --tradevalues
+    Update the Trade Count values of all the players in the DB.
 -i, --leagueinfo
-    Update the settings of the Leagues that have no info
+    Update the settings of the Leagues that have no info.
 -I, --rosteridinfo
-    Update the RosterID settings of the Leagues that have no roster info
+    Update the RosterID settings of the Leagues that have no roster info.
+-a, --updateadp
+    Update the ADP from the Google Sheet ADP.
 -e, --export
     Export CSV from tables and commit to git repository.
--E, --expandsearch
-    Expand search to already added leagues.
 -d, --updateplayerdb
-    Export the Sleeper PlayerDB to the MySQL
+    Export the Sleeper PlayerDB to the MySQL.
 -v, --verbose
     Verbose mode.
 -V, --debugverbose
