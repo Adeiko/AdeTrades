@@ -19,9 +19,10 @@ use Google::RestApi;
 use Google::RestApi::SheetsApi4;
 use Google::RestApi::Auth::OAuth2Client;
 use YAML::Tiny;
-# use Data::Dumper;
+use HTML::TreeBuilder;
+use Data::Dumper;
 
-my ($o_help,$o_verb,$o_updatetrades,$o_searchleagues,$o_leagueinfo,$o_expandusersearch,$o_updatedb,$o_rosteridinfo,$o_tradevalues,$o_tradevalueslm,$o_export,$o_currentweek,$o_debugverb,$o_updateadp);
+my ($o_help,$o_verb,$o_updatetrades,$o_searchleagues,$o_leagueinfo,$o_expandusersearch,$o_updatedb,$o_rosteridinfo,$o_tradevalues,$o_tradevalueslm,$o_export,$o_currentweek,$o_debugverb,$o_updateadp,$o_ktc);
 my ($tradedb,$transtradelist,$transpicklist,$transignorelist,$translist,$leaguehashlist,$userhashlist,$players1,$players2,$players3,$owner1,$owner2,$owner3,$draftrounds);
 my (@LeagueList,@playerstemp,@LeagueSearchList,@UserSearchList,@LeagueNameList,@LeagueRosterIDList);
 my %dlist;
@@ -46,7 +47,6 @@ my $formatter = DateTime::Format::Epoch->new(epoch => $dt,unit => 'milliseconds'
 my $dtnow = DateTime->now()->epoch();
 my $dtold = DateTime->now()->subtract(days => $o_refreshage)->epoch();
 my $dtoldrosters = DateTime->now()->subtract(days => $o_refreshagerosterids)->epoch();
-
 
 if ($o_searchleagues){ # To find new leagues
   $leaguehashlist = $dbh->selectall_hashref ("SELECT LeagueID FROM Leagues","LeagueID");
@@ -165,13 +165,14 @@ if ($o_updatetrades or ($leaguecount > 0)){
 export_sleeperplayers() if ($o_updatedb); # Update the MySQL PlayerDB with Sleeper Data.
 updateTradeValues() if ($o_tradevalues or $o_tradevalueslm); # Update the Trade Stats using queries to the DB
 update_ADP() if ($o_updateadp); # Update the ADP from Google Sheet
+update_KTC() if ($o_ktc); # Update the ADP from Google Sheet
 
 if ($o_export){
   clean_data();  # Clean the Database of Reversed/duplicate trades
   export_data(); # Export Data to CSV and commit
 }
 
-exit;
+exit(0);
 
 sub get_leagueinfo{ # Get All leagues from a User
   my $league_id = shift;
@@ -543,6 +544,32 @@ sub update_ADP{ #Read the ADP Google Sheet and import the new ADP in the TradeSt
   }
 }
 
+sub update_KTC{ # Load KTC values to the Database
+  my $jsonktc = decode_json(get_ktcjsonvalues());
+  my $dbst;
+
+  foreach my $player( @$jsonktc ) {
+    my $k_tm =  $dbh->quote($player->{team});
+    my $k_id =  $dbh->quote($player->{playerID});
+    my $k_pos =  $dbh->quote($player->{position});
+    my $k_name = $dbh->quote($player->{playerName});
+    my $k_val =  $dbh->quote($player->{superflexValues}->{value});
+    $dbst = $dbh->prepare(
+      qq/
+        INSERT IGNORE INTO KeepTradeCut
+          (player_id,player_name,position,team,value)
+        VALUES
+          ($k_id,$k_name,$k_pos,$k_tm,$k_val)
+        ON DUPLICATE KEY UPDATE
+          KeepTradeCut.value = $k_val
+      /
+    );
+    verb ($k_tm.",".$k_id.",".$k_name.",".$k_pos.",".$k_val);
+    $dbst->execute() or die $dbst->errstr;
+  }
+  $dbst->finish;
+}
+
 sub Update_TradeStatsADP{ # Insert the ADP in the TradeStats file
   my $splayerid = shift;
   my $sadp = shift;
@@ -650,6 +677,7 @@ sub export_data{ # Generate CSV and push them to the Repository
   csv (out => "${gitrepodir}/Leagues.csv", sep_char => ";", headers => [qw( League_ID Name Rosters QB RB WR TE Flex SFlex BN Total_Players Start_Players Taxi_Slots Rec_Bonus Rec_RB Rec_WR Rec_TE Pass_TD Pass_Int Old_League_ID )], in => $dbh->selectall_arrayref ("SELECT LeagueID,name,total_rosters,roster_positions_QB,roster_positions_RB,roster_positions_WR,roster_positions_TE,roster_positions_FLEX,roster_positions_SUPER_FLEX,roster_positions_BN,total_players,total_players - roster_positions_BN AS Start_Players,taxi_slots,pass_td,rec_bonus,bonus_rec_te,bonus_rec_rb,bonus_rec_wr,pass_int,previous_league_id FROM Leagues"));
   csv (out => "${gitrepodir}/Trades.csv", sep_char => ";", headers => [qw( Trade_ID Time Day Items1 Items2 All_Items Items1_Owner Items2_Owner League_ID Total_Rosters Total_Players Start_Players Rec_Bonus Rec_Bonus_TE Pass_TD Old_League_ID )], in => $dbh->selectall_arrayref ("SELECT t.TradeID, t.Time,(t.Time/86400000)+25569 AS 'Day', t.Items1, t.Items2,CONCAT(t.Items1,'; ',t.Items2) AS AllItems, t.Items1Owner, t.Items2Owner, t.League, l.total_rosters, l.total_players, l.total_players - roster_positions_BN AS Start_Players, l.rec_bonus, l.bonus_rec_te, l.pass_td, l.previous_league_id FROM Trades t INNER JOIN Leagues l ON t.League = l.LeagueID ORDER BY t.Time DESC"));
   csv (out => "${gitrepodir}/PickTrades.csv", sep_char => ";", headers => [qw( Trade_ID Time Day Items1 Items2 All_Items Items1_Owner Items2_Owner League_ID Draft_Rounds Total_Rosters Total_Players Start_Players Rec_Bonus Rec_Bonus_TE Pass_TD )], in => $dbh->selectall_arrayref ("SELECT p.TradeID,p.Time,(p.time/86400000)+25569 AS 'Day',p.Items1,p.Items2,CONCAT(p.Items1,'; ',p.Items2) AS AllItems,p.Items1Owner,p.Items2Owner,p.League,p.DraftRounds,l.total_rosters,l.total_players,l.total_players - roster_positions_BN AS Start_Players,l.rec_bonus,l.bonus_rec_te,l.pass_td FROM PickTrades p INNER JOIN Leagues l ON p.League = l.LeagueID ORDER BY p.Time DESC"));
+  csv (out => "${gitrepodir}/KtcValues.csv", sep_char => ",", headers => [qw( Player_ID Sleeper_ID Player_Name Value)], in => $dbh->selectall_arrayref ("SELECT k.player_id,k.sleeper_id,k.player_name,k.value FROM KeepTradeCut k ORDER BY k.value DESC"));
   csv (out => "${gitrepodir}/TradeCount.csv", sep_char => ";", headers => [qw( Sleeper_ID ADP Player_Name Last_Month Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec All_Year )], in => $dbh->selectall_arrayref ("SELECT t.PlayerID,t.ADP,t.PlayerName,t.LastM,t.s${season}01,t.s${season}02,t.s${season}03,t.s${season}04,t.s${season}05,t.s${season}06,t.s${season}07,t.s${season}08,t.s${season}09,t.s${season}10,t.s${season}11,t.s${season}12,t.s${season} FROM TradeStats t ORDER BY -ADP DESC"));
   my $repostatus = $repo->run( 'status' );
   if ($repostatus =~ "nothing to commit"){
@@ -714,12 +742,50 @@ sub get_json{ # General Function to get decoded JSON from URL
   }
 }
 
+sub get_ktcjsonvalues{
+  my $url = "https://keeptradecut.com/dynasty-rankings/?page=0&filters=QB|WR|RB|TE|RDP&format=2";
+  my $ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
+  my $header = HTTP::Request->new(GET => $url);
+  $header->header(accept => "text/html;");
+  my $request = HTTP::Request->new('GET', $url, $header);
+  my $response = $ua->request($request);
+  if (!($response->is_success)){
+      print "CRITICAL: Error: $url\n";
+      verb($response->error_as_HTML);
+      return;
+  }
+  my $tree = HTML::TreeBuilder->new;
+  $tree->parse($response->content);
+  for ($tree->find_by_tag_name('script')) {
+    my $scripttext = $_->as_HTML;
+    if ($scripttext =~ /var playersArray =/) {
+      my @lines = split /\n/, $scripttext;
+      foreach my $line( @lines ) {
+        if ($line =~ /var playersArray =/){
+          $line =~  s/^.*var playersArray = //g;
+          $line =~  s/;$//g;
+          return $line;
+        }
+      }
+    }
+  }
+}
+
 sub printtofile{ # Print text to file (not appending!!)
   my $filename = $_[0];
   my $text = $_[1];
   print "${text}" unless (!$o_verb);
   open(my $fh, '>', $filename);
   print $fh "${text}";
+  close $fh;
+}
+
+sub appendtofile{ # Print text to file (not appending!!)
+  my $filename = $_[0];
+  my $text = $_[1];
+  print "${text}" unless (!$o_verb);
+  open(my $fh, '>>', $filename);
+  print $fh "${text}\n";
   close $fh;
 }
 
@@ -737,7 +803,7 @@ sub prompt_yn { # To ask Y/N to the user.
   return lc($answer) eq 'y';
 }
 
-sub verb { #Verbose print
+sub verb { # Verbose print
   my $t=shift;
   print STDOUT $t,"\n" if defined($o_verb);
 }
@@ -762,6 +828,7 @@ sub check_options {
       't'     => \$o_tradevalueslm,     'tradevalueslm'       => \$o_tradevalueslm,
       'T'     => \$o_tradevalues,       'tradevalues'         => \$o_tradevalues,
       'a'     => \$o_updateadp,         'updateadp'           => \$o_updateadp,
+      'k'     => \$o_ktc,               'ktcvalues'           => \$o_ktc,
       'e'     => \$o_export,            'export'              => \$o_export,
       'u'     => \$o_updatetrades,      'updatetrades'        => \$o_updatetrades,
       'v'     => \$o_verb,              'verbose'             => \$o_verb,
@@ -770,7 +837,7 @@ sub check_options {
   help() if(defined($o_help));
   $o_verb = 1 if ($o_debugverb);
   $o_searchleagues = $o_expandusersearch if ($o_expandusersearch);
-  help() if (!((defined($o_searchleagues))||(defined($o_updatedb))||(defined($o_leagueinfo))||(defined($o_rosteridinfo))||(defined($o_export))||(defined($o_tradevalueslm))||(defined($o_tradevalues))||(defined($o_updatetrades))));
+  help() if (!((defined($o_searchleagues))||(defined($o_updatedb))||(defined($o_leagueinfo))||(defined($o_rosteridinfo))||(defined($o_export))||(defined($o_tradevalueslm))||(defined($o_updateadp))||(defined($o_tradevalues))||(defined($o_ktc))||(defined($o_updatetrades))));
 }
 
 sub print_usage {
