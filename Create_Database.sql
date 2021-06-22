@@ -6,11 +6,26 @@ CREATE TABLE `DraftsIgnored` (
   UNIQUE KEY `DraftsIgnored_DraftID_IDX` (`DraftID`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Draft Ignored for the SleeperADP Sheet';
 
+
 -- Sleeper.IgnoredLeagues definition
 
 CREATE TABLE `IgnoredLeagues` (
   `LeagueID` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Deleted Leagues or unusual Leagues';
+
+
+-- Sleeper.KeepTradeCut definition
+
+CREATE TABLE `KeepTradeCut` (
+  `player_id` bigint(200) NOT NULL,
+  `player_name` varchar(200) DEFAULT NULL,
+  `position` varchar(10) DEFAULT NULL,
+  `team` varchar(10) DEFAULT NULL,
+  `sleeper_id` bigint(200) DEFAULT NULL,
+  `value` bigint(200) DEFAULT NULL,
+  UNIQUE KEY `KeepTradeCut_player_id_IDX` (`player_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='KeepTradeCut Values';
+
 
 -- Sleeper.Leagues definition
 
@@ -41,9 +56,11 @@ CREATE TABLE `Leagues` (
   `RookieStatus` varchar(100) DEFAULT NULL,
   `RookieRounds` bigint(20) DEFAULT NULL,
   `previous_league_id` bigint(20) DEFAULT NULL,
+  `roster_idp` tinyint(1) DEFAULT NULL,
   UNIQUE KEY `Leagues_LeagueID_IDX` (`LeagueID`) USING BTREE,
   KEY `Leagues_LastUpdate_IDX` (`LastUpdate`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Sleeper League List';
+
 
 -- Sleeper.PickTrades definition
 
@@ -60,6 +77,7 @@ CREATE TABLE `PickTrades` (
   `Items3Owner` bigint(20) DEFAULT NULL,
   UNIQUE KEY `PickTrades_TradeID_IDX` (`TradeID`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Trades involving only Picks';
+
 
 -- Sleeper.Players definition
 
@@ -113,12 +131,14 @@ CREATE TABLE `Players` (
   KEY `Players_first_name_IDX` (`first_name`,`last_name`,`fantasy_positions`,`team`,`player_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Sleeper Player Database';
 
+
 -- Sleeper.RevertedTrades definition
 
 CREATE TABLE `RevertedTrades` (
-  `TradeID` varchar(100) DEFAULT NULL,
+  `TradeID` bigint(20) DEFAULT NULL,
   UNIQUE KEY `RevertedTrades_TradeID_IDX` (`TradeID`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='List of trades that have wrong data (reverted/null etc...)';
+
 
 -- Sleeper.RosterID_Reference definition
 
@@ -140,7 +160,8 @@ CREATE TABLE `RosterID_Reference` (
   `RosterID13` bigint(20) DEFAULT NULL,
   `RosterID14` bigint(20) DEFAULT NULL,
   UNIQUE KEY `RosterID_Reference_UN` (`LeagueID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='UserID to RosterID for each League Dictionary';
+
 
 -- Sleeper.SearchedUsers definition
 
@@ -150,6 +171,32 @@ CREATE TABLE `SearchedUsers` (
   UNIQUE KEY `SearchedUsers_UserID_IDX` (`UserID`) USING BTREE,
   KEY `SearchedUsers_ScrapeDate_IDX` (`ScrapeDate`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='List of Users already Searched';
+
+
+-- Sleeper.TradeStats definition
+
+CREATE TABLE `TradeStats` (
+  `PlayerID` bigint(20) NOT NULL,
+  `PlayerName` varchar(200) DEFAULT NULL,
+  `s2021` bigint(20) DEFAULT NULL,
+  `LastCount` bigint(20) DEFAULT NULL,
+  `s202101` bigint(20) DEFAULT NULL,
+  `s202102` bigint(20) DEFAULT NULL,
+  `s202103` bigint(20) DEFAULT NULL,
+  `s202104` bigint(20) DEFAULT NULL,
+  `s202105` bigint(20) DEFAULT NULL,
+  `s202106` bigint(20) DEFAULT NULL,
+  `s202107` bigint(20) DEFAULT NULL,
+  `s202108` bigint(20) DEFAULT NULL,
+  `s202109` bigint(20) DEFAULT NULL,
+  `s202110` bigint(20) DEFAULT NULL,
+  `s202111` bigint(20) DEFAULT NULL,
+  `s202112` bigint(20) DEFAULT NULL,
+  `LastM` bigint(20) DEFAULT NULL,
+  `ADP` bigint(20) DEFAULT NULL,
+  KEY `TradeStats_PlayerID_IDX` (`PlayerID`,`PlayerName`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Sum of each player Trade Count per month';
+
 
 -- Sleeper.Trades definition
 
@@ -167,18 +214,12 @@ CREATE TABLE `Trades` (
   UNIQUE KEY `Trades_TradeID_IDX` (`TradeID`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='Sleeper Trade History';
 
--- Sleeper.UserRookieDraftsSearched definition
 
-CREATE TABLE `UserRookieDraftsSearched` (
+-- Sleeper.UserDraftsSearched definition
+
+CREATE TABLE `UserDraftsSearched` (
   `UserID` bigint(20) NOT NULL,
-  `ScrapeDate` bigint(20) DEFAULT NULL,
-  UNIQUE KEY `UserDraftsSearched_UserID_IDX` (`UserID`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Sleeper.UserStartupDraftsSearched definition
-
-CREATE TABLE `UserStartupDraftsSearched` (
-  `UserID` varchar(100) NOT NULL,
-  `ScrapeDate` varchar(100) DEFAULT NULL,
-  UNIQUE KEY `UserStartupDraftSearched_UserID_IDX` (`UserID`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `ScrapeDateRookie` bigint(20) DEFAULT NULL,
+  `ScrapeDateStartup` bigint(20) DEFAULT NULL,
+  UNIQUE KEY `UserDraftsSearched_UN` (`UserID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='SearchDraft already Scraped Users';
