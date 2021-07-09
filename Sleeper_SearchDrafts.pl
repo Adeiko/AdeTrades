@@ -13,7 +13,7 @@ use Term::ProgressBar;
 use DBI;
 use Data::Dumper;
 
-my ($o_help,$o_verb,$o_username,$o_rookie,$o_single,$o_expanded,$o_drafting);
+my ($o_help,$o_verb,$o_username,$o_rookie,$o_picks,$o_nosimple,$o_single,$o_expanded,$o_drafting);
 my (@possibleusers,@leaguelist,@expandedusers,@dlist);
 my ($blist,$ulist);
 
@@ -27,9 +27,6 @@ my @correctScorings = ("dynasty","dynasty_2qb","dynasty_ppr","dynasty_half_ppr",
 
 check_options();
 
-# Database configuration
-my $dbh = DBI->connect("DBI:mysql:database=Sleeper;mysql_read_default_file=$ENV{HOME}/.my.cnf;mysql_read_default_group=Sleeper",undef,undef) or die "Something went wrong ($DBI::errstr)";
-
 # DateTime variables
 my $dt = DateTime->new( year => 1970, month => 1, day => 1 );
 my $dt1 = DateTime->now();
@@ -37,11 +34,14 @@ my $formatter = DateTime::Format::Epoch->new(epoch => $dt,unit => 'milliseconds'
 my $dtnow = DateTime->now()->epoch();
 my $dtold = DateTime->now()->subtract(days => $o_maxage)->epoch();
 
+# Database configuration
+my $dbh = DBI->connect("DBI:mysql:database=Sleeper;mysql_read_default_file=$ENV{HOME}/.my.cnf;mysql_read_default_group=Sleeper",undef,undef) or die "Something went wrong ($DBI::errstr)";
+
 $blist = $dbh->selectall_hashref ("SELECT DraftID FROM DraftsIgnored","DraftID");
 if ($o_rookie){
-  $ulist = $dbh->selectall_hashref ("SELECT UserID FROM UserRookieDraftsSearched WHERE ScrapeDate < $dtold","UserID");
+  $ulist = $dbh->selectall_hashref ("SELECT UserID FROM UserDraftsSearched WHERE ScrapeDateRookie < $dtold","UserID");
 }else{
-  $ulist = $dbh->selectall_hashref ("SELECT UserID FROM UserStartupDraftsSearched WHERE ScrapeDate < $dtold","UserID");
+  $ulist = $dbh->selectall_hashref ("SELECT UserID FROM UserDraftsSearched WHERE ScrapeDateStartup < $dtold","UserID");
 }
 
 my $user = get_userid($o_username);
@@ -53,7 +53,7 @@ if (defined($o_single)){ # Mode for only 1 user.
   exit(0);
 }
 
-get_leagues($user); #Gets all the Leagues from a user
+get_leagues($user); # Gets all the Leagues from a user
 
 if (scalar(@leaguelist)>0){
   my $currentLeag = 0;
@@ -93,13 +93,13 @@ print "Have found ".scalar(@dlist)." drafts from ${countdrafts} detected on ".sc
 print_drafts();
 exit;
 
-sub get_userid { #Get the UserID from a username
+sub get_userid { # Get the UserID from a username
   my $username = shift;
   my $userjson = get_json("https://api.sleeper.app/v1/user/${username}");
   return $userjson->{user_id};
 }
 
-sub get_leagues { #Get All leagues from a User
+sub get_leagues { # Get All leagues from a User
   my $userID = shift;
   my $leaguejson = get_json("https://api.sleeper.app/v1/user/${userID}/leagues/${sport}/${season}");
   foreach my $leagueitem (@$leaguejson){
@@ -120,10 +120,26 @@ sub get_numberpicks {
       }
     }
   }
-  return keys @$draftpicksjson; #Return number of picks
+  if (defined($o_picks)){ #If only want draft with picks, check for kickers and if none
+    foreach my $draftpick ( @$draftpicksjson ) {
+      if ($draftpick->{metadata}->{position} eq "K"){
+        return keys @$draftpicksjson;
+      }
+    }
+    return 0;
+  }
+  if (defined($o_nosimple)){ #If only want draft with picks, check for kickers and if none
+    foreach my $draftpick ( @$draftpicksjson ) {
+      if ($draftpick->{metadata}->{years_exp} == 0){
+        return keys @$draftpicksjson;
+      }
+    }
+    return 0;
+  }
+  return keys @$draftpicksjson; # Return number of picks
 }
 
-sub get_leagueusers { #Gets all Users from a League
+sub get_leagueusers { # Gets all Users from a League
   my $leagueID = shift;
   my $leaguejson = get_json("https://api.sleeper.app/v1/league/${leagueID}/users");
   foreach my $leagueuser ( @$leaguejson ) {
@@ -132,7 +148,7 @@ sub get_leagueusers { #Gets all Users from a League
   return;
 }
 
-sub get_Drafts { #Gets All Draft for a User With certain settings
+sub get_Drafts { # Gets All Draft for a User With certain settings
   my $user_id = shift;
   insert_newuser($user_id);
   my $draftsjson = get_json("https://api.sleeper.app/v1/user/${user_id}/drafts/${sport}/${season}");
@@ -160,6 +176,8 @@ sub get_Drafts { #Gets All Draft for a User With certain settings
     next if ($dt2 > $dt1); # Skip if draft is in the "future"
     next unless (defined($draft->{league_id})); # To Filter Mocks
     next if ($draft->{type} eq "auction"); # To discard auctions
+    next if (grep(/\bfree\b/i,$draft->{metadata}->{name})); # To discard leagues with Free in name Leagues
+    next if (grep(/\bmock\b/i,$draft->{metadata}->{name})); # To discard leagues with Mock Leagues
     next unless (grep(/^$draft->{metadata}->{scoring_type}$/, @correctScorings)); # To Filter non-Dynasty
     next unless ( ($draft->{settings}->{teams} == 12) || ($draft->{settings}->{teams} == 14) ); # To filter 12/14 team leagues
     next unless (exists($draft->{settings}->{slots_super_flex})); # To Filter non-SF
@@ -184,6 +202,8 @@ sub check_options {
     'h'     => \$o_help,            'help'            => \$o_help,
     'u:s'   => \$o_username,        'username:s'      => \$o_username,
     'r'     => \$o_rookie,          'rookies'         => \$o_rookie,
+    'p'     => \$o_picks,           'picks'           => \$o_picks,
+    'n'     => \$o_nosimple,        'nosimple'        => \$o_nosimple,
     'a:i'   => \$o_maxage,          'maxage'          => \$o_maxage,
     'm:i'   => \$o_maxdrafts,       'maxdrafts'       => \$o_maxdrafts,
     's'     => \$o_single,          'singleuser'      => \$o_single,
@@ -203,24 +223,22 @@ sub check_options {
 
 sub insert_newdraft{ # Adds a new League to the list
   my $new_draft = shift;
-  my $sth = $dbh->prepare(q{INSERT IGNORE INTO DraftsIgnored(DraftID,ScrapeDate) VALUES (?,?)},{},);
-  $sth->execute($new_draft,$dtnow);
+  my $sth = $dbh->prepare(qq/INSERT IGNORE INTO DraftsIgnored(DraftID,ScrapeDate) VALUES ($new_draft,$dtnow) ON DUPLICATE KEY UPDATE DraftsIgnored.ScrapeDate = $dtnow;/);
+  $sth->execute();
   $sth->finish;
 }
 
 sub insert_newuser{ # Adds a new League to the list
   my $new_user = shift;
-  if ($o_rookie){
-    my $sth = $dbh->prepare(q{REPLACE INTO UserRookieDraftsSearched(UserID,ScrapeDate) VALUES (?,?)},{},);
-    $sth->execute($new_user,$dtnow);
-  }else{
-    my $sth = $dbh->prepare(q{REPLACE INTO UserStartupDraftsSearched(UserID,ScrapeDate) VALUES (?,?)},{},);
-    $sth->execute($new_user,$dtnow);
-  }
+  my $scolumn = "ScrapeDateStartup";
+  $scolumn = "ScrapeDateRookie" if ($o_rookie);
+  my $sth = $dbh->prepare(qq/INSERT INTO UserDraftsSearched(UserID,$scolumn) VALUES ($new_user,$dtnow) ON DUPLICATE KEY UPDATE UserDraftsSearched.$scolumn = $dtnow;/);
+  $sth->execute();
+  $sth->finish;
   return;
 }
 
-sub get_json{
+sub get_json{ # Generic Decode Json from URL
   my $url = shift;
   my $ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
   my $header = HTTP::Request->new(GET => $url);
@@ -243,7 +261,7 @@ sub verb {
 }
 
 sub print_usage {
-  print "Usage: $0 -u <USERNAME> [-m <MAXDRAFTS>] [-a <MAXAGE>] [-r] [-s] [-v] [-h]\n";
+  print "Usage: $0 -u <USERNAME> [-m <MAXDRAFTS>] [-a <MAXAGE>] [-d] [-r] [-p] [-n] [-s] [-v] [-h]\n";
 }
 
 sub help {
@@ -258,8 +276,12 @@ sub help {
     Only search for drafts currently Drafting.
 -m, --maxdrafts
     Max number of drafts to search for. (default 25)
+-n, --nosimple
+    Only Draft that cointains at least a Rookie Player.
 -r, --rookies
     Only Rookie Drafts (< 10 rounds).
+-p, --picks
+    Only Drafts that cointains at least a kicker selected.
 -s, --singleuser
     Only Search Drafts by the specified user.
 -v, --verbose

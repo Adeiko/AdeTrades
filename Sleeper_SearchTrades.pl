@@ -20,6 +20,7 @@ use Google::RestApi::SheetsApi4;
 use Google::RestApi::Auth::OAuth2Client;
 use YAML::Tiny;
 use HTML::TreeBuilder;
+use File::Basename;
 use Data::Dumper;
 
 my ($o_help,$o_verb,$o_updatetrades,$o_searchleagues,$o_leagueinfo,$o_expandusersearch,$o_updatedb,$o_rosteridinfo,$o_tradevalues,$o_tradevalueslm,$o_export,$o_currentweek,$o_debugverb,$o_updateadp,$o_ktc);
@@ -35,6 +36,8 @@ my $o_maxleagues = 50;
 my $maxIteminTrade = 5;
 my $leaguecount = 0;
 my $gitrepodir = "$ENV{HOME}/Repositories/AdeTrades";
+my $rootdir = dirname(File::Spec->rel2abs(__FILE__));
+
 
 check_options(); # Check for the arguments to the script
 
@@ -163,9 +166,9 @@ if ($o_updatetrades or ($leaguecount > 0)){
 }
 
 export_sleeperplayers() if ($o_updatedb); # Update the MySQL PlayerDB with Sleeper Data.
+update_KTC() if ($o_ktc); # Update the ADP from Google Sheet
 updateTradeValues() if ($o_tradevalues or $o_tradevalueslm); # Update the Trade Stats using queries to the DB
 update_ADP() if ($o_updateadp); # Update the ADP from Google Sheet
-update_KTC() if ($o_ktc); # Update the ADP from Google Sheet
 
 if ($o_export){
   clean_data();  # Clean the Database of Reversed/duplicate trades
@@ -525,11 +528,11 @@ sub update_PossibleDeleted{ # Inserts in the MySQL the Possible Delete Status
 }
 
 sub update_ADP{ #Read the ADP Google Sheet and import the new ADP in the TradeStats Table
-  my $yaml = YAML::Tiny->read('gapi.yaml');
+  my $yaml = YAML::Tiny->read("${rootdir}/gapi.yaml");
   my $oauth2 = Google::RestApi::Auth::OAuth2Client->new(
     client_id => $yaml->[0]{auth}{client_id},
     client_secret => $yaml->[0]{auth}{client_secret},
-    token_file => 'gapi_stored_google_access.session'
+    token_file => "${rootdir}/gapi_stored_google_access.session"
   );
   my $restapi = Google::RestApi->new(auth =>$oauth2);
   my $sheets = Google::RestApi::SheetsApi4->new(api => $restapi);
@@ -679,6 +682,7 @@ sub export_data{ # Generate CSV and push them to the Repository
   csv (out => "${gitrepodir}/PickTrades.csv", sep_char => ";", headers => [qw( Trade_ID Time Day Items1 Items2 All_Items Items1_Owner Items2_Owner League_ID Draft_Rounds Total_Rosters Total_Players Start_Players Rec_Bonus Rec_Bonus_TE Pass_TD )], in => $dbh->selectall_arrayref ("SELECT p.TradeID,p.Time,(p.time/86400000)+25569 AS 'Day',p.Items1,p.Items2,CONCAT(p.Items1,'; ',p.Items2) AS AllItems,p.Items1Owner,p.Items2Owner,p.League,p.DraftRounds,l.total_rosters,l.total_players,l.total_players - roster_positions_BN AS Start_Players,l.rec_bonus,l.bonus_rec_te,l.pass_td FROM PickTrades p INNER JOIN Leagues l ON p.League = l.LeagueID ORDER BY p.Time DESC"));
   csv (out => "${gitrepodir}/KtcValues.csv", sep_char => ",", headers => [qw( Player_ID Sleeper_ID Player_Name Value)], in => $dbh->selectall_arrayref ("SELECT k.player_id,k.sleeper_id,k.player_name,k.value FROM KeepTradeCut k ORDER BY k.value DESC"));
   csv (out => "${gitrepodir}/TradeCount.csv", sep_char => ";", headers => [qw( Sleeper_ID ADP Player_Name Last_Month Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec All_Year )], in => $dbh->selectall_arrayref ("SELECT t.PlayerID,t.ADP,t.PlayerName,t.LastM,t.s${season}01,t.s${season}02,t.s${season}03,t.s${season}04,t.s${season}05,t.s${season}06,t.s${season}07,t.s${season}08,t.s${season}09,t.s${season}10,t.s${season}11,t.s${season}12,t.s${season} FROM TradeStats t ORDER BY -ADP DESC"));
+
   my $repostatus = $repo->run( 'status' );
   if ($repostatus =~ "nothing to commit"){
     print "No new Trades exported.\n";
