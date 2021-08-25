@@ -200,7 +200,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 268,4137,"James Conner",1743
 207,2325,"Nelson Agholor",1703
 221,4950,"Christian Kirk",1653
-617,,"Xavier Jones",1644
+617,7088,"Xavier Jones",1644
 360,138,"Ben Roethlisberger",1617
 59,,"2021 Mid 3rd",1610
 1079,7612,"D'Wayne Eskridge",1593
@@ -283,11 +283,11 @@ Player_ID,Sleeper_ID,Player_Name,Value
 609,6271,"Olamide Zaccheaus",956
 484,5122,"Boston Scott",952
 79,2588,"Malcolm Brown",948
-612,,"Deonte Harris",931
+612,6234,"Deonte Harris",931
 988,7572,"Kylin Hill",927
 977,2711,"Taylor Heinicke",905
 18,1144,"Cole Beasley",896
-1112,,"Jake Funk",895
+1112,7771,"Jake Funk",895
 65,5845,"Dwayne Haskins",885
 232,1833,"Damien Williams",851
 632,6878,"Anthony McFarland",848
@@ -329,7 +329,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 172,4150,"Wayne Gallman",633
 535,6909,"Lynn Bowden",624
 294,4962,"Sony Michel",621
-1027,,"Sam Ehlinger",610
+1027,7583,"Sam Ehlinger",610
 380,5007,"Keke Coutee",604
 551,6973,"J.J. Taylor",604
 431,6059,"Travis Fulgham",594
@@ -388,7 +388,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 435,6001,"Drew Sample",161
 160,6012,"Travis Homer",140
 574,6913,"Joe Reed",130
-12,,"Rex Burkhead",122
+12,1387,"Rex Burkhead",122
 568,6926,"Brycen Hopkins",122
 1061,7597,"Kenny Yeboah",122
 162,4187,"Brian Hill",120
@@ -399,12 +399,12 @@ Player_ID,Sleeper_ID,Player_Name,Value
 27,1911,"Willie Snead",84
 421,6088,"Olabisi Johnson",73
 204,5117,"Jordan Thomas",67
-2,,"Taywan Taylor",62
+2,4125,"Taywan Taylor",62
 909,7085,"Isaiah Coulter",62
 197,5032,"Jordan Akins",61
 72,6139,"Jace Sternberger",51
 169,5100,"Jordan Wilkins",48
-42,,"Nick Foles",41
+42,1029,"Nick Foles",41
 7,5973,"Josh Oliver",40
 110,4972,"Mason Rudolph",38
 38,2381,"Chris Conley",37
@@ -417,13 +417,13 @@ Player_ID,Sleeper_ID,Player_Name,Value
 284,2315,"Todd Gurley",8
 156,6136,"Jarrett Stidham",7
 83,5873,"Riley Ridley",5
-263,,"Le'Veon Bell",1
-11,,"Taylor Gabriel",0
-16,,"Josh Rosen",0
+263,1408,"Le'Veon Bell",1
+11,1903,"Taylor Gabriel",0
+16,4863,"Josh Rosen",0
 44,5136,"Josh Adams",0
 74,3868,"Jalen Richard",0
 126,5121,"Braxton Berrios",0
-236,,"Jordan Howard",0
+236,3306,"Jordan Howard",0
 312,5863,"JJ Arcega-Whiteside",0
 329,5884,"Kelvin Harmon",0
 351,147,"DeSean Jackson",0
