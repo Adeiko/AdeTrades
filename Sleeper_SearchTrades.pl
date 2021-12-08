@@ -30,7 +30,7 @@ my %dlist;
 
 # Default values
 my $season = 2021;
-my $o_refreshage = 5;
+my $o_refreshage = 1;
 my $o_refreshagerosterids = 90;
 my $o_maxleagues = 50;
 my $maxIteminTrade = 5;
@@ -166,7 +166,8 @@ if ($o_updatetrades or ($leaguecount > 0)){
 }
 
 export_sleeperplayers() if ($o_updatedb); # Update the MySQL PlayerDB with Sleeper Data.
-update_KTC() if ($o_ktc); # Update the ADP from Google Sheet
+update_KTC() if ($o_ktc); # Update the KTC values
+update_DevyKTC() if ($o_ktc); # Update the KTC values
 updateTradeValues() if ($o_tradevalues or $o_tradevalueslm); # Update the Trade Stats using queries to the DB
 update_ADP() if ($o_updateadp); # Update the ADP from Google Sheet
 
@@ -451,6 +452,9 @@ sub get_currentstate{ #Get Current Week from SleeperAPI
   else{
     $o_currentweek = 1;
   }
+  if ($status_json->{season_type} eq "pre"){
+    $o_currentweek = 1;
+  }
 }
 
 sub insert_newleague{ # Adds a new League to the list
@@ -573,6 +577,32 @@ sub update_KTC{ # Load KTC values to the Database
   $dbst->finish;
 }
 
+sub update_DevyKTC{ # Load KTC values to the Database
+  my $jsonktc = decode_json(get_ktcdevyjsonvalues());
+  my $dbst;
+
+  foreach my $player( @$jsonktc ) {
+    my $k_tm =  $dbh->quote($player->{team});
+    my $k_id =  $dbh->quote($player->{playerID});
+    my $k_pos =  $dbh->quote($player->{position});
+    my $k_name = $dbh->quote($player->{playerName});
+    my $k_val =  $dbh->quote($player->{superflexValues}->{value});
+    $dbst = $dbh->prepare(
+      qq/
+        INSERT IGNORE INTO DevyKeepTradeCut
+          (player_id,player_name,position,team,value)
+        VALUES
+          ($k_id,$k_name,$k_pos,$k_tm,$k_val)
+        ON DUPLICATE KEY UPDATE
+          DevyKeepTradeCut.value = $k_val
+      /
+    );
+    verb ($k_tm.",".$k_id.",".$k_name.",".$k_pos.",".$k_val);
+    $dbst->execute() or die $dbst->errstr;
+  }
+  $dbst->finish;
+}
+
 sub Update_TradeStatsADP{ # Insert the ADP in the TradeStats file
   my $splayerid = shift;
   my $sadp = shift;
@@ -681,6 +711,7 @@ sub export_data{ # Generate CSV and push them to the Repository
   csv (out => "${gitrepodir}/Trades.csv", sep_char => ";", headers => [qw( Trade_ID Time Day Items1 Items2 All_Items Items1_Owner Items2_Owner League_ID Total_Rosters Total_Players Start_Players Rec_Bonus Rec_Bonus_TE Pass_TD Old_League_ID )], in => $dbh->selectall_arrayref ("SELECT t.TradeID, t.Time,(t.Time/86400000)+25569 AS 'Day', t.Items1, t.Items2,CONCAT(t.Items1,'; ',t.Items2) AS AllItems, t.Items1Owner, t.Items2Owner, t.League, l.total_rosters, l.total_players, l.total_players - roster_positions_BN AS Start_Players, l.rec_bonus, l.bonus_rec_te, l.pass_td, l.previous_league_id FROM Trades t INNER JOIN Leagues l ON t.League = l.LeagueID ORDER BY t.Time DESC"));
   csv (out => "${gitrepodir}/PickTrades.csv", sep_char => ";", headers => [qw( Trade_ID Time Day Items1 Items2 All_Items Items1_Owner Items2_Owner League_ID Draft_Rounds Total_Rosters Total_Players Start_Players Rec_Bonus Rec_Bonus_TE Pass_TD )], in => $dbh->selectall_arrayref ("SELECT p.TradeID,p.Time,(p.time/86400000)+25569 AS 'Day',p.Items1,p.Items2,CONCAT(p.Items1,'; ',p.Items2) AS AllItems,p.Items1Owner,p.Items2Owner,p.League,p.DraftRounds,l.total_rosters,l.total_players,l.total_players - roster_positions_BN AS Start_Players,l.rec_bonus,l.bonus_rec_te,l.pass_td FROM PickTrades p INNER JOIN Leagues l ON p.League = l.LeagueID ORDER BY p.Time DESC"));
   csv (out => "${gitrepodir}/KtcValues.csv", sep_char => ",", headers => [qw( Player_ID Sleeper_ID Player_Name Value)], in => $dbh->selectall_arrayref ("SELECT k.player_id,k.sleeper_id,k.player_name,k.value FROM KeepTradeCut k ORDER BY k.value DESC"));
+  csv (out => "${gitrepodir}/DevyKtcValues.csv", sep_char => ",", headers => [qw( Player_ID Player_Name Value)], in => $dbh->selectall_arrayref ("SELECT k.player_id,k.player_name,k.value FROM DevyKeepTradeCut k ORDER BY k.value DESC"));
   csv (out => "${gitrepodir}/TradeCount.csv", sep_char => ";", headers => [qw( Sleeper_ID ADP Player_Name Last_Month Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec All_Year )], in => $dbh->selectall_arrayref ("SELECT t.PlayerID,t.ADP,t.PlayerName,t.LastM,t.s${season}01,t.s${season}02,t.s${season}03,t.s${season}04,t.s${season}05,t.s${season}06,t.s${season}07,t.s${season}08,t.s${season}09,t.s${season}10,t.s${season}11,t.s${season}12,t.s${season} FROM TradeStats t ORDER BY -ADP DESC"));
 
   my $repostatus = $repo->run( 'status' );
@@ -705,7 +736,7 @@ sub export_sleeperplayers { # Get the Sleeper Player Ids in the MySQLDB
   $sth->execute();
   $sth->finish;
   verb("Truncated table PlayersTest");
-  my $progressPlayers = Term::ProgressBar->new({name  => 'Searching Users', count => scalar(keys(%$playersjson)), ETA   => 'linear', remove => 1});
+  my $progressPlayers = Term::ProgressBar->new({name  => 'Adding Players', count => scalar(keys(%$playersjson)), ETA   => 'linear', remove => 1});
   my $currentPlayer = 0;
   my $nextPlayerupdate = 0;
   $progressPlayers->max_update_rate(1);
@@ -748,6 +779,35 @@ sub get_json{ # General Function to get decoded JSON from URL
 
 sub get_ktcjsonvalues{
   my $url = "https://keeptradecut.com/dynasty-rankings/?page=0&filters=QB|WR|RB|TE|RDP&format=2";
+  my $ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
+  my $header = HTTP::Request->new(GET => $url);
+  $header->header(accept => "text/html;");
+  my $request = HTTP::Request->new('GET', $url, $header);
+  my $response = $ua->request($request);
+  if (!($response->is_success)){
+      print "CRITICAL: Error: $url\n";
+      verb($response->error_as_HTML);
+      return;
+  }
+  my $tree = HTML::TreeBuilder->new;
+  $tree->parse($response->content);
+  for ($tree->find_by_tag_name('script')) {
+    my $scripttext = $_->as_HTML;
+    if ($scripttext =~ /var playersArray =/) {
+      my @lines = split /\n/, $scripttext;
+      foreach my $line( @lines ) {
+        if ($line =~ /var playersArray =/){
+          $line =~  s/^.*var playersArray = //g;
+          $line =~  s/;$//g;
+          return $line;
+        }
+      }
+    }
+  }
+}
+
+sub get_ktcdevyjsonvalues{
+  my $url = "https://keeptradecut.com/devy-rankings/?page=0&filters=QB|WR|RB|TE&format=2";
   my $ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
   my $header = HTTP::Request->new(GET => $url);
   $header->header(accept => "text/html;");
@@ -859,7 +919,7 @@ sub help {
 -m, --maxleagues <I>
     Max number of leagues to update (to throttle) (default 5).
 -r, --refreshage <I>
-    How Fresh has to be the data to refresh (default 5 Days).
+    How Fresh has to be the data to refresh (default 2 Days).
 -w, --currentweek <I>
     Week to update transactions. (if not defined it gets the one reported from the sleeper API).
 -u, --updatetrades
@@ -874,6 +934,8 @@ sub help {
     Update the RosterID settings of the Leagues that have no roster info.
 -a, --updateadp
     Update the ADP from the Google Sheet ADP.
+-k, --ktcvalues
+    Update the KTC values from the website.
 -e, --export
     Export CSV from tables and commit to git repository.
 -d, --updateplayerdb
