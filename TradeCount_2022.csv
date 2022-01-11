@@ -1,5 +1,5 @@
 Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;Nov;Dec;All_Year
-4984;;"Josh Allen,QB";1;0;;;;;;;;;;;;0
+4984;;"Josh Allen,QB";1;1;;;;;;;;;;;;1
 6797;;"Justin Herbert,QB";2;2;;;;;;;;;;;;2
 4881;;"Lamar Jackson,QB";1;1;;;;;;;;;;;;1
 3294;;"Dak Prescott,QB";2;2;;;;;;;;;;;;2
@@ -68,10 +68,10 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 7585;;"Davis Mills,QB";0;0;;;;;;;;;;;;0
 7589;;"Ian Book,QB";0;0;;;;;;;;;;;;0
 4034;;"Christian McCaffrey,RB";5;5;;;;;;;;;;;;5
-6813;;"Jonathan Taylor,RB";7;7;;;;;;;;;;;;7
+6813;;"Jonathan Taylor,RB";5;5;;;;;;;;;;;;5
 4866;;"Saquon Barkley,RB";5;5;;;;;;;;;;;;5
 4029;;"Dalvin Cook,RB";1;1;;;;;;;;;;;;1
-4035;;"Alvin Kamara,RB";7;5;;;;;;;;;;;;5
+4035;;"Alvin Kamara,RB";6;5;;;;;;;;;;;;5
 6790;;"D'Andre Swift,RB";2;2;;;;;;;;;;;;2
 6938;;"Cam Akers,RB";4;4;;;;;;;;;;;;4
 3198;;"Derrick Henry,RB";6;6;;;;;;;;;;;;6
@@ -295,7 +295,7 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 5026;;"Tre'Quan Smith,WR";0;0;;;;;;;;;;;;0
 2331;;"Breshad Perriman,WR";0;0;;;;;;;;;;;;0
 4171;;"Josh Reynolds,WR";0;0;;;;;;;;;;;;0
-538;;"Emmanuel Sanders,WR";2;2;;;;;;;;;;;;2
+538;;"Emmanuel Sanders,WR";0;0;;;;;;;;;;;;0
 4319;;"Zach Pascal,WR";0;0;;;;;;;;;;;;0
 6989;;"Marquez Callaway,WR";0;0;;;;;;;;;;;;0
 344;;"Julian Edelman,WR";0;0;;;;;;;;;;;;0
