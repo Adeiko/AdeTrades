@@ -23,7 +23,7 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 2306;;"Jameis Winston,QB";23;23;;;;;;;;;;;;23
 4381;;"Taysom Hill,QB";7;7;;;;;;;;;;;;7
 1837;;"Jimmy Garoppolo,QB";26;26;;;;;;;;;;;;26
-6804;;"Jordan Love,QB";13;12;;;;;;;;;;;;12
+6804;;"Jordan Love,QB";12;12;;;;;;;;;;;;12
 2152;;"Teddy Bridgewater,QB";6;6;;;;;;;;;;;;6
 138;;"Ben Roethlisberger,QB";1;1;;;;;;;;;;;;1
 3976;;"Mitchell Trubisky,QB";14;14;;;;;;;;;;;;14
@@ -183,7 +183,7 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 5163;;"Ryan Nall,RB";0;0;;;;;;;;;;;;0
 7528;;"Najee Harris,RB";34;34;;;;;;;;;;;;34
 7543;;"Travis Etienne,RB";72;72;;;;;;;;;;;;72
-7588;;"Javonte Williams,RB";61;60;;;;;;;;;;;;60
+7588;;"Javonte Williams,RB";60;60;;;;;;;;;;;;60
 7567;;"Kenneth Gainwell,RB";31;31;;;;;;;;;;;;31
 7594;;"Chuba Hubbard,RB";33;33;;;;;;;;;;;;33
 7607;;"Michael Carter,RB";69;69;;;;;;;;;;;;69
@@ -205,9 +205,9 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 7771;;"Jake Funk,RB";0;0;;;;;;;;;;;;0
 7539;;"Gerrid Doaks,RB";0;0;;;;;;;;;;;;0
 6794;;"Justin Jefferson,WR";33;33;;;;;;;;;;;;33
-3321;;"Tyreek Hill,WR";49;48;;;;;;;;;;;;48
+3321;;"Tyreek Hill,WR";48;48;;;;;;;;;;;;48
 2133;;"Davante Adams,WR";38;38;;;;;;;;;;;;38
-5846;;"DK Metcalf,WR";58;57;;;;;;;;;;;;57
+5846;;"DK Metcalf,WR";57;57;;;;;;;;;;;;57
 5859;;"A.J. Brown,WR";35;35;;;;;;;;;;;;35
 2449;;"Stefon Diggs,WR";46;46;;;;;;;;;;;;46
 6786;;"CeeDee Lamb,WR";64;64;;;;;;;;;;;;64
@@ -217,7 +217,7 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 4037;;"Chris Godwin,WR";51;50;;;;;;;;;;;;50
 6801;;"Tee Higgins,WR";49;49;;;;;;;;;;;;49
 5927;;"Terry McLaurin,WR";74;74;;;;;;;;;;;;74
-4983;;"D.J. Moore,WR";63;62;;;;;;;;;;;;62
+4983;;"D.J. Moore,WR";62;62;;;;;;;;;;;;62
 1992;;"Allen Robinson,WR";60;60;;;;;;;;;;;;60
 1479;;"Keenan Allen,WR";52;52;;;;;;;;;;;;52
 6803;;"Brandon Aiyuk,WR";49;49;;;;;;;;;;;;49
