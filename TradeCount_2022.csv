@@ -43,7 +43,7 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 1111;;"Andrew Luck,QB";0;0;;;;;;;;;;;;0
 4972;;"Mason Rudolph,QB";1;1;;;;;;;;;;;;1
 4863;;"Josh Rosen,QB";0;0;;;;;;;;;;;;0
-6822;;"Jake Fromm,QB";2;1;;;;;;;;;;;;1
+6822;;"Jake Fromm,QB";1;1;;;;;;;;;;;;1
 4464;;"Nick Mullens,QB";0;0;;;;;;;;;;;;0
 827;;"Tyrod Taylor,QB";1;1;;;;;;;;;;;;1
 4335;;"Phillip Walker,QB";0;0;;;;;;;;;;;;0
@@ -65,13 +65,13 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 7581;;"Kellen Mond,QB";6;6;;;;;;;;;;;;6
 7583;;"Sam Ehlinger,QB";3;3;;;;;;;;;;;;3
 7531;;"Feleipe Franks,QB";0;0;;;;;;;;;;;;0
-7585;;"Davis Mills,QB";47;46;;;;;;;;;;;;46
+7585;;"Davis Mills,QB";46;46;;;;;;;;;;;;46
 7589;;"Ian Book,QB";5;5;;;;;;;;;;;;5
 4034;;"Christian McCaffrey,RB";66;66;;;;;;;;;;;;66
 6813;;"Jonathan Taylor,RB";31;31;;;;;;;;;;;;31
 4866;;"Saquon Barkley,RB";74;74;;;;;;;;;;;;74
 4029;;"Dalvin Cook,RB";50;50;;;;;;;;;;;;50
-4035;;"Alvin Kamara,RB";58;57;;;;;;;;;;;;57
+4035;;"Alvin Kamara,RB";57;57;;;;;;;;;;;;57
 6790;;"D'Andre Swift,RB";55;54;;;;;;;;;;;;54
 6938;;"Cam Akers,RB";52;52;;;;;;;;;;;;52
 3198;;"Derrick Henry,RB";44;44;;;;;;;;;;;;44
@@ -80,7 +80,7 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 6820;;"Clyde Edwards-Helaire,RB";71;71;;;;;;;;;;;;71
 6945;;"Antonio Gibson,RB";62;62;;;;;;;;;;;;62
 3164;;"Ezekiel Elliott,RB";68;68;;;;;;;;;;;;68
-5850;;"Josh Jacobs,RB";59;58;;;;;;;;;;;;58
+5850;;"Josh Jacobs,RB";58;58;;;;;;;;;;;;58
 4199;;"Aaron Jones,RB";53;53;;;;;;;;;;;;53
 6151;;"Miles Sanders,RB";59;59;;;;;;;;;;;;59
 6955;;"James Robinson,RB";39;39;;;;;;;;;;;;39
@@ -214,7 +214,7 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 1426;;"DeAndre Hopkins,WR";55;55;;;;;;;;;;;;55
 4981;;"Calvin Ridley,WR";58;58;;;;;;;;;;;;58
 3199;;"Michael Thomas,WR";51;51;;;;;;;;;;;;51
-4037;;"Chris Godwin,WR";51;50;;;;;;;;;;;;50
+4037;;"Chris Godwin,WR";50;50;;;;;;;;;;;;50
 6801;;"Tee Higgins,WR";49;49;;;;;;;;;;;;49
 5927;;"Terry McLaurin,WR";74;74;;;;;;;;;;;;74
 4983;;"D.J. Moore,WR";62;62;;;;;;;;;;;;62
@@ -225,7 +225,7 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 2216;;"Mike Evans,WR";36;36;;;;;;;;;;;;36
 6886;;"Chase Claypool,WR";57;57;;;;;;;;;;;;57
 4131;;"Kenny Golladay,WR";33;33;;;;;;;;;;;;33
-6783;;"Jerry Jeudy,WR";67;65;;;;;;;;;;;;65
+6783;;"Jerry Jeudy,WR";66;65;;;;;;;;;;;;65
 5937;;"Diontae Johnson,WR";56;56;;;;;;;;;;;;56
 4040;;"JuJu Smith-Schuster,WR";57;57;;;;;;;;;;;;57
 4951;;"D.J. Chark,WR";48;48;;;;;;;;;;;;48
@@ -247,7 +247,7 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 3423;;"Robby Anderson,WR";13;13;;;;;;;;;;;;13
 6789;;"Henry Ruggs,WR";2;2;;;;;;;;;;;;2
 4082;;"Curtis Samuel,WR";18;18;;;;;;;;;;;;18
-2197;;"Brandin Cooks,WR";32;31;;;;;;;;;;;;31
+2197;;"Brandin Cooks,WR";31;31;;;;;;;;;;;;31
 5038;;"Michael Gallup,WR";35;35;;;;;;;;;;;;35
 7090;;"Darnell Mooney,WR";60;59;;;;;;;;;;;;59
 4036;;"Corey Davis,WR";31;31;;;;;;;;;;;;31
@@ -264,7 +264,7 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 536;;"Antonio Brown,WR";27;27;;;;;;;;;;;;27
 3200;;"Sterling Shepard,WR";6;6;;;;;;;;;;;;6
 6805;;"K.J. Hamler,WR";11;11;;;;;;;;;;;;11
-6853;;"Van Jefferson,WR";25;24;;;;;;;;;;;;24
+6853;;"Van Jefferson,WR";24;24;;;;;;;;;;;;24
 5110;;"Russell Gage,WR";23;23;;;;;;;;;;;;23
 6148;;"Preston Williams,WR";0;0;;;;;;;;;;;;0
 5185;;"Allen Lazard,WR";12;12;;;;;;;;;;;;12
@@ -297,7 +297,7 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 4171;;"Josh Reynolds,WR";7;7;;;;;;;;;;;;7
 538;;"Emmanuel Sanders,WR";2;2;;;;;;;;;;;;2
 4319;;"Zach Pascal,WR";1;1;;;;;;;;;;;;1
-6989;;"Marquez Callaway,WR";19;18;;;;;;;;;;;;18
+6989;;"Marquez Callaway,WR";18;18;;;;;;;;;;;;18
 344;;"Julian Edelman,WR";0;0;;;;;;;;;;;;0
 5915;;"Andy Isabella,WR";0;0;;;;;;;;;;;;0
 4622;;"Keelan Cole,WR";0;0;;;;;;;;;;;;0
@@ -385,7 +385,7 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 1466;;"Travis Kelce,TE";39;39;;;;;;;;;;;;39
 4217;;"George Kittle,TE";43;43;;;;;;;;;;;;43
 2505;;"Darren Waller,TE";44;44;;;;;;;;;;;;44
-5844;;"T.J. Hockenson,TE";51;50;;;;;;;;;;;;50
+5844;;"T.J. Hockenson,TE";50;50;;;;;;;;;;;;50
 5012;;"Mark Andrews,TE";28;28;;;;;;;;;;;;28
 5857;;"Noah Fant,TE";45;45;;;;;;;;;;;;45
 5022;;"Dallas Goedert,TE";41;41;;;;;;;;;;;;41
@@ -414,7 +414,7 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 5001;;"Dalton Schultz,TE";49;49;;;;;;;;;;;;49
 4033;;"David Njoku,TE";18;18;;;;;;;;;;;;18
 4435;;"Anthony Firkser,TE";2;2;;;;;;;;;;;;2
-6843;;"Albert Okwuegbunam,TE";12;11;;;;;;;;;;;;11
+6843;;"Albert Okwuegbunam,TE";11;11;;;;;;;;;;;;11
 367;;"Jared Cook,TE";4;4;;;;;;;;;;;;4
 6956;;"Devin Asiasi,TE";0;0;;;;;;;;;;;;0
 4741;;"Dan Arnold,TE";12;11;;;;;;;;;;;;11
@@ -453,7 +453,7 @@ Sleeper_ID;ADP;Player_Name;Last_Month;Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sep;Oct;No
 7568;;"Brevin Jordan,TE";16;16;;;;;;;;;;;;16
 7600;;"Pat Freiermuth,TE";37;37;;;;;;;;;;;;37
 7535;;"Hunter Long,TE";6;6;;;;;;;;;;;;6
-7597;;"Kenny Yeboah,TE";2;1;;;;;;;;;;;;1
+7597;;"Kenny Yeboah,TE";1;1;;;;;;;;;;;;1
 7694;;"Tommy Tremble,TE";8;8;;;;;;;;;;;;8
 7716;;"John Bates,TE";1;1;;;;;;;;;;;;1
 7703;;"Jacob Harris,TE";1;1;;;;;;;;;;;;1
