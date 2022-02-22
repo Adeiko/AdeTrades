@@ -8,6 +8,7 @@ use LWP::UserAgent;
 use HTTP::Request;
 use JSON::XS 'decode_json';
 use Scalar::Util qw(looks_like_number);
+use List::Util qw(max);
 use List::MoreUtils qw(any uniq);
 use Getopt::Long;
 use DateTime;
@@ -23,20 +24,23 @@ use HTML::TreeBuilder;
 use File::Basename;
 use Data::Dumper;
 
-my ($o_help,$o_verb,$o_updatetrades,$o_searchleagues,$o_leagueinfo,$o_expandusersearch,$o_updatedb,$o_rosteridinfo,$o_tradevalues,$o_tradevalueslm,$o_export,$o_currentweek,$o_debugverb,$o_updateadp,$o_ktc,$o_newleaguesAge);
+my ($o_help,$o_verb,$o_debugverb,$o_log,$o_updatetrades,$o_searchleagues,$o_leagueinfo,$o_expandusersearch,$o_updatedb,$o_rosteridinfo,$o_tradevalues,$o_tradevalueslm,$o_export,$o_currentweek,$o_updateadp,$o_ktc,$o_newleaguesAge);
 my ($tradedb,$transtradelist,$transpicklist,$transignorelist,$translist,$leaguehashlist,$userhashlist,$players1,$players2,$players3,$owner1,$owner2,$owner3,$draftrounds);
 my (@LeagueList,@playerstemp,@LeagueSearchList,@UserSearchList,@LeagueNameList,@LeagueRosterIDList);
 my %dlist;
 
 # Default values
 my $season = 2022;
-my $o_refreshage = 1;
-my $o_refreshagerosterids = 90;
+my $o_refreshage = 24;
+my $o_refreshagerosterids = 30;
 my $o_maxleagues = 50;
 my $maxIteminTrade = 5;
 my $leaguecount = 0;
 my $gitrepodir = "$ENV{HOME}/Repositories/AdeTrades";
+my $logfile = "/var/log/crons/Sleeper_SearchTrades.log";
 my $rootdir = dirname(File::Spec->rel2abs(__FILE__));
+
+$o_currentweek = 1; #MODIFICAR ESTO!!!
 
 check_options(); # Check for the arguments to the script
 
@@ -47,11 +51,11 @@ my $dbh = DBI->connect("DBI:mysql:database=Sleeper;mysql_read_default_file=$ENV{
 my $dt = DateTime->new( year => 1970, month => 1, day => 1 );
 my $formatter = DateTime::Format::Epoch->new(epoch => $dt,unit => 'milliseconds');
 my $dtnow = DateTime->now()->epoch();
-my $dtold = DateTime->now()->subtract(days => $o_refreshage)->epoch();
+my $dtold = DateTime->now()->subtract(hours => $o_refreshage)->epoch();
 my $dtoldrosters = DateTime->now()->subtract(days => $o_refreshagerosterids)->epoch();
 
 if ($o_searchleagues){ # To find new leagues
-  $leaguehashlist = $dbh->selectall_hashref ("SELECT LeagueID FROM Leagues_2022","LeagueID");
+  $leaguehashlist = $dbh->selectall_hashref ("SELECT LeagueID FROM Leagues_2022_NewInfo","LeagueID");
   if (defined($o_newleaguesAge)){
     my $dtoldleagues = DateTime->now()->subtract(days => $o_newleaguesAge)->epoch();
     @UserSearchList = map { $_->[0] } @{ $dbh->selectall_arrayref ("SELECT UserID FROM SearchedUsers s WHERE s.ScrapeDate < $dtoldleagues OR s.ScrapeDate IS NULL LIMIT $o_maxleagues") };
@@ -86,7 +90,6 @@ if ($o_searchleagues){ # To find new leagues
     foreach my $useritem (@UserSearchList){ # For each user in one of those leagues gets their leagues
       next if (exists($userhashlist->{$useritem}));
       my $numberleagues = get_leagues($useritem);
-
       $userhashlist->{$useritem} = $useritem; # Add to the Hash so if duplicated in the array do not redo.
       insert_searchedUser($useritem,$numberleagues); # Adds them to the "ignore" list.
       $currentUser++;
@@ -104,6 +107,7 @@ if ($o_searchleagues){ # To find new leagues
     $leaguecount++;
   }
   print "$leaguecount new leagues (from ". scalar(@LeagueSearchList)." found) added from the query of user ${o_searchleagues}\n";
+  logtofile("$leaguecount new leagues (from ". scalar(@LeagueSearchList)." found) added from the query of user ${o_searchleagues}");
   $o_maxleagues = $leaguecount;
 }
 if ($o_leagueinfo or ($leaguecount > 0)){
@@ -113,14 +117,17 @@ if ($o_leagueinfo or ($leaguecount > 0)){
     my $nextInfoupdate = 0;
     my $progressInfo = Term::ProgressBar->new({name  => 'Finding League Info', count => scalar(@LeagueNameList), ETA   => 'linear', remove => 1});
     $progressInfo->max_update_rate(1);
-    $progressInfo->message("Searching for Info  for ".scalar(@LeagueNameList)." Leagues (still ".get_CountleaguelistUpdateInfo()." pending)\n");
+    my $leaguepending = max(get_CountleaguelistUpdateInfo()-scalar(@LeagueNameList),0);
+    $progressInfo->message("Searching for Info  for ".scalar(@LeagueNameList)." Leagues (${leaguepending} pending)\n");
     foreach my $leagueU (@LeagueNameList){
-      get_leagueinfo($leagueU);
+      get_leagueAllinfo($leagueU);
       $currentInfo++;
       $nextInfoupdate = $progressInfo->update($currentInfo) if $currentInfo > $nextInfoupdate;
     }
     $progressInfo->update(scalar(@LeagueNameList)) if scalar(@LeagueNameList) >= $nextInfoupdate;
+    logtofile("Updated info for ".scalar(@LeagueNameList)." Leagues");
   }else{
+    logtofile("No League info pending to update");
     print "No League info pending to update\n";
   }
 }
@@ -139,7 +146,9 @@ if ($o_rosteridinfo or ($leaguecount > 0)){ # Scrape the relation between Roster
       $nextRosterIDupdate = $progressRosterID->update($currentRosterID) if $currentRosterID > $nextRosterIDupdate;
     }
     $progressRosterID->update(scalar(@LeagueRosterIDList)) if scalar(@LeagueRosterIDList) >= $nextRosterIDupdate;
+    logtofile("Updated RosterIDs for ".scalar(@LeagueRosterIDList)." Leagues");
   }else{
+    logtofile("No League RosterID info pending to update");
     print "No League RosterID info pending to update\n";
   }
 }
@@ -155,7 +164,8 @@ if ($o_updatetrades or ($leaguecount > 0)){
     my $next_update = 0;
     my $progress = Term::ProgressBar->new({name  => 'Searching Trades', count => scalar(@LeagueList), ETA   => 'linear', remove => 1});
     $progress->max_update_rate(1);
-    $progress->message("Searching for Trades for ".scalar(@LeagueList)." Leagues (still ".get_leaguePendingUpdate()." pending)\n");
+    my $leaguetradepending = max(get_leaguePendingUpdate()-scalar(@LeagueList),0);
+    $progress->message("Searching for Trades for ".scalar(@LeagueList)." Leagues (${leaguetradepending} pending)\n");
     foreach my $leagueN (@LeagueList){
       $currentLeague++;
       get_currentstate() if (!(defined($o_currentweek)));
@@ -163,9 +173,12 @@ if ($o_updatetrades or ($leaguecount > 0)){
       $next_update = $progress->update($currentLeague) if $currentLeague > $next_update;
     }
     $progress->update(scalar(@LeagueList)) if scalar(@LeagueList) >= $next_update;
+    logtofile("Searched trades for ".scalar(@LeagueList)." Leagues");
     insert_tradeHash();
+    logtofile("Added to the Database trades for ".scalar(@LeagueList)." Leagues");
   }else{
-    print ("No leagues pending to update\n");
+    logtofile("No league trades pending to update");
+    print ("No league trades pending to update\n");
   }
 }
 
@@ -182,38 +195,93 @@ if ($o_export){
 
 exit(0);
 
-sub get_leagueinfo{ # Get All leagues from a User
+sub get_leagueAllinfo{ # Get All leagues from a User
   my $league_id = shift;
+  dverb("\nSearching for league $league_id");
   my $leaguejson = get_json("https://api.sleeper.app/v1/league/${league_id}",$league_id);
-  my ($league_name,$league_total_rosters,$league_taxi_slots,$league_rec,$league_bonus_rec_wr,$league_bonus_rec_te,$league_bonus_rec_rb,$league_pass_td,$league_pass_int,$league_draftrounds,$league_status,$league_draftid,$league_tradedl,$league_previousleague);
-  if (exists($leaguejson->{name})){ $league_name = $leaguejson->{name} }else{ $league_name = "NoName" };
-  if (exists($leaguejson->{total_rosters})){ $league_total_rosters =$leaguejson->{total_rosters} }else{ $league_total_rosters = 0 };
+  my ($league_name,$league_status,$league_draftid,$league_draftrounds,$league_average_match,$best_ball,$previous_league_id,$RookieDraft,$RookieRounds,$RookieStatus,$RookieTimeUpdate,$taxi_slots,$total_rosters,$trade_deadline);
+  my ($bonus_pass_cmp_25,$bonus_pass_yd_300,$bonus_pass_yd_400,$bonus_rec_rb,$bonus_rec_te,$bonus_rec_wr,$bonus_rec_yd_100,$bonus_rec_yd_200,$bonus_rush_att_20,$bonus_rush_rec_yd_100,$bonus_rush_rec_yd_200,$bonus_rush_yd_100,$bonus_rush_yd_200,$fum,$fum_lost,$pass_2pt,$pass_att,$pass_cmp,$pass_cmp_40p,$pass_fd,$pass_inc,$pass_int,$pass_int_td,$pass_sack,$pass_td,$pass_td_40p,$pass_td_50p,$pass_yd,$rec_0_4,$rec_10_19,$rec_20_29,$rec_2pt,$rec_30_39,$rec_40p,$rec_5_9,$rec_bonus,$rec_fd,$rec_td,$rec_td_40p,$rec_td_50p,$rec_yd,$rush_2pt,$rush_40p,$rush_att,$rush_fd,$rush_td,$rush_td_40p,$rush_td_50p,$rush_yd,$sack);
+  if (exists($leaguejson->{name})){ $league_name = $leaguejson->{name} }else{ next };
+  if (exists($leaguejson->{total_rosters})){ $total_rosters =$leaguejson->{total_rosters} }else{ $total_rosters = 0 };
   if (exists($leaguejson->{status})){ $league_status =$leaguejson->{status} }else{ $league_status = 0 };
-  if (exists($leaguejson->{previous_league_id})){ $league_previousleague =$leaguejson->{previous_league_id} }else{ $league_previousleague = 0 };
+  if (exists($leaguejson->{previous_league_id})){ $previous_league_id =$leaguejson->{previous_league_id} }else{ $previous_league_id = 0 };
   if (exists($leaguejson->{draft_id})){ $league_draftid =$leaguejson->{draft_id} }else{ $league_draftid = 0 };
-  if (exists($leaguejson->{settings}->{taxi_slots})){ $league_taxi_slots = $leaguejson->{settings}->{taxi_slots} }else{ $league_taxi_slots = 0 };
-  if (exists($leaguejson->{settings}->{trade_deadline})){ $league_tradedl = $leaguejson->{settings}->{trade_deadline} }else{ $league_tradedl = 0 };
+  if (exists($leaguejson->{settings}->{taxi_slots})){ $taxi_slots = $leaguejson->{settings}->{taxi_slots} }else{ $taxi_slots = 0 };
+  if (exists($leaguejson->{settings}->{trade_deadline})){ $trade_deadline = $leaguejson->{settings}->{trade_deadline} }else{ $trade_deadline = 0 };
   if (exists($leaguejson->{settings}->{draft_rounds})){ $league_draftrounds = $leaguejson->{settings}->{draft_rounds} }else{ $league_draftrounds = 0 };
-  if (exists($leaguejson->{scoring_settings}->{rec})){ $league_rec = $leaguejson->{scoring_settings}->{rec} }else{ $league_rec = 0 };
-  if (exists($leaguejson->{scoring_settings}->{bonus_rec_wr})){ $league_bonus_rec_wr = $leaguejson->{scoring_settings}->{bonus_rec_wr} }else{ $league_bonus_rec_wr = 0 };
-  if (exists($leaguejson->{scoring_settings}->{bonus_rec_te})){ $league_bonus_rec_te = $leaguejson->{scoring_settings}->{bonus_rec_te} }else{ $league_bonus_rec_te = 0 };
-  if (exists($leaguejson->{scoring_settings}->{bonus_rec_rb})){ $league_bonus_rec_rb = $leaguejson->{scoring_settings}->{bonus_rec_rb} }else{ $league_bonus_rec_rb = 0 };
-  if (exists($leaguejson->{scoring_settings}->{pass_td})){ $league_pass_td = $leaguejson->{scoring_settings}->{pass_td} }else{ $league_pass_td = 0 };
-  if (exists($leaguejson->{scoring_settings}->{pass_int})){ $league_pass_int = $leaguejson->{scoring_settings}->{pass_int} }else{ $league_pass_int = 0 };
-  if (!defined($league_previousleague)){$league_previousleague = 0};
-  my $Positions_QB = grep { $_ eq "QB" } @{ $leaguejson->{roster_positions} };
-  my $Positions_RB = grep { $_ eq "RB" } @{ $leaguejson->{roster_positions} };
-  my $Positions_WR = grep { $_ eq "WR" } @{ $leaguejson->{roster_positions} };
-  my $Positions_TE = grep { $_ eq "TE" } @{ $leaguejson->{roster_positions} };
-  my $Positions_FLEX = grep { $_ eq "FLEX" or $_ eq "REC_FLEX"} @{ $leaguejson->{roster_positions} };
-  my $Positions_SUPER_FLEX = grep { $_ eq "SUPER_FLEX" } @{ $leaguejson->{roster_positions} };
-  my $Positions_BN = grep { $_ eq "BN" } @{ $leaguejson->{roster_positions} };
-  my $total_players = $Positions_QB + $Positions_RB + $Positions_WR + $Positions_TE + $Positions_FLEX + $Positions_SUPER_FLEX + $Positions_BN;
+  if (exists($leaguejson->{settings}->{best_ball})){ $best_ball = $leaguejson->{settings}->{best_ball} }else{ $best_ball = 0 };
+  if (exists($leaguejson->{settings}->{league_average_match})){ $league_average_match = $leaguejson->{settings}->{league_average_match} }else{ $league_average_match = 0 };
+  if (!defined($previous_league_id)){$previous_league_id = 0};
+  if (exists($leaguejson->{scoring_settings}->{bonus_pass_cmp_25})){ $bonus_pass_cmp_25 = $leaguejson->{scoring_settings}->{bonus_pass_cmp_25} }else{ $bonus_pass_cmp_25 = 0};
+  if (exists($leaguejson->{scoring_settings}->{bonus_pass_yd_300})){ $bonus_pass_yd_300 = $leaguejson->{scoring_settings}->{bonus_pass_yd_300} }else{ $bonus_pass_yd_300 = 0};
+  if (exists($leaguejson->{scoring_settings}->{bonus_pass_yd_400})){ $bonus_pass_yd_400 = $leaguejson->{scoring_settings}->{bonus_pass_yd_400} }else{ $bonus_pass_yd_400 = 0};
+  if (exists($leaguejson->{scoring_settings}->{bonus_rec_rb})){ $bonus_rec_rb = $leaguejson->{scoring_settings}->{bonus_rec_rb} }else{ $bonus_rec_rb = 0};
+  if (exists($leaguejson->{scoring_settings}->{bonus_rec_te})){ $bonus_rec_te = $leaguejson->{scoring_settings}->{bonus_rec_te} }else{ $bonus_rec_te = 0};
+  if (exists($leaguejson->{scoring_settings}->{bonus_rec_wr})){ $bonus_rec_wr = $leaguejson->{scoring_settings}->{bonus_rec_wr} }else{ $bonus_rec_wr = 0};
+  if (exists($leaguejson->{scoring_settings}->{bonus_rec_yd_100})){ $bonus_rec_yd_100 = $leaguejson->{scoring_settings}->{bonus_rec_yd_100} }else{ $bonus_rec_yd_100 = 0};
+  if (exists($leaguejson->{scoring_settings}->{bonus_rec_yd_200})){ $bonus_rec_yd_200 = $leaguejson->{scoring_settings}->{bonus_rec_yd_200} }else{ $bonus_rec_yd_200 = 0};
+  if (exists($leaguejson->{scoring_settings}->{bonus_rush_att_20})){ $bonus_rush_att_20 = $leaguejson->{scoring_settings}->{bonus_rush_att_20} }else{ $bonus_rush_att_20 = 0};
+  if (exists($leaguejson->{scoring_settings}->{bonus_rush_rec_yd_100})){ $bonus_rush_rec_yd_100 = $leaguejson->{scoring_settings}->{bonus_rush_rec_yd_100} }else{ $bonus_rush_rec_yd_100 = 0};
+  if (exists($leaguejson->{scoring_settings}->{bonus_rush_rec_yd_200})){ $bonus_rush_rec_yd_200 = $leaguejson->{scoring_settings}->{bonus_rush_rec_yd_200} }else{ $bonus_rush_rec_yd_200 = 0};
+  if (exists($leaguejson->{scoring_settings}->{bonus_rush_yd_100})){ $bonus_rush_yd_100 = $leaguejson->{scoring_settings}->{bonus_rush_yd_100} }else{ $bonus_rush_yd_100 = 0};
+  if (exists($leaguejson->{scoring_settings}->{bonus_rush_yd_200})){ $bonus_rush_yd_200 = $leaguejson->{scoring_settings}->{bonus_rush_yd_200} }else{ $bonus_rush_yd_200 = 0};
+  if (exists($leaguejson->{scoring_settings}->{fum})){ $fum = $leaguejson->{scoring_settings}->{fum} }else{ $fum = 0};
+  if (exists($leaguejson->{scoring_settings}->{fum_lost})){ $fum_lost = $leaguejson->{scoring_settings}->{fum_lost} }else{ $fum_lost = 0};
+  if (exists($leaguejson->{scoring_settings}->{pass_2pt})){ $pass_2pt = $leaguejson->{scoring_settings}->{pass_2pt} }else{ $pass_2pt = 0};
+  if (exists($leaguejson->{scoring_settings}->{pass_att})){ $pass_att = $leaguejson->{scoring_settings}->{pass_att} }else{ $pass_att = 0};
+  if (exists($leaguejson->{scoring_settings}->{pass_cmp})){ $pass_cmp = $leaguejson->{scoring_settings}->{pass_cmp} }else{ $pass_cmp = 0};
+  if (exists($leaguejson->{scoring_settings}->{pass_cmp_40p})){ $pass_cmp_40p = $leaguejson->{scoring_settings}->{pass_cmp_40p} }else{ $pass_cmp_40p = 0};
+  if (exists($leaguejson->{scoring_settings}->{pass_fd})){ $pass_fd = $leaguejson->{scoring_settings}->{pass_fd} }else{ $pass_fd = 0};
+  if (exists($leaguejson->{scoring_settings}->{pass_inc})){ $pass_inc = $leaguejson->{scoring_settings}->{pass_inc} }else{ $pass_inc = 0};
+  if (exists($leaguejson->{scoring_settings}->{pass_int})){ $pass_int = $leaguejson->{scoring_settings}->{pass_int} }else{ $pass_int = 0};
+  if (exists($leaguejson->{scoring_settings}->{pass_int_td})){ $pass_int_td = $leaguejson->{scoring_settings}->{pass_int_td} }else{ $pass_int_td = 0};
+  if (exists($leaguejson->{scoring_settings}->{pass_sack})){ $pass_sack = $leaguejson->{scoring_settings}->{pass_sack} }else{ $pass_sack = 0};
+  if (exists($leaguejson->{scoring_settings}->{pass_td})){ $pass_td = $leaguejson->{scoring_settings}->{pass_td} }else{ $pass_td = 0};
+  if (exists($leaguejson->{scoring_settings}->{pass_td_40p})){ $pass_td_40p = $leaguejson->{scoring_settings}->{pass_td_40p} }else{ $pass_td_40p = 0};
+  if (exists($leaguejson->{scoring_settings}->{pass_td_50p})){ $pass_td_50p = $leaguejson->{scoring_settings}->{pass_td_50p} }else{ $pass_td_50p = 0};
+  if (exists($leaguejson->{scoring_settings}->{pass_yd})){ $pass_yd = $leaguejson->{scoring_settings}->{pass_yd} }else{ $pass_yd = 0};
+  if (exists($leaguejson->{scoring_settings}->{rec_0_4})){ $rec_0_4 = $leaguejson->{scoring_settings}->{rec_0_4} }else{ $rec_0_4 = 0};
+  if (exists($leaguejson->{scoring_settings}->{rec_10_19})){ $rec_10_19 = $leaguejson->{scoring_settings}->{rec_10_19} }else{ $rec_10_19 = 0};
+  if (exists($leaguejson->{scoring_settings}->{rec_20_29})){ $rec_20_29 = $leaguejson->{scoring_settings}->{rec_20_29} }else{ $rec_20_29 = 0};
+  if (exists($leaguejson->{scoring_settings}->{rec_2pt})){ $rec_2pt = $leaguejson->{scoring_settings}->{rec_2pt} }else{ $rec_2pt = 0};
+  if (exists($leaguejson->{scoring_settings}->{rec_30_39})){ $rec_30_39 = $leaguejson->{scoring_settings}->{rec_30_39} }else{ $rec_30_39 = 0};
+  if (exists($leaguejson->{scoring_settings}->{rec_40p})){ $rec_40p = $leaguejson->{scoring_settings}->{rec_40p} }else{ $rec_40p = 0};
+  if (exists($leaguejson->{scoring_settings}->{rec_5_9})){ $rec_5_9 = $leaguejson->{scoring_settings}->{rec_5_9} }else{ $rec_5_9 = 0};
+  if (exists($leaguejson->{scoring_settings}->{rec})){ $rec_bonus = $leaguejson->{scoring_settings}->{rec} }else{ $rec_bonus = 0};
+  if (exists($leaguejson->{scoring_settings}->{rec_fd})){ $rec_fd = $leaguejson->{scoring_settings}->{rec_fd} }else{ $rec_fd = 0};
+  if (exists($leaguejson->{scoring_settings}->{rec_td})){ $rec_td = $leaguejson->{scoring_settings}->{rec_td} }else{ $rec_td = 0};
+  if (exists($leaguejson->{scoring_settings}->{rec_td_40p})){ $rec_td_40p = $leaguejson->{scoring_settings}->{rec_td_40p} }else{ $rec_td_40p = 0};
+  if (exists($leaguejson->{scoring_settings}->{rec_td_50p})){ $rec_td_50p = $leaguejson->{scoring_settings}->{rec_td_50p} }else{ $rec_td_50p = 0};
+  if (exists($leaguejson->{scoring_settings}->{rec_yd})){ $rec_yd = $leaguejson->{scoring_settings}->{rec_yd} }else{ $rec_yd = 0};
+  if (exists($leaguejson->{scoring_settings}->{rush_2pt})){ $rush_2pt = $leaguejson->{scoring_settings}->{rush_2pt} }else{ $rush_2pt = 0};
+  if (exists($leaguejson->{scoring_settings}->{rush_40p})){ $rush_40p = $leaguejson->{scoring_settings}->{rush_40p} }else{ $rush_40p = 0};
+  if (exists($leaguejson->{scoring_settings}->{rush_att})){ $rush_att = $leaguejson->{scoring_settings}->{rush_att} }else{ $rush_att = 0};
+  if (exists($leaguejson->{scoring_settings}->{rush_fd})){ $rush_fd = $leaguejson->{scoring_settings}->{rush_fd} }else{ $rush_fd = 0};
+  if (exists($leaguejson->{scoring_settings}->{rush_td})){ $rush_td = $leaguejson->{scoring_settings}->{rush_td} }else{ $rush_td = 0};
+  if (exists($leaguejson->{scoring_settings}->{rush_td_40p})){ $rush_td_40p = $leaguejson->{scoring_settings}->{rush_td_40p} }else{ $rush_td_40p = 0};
+  if (exists($leaguejson->{scoring_settings}->{rush_td_50p})){ $rush_td_50p = $leaguejson->{scoring_settings}->{rush_td_50p} }else{ $rush_td_50p = 0};
+  if (exists($leaguejson->{scoring_settings}->{rush_yd})){ $rush_yd = $leaguejson->{scoring_settings}->{rush_yd} }else{ $rush_yd = 0};
+  if (exists($leaguejson->{scoring_settings}->{sack})){ $sack = $leaguejson->{scoring_settings}->{sack} }else{ $sack = 0};
+  my $roster_positions_QB = grep { $_ eq "QB" } @{ $leaguejson->{roster_positions} };
+  my $roster_positions_RB = grep { $_ eq "RB" } @{ $leaguejson->{roster_positions} };
+  my $roster_positions_WR = grep { $_ eq "WR" } @{ $leaguejson->{roster_positions} };
+  my $roster_positions_TE = grep { $_ eq "TE" } @{ $leaguejson->{roster_positions} };
+  my $roster_positions_FLEX = grep { $_ eq "FLEX" or $_ eq "REC_FLEX" or $_ eq "WRRB_FLEX"} @{ $leaguejson->{roster_positions} };
+  my $roster_positions_SUPER_FLEX = grep { $_ eq "SUPER_FLEX" } @{ $leaguejson->{roster_positions} };
+  my $roster_positions_K = grep { $_ eq "K" } @{ $leaguejson->{roster_positions} };
+  my $roster_positions_DEF = grep { $_ eq "DEF" } @{ $leaguejson->{roster_positions} };
+  my $roster_positions_LB = grep { $_ eq "LB" } @{ $leaguejson->{roster_positions} };
+  my $roster_positions_DB = grep { $_ eq "DB" } @{ $leaguejson->{roster_positions} };
+  my $roster_positions_DL = grep { $_ eq "DL" } @{ $leaguejson->{roster_positions} };
+  my $roster_positions_IDP_FLEX = grep { $_ eq "IDP_FLEX" } @{ $leaguejson->{roster_positions} };
+  my $roster_positions_BN = grep { $_ eq "BN" } @{ $leaguejson->{roster_positions} };
+  my $total_players = $roster_positions_QB + $roster_positions_RB + $roster_positions_WR + $roster_positions_TE + $roster_positions_FLEX + $roster_positions_SUPER_FLEX + $roster_positions_BN + $roster_positions_K + $roster_positions_DEF + $roster_positions_LB + $roster_positions_DB + $roster_positions_DL + $roster_positions_IDP_FLEX;
   my $league_name_q = $dbh->quote($league_name);
-  my $sth = $dbh->prepare(qq/UPDATE Leagues_2022 SET name = $league_name_q, total_rosters = $league_total_rosters, taxi_slots = $league_taxi_slots, rec_bonus = $league_rec, bonus_rec_wr = $league_bonus_rec_wr, bonus_rec_te = $league_bonus_rec_te, bonus_rec_rb = $league_bonus_rec_rb, pass_td = $league_pass_td, pass_int = $league_pass_int, roster_positions_QB = $Positions_QB, roster_positions_RB = $Positions_RB, roster_positions_WR = $Positions_WR, roster_positions_TE = $Positions_TE, roster_positions_FLEX = $Positions_FLEX, roster_positions_SUPER_FLEX = $Positions_SUPER_FLEX, roster_positions_BN = $Positions_BN, total_players = $total_players, RookieRounds = $league_draftrounds, RookieTimeUpdate = $dtnow, RookieStatus = "$league_status", RookieDraft = $league_draftid, trade_deadline = $league_tradedl, previous_league_id = $league_previousleague WHERE LeagueID = $league_id;/);
+  my $sth = $dbh->prepare(qq/UPDATE Leagues_2022_NewInfo SET name = $league_name_q,LastUpdate = $dtnow,RookieRounds = $league_draftrounds,RookieTimeUpdate = $dtnow,RookieStatus = "$league_status",RookieDraft = $league_draftid,best_ball = $best_ball,league_average_match = $league_average_match,trade_deadline = $trade_deadline,previous_league_id = $previous_league_id,taxi_slots = $taxi_slots,total_players = $total_players,total_rosters = $total_rosters,roster_positions_BN = $roster_positions_BN,roster_positions_DB = $roster_positions_DB,roster_positions_DEF = $roster_positions_DEF,roster_positions_DL = $roster_positions_DL,roster_positions_FLEX = $roster_positions_FLEX,roster_positions_IDP_FLEX = $roster_positions_IDP_FLEX,roster_positions_K = $roster_positions_K,roster_positions_LB = $roster_positions_LB,roster_positions_QB = $roster_positions_QB,roster_positions_RB = $roster_positions_RB,roster_positions_SUPER_FLEX = $roster_positions_SUPER_FLEX,roster_positions_TE = $roster_positions_TE,roster_positions_WR = $roster_positions_WR,bonus_pass_cmp_25 = $bonus_pass_cmp_25,bonus_pass_yd_300 = $bonus_pass_yd_300,bonus_pass_yd_400 = $bonus_pass_yd_400,bonus_rec_rb = $bonus_rec_rb,bonus_rec_te = $bonus_rec_te,bonus_rec_wr = $bonus_rec_wr,bonus_rec_yd_100 = $bonus_rec_yd_100,bonus_rec_yd_200 = $bonus_rec_yd_200,bonus_rush_att_20 = $bonus_rush_att_20,bonus_rush_rec_yd_100 = $bonus_rush_rec_yd_100,bonus_rush_rec_yd_200 = $bonus_rush_rec_yd_200,bonus_rush_yd_100 = $bonus_rush_yd_100,bonus_rush_yd_200 = $bonus_rush_yd_200,fum = $fum,fum_lost = $fum_lost,pass_2pt = $pass_2pt,pass_att = $pass_att,pass_cmp = $pass_cmp,pass_cmp_40p = $pass_cmp_40p,pass_fd = $pass_fd,pass_inc = $pass_inc,pass_int = $pass_int,pass_int_td = $pass_int_td,pass_sack = $pass_sack,pass_td = $pass_td,pass_td_40p = $pass_td_40p,pass_td_50p = $pass_td_50p,pass_yd = $pass_yd,rec_0_4 = $rec_0_4,rec_10_19 = $rec_10_19,rec_20_29 = $rec_20_29,rec_2pt = $rec_2pt,rec_30_39 = $rec_30_39,rec_40p = $rec_40p,rec_5_9 = $rec_5_9,rec_bonus = $rec_bonus,rec_fd = $rec_fd,rec_td = $rec_td,rec_td_40p = $rec_td_40p,rec_td_50p = $rec_td_50p,rec_yd = $rec_yd,rush_2pt = $rush_2pt,rush_40p = $rush_40p,rush_att = $rush_att,rush_fd = $rush_fd,rush_td = $rush_td,rush_td_40p = $rush_td_40p,rush_td_50p = $rush_td_50p,rush_yd = $rush_yd,sack = $sack WHERE LeagueID = $league_id;/);
   $sth->execute();
   $sth->finish;
-  dverb("League ${league_id}\nleague_name: ${league_name}\nleague_total_rosters: ${league_total_rosters}\nleague_taxi_slots: ${league_taxi_slots}\nleague_rec: ${league_rec}\nleague_bonus_rec_wr: ${league_bonus_rec_wr}\nleague_bonus_rec_te: ${league_bonus_rec_te}\nleague_bonus_rec_rb: ${league_bonus_rec_rb}\nleague_pass_td: ${league_pass_td}\nleague_pass_int: ${league_pass_int}\nPositions_QB: ${Positions_QB}\nPositions_RB: ${Positions_RB}\nPositions_WR: ${Positions_WR}\nPositions_TE: ${Positions_TE}\nPositions_FLEX: ${Positions_FLEX}\nPositions_SUPER_FLEX: ${Positions_SUPER_FLEX}\nPositions_BN: ${Positions_BN}\ntotal_players: ${total_players}");
+  dverb("Scraped League ${league_id}");
+  # dverb("League ${league_id}\nleague_name: ${league_name}\nleague_total_rosters: ${league_total_rosters}\nleague_taxi_slots: ${league_taxi_slots}\nleague_rec: ${league_rec}\nleague_bonus_rec_wr: ${league_bonus_rec_wr}\nleague_bonus_rec_te: ${league_bonus_rec_te}\nleague_bonus_rec_rb: ${league_bonus_rec_rb}\nleague_pass_td: ${league_pass_td}\nleague_pass_int: ${league_pass_int}\nPositions_QB: ${Positions_QB}\nPositions_RB: ${Positions_RB}\nPositions_WR: ${Positions_WR}\nPositions_TE: ${Positions_TE}\nPositions_FLEX: ${Positions_FLEX}\nPositions_SUPER_FLEX: ${Positions_SUPER_FLEX}\nPositions_BN: ${Positions_BN}\ntotal_players: ${total_players}");
 }
 
 sub get_leaguedrafts{ # Gets draft slots from the league of that year
@@ -223,6 +291,15 @@ sub get_leaguedrafts{ # Gets draft slots from the league of that year
     next unless ($draft->{season} eq $season);
     my $draftjson = get_json("https://api.sleeper.app/v1/draft/$draft->{draft_id}");
     $tradedb->{$league_id}->{drafts}->{$draft->{draft_id}}->{draftrounds} = $draftjson->{settings}->{rounds} if (exists( $draftjson->{settings}->{rounds}));
+    $tradedb->{$league_id}->{drafts}->{$draft->{draft_id}}->{type} = $draftjson->{type} if (exists( $draftjson->{type}));
+    $tradedb->{$league_id}->{drafts}->{$draft->{draft_id}}->{teams} = $draftjson->{settings}->{teams} if (exists( $draftjson->{settings}->{teams}));
+    $tradedb->{$league_id}->{drafts}->{$draft->{draft_id}}->{reversal_round} = 0;
+
+    if (exists( $draftjson->{settings}->{reversal_round})){
+      if ($draftjson->{settings}->{reversal_round} > 0){
+        $tradedb->{$league_id}->{drafts}->{$draft->{draft_id}}->{reversal_round} = $draftjson->{settings}->{reversal_round};
+      }
+    }
     $tradedb->{$league_id}->{drafts}->{$draft->{draft_id}}->{last_picked} = $draftjson->{last_picked} if (exists( $draftjson->{last_picked}));
     if (exists( $draftjson->{slot_to_roster_id})){
       foreach my $slots( $draftjson->{slot_to_roster_id} ) {
@@ -347,6 +424,18 @@ sub get_trades { # Get All trades from a League
             }
             if (exists($tradedb->{$league_id}->{drafts}->{$current_draft}->{slots}->{$keypicks->{roster_id}})){
               $picktext = "$keypicks->{season}-".sprintf("%02d",$keypicks->{round}).".".sprintf("%02d",$tradedb->{$league_id}->{drafts}->{$current_draft}->{slots}->{$keypicks->{roster_id}});
+              if (($tradedb->{$league_id}->{drafts}->{$current_draft}->{type} eq "snake")&& (!($keypicks->{round}%2))){
+                my $reversepick = $tradedb->{$league_id}->{drafts}->{$current_draft}->{teams} - $tradedb->{$league_id}->{drafts}->{$current_draft}->{slots}->{$keypicks->{roster_id}} +1;
+                $picktext = "$keypicks->{season}-".sprintf("%02d",$keypicks->{round}).".".sprintf("%02d",$reversepick);
+              }
+              if (($keypicks->{round}>=$tradedb->{$league_id}->{drafts}->{$current_draft}->{reversal_round}) && (($tradedb->{$league_id}->{drafts}->{$current_draft}->{reversal_round}>0))){
+                if (($tradedb->{$league_id}->{drafts}->{$current_draft}->{type} eq "snake")&& ($keypicks->{round}%2)){
+                  my $reversepick = $tradedb->{$league_id}->{drafts}->{$current_draft}->{teams} - $tradedb->{$league_id}->{drafts}->{$current_draft}->{slots}->{$keypicks->{roster_id}} +1;
+                  $picktext = "$keypicks->{season}-".sprintf("%02d",$keypicks->{round}).".".sprintf("%02d",$reversepick);
+                }else{
+                  $picktext = "$keypicks->{season}-".sprintf("%02d",$keypicks->{round}).".".sprintf("%02d",$tradedb->{$league_id}->{drafts}->{$current_draft}->{slots}->{$keypicks->{roster_id}});
+                }
+              }
             }else{
               $picktext = "$keypicks->{season}-".sprintf("%02d",$keypicks->{round});
             }
@@ -376,7 +465,7 @@ sub get_leagues { # Get All leagues from a User
     next unless (ref($leagueitem->{roster_positions}) eq 'ARRAY' and grep { $_ eq "SUPER_FLEX" } @{ $leagueitem->{roster_positions} }); # Only Superflex Leagues
     next unless ( ($leagueitem->{settings}->{num_teams} eq "12") || ($leagueitem->{settings}->{num_teams} eq "14") ); # Only 12/14 Player Leagues
     next unless (scalar @{ $leagueitem->{roster_positions} } > 20); # Min 20 players per team
-    next unless ((grep { $_ eq "QB" or $_ eq "RB" or $_ eq "WR" or $_ eq "TE" or $_ eq "FLEX" or $_ eq "REC_FLEX" or $_ eq "SUPER_FLEX" } @{ $leagueitem->{roster_positions} }) >= 8); # Min 8 Starters
+    next unless ((grep { $_ eq "QB" or $_ eq "RB" or $_ eq "WR" or $_ eq "TE" or $_ eq "K" or $_ eq "FLEX" or $_ eq "REC_FLEX" or $_ eq "SUPER_FLEX" } @{ $leagueitem->{roster_positions} }) >= 8); # Min 8 Starters
     push(@LeagueSearchList, $leagueitem->{league_id}) unless(grep(/^$leagueitem->{league_id}$/,@LeagueSearchList)); # Add them to the LeagueList unless already exists
     verb("Adding league $leagueitem->{league_id} to arraysearch");
     $numleagues++;
@@ -386,7 +475,7 @@ sub get_leagues { # Get All leagues from a User
 
 sub get_leaguelist{ # Get the LeagueList from the MySQL that hasn't updated in X time
   my $leaguelimit = shift;
-  my $sth = $dbh->prepare(qq/SELECT LeagueID FROM Leagues_2022 WHERE PossibleDeleted = FALSE AND LastUpdate < $dtold OR LastUpdate IS NULL LIMIT $leaguelimit/);
+  my $sth = $dbh->prepare(qq/SELECT LeagueID FROM Leagues_2022_NewInfo WHERE PossibleDeleted = FALSE AND LastUpdate < $dtold OR LastUpdate IS NULL LIMIT $leaguelimit/);
   $sth->execute();
   while(my $row = $sth->fetchrow_hashref) {
     push @LeagueList,$row->{LeagueID};
@@ -396,7 +485,8 @@ sub get_leaguelist{ # Get the LeagueList from the MySQL that hasn't updated in X
 
 sub get_leaguelistUpdateInfo{ # Get the LeagueList from the MySQL
   my $leaguelimit = shift;
-  my $sth = $dbh->prepare(qq/SELECT LeagueID FROM Leagues_2022 WHERE PossibleDeleted = FALSE AND name IS NULL LIMIT $leaguelimit/);
+  # my $sth = $dbh->prepare(qq/SELECT LeagueID FROM Leagues_2022_NewInfo WHERE PossibleDeleted = FALSE LIMIT $leaguelimit/);
+  my $sth = $dbh->prepare(qq/SELECT LeagueID FROM Leagues_2022_NewInfo WHERE PossibleDeleted = FALSE AND name IS NULL LIMIT $leaguelimit/);
   $sth->execute();
   while(my $row = $sth->fetchrow_hashref) {
     push @LeagueNameList,$row->{LeagueID};
@@ -406,7 +496,7 @@ sub get_leaguelistUpdateInfo{ # Get the LeagueList from the MySQL
 
 sub get_CountleaguelistUpdateInfo{ # Get the LeagueList missing information from the MySQL
   my $leaguelimit = shift;
-  my $sth = $dbh->prepare(qq/SELECT COUNT(LeagueID) FROM Leagues_2022 WHERE PossibleDeleted = FALSE AND name IS NULL/);
+  my $sth = $dbh->prepare(qq/SELECT COUNT(LeagueID) FROM Leagues_2022_NewInfo WHERE PossibleDeleted = FALSE AND name IS NULL/);
   $sth->execute();
   my $pendingleagues = $sth->fetchrow;
   $sth->finish;
@@ -415,7 +505,7 @@ sub get_CountleaguelistUpdateInfo{ # Get the LeagueList missing information from
 
 sub get_leaguelistUpdateRosterID{ # Get the LeagueList without rosterID information from the MySQL
   my $leaguelimit = shift;
-  my $sth = $dbh->prepare(qq/SELECT DISTINCT l.LeagueID FROM Leagues_2022 l LEFT JOIN RosterID_Reference r ON r.LeagueID = l.LeagueID WHERE r.LeagueID IS NULL AND (r.LastUpdate < $dtoldrosters OR r.LastUpdate IS NULL) LIMIT $leaguelimit/);
+  my $sth = $dbh->prepare(qq/SELECT DISTINCT l.LeagueID FROM Leagues_2022_NewInfo l LEFT JOIN RosterID_Reference r ON r.LeagueID = l.LeagueID WHERE r.LeagueID IS NULL AND (r.LastUpdate < $dtoldrosters OR r.LastUpdate IS NULL) LIMIT $leaguelimit/);
   $sth->execute();
   while(my $row = $sth->fetchrow_hashref) {
     push @LeagueRosterIDList,$row->{LeagueID};
@@ -425,12 +515,12 @@ sub get_leaguelistUpdateRosterID{ # Get the LeagueList without rosterID informat
 
 sub get_leaguePendingUpdate{ # Get Number of leagues missing update
   my $leaguelimit = shift;
-  my $sth = $dbh->prepare(qq/SELECT COUNT(LeagueID) FROM Leagues_2022 WHERE PossibleDeleted = FALSE AND LastUpdate < $dtold OR LastUpdate IS NULL/);
+  my $sth = $dbh->prepare(qq/SELECT COUNT(LeagueID) FROM Leagues_2022_NewInfo WHERE PossibleDeleted = FALSE AND (LastUpdate < $dtold OR LastUpdate IS NULL)/);
   $sth->execute();
   my $pendingleagues = $sth->fetchrow;
   $sth->finish;
   if ($pendingleagues > $o_maxleagues){
-    $pendingleagues = $pendingleagues-$o_maxleagues;
+    $pendingleagues = $pendingleagues;
   }else{
     $pendingleagues = 0;
   }
@@ -466,7 +556,7 @@ sub get_currentstate{ #Get Current Week from SleeperAPI
 
 sub insert_newleague{ # Adds a new League to the list
   my $new_league = shift;
-  my $sth = $dbh->prepare(q{INSERT IGNORE INTO Leagues_2022(LeagueID) VALUES (?)},{},);
+  my $sth = $dbh->prepare(q{INSERT IGNORE INTO Leagues_2022_NewInfo(LeagueID) VALUES (?)},{},);
   $sth->execute($new_league);
   $sth->finish;
 }
@@ -525,7 +615,7 @@ sub insert_tradeHash{ # Imports  all the %TradeDB to the MySQL
 
 sub update_leagueTime{ # Inserts in the MySQL the CurrentTime after updating
   my $league_id = shift;
-  my $sth = $dbh->prepare(qq/UPDATE Leagues_2022 SET LastUpdate = $dtnow WHERE LeagueID = $league_id/);
+  my $sth = $dbh->prepare(qq/UPDATE Leagues_2022_NewInfo SET LastUpdate = $dtnow WHERE LeagueID = $league_id/);
   $sth->execute();
   $sth->finish;
   verb("Updating time of league ${league_id}");
@@ -533,7 +623,7 @@ sub update_leagueTime{ # Inserts in the MySQL the CurrentTime after updating
 
 sub update_PossibleDeleted{ # Inserts in the MySQL the Possible Delete Status
   my $league_id = shift;
-  my $sth = $dbh->prepare(qq/UPDATE Leagues_2022 SET PossibleDeleted = TRUE WHERE LeagueID = $league_id/);
+  my $sth = $dbh->prepare(qq/UPDATE Leagues_2022_NewInfo SET PossibleDeleted = TRUE WHERE LeagueID = $league_id/);
   $sth->execute();
   $sth->finish;
   verb("Updating Possible Deleted league ${league_id}");
@@ -548,7 +638,7 @@ sub update_ADP{ #Read the ADP Google Sheet and import the new ADP in the TradeSt
   );
   my $restapi = Google::RestApi->new(auth =>$oauth2);
   my $sheets = Google::RestApi::SheetsApi4->new(api => $restapi);
-  my $spreadsheet = $sheets->open_spreadsheet(id => '1GEWqLbXcA4PXFAPfCBiG5NWBSXQ5i1apvLpo_ca6xAo');
+  my $spreadsheet = $sheets->open_spreadsheet(id => '10iRLANRFajrQmeZvleh-BKtXbNTUDDE0rX4tOwtqd98');
   my $worksheet = $spreadsheet->open_worksheet(name => 'ADP_Players');
   my $ADPrange = $worksheet->range("ADP_Export");
   my $ADPvalues = $ADPrange->values();
@@ -583,6 +673,7 @@ sub update_KTC{ # Load KTC values to the Database
     $dbst->execute() or die $dbst->errstr;
   }
   $dbst->finish;
+  logtofile("Updated the KTC NFL Database");
 }
 
 sub update_DevyKTC{ # Load KTC values to the Database
@@ -609,6 +700,7 @@ sub update_DevyKTC{ # Load KTC values to the Database
     $dbst->execute() or die $dbst->errstr;
   }
   $dbst->finish;
+  logtofile("Updated the KTC Devy Database");
 }
 
 sub Update_TradeStatsADP{ # Insert the ADP in the TradeStats file
@@ -624,6 +716,7 @@ sub Update_TradeStatsADP{ # Insert the ADP in the TradeStats file
     $sts->execute();
     $sts->finish;
   }
+  logtofile("Updated the ADP Database");
 }
 
 sub updateTradeValues{ # Generate the trade count for each player in the 12 diferent months
@@ -650,10 +743,10 @@ sub updateTradeValues{ # Generate the trade count for each player in the 12 dife
         update_count($row->{PlayerName},"s${season}06",get_count($row->{PlayerName},$formatter->format_datetime(DateTime->new(year => $season, month => 6)),$formatter->format_datetime(DateTime->new(year => $season, month => 7)))) unless (DateTime->now()->month < 6);
         update_count($row->{PlayerName},"s${season}07",get_count($row->{PlayerName},$formatter->format_datetime(DateTime->new(year => $season, month => 7)),$formatter->format_datetime(DateTime->new(year => $season, month => 8)))) unless (DateTime->now()->month < 7);
         update_count($row->{PlayerName},"s${season}08",get_count($row->{PlayerName},$formatter->format_datetime(DateTime->new(year => $season, month => 8)),$formatter->format_datetime(DateTime->new(year => $season, month => 9)))) unless (DateTime->now()->month < 8);
-        update_count($row->{PlayerName},"s${season}09",get_count($row->{PlayerName},$formatter->format_datetime(DateTime->new(year => $season, month => 9)),$formatter->format_datetime(DateTime->new(year => $season, month => 10)))) unless (DateTime->now()->month <9 );
-        update_count($row->{PlayerName},"s${season}10",get_count($row->{PlayerName},$formatter->format_datetime(DateTime->new(year => $season, month => 10)),$formatter->format_datetime(DateTime->new(year => $season, month => 11)))) unless (DateTime->now()->month <10 );
+        update_count($row->{PlayerName},"s${season}09",get_count($row->{PlayerName},$formatter->format_datetime(DateTime->new(year => $season, month => 9)),$formatter->format_datetime(DateTime->new(year => $season, month => 10)))) unless (DateTime->now()->month < 9);
+        update_count($row->{PlayerName},"s${season}10",get_count($row->{PlayerName},$formatter->format_datetime(DateTime->new(year => $season, month => 10)),$formatter->format_datetime(DateTime->new(year => $season, month => 11)))) unless (DateTime->now()->month < 10);
         update_count($row->{PlayerName},"s${season}11",get_count($row->{PlayerName},$formatter->format_datetime(DateTime->new(year => $season, month => 11)),$formatter->format_datetime(DateTime->new(year => $season, month => 12)))) unless (DateTime->now()->month < 11);
-        update_count($row->{PlayerName},"s${season}12",get_count($row->{PlayerName},$formatter->format_datetime(DateTime->new(year => $season, month => 12)),$formatter->format_datetime(DateTime->new(year => $season+1, month => 1)))) unless (DateTime->now()->month <12 );
+        update_count($row->{PlayerName},"s${season}12",get_count($row->{PlayerName},$formatter->format_datetime(DateTime->new(year => $season, month => 12)),$formatter->format_datetime(DateTime->new(year => $season+1, month => 1)))) unless (DateTime->now()->month < 12);
         update_count($row->{PlayerName},"LastCount",$dtnow);
       }
       $currentPlayerTS++;
@@ -662,6 +755,7 @@ sub updateTradeValues{ # Generate the trade count for each player in the 12 dife
     $progressPlayerTS->update($sth->rows) if $sth->rows >= $nextPlayerTSupdate;
   }
   $sth->finish;
+  logtofile("Updated the TradeStats count");
 }
 
 sub get_count{ # Count number of trades for X players
@@ -705,7 +799,7 @@ sub clean_data{ # Cleaning trade Tables of wrong data
   verb("Cleaning Picktrades");
   $dbh->do('DELETE FROM PickTrades_2022 WHERE TradeID IN (SELECT r.TradeID FROM RevertedTrades r WHERE r.TradeID IS NOT NULL)');
   verb("Cleaning Ignored Leagues");
-  $dbh->do('DELETE FROM Leagues_2022 WHERE LeagueID IN (SELECT i.LeagueID FROM IgnoredLeagues i WHERE i.LeagueID IS NOT NULL)');
+  $dbh->do('DELETE FROM Leagues_2022_NewInfo WHERE LeagueID IN (SELECT i.LeagueID FROM IgnoredLeagues i WHERE i.LeagueID IS NOT NULL)');
   verb("Cleaning Trades from IngoredLeagues");
   $dbh->do('DELETE FROM Trades_2022 WHERE League IN (SELECT i.LeagueID FROM IgnoredLeagues i WHERE i.LeagueID IS NOT NULL)');
   verb("Cleaning PickTrades from Ignored Leagues");
@@ -715,9 +809,10 @@ sub clean_data{ # Cleaning trade Tables of wrong data
 sub export_data{ # Generate CSV and push them to the Repository
   my $repo = Git::Repository->new( work_tree => $gitrepodir);
   my $repopull = $repo->run( 'pull' );
-  csv (out => "${gitrepodir}/Leagues_2022.csv", sep_char => ";", headers => [qw( League_ID Name Rosters QB RB WR TE Flex SFlex BN Total_Players Start_Players Taxi_Slots Rec_Bonus Rec_RB Rec_WR Rec_TE Pass_TD Pass_Int Old_League_ID )], in => $dbh->selectall_arrayref ("SELECT LeagueID,name,total_rosters,roster_positions_QB,roster_positions_RB,roster_positions_WR,roster_positions_TE,roster_positions_FLEX,roster_positions_SUPER_FLEX,roster_positions_BN,total_players,total_players - roster_positions_BN AS Start_Players,taxi_slots,pass_td,rec_bonus,bonus_rec_te,bonus_rec_rb,bonus_rec_wr,pass_int,previous_league_id FROM Leagues_2022"));
-  csv (out => "${gitrepodir}/Trades_2022.csv", sep_char => ";", headers => [qw( Trade_ID Time Day Items1 Items2 All_Items Items1_Owner Items2_Owner League_ID Total_Rosters Total_Players Start_Players Rec_Bonus Rec_Bonus_TE Pass_TD Old_League_ID )], in => $dbh->selectall_arrayref ("SELECT t.TradeID, t.Time,(t.Time/86400000)+25569 AS 'Day', t.Items1, t.Items2,CONCAT(t.Items1,'; ',t.Items2) AS AllItems, t.Items1Owner, t.Items2Owner, t.League, l.total_rosters, l.total_players, l.total_players - roster_positions_BN AS Start_Players, l.rec_bonus, l.bonus_rec_te, l.pass_td, l.previous_league_id FROM Trades_2022 t INNER JOIN Leagues_2022 l ON t.League = l.LeagueID ORDER BY t.Time DESC"));
-  csv (out => "${gitrepodir}/PickTrades_2022.csv", sep_char => ";", headers => [qw( Trade_ID Time Day Items1 Items2 All_Items Items1_Owner Items2_Owner League_ID Draft_Rounds Total_Rosters Total_Players Start_Players Rec_Bonus Rec_Bonus_TE Pass_TD )], in => $dbh->selectall_arrayref ("SELECT p.TradeID,p.Time,(p.time/86400000)+25569 AS 'Day',p.Items1,p.Items2,CONCAT(p.Items1,'; ',p.Items2) AS AllItems,p.Items1Owner,p.Items2Owner,p.League,p.DraftRounds,l.total_rosters,l.total_players,l.total_players - roster_positions_BN AS Start_Players,l.rec_bonus,l.bonus_rec_te,l.pass_td FROM PickTrades_2022 p INNER JOIN Leagues_2022 l ON p.League = l.LeagueID ORDER BY p.Time DESC"));
+  csv (out => "${gitrepodir}/Leagues_2022.csv", sep_char => ";", headers => [qw( League_ID Name Rosters QB RB WR TE Flex SFlex BN Total_Players Start_Players Taxi_Slots Rec_Bonus Rec_RB Rec_WR Rec_TE Pass_TD Pass_Int Old_League_ID )], in => $dbh->selectall_arrayref ("SELECT LeagueID,name,total_rosters,roster_positions_QB,roster_positions_RB,roster_positions_WR,roster_positions_TE,roster_positions_FLEX,roster_positions_SUPER_FLEX,roster_positions_BN,total_players,total_players - roster_positions_BN AS Start_Players,taxi_slots,pass_td,rec_bonus,bonus_rec_te,bonus_rec_rb,bonus_rec_wr,pass_int,previous_league_id FROM Leagues_2022_NewInfo"));
+  csv (out => "${gitrepodir}/Leagues_2022_All.csv", sep_char => ";", headers => [qw( LeagueID Name Rosters Total_Players Start_Players Taxi_Slots Best_Ball Game_Against_Median Trade_Deadline Old_League QB RB WR TE FLEX SUPER_FLEX K DEF DL LB DB IDP_FLEX BN Pass_Yards Pass_TD Pass_Int Pass_Int_TD Pass_Sack Pass_2pt Pass_First_Down Pass_Att Pass_Inc Pass_Cmp Pass_Cmp_40p Pass_TD_40p Pass_TD_50p Bonus_Pass_cmp_25 Bonus_Pass_Yards_300 Bonus_Pass_Yards_400 Rec_Yards Rec_TD Rec_Bonus Bonus_Rec_RB Bonus_Rec_WR Bonus_Rec_TE Rec_2pt Rec_FD Rec_0_4 Rec_5_9 Rec_10_19 Rec_20_29 Rec_30_39 Rec_40p Rec_TD_40p Rec_TD_50p Bonus_Rec_Yards_100 Bonus_Rec_Yards_200 Rush_Yards Rush_TD Rush_Att Rush_FD Rush_2pt Rush_40p Rush_TD_40p Rush_TD_50p Bonus_Rush_Att_20 Bonus_Rush_Rec_Yards_100 Bonus_Rush_Rec_Yards_200 Bonus_Rush_Yards_100 Bonus_Rush_Yards_200 Fumble Fumble_Lost )], in => $dbh->selectall_arrayref ("SELECT LeagueID,name,total_rosters,total_players,total_players - roster_positions_BN AS start_players,taxi_slots,best_ball,league_average_match,trade_deadline,previous_league_id,roster_positions_QB,roster_positions_RB,roster_positions_WR,roster_positions_TE,roster_positions_FLEX,roster_positions_SUPER_FLEX,roster_positions_K,roster_positions_DEF,roster_positions_DL,roster_positions_LB,roster_positions_DB,roster_positions_IDP_FLEX,roster_positions_BN,pass_yd,pass_td,pass_int,pass_int_td,pass_sack,pass_2pt,pass_fd,pass_att,pass_inc,pass_cmp,pass_cmp_40p,pass_td_40p,pass_td_50p,bonus_pass_cmp_25,bonus_pass_yd_300,bonus_pass_yd_400,rec_yd,rec_td,rec_bonus,bonus_rec_rb,bonus_rec_wr,bonus_rec_te,rec_2pt,rec_fd,rec_0_4,rec_5_9,rec_10_19,rec_20_29,rec_30_39,rec_40p,rec_td_40p,rec_td_50p,bonus_rec_yd_100,bonus_rec_yd_200,rush_yd,rush_td,rush_att,rush_fd,rush_2pt,rush_40p,rush_td_40p,rush_td_50p,bonus_rush_att_20,bonus_rush_rec_yd_100,bonus_rush_rec_yd_200,bonus_rush_yd_100,bonus_rush_yd_200,fum,fum_lost FROM Leagues_2022_NewInfo"));
+  csv (out => "${gitrepodir}/Trades_2022.csv", sep_char => ";", headers => [qw( Trade_ID Time Day Items1 Items2 All_Items Items1_Owner Items2_Owner League_ID Total_Rosters Total_Players Start_Players Rec_Bonus Rec_Bonus_TE Pass_TD Old_League_ID )], in => $dbh->selectall_arrayref ("SELECT t.TradeID, t.Time,(t.Time/86400000)+25569 AS 'Day', t.Items1, t.Items2,CONCAT(t.Items1,'; ',t.Items2) AS AllItems, t.Items1Owner, t.Items2Owner, t.League, l.total_rosters, l.total_players, l.total_players - roster_positions_BN AS Start_Players, l.rec_bonus, l.bonus_rec_te, l.pass_td, l.previous_league_id FROM Trades_2022 t INNER JOIN Leagues_2022_NewInfo l ON t.League = l.LeagueID ORDER BY t.Time DESC"));
+  csv (out => "${gitrepodir}/PickTrades_2022.csv", sep_char => ";", headers => [qw( Trade_ID Time Day Items1 Items2 All_Items Items1_Owner Items2_Owner League_ID Draft_Rounds Total_Rosters Total_Players Start_Players Rec_Bonus Rec_Bonus_TE Pass_TD )], in => $dbh->selectall_arrayref ("SELECT p.TradeID,p.Time,(p.time/86400000)+25569 AS 'Day',p.Items1,p.Items2,CONCAT(p.Items1,'; ',p.Items2) AS AllItems,p.Items1Owner,p.Items2Owner,p.League,p.DraftRounds,l.total_rosters,l.total_players,l.total_players - roster_positions_BN AS Start_Players,l.rec_bonus,l.bonus_rec_te,l.pass_td FROM PickTrades_2022 p INNER JOIN Leagues_2022_NewInfo l ON p.League = l.LeagueID ORDER BY p.Time DESC"));
   csv (out => "${gitrepodir}/KtcValues.csv", sep_char => ",", headers => [qw( Player_ID Sleeper_ID Player_Name Value)], in => $dbh->selectall_arrayref ("SELECT k.player_id,k.sleeper_id,k.player_name,k.value FROM KeepTradeCut k ORDER BY k.value DESC"));
   csv (out => "${gitrepodir}/DevyKtcValues.csv", sep_char => ",", headers => [qw( Player_ID Player_Name Value)], in => $dbh->selectall_arrayref ("SELECT k.player_id,k.player_name,k.value FROM DevyKeepTradeCut k ORDER BY k.value DESC"));
   csv (out => "${gitrepodir}/TradeCount_2022.csv", sep_char => ";", headers => [qw( Sleeper_ID ADP Player_Name Last_Month Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec All_Year )], in => $dbh->selectall_arrayref ("SELECT t.PlayerID,t.ADP,t.PlayerName,t.LastM,t.s${season}01,t.s${season}02,t.s${season}03,t.s${season}04,t.s${season}05,t.s${season}06,t.s${season}07,t.s${season}08,t.s${season}09,t.s${season}10,t.s${season}11,t.s${season}12,t.s${season} FROM TradeStats_2022 t ORDER BY -ADP DESC"));
@@ -732,6 +827,7 @@ sub export_data{ # Generate CSV and push them to the Repository
     my $pushstatus = $repo->command ( 'push', '-u' => { origin => 'master' } );
     print "Pushed new trades to he repository.\n"
   }
+  logtofile("Exported the CSV files");
 }
 
 sub export_sleeperplayers { # Get the Sleeper Player Ids in the MySQLDB
@@ -764,25 +860,7 @@ sub export_sleeperplayers { # Get the Sleeper Player Ids in the MySQLDB
     $dbst->finish;
   }
   $progressPlayers->update(scalar(keys(%$playersjson))) if scalar(keys(%$playersjson)) >= $nextPlayerupdate;
-}
-
-sub get_json{ # General Function to get decoded JSON from URL
-  my $url = shift;
-  my $possibledeleted = shift;
-  my $ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
-  my $header = HTTP::Request->new(GET => $url);
-  $header->header(content_type => "application/json",
-                         accept => "application/json");
-  my $request = HTTP::Request->new('GET', $url, $header);
-  my $response = $ua->request($request);
-  if ($response->is_success){
-    return decode_json($response->content);
-  }elsif ($response->is_error){
-    print "CRITICAL: Error: $url\n";
-    update_PossibleDeleted($possibledeleted) if ($possibledeleted);
-    verb($response->error_as_HTML);
-    return();
-  }
+  logtofile("Updated the DB with ".scalar(keys(%$playersjson))." Sleeper Players");
 }
 
 sub get_ktcjsonvalues{
@@ -843,6 +921,25 @@ sub get_ktcdevyjsonvalues{
   }
 }
 
+sub get_json{ # General Function to get decoded JSON from URL
+  my $url = shift;
+  my $possibledeleted = shift;
+  my $ua = LWP::UserAgent->new(ssl_opts => { verify_hostname => 0 });
+  my $header = HTTP::Request->new(GET => $url);
+  $header->header(content_type => "application/json",
+                         accept => "application/json");
+  my $request = HTTP::Request->new('GET', $url, $header);
+  my $response = $ua->request($request);
+  if ($response->is_success){
+    return decode_json($response->content);
+  }elsif ($response->is_error){
+    print "CRITICAL: Error: $url\n";
+    update_PossibleDeleted($possibledeleted) if ($possibledeleted);
+    verb($response->error_as_HTML);
+    return();
+  }
+}
+
 sub printtofile{ # Print text to file (not appending!!)
   my $filename = $_[0];
   my $text = $_[1];
@@ -852,13 +949,30 @@ sub printtofile{ # Print text to file (not appending!!)
   close $fh;
 }
 
-sub appendtofile{ # Print text to file (not appending!!)
+sub appendtofile{ # Append text to file
   my $filename = $_[0];
   my $text = $_[1];
   print "${text}" unless (!$o_verb);
   open(my $fh, '>>', $filename);
   print $fh "${text}\n";
   close $fh;
+}
+
+sub logtofile {
+  my $t=shift;
+  verb($t);
+  if(defined($o_log)) {
+    open(my $FH, ">>", $logfile) or die "Can't open logfile $logfile ", $!;
+    my $logline = time_now()." $t\n";
+    print $FH $logline;
+    close($FH);
+  }
+}
+
+sub time_now {
+  my ($sec,$min,$hour,$month_day,$month,$year,$wday,$yday,$isdst) = localtime(time);
+  my $time_string = sprintf("%02d-%02d-%02d %02d:%02d:%02d", $month_day, $month+1, $year+1900, $hour, $min, $sec);
+  return $time_string;
 }
 
 sub prompt { # To ask for input to the user
@@ -904,12 +1018,13 @@ sub check_options {
       'k'     => \$o_ktc,               'ktcvalues'           => \$o_ktc,
       'e'     => \$o_export,            'export'              => \$o_export,
       'u'     => \$o_updatetrades,      'updatetrades'        => \$o_updatetrades,
+      'l'     => \$o_log,               'log'                 => \$o_log,
       'v'     => \$o_verb,              'verbose'             => \$o_verb,
       'V'     => \$o_debugverb,         'debugverbose'        => \$o_debugverb
   );
   help() if(defined($o_help));
-  $o_verb = 1 if ($o_debugverb);
-  $o_searchleagues = $o_expandusersearch if ($o_expandusersearch);
+  $o_verb = 1 if (defined($o_debugverb));
+  $o_searchleagues = $o_expandusersearch if (defined($o_expandusersearch));
   $o_searchleagues = "DBList" if (defined($o_newleaguesAge));
   help() if (!((defined($o_searchleagues))||(defined($o_updatedb))||(defined($o_newleaguesAge))||(defined($o_leagueinfo))||(defined($o_rosteridinfo))||(defined($o_export))||(defined($o_tradevalueslm))||(defined($o_updateadp))||(defined($o_tradevalues))||(defined($o_ktc))||(defined($o_updatetrades))));
 }
