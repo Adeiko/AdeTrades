@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-use strict;
+# use strict;
 use warnings;
 
 use LWP::UserAgent;
@@ -46,11 +46,16 @@ if (defined($o_rookie)){
   $blist = $dbh->selectall_hashref ('SELECT DraftID FROM DraftsIgnored WHERE DType = "Startup"',"DraftID");
 }
 
+
 if(!defined($o_username)) {
-  if ($o_rookie){
-    @possibleusers = map { $_->[0] } @{ $dbh->selectall_arrayref ("SELECT UserID FROM UserDraftsSearched s WHERE s.ScrapeDateRookie < $dtold OR s.ScrapeDateRookie IS NULL LIMIT $o_maxusers") };
+  if ($o_minsearchage == 0){
+    @possibleusers = map { $_->[0] } @{ $dbh->selectall_arrayref ("SELECT UserID FROM UserDraftsSearched s LIMIT $o_maxusers") };
   }else{
-    @possibleusers = map { $_->[0] } @{ $dbh->selectall_arrayref ("SELECT UserID FROM UserDraftsSearched s WHERE s.ScrapeDateStartup < $dtold OR s.ScrapeDateStartup IS NULL LIMIT $o_maxusers") };
+    if ($o_rookie){
+      @possibleusers = map { $_->[0] } @{ $dbh->selectall_arrayref ("SELECT UserID FROM UserDraftsSearched s WHERE s.ScrapeDateRookie < $dtold OR s.ScrapeDateRookie IS NULL LIMIT $o_maxusers") };
+    }else{
+      @possibleusers = map { $_->[0] } @{ $dbh->selectall_arrayref ("SELECT UserID FROM UserDraftsSearched s WHERE s.ScrapeDateStartup < $dtold OR s.ScrapeDateStartup IS NULL LIMIT $o_maxusers") };
+    }
   }
 }else{
   if ($o_rookie){
