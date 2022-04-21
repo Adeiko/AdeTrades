@@ -145,9 +145,9 @@ Player_ID,Sleeper_ID,Player_Name,Value
 1036,7611,"Rhamondre Stevenson",2855
 293,4981,"Calvin Ridley",2842
 210,4985,"Rashaad Penny",2840
-1283,,"Skyy Moore",2812
+1283,8168,"Skyy Moore",2812
 956,,"2022 Mid 2nd",2807
-1248,,"Christian Watson",2798
+1248,8167,"Christian Watson",2798
 623,6955,"James Robinson",2795
 1209,8162,"Sam Howell",2789
 258,3161,"Carson Wentz",2786
@@ -324,7 +324,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 977,2711,"Taylor Heinicke",894
 988,7572,"Kylin Hill",889
 1104,,"2023 Early 4th",888
-1206,,"Tyler Badie",877
+1206,8208,"Tyler Badie",877
 558,6849,"Denzel Mims",867
 1278,8134,"Khalil Shakir",858
 629,7045,"Joshua Kelley",854
@@ -349,7 +349,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 14,5130,"Auden Tate",723
 995,7574,"Larry Rountree",696
 557,6996,"JaMycal Hasty",688
-1205,,"Kevin Harris",688
+1205,8174,"Kevin Harris",688
 1008,7595,"Tylan Wallace",681
 31,4531,"Ricky Seals-Jones",670
 249,1848,"James White",668
@@ -369,7 +369,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 75,6148,"Preston Williams",584
 86,5010,"Will Dissly",578
 105,5536,"Dontrell Hilliard",568
-1202,,"Sincere McCormick",562
+1202,8220,"Sincere McCormick",562
 1181,8120,"Jerrion Ealy",556
 232,1833,"Damien Williams",554
 893,7098,"Ty'Son Williams",553
@@ -385,7 +385,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 289,830,"A.J. Green",506
 91,,"2021 Late 4th",505
 376,4455,"Matt Breida",499
-390,,"Duke Johnson",487
+390,2382,"Duke Johnson",487
 1303,,"2024 Mid 4th",479
 1195,8152,"Kennedy Brooks",469
 1212,8157,"Bailey Zappe",469
@@ -402,14 +402,14 @@ Player_ID,Sleeper_ID,Player_Name,Value
 435,6001,"Drew Sample",422
 625,6918,"Salvon Ahmed",420
 1113,7944,"Mike Strachan",396
-576,,"Jauan Jennings",387
+576,7049,"Jauan Jennings",387
 414,5915,"Andy Isabella",384
 54,2431,"Mike Davis",382
 295,536,"Antonio Brown",375
 368,5995,"Justice Hill",369
 1304,,"2024 Late 4th",360
 1214,,"Brock Purdy",344
-177,,"Lil'Jordan Humphrey",340
+177,5938,"Lil'Jordan Humphrey",340
 99,6144,"Trayveon Williams",335
 421,6088,"Olabisi Johnson",330
 24,4622,"Keelan Cole",323
@@ -424,7 +424,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 29,2214,"Cameron Brate",263
 139,6040,"Tyree Jackson",259
 1267,,"CJ Verdell",257
-1194,,"Max Borghi",252
+1194,8218,"Max Borghi",252
 583,6857,"Collin Johnson",246
 411,5009,"Chris Herndon",245
 95,928,"Randall Cobb",241
@@ -433,7 +433,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 617,7088,"Xavier Jones",227
 188,2331,"Breshad Perriman",225
 347,1386,"Giovani Bernard",215
-1193,,"Keaontay Ingram",197
+1193,8221,"Keaontay Ingram",197
 167,3327,"Alex Collins",195
 4,4274,"David Moore",187
 300,1110,"T.Y. Hilton",177
@@ -477,7 +477,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 64,184,"Adrian Peterson",61
 115,333,"Ryan Fitzpatrick",61
 197,5032,"Jordan Akins",61
-40,,"Kahale Warring",59
+40,6164,"Kahale Warring",59
 1122,7729,"Dez Fitzpatrick",56
 573,6906,"Antonio Gandy-Golden",52
 692,2359,"Ameer Abdullah",52
@@ -533,7 +533,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 145,,"Jordan Matthews",1
 146,,"Kelvin Benjamin",1
 186,,"LJ Scott",1
-259,,"Dede Westbrook",1
+259,4146,"Dede Westbrook",1
 263,1408,"Le'Veon Bell",1
 418,,"Chandler Cox",1
 820,2476,"James O'Shaughnessy",1
@@ -547,7 +547,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 74,3868,"Jalen Richard",0
 102,,"Deon Cain",0
 104,,"Mark Walton",0
-107,,"DeAndre Washington",0
+107,3300,"DeAndre Washington",0
 109,,"Caleb Wilson",0
 111,,"Chris Hogan",0
 117,,"Matt LaCosse",0
