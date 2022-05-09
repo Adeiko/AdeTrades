@@ -40,8 +40,6 @@ my $gitrepodir = "$ENV{HOME}/Repositories/AdeTrades";
 my $logfile = "/var/log/crons/Sleeper_SearchTrades.log";
 my $rootdir = dirname(File::Spec->rel2abs(__FILE__));
 
-$o_currentweek = 1; #MODIFICAR ESTO!!!
-
 check_options(); # Check for the arguments to the script
 
 # Database configuration
@@ -55,7 +53,7 @@ my $dtold = DateTime->now()->subtract(hours => $o_refreshage)->epoch();
 my $dtoldrosters = DateTime->now()->subtract(days => $o_refreshagerosterids)->epoch();
 
 if ($o_searchleagues){ # To find new leagues
-  $leaguehashlist = $dbh->selectall_hashref ("SELECT LeagueID FROM Leagues_2022_NewInfo","LeagueID");
+  $leaguehashlist = $dbh->selectall_hashref ("SELECT LeagueID FROM Leagues_2022","LeagueID");
   if (defined($o_newleaguesAge)){
     my $dtoldleagues = DateTime->now()->subtract(days => $o_newleaguesAge)->epoch();
     @UserSearchList = map { $_->[0] } @{ $dbh->selectall_arrayref ("SELECT UserID FROM SearchedUsers s WHERE s.ScrapeDate < $dtoldleagues OR s.ScrapeDate IS NULL LIMIT $o_maxleagues") };
@@ -277,7 +275,7 @@ sub get_leagueAllinfo{ # Get All leagues from a User
   my $roster_positions_BN = grep { $_ eq "BN" } @{ $leaguejson->{roster_positions} };
   my $total_players = $roster_positions_QB + $roster_positions_RB + $roster_positions_WR + $roster_positions_TE + $roster_positions_FLEX + $roster_positions_SUPER_FLEX + $roster_positions_BN + $roster_positions_K + $roster_positions_DEF + $roster_positions_LB + $roster_positions_DB + $roster_positions_DL + $roster_positions_IDP_FLEX;
   my $league_name_q = $dbh->quote($league_name);
-  my $sth = $dbh->prepare(qq/UPDATE Leagues_2022_NewInfo SET name = $league_name_q,LastUpdate = $dtnow,RookieRounds = $league_draftrounds,RookieTimeUpdate = $dtnow,RookieStatus = "$league_status",RookieDraft = $league_draftid,best_ball = $best_ball,league_average_match = $league_average_match,trade_deadline = $trade_deadline,previous_league_id = $previous_league_id,taxi_slots = $taxi_slots,total_players = $total_players,total_rosters = $total_rosters,roster_positions_BN = $roster_positions_BN,roster_positions_DB = $roster_positions_DB,roster_positions_DEF = $roster_positions_DEF,roster_positions_DL = $roster_positions_DL,roster_positions_FLEX = $roster_positions_FLEX,roster_positions_IDP_FLEX = $roster_positions_IDP_FLEX,roster_positions_K = $roster_positions_K,roster_positions_LB = $roster_positions_LB,roster_positions_QB = $roster_positions_QB,roster_positions_RB = $roster_positions_RB,roster_positions_SUPER_FLEX = $roster_positions_SUPER_FLEX,roster_positions_TE = $roster_positions_TE,roster_positions_WR = $roster_positions_WR,bonus_pass_cmp_25 = $bonus_pass_cmp_25,bonus_pass_yd_300 = $bonus_pass_yd_300,bonus_pass_yd_400 = $bonus_pass_yd_400,bonus_rec_rb = $bonus_rec_rb,bonus_rec_te = $bonus_rec_te,bonus_rec_wr = $bonus_rec_wr,bonus_rec_yd_100 = $bonus_rec_yd_100,bonus_rec_yd_200 = $bonus_rec_yd_200,bonus_rush_att_20 = $bonus_rush_att_20,bonus_rush_rec_yd_100 = $bonus_rush_rec_yd_100,bonus_rush_rec_yd_200 = $bonus_rush_rec_yd_200,bonus_rush_yd_100 = $bonus_rush_yd_100,bonus_rush_yd_200 = $bonus_rush_yd_200,fum = $fum,fum_lost = $fum_lost,pass_2pt = $pass_2pt,pass_att = $pass_att,pass_cmp = $pass_cmp,pass_cmp_40p = $pass_cmp_40p,pass_fd = $pass_fd,pass_inc = $pass_inc,pass_int = $pass_int,pass_int_td = $pass_int_td,pass_sack = $pass_sack,pass_td = $pass_td,pass_td_40p = $pass_td_40p,pass_td_50p = $pass_td_50p,pass_yd = $pass_yd,rec_0_4 = $rec_0_4,rec_10_19 = $rec_10_19,rec_20_29 = $rec_20_29,rec_2pt = $rec_2pt,rec_30_39 = $rec_30_39,rec_40p = $rec_40p,rec_5_9 = $rec_5_9,rec_bonus = $rec_bonus,rec_fd = $rec_fd,rec_td = $rec_td,rec_td_40p = $rec_td_40p,rec_td_50p = $rec_td_50p,rec_yd = $rec_yd,rush_2pt = $rush_2pt,rush_40p = $rush_40p,rush_att = $rush_att,rush_fd = $rush_fd,rush_td = $rush_td,rush_td_40p = $rush_td_40p,rush_td_50p = $rush_td_50p,rush_yd = $rush_yd,sack = $sack WHERE LeagueID = $league_id;/);
+  my $sth = $dbh->prepare(qq/UPDATE Leagues_2022 SET name = $league_name_q,LastUpdate = $dtnow,RookieRounds = $league_draftrounds,RookieTimeUpdate = $dtnow,RookieStatus = "$league_status",RookieDraft = $league_draftid,best_ball = $best_ball,league_average_match = $league_average_match,trade_deadline = $trade_deadline,previous_league_id = $previous_league_id,taxi_slots = $taxi_slots,total_players = $total_players,total_rosters = $total_rosters,roster_positions_BN = $roster_positions_BN,roster_positions_DB = $roster_positions_DB,roster_positions_DEF = $roster_positions_DEF,roster_positions_DL = $roster_positions_DL,roster_positions_FLEX = $roster_positions_FLEX,roster_positions_IDP_FLEX = $roster_positions_IDP_FLEX,roster_positions_K = $roster_positions_K,roster_positions_LB = $roster_positions_LB,roster_positions_QB = $roster_positions_QB,roster_positions_RB = $roster_positions_RB,roster_positions_SUPER_FLEX = $roster_positions_SUPER_FLEX,roster_positions_TE = $roster_positions_TE,roster_positions_WR = $roster_positions_WR,bonus_pass_cmp_25 = $bonus_pass_cmp_25,bonus_pass_yd_300 = $bonus_pass_yd_300,bonus_pass_yd_400 = $bonus_pass_yd_400,bonus_rec_rb = $bonus_rec_rb,bonus_rec_te = $bonus_rec_te,bonus_rec_wr = $bonus_rec_wr,bonus_rec_yd_100 = $bonus_rec_yd_100,bonus_rec_yd_200 = $bonus_rec_yd_200,bonus_rush_att_20 = $bonus_rush_att_20,bonus_rush_rec_yd_100 = $bonus_rush_rec_yd_100,bonus_rush_rec_yd_200 = $bonus_rush_rec_yd_200,bonus_rush_yd_100 = $bonus_rush_yd_100,bonus_rush_yd_200 = $bonus_rush_yd_200,fum = $fum,fum_lost = $fum_lost,pass_2pt = $pass_2pt,pass_att = $pass_att,pass_cmp = $pass_cmp,pass_cmp_40p = $pass_cmp_40p,pass_fd = $pass_fd,pass_inc = $pass_inc,pass_int = $pass_int,pass_int_td = $pass_int_td,pass_sack = $pass_sack,pass_td = $pass_td,pass_td_40p = $pass_td_40p,pass_td_50p = $pass_td_50p,pass_yd = $pass_yd,rec_0_4 = $rec_0_4,rec_10_19 = $rec_10_19,rec_20_29 = $rec_20_29,rec_2pt = $rec_2pt,rec_30_39 = $rec_30_39,rec_40p = $rec_40p,rec_5_9 = $rec_5_9,rec_bonus = $rec_bonus,rec_fd = $rec_fd,rec_td = $rec_td,rec_td_40p = $rec_td_40p,rec_td_50p = $rec_td_50p,rec_yd = $rec_yd,rush_2pt = $rush_2pt,rush_40p = $rush_40p,rush_att = $rush_att,rush_fd = $rush_fd,rush_td = $rush_td,rush_td_40p = $rush_td_40p,rush_td_50p = $rush_td_50p,rush_yd = $rush_yd,sack = $sack WHERE LeagueID = $league_id;/);
   $sth->execute();
   $sth->finish;
   dverb("Scraped League ${league_id}");
@@ -458,9 +456,14 @@ sub get_leagues { # Get All leagues from a User
   my $userID = shift;
   my $leaguejson = get_json("https://api.sleeper.app/v1/user/${userID}/leagues/nfl/${season}");
   my $numleagues = 0;
+  # print Dumper ($leaguejson);
   foreach my $leagueitem ( @$leaguejson ) {
     next if (grep(/\bfree\b/i,$leagueitem->{name})); # Skip league if has Free (case insensitive) in the name
     next if (grep(/\bmock\b/i,$leagueitem->{name}));  # Skip league if has mock (case insensitive) in the name
+    print "Leaguetype: ".$leagueitem->{settings}->{type}."\n";
+    print "Teams: " . $leagueitem->{settings}->{num_teams}."\n";
+    # print "Pos: " . (scalar @{ $leagueitem->{roster_positions}) ."\n";
+    print "start: " . (grep { $_ eq "QB" or $_ eq "RB" or $_ eq "WR" or $_ eq "TE" or $_ eq "K" or $_ eq "FLEX" or $_ eq "REC_FLEX" or $_ eq "SUPER_FLEX" } @{ $leagueitem->{roster_positions} }) . "\n";
     next unless ($leagueitem->{settings}->{type} == 2); # Only DynastyLeagues
     next unless (ref($leagueitem->{roster_positions}) eq 'ARRAY' and grep { $_ eq "SUPER_FLEX" } @{ $leagueitem->{roster_positions} }); # Only Superflex Leagues
     next unless ( ($leagueitem->{settings}->{num_teams} eq "12") || ($leagueitem->{settings}->{num_teams} eq "14") ); # Only 12/14 Player Leagues
@@ -475,7 +478,7 @@ sub get_leagues { # Get All leagues from a User
 
 sub get_leaguelist{ # Get the LeagueList from the MySQL that hasn't updated in X time
   my $leaguelimit = shift;
-  my $sth = $dbh->prepare(qq/SELECT LeagueID FROM Leagues_2022_NewInfo WHERE PossibleDeleted = FALSE AND LastUpdate < $dtold OR LastUpdate IS NULL LIMIT $leaguelimit/);
+  my $sth = $dbh->prepare(qq/SELECT LeagueID FROM Leagues_2022 WHERE PossibleDeleted = FALSE AND LastUpdate < $dtold OR LastUpdate IS NULL LIMIT $leaguelimit/);
   $sth->execute();
   while(my $row = $sth->fetchrow_hashref) {
     push @LeagueList,$row->{LeagueID};
@@ -485,8 +488,7 @@ sub get_leaguelist{ # Get the LeagueList from the MySQL that hasn't updated in X
 
 sub get_leaguelistUpdateInfo{ # Get the LeagueList from the MySQL
   my $leaguelimit = shift;
-  # my $sth = $dbh->prepare(qq/SELECT LeagueID FROM Leagues_2022_NewInfo WHERE PossibleDeleted = FALSE LIMIT $leaguelimit/);
-  my $sth = $dbh->prepare(qq/SELECT LeagueID FROM Leagues_2022_NewInfo WHERE PossibleDeleted = FALSE AND name IS NULL LIMIT $leaguelimit/);
+  my $sth = $dbh->prepare(qq/SELECT LeagueID FROM Leagues_2022 WHERE PossibleDeleted = FALSE AND name IS NULL LIMIT $leaguelimit/);
   $sth->execute();
   while(my $row = $sth->fetchrow_hashref) {
     push @LeagueNameList,$row->{LeagueID};
@@ -496,7 +498,7 @@ sub get_leaguelistUpdateInfo{ # Get the LeagueList from the MySQL
 
 sub get_CountleaguelistUpdateInfo{ # Get the LeagueList missing information from the MySQL
   my $leaguelimit = shift;
-  my $sth = $dbh->prepare(qq/SELECT COUNT(LeagueID) FROM Leagues_2022_NewInfo WHERE PossibleDeleted = FALSE AND name IS NULL/);
+  my $sth = $dbh->prepare(qq/SELECT COUNT(LeagueID) FROM Leagues_2022 WHERE PossibleDeleted = FALSE AND name IS NULL/);
   $sth->execute();
   my $pendingleagues = $sth->fetchrow;
   $sth->finish;
@@ -505,7 +507,7 @@ sub get_CountleaguelistUpdateInfo{ # Get the LeagueList missing information from
 
 sub get_leaguelistUpdateRosterID{ # Get the LeagueList without rosterID information from the MySQL
   my $leaguelimit = shift;
-  my $sth = $dbh->prepare(qq/SELECT DISTINCT l.LeagueID FROM Leagues_2022_NewInfo l LEFT JOIN RosterID_Reference r ON r.LeagueID = l.LeagueID WHERE r.LeagueID IS NULL AND (r.LastUpdate < $dtoldrosters OR r.LastUpdate IS NULL) LIMIT $leaguelimit/);
+  my $sth = $dbh->prepare(qq/SELECT DISTINCT l.LeagueID FROM Leagues_2022 l LEFT JOIN RosterID_Reference r ON r.LeagueID = l.LeagueID WHERE r.LeagueID IS NULL AND (r.LastUpdate < $dtoldrosters OR r.LastUpdate IS NULL) LIMIT $leaguelimit/);
   $sth->execute();
   while(my $row = $sth->fetchrow_hashref) {
     push @LeagueRosterIDList,$row->{LeagueID};
@@ -515,7 +517,7 @@ sub get_leaguelistUpdateRosterID{ # Get the LeagueList without rosterID informat
 
 sub get_leaguePendingUpdate{ # Get Number of leagues missing update
   my $leaguelimit = shift;
-  my $sth = $dbh->prepare(qq/SELECT COUNT(LeagueID) FROM Leagues_2022_NewInfo WHERE PossibleDeleted = FALSE AND (LastUpdate < $dtold OR LastUpdate IS NULL)/);
+  my $sth = $dbh->prepare(qq/SELECT COUNT(LeagueID) FROM Leagues_2022 WHERE PossibleDeleted = FALSE AND (LastUpdate < $dtold OR LastUpdate IS NULL)/);
   $sth->execute();
   my $pendingleagues = $sth->fetchrow;
   $sth->finish;
@@ -556,7 +558,7 @@ sub get_currentstate{ #Get Current Week from SleeperAPI
 
 sub insert_newleague{ # Adds a new League to the list
   my $new_league = shift;
-  my $sth = $dbh->prepare(q{INSERT IGNORE INTO Leagues_2022_NewInfo(LeagueID) VALUES (?)},{},);
+  my $sth = $dbh->prepare(q{INSERT IGNORE INTO Leagues_2022(LeagueID) VALUES (?)},{},);
   $sth->execute($new_league);
   $sth->finish;
 }
@@ -615,7 +617,7 @@ sub insert_tradeHash{ # Imports  all the %TradeDB to the MySQL
 
 sub update_leagueTime{ # Inserts in the MySQL the CurrentTime after updating
   my $league_id = shift;
-  my $sth = $dbh->prepare(qq/UPDATE Leagues_2022_NewInfo SET LastUpdate = $dtnow WHERE LeagueID = $league_id/);
+  my $sth = $dbh->prepare(qq/UPDATE Leagues_2022 SET LastUpdate = $dtnow WHERE LeagueID = $league_id/);
   $sth->execute();
   $sth->finish;
   verb("Updating time of league ${league_id}");
@@ -623,7 +625,7 @@ sub update_leagueTime{ # Inserts in the MySQL the CurrentTime after updating
 
 sub update_PossibleDeleted{ # Inserts in the MySQL the Possible Delete Status
   my $league_id = shift;
-  my $sth = $dbh->prepare(qq/UPDATE Leagues_2022_NewInfo SET PossibleDeleted = TRUE WHERE LeagueID = $league_id/);
+  my $sth = $dbh->prepare(qq/UPDATE Leagues_2022 SET PossibleDeleted = TRUE WHERE LeagueID = $league_id/);
   $sth->execute();
   $sth->finish;
   verb("Updating Possible Deleted league ${league_id}");
@@ -647,6 +649,7 @@ sub update_ADP{ #Read the ADP Google Sheet and import the new ADP in the TradeSt
     verb ("PlayerID: ".@$PlayerADP[0]);
     verb ("ADP: ".@$PlayerADP[1]) if (defined(@$PlayerADP[1]));
   }
+  logtofile("Updated the ADP Database");
 }
 
 sub update_KTC{ # Load KTC values to the Database
@@ -716,7 +719,6 @@ sub Update_TradeStatsADP{ # Insert the ADP in the TradeStats file
     $sts->execute();
     $sts->finish;
   }
-  logtofile("Updated the ADP Database");
 }
 
 sub updateTradeValues{ # Generate the trade count for each player in the 12 diferent months
@@ -799,7 +801,7 @@ sub clean_data{ # Cleaning trade Tables of wrong data
   verb("Cleaning Picktrades");
   $dbh->do('DELETE FROM PickTrades_2022 WHERE TradeID IN (SELECT r.TradeID FROM RevertedTrades r WHERE r.TradeID IS NOT NULL)');
   verb("Cleaning Ignored Leagues");
-  $dbh->do('DELETE FROM Leagues_2022_NewInfo WHERE LeagueID IN (SELECT i.LeagueID FROM IgnoredLeagues i WHERE i.LeagueID IS NOT NULL)');
+  $dbh->do('DELETE FROM Leagues_2022 WHERE LeagueID IN (SELECT i.LeagueID FROM IgnoredLeagues i WHERE i.LeagueID IS NOT NULL)');
   verb("Cleaning Trades from IngoredLeagues");
   $dbh->do('DELETE FROM Trades_2022 WHERE League IN (SELECT i.LeagueID FROM IgnoredLeagues i WHERE i.LeagueID IS NOT NULL)');
   verb("Cleaning PickTrades from Ignored Leagues");
@@ -809,10 +811,10 @@ sub clean_data{ # Cleaning trade Tables of wrong data
 sub export_data{ # Generate CSV and push them to the Repository
   my $repo = Git::Repository->new( work_tree => $gitrepodir);
   my $repopull = $repo->run( 'pull' );
-  csv (out => "${gitrepodir}/Leagues_2022.csv", sep_char => ";", headers => [qw( League_ID Name Rosters QB RB WR TE Flex SFlex BN Total_Players Start_Players Taxi_Slots Rec_Bonus Rec_RB Rec_WR Rec_TE Pass_TD Pass_Int Old_League_ID )], in => $dbh->selectall_arrayref ("SELECT LeagueID,name,total_rosters,roster_positions_QB,roster_positions_RB,roster_positions_WR,roster_positions_TE,roster_positions_FLEX,roster_positions_SUPER_FLEX,roster_positions_BN,total_players,total_players - roster_positions_BN AS Start_Players,taxi_slots,pass_td,rec_bonus,bonus_rec_te,bonus_rec_rb,bonus_rec_wr,pass_int,previous_league_id FROM Leagues_2022_NewInfo"));
-  csv (out => "${gitrepodir}/Leagues_2022_All.csv", sep_char => ";", headers => [qw( LeagueID Name Rosters Total_Players Start_Players Taxi_Slots Best_Ball Game_Against_Median Trade_Deadline Old_League QB RB WR TE FLEX SUPER_FLEX K DEF DL LB DB IDP_FLEX BN Pass_Yards Pass_TD Pass_Int Pass_Int_TD Pass_Sack Pass_2pt Pass_First_Down Pass_Att Pass_Inc Pass_Cmp Pass_Cmp_40p Pass_TD_40p Pass_TD_50p Bonus_Pass_cmp_25 Bonus_Pass_Yards_300 Bonus_Pass_Yards_400 Rec_Yards Rec_TD Rec_Bonus Bonus_Rec_RB Bonus_Rec_WR Bonus_Rec_TE Rec_2pt Rec_FD Rec_0_4 Rec_5_9 Rec_10_19 Rec_20_29 Rec_30_39 Rec_40p Rec_TD_40p Rec_TD_50p Bonus_Rec_Yards_100 Bonus_Rec_Yards_200 Rush_Yards Rush_TD Rush_Att Rush_FD Rush_2pt Rush_40p Rush_TD_40p Rush_TD_50p Bonus_Rush_Att_20 Bonus_Rush_Rec_Yards_100 Bonus_Rush_Rec_Yards_200 Bonus_Rush_Yards_100 Bonus_Rush_Yards_200 Fumble Fumble_Lost )], in => $dbh->selectall_arrayref ("SELECT LeagueID,name,total_rosters,total_players,total_players - roster_positions_BN AS start_players,taxi_slots,best_ball,league_average_match,trade_deadline,previous_league_id,roster_positions_QB,roster_positions_RB,roster_positions_WR,roster_positions_TE,roster_positions_FLEX,roster_positions_SUPER_FLEX,roster_positions_K,roster_positions_DEF,roster_positions_DL,roster_positions_LB,roster_positions_DB,roster_positions_IDP_FLEX,roster_positions_BN,pass_yd,pass_td,pass_int,pass_int_td,pass_sack,pass_2pt,pass_fd,pass_att,pass_inc,pass_cmp,pass_cmp_40p,pass_td_40p,pass_td_50p,bonus_pass_cmp_25,bonus_pass_yd_300,bonus_pass_yd_400,rec_yd,rec_td,rec_bonus,bonus_rec_rb,bonus_rec_wr,bonus_rec_te,rec_2pt,rec_fd,rec_0_4,rec_5_9,rec_10_19,rec_20_29,rec_30_39,rec_40p,rec_td_40p,rec_td_50p,bonus_rec_yd_100,bonus_rec_yd_200,rush_yd,rush_td,rush_att,rush_fd,rush_2pt,rush_40p,rush_td_40p,rush_td_50p,bonus_rush_att_20,bonus_rush_rec_yd_100,bonus_rush_rec_yd_200,bonus_rush_yd_100,bonus_rush_yd_200,fum,fum_lost FROM Leagues_2022_NewInfo"));
-  csv (out => "${gitrepodir}/Trades_2022.csv", sep_char => ";", headers => [qw( Trade_ID Time Day Items1 Items2 All_Items Items1_Owner Items2_Owner League_ID Total_Rosters Total_Players Start_Players Rec_Bonus Rec_Bonus_TE Pass_TD Old_League_ID )], in => $dbh->selectall_arrayref ("SELECT t.TradeID, t.Time,(t.Time/86400000)+25569 AS 'Day', t.Items1, t.Items2,CONCAT(t.Items1,'; ',t.Items2) AS AllItems, t.Items1Owner, t.Items2Owner, t.League, l.total_rosters, l.total_players, l.total_players - roster_positions_BN AS Start_Players, l.rec_bonus, l.bonus_rec_te, l.pass_td, l.previous_league_id FROM Trades_2022 t INNER JOIN Leagues_2022_NewInfo l ON t.League = l.LeagueID ORDER BY t.Time DESC"));
-  csv (out => "${gitrepodir}/PickTrades_2022.csv", sep_char => ";", headers => [qw( Trade_ID Time Day Items1 Items2 All_Items Items1_Owner Items2_Owner League_ID Draft_Rounds Total_Rosters Total_Players Start_Players Rec_Bonus Rec_Bonus_TE Pass_TD )], in => $dbh->selectall_arrayref ("SELECT p.TradeID,p.Time,(p.time/86400000)+25569 AS 'Day',p.Items1,p.Items2,CONCAT(p.Items1,'; ',p.Items2) AS AllItems,p.Items1Owner,p.Items2Owner,p.League,p.DraftRounds,l.total_rosters,l.total_players,l.total_players - roster_positions_BN AS Start_Players,l.rec_bonus,l.bonus_rec_te,l.pass_td FROM PickTrades_2022 p INNER JOIN Leagues_2022_NewInfo l ON p.League = l.LeagueID ORDER BY p.Time DESC"));
+  csv (out => "${gitrepodir}/Leagues_2022.csv", sep_char => ";", headers => [qw( League_ID Name Rosters QB RB WR TE Flex SFlex BN Total_Players Start_Players Taxi_Slots Rec_Bonus Rec_RB Rec_WR Rec_TE Pass_TD Pass_Int Old_League_ID )], in => $dbh->selectall_arrayref ("SELECT LeagueID,name,total_rosters,roster_positions_QB,roster_positions_RB,roster_positions_WR,roster_positions_TE,roster_positions_FLEX,roster_positions_SUPER_FLEX,roster_positions_BN,total_players,total_players - roster_positions_BN AS Start_Players,taxi_slots,pass_td,rec_bonus,bonus_rec_te,bonus_rec_rb,bonus_rec_wr,pass_int,previous_league_id FROM Leagues_2022"));
+  csv (out => "${gitrepodir}/Leagues_2022_All.csv", sep_char => ";", headers => [qw( LeagueID Name Rosters Total_Players Start_Players Taxi_Slots Best_Ball Game_Against_Median Trade_Deadline Old_League QB RB WR TE FLEX SUPER_FLEX K DEF DL LB DB IDP_FLEX BN Pass_Yards Pass_TD Pass_Int Pass_Int_TD Pass_Sack Pass_2pt Pass_First_Down Pass_Att Pass_Inc Pass_Cmp Pass_Cmp_40p Pass_TD_40p Pass_TD_50p Bonus_Pass_cmp_25 Bonus_Pass_Yards_300 Bonus_Pass_Yards_400 Rec_Yards Rec_TD Rec_Bonus Bonus_Rec_RB Bonus_Rec_WR Bonus_Rec_TE Rec_2pt Rec_FD Rec_0_4 Rec_5_9 Rec_10_19 Rec_20_29 Rec_30_39 Rec_40p Rec_TD_40p Rec_TD_50p Bonus_Rec_Yards_100 Bonus_Rec_Yards_200 Rush_Yards Rush_TD Rush_Att Rush_FD Rush_2pt Rush_40p Rush_TD_40p Rush_TD_50p Bonus_Rush_Att_20 Bonus_Rush_Rec_Yards_100 Bonus_Rush_Rec_Yards_200 Bonus_Rush_Yards_100 Bonus_Rush_Yards_200 Fumble Fumble_Lost )], in => $dbh->selectall_arrayref ("SELECT LeagueID,name,total_rosters,total_players,total_players - roster_positions_BN AS start_players,taxi_slots,best_ball,league_average_match,trade_deadline,previous_league_id,roster_positions_QB,roster_positions_RB,roster_positions_WR,roster_positions_TE,roster_positions_FLEX,roster_positions_SUPER_FLEX,roster_positions_K,roster_positions_DEF,roster_positions_DL,roster_positions_LB,roster_positions_DB,roster_positions_IDP_FLEX,roster_positions_BN,pass_yd,pass_td,pass_int,pass_int_td,pass_sack,pass_2pt,pass_fd,pass_att,pass_inc,pass_cmp,pass_cmp_40p,pass_td_40p,pass_td_50p,bonus_pass_cmp_25,bonus_pass_yd_300,bonus_pass_yd_400,rec_yd,rec_td,rec_bonus,bonus_rec_rb,bonus_rec_wr,bonus_rec_te,rec_2pt,rec_fd,rec_0_4,rec_5_9,rec_10_19,rec_20_29,rec_30_39,rec_40p,rec_td_40p,rec_td_50p,bonus_rec_yd_100,bonus_rec_yd_200,rush_yd,rush_td,rush_att,rush_fd,rush_2pt,rush_40p,rush_td_40p,rush_td_50p,bonus_rush_att_20,bonus_rush_rec_yd_100,bonus_rush_rec_yd_200,bonus_rush_yd_100,bonus_rush_yd_200,fum,fum_lost FROM Leagues_2022"));
+  csv (out => "${gitrepodir}/Trades_2022.csv", sep_char => ";", headers => [qw( Trade_ID Time Day Items1 Items2 All_Items Items1_Owner Items2_Owner League_ID Total_Rosters Total_Players Start_Players Rec_Bonus Rec_Bonus_TE Pass_TD Old_League_ID )], in => $dbh->selectall_arrayref ("SELECT t.TradeID, t.Time,(t.Time/86400000)+25569 AS 'Day', t.Items1, t.Items2,CONCAT(t.Items1,'; ',t.Items2) AS AllItems, t.Items1Owner, t.Items2Owner, t.League, l.total_rosters, l.total_players, l.total_players - roster_positions_BN AS Start_Players, l.rec_bonus, l.bonus_rec_te, l.pass_td, l.previous_league_id FROM Trades_2022 t INNER JOIN Leagues_2022 l ON t.League = l.LeagueID ORDER BY t.Time DESC"));
+  csv (out => "${gitrepodir}/PickTrades_2022.csv", sep_char => ";", headers => [qw( Trade_ID Time Day Items1 Items2 All_Items Items1_Owner Items2_Owner League_ID Draft_Rounds Total_Rosters Total_Players Start_Players Rec_Bonus Rec_Bonus_TE Pass_TD )], in => $dbh->selectall_arrayref ("SELECT p.TradeID,p.Time,(p.time/86400000)+25569 AS 'Day',p.Items1,p.Items2,CONCAT(p.Items1,'; ',p.Items2) AS AllItems,p.Items1Owner,p.Items2Owner,p.League,p.DraftRounds,l.total_rosters,l.total_players,l.total_players - roster_positions_BN AS Start_Players,l.rec_bonus,l.bonus_rec_te,l.pass_td FROM PickTrades_2022 p INNER JOIN Leagues_2022 l ON p.League = l.LeagueID ORDER BY p.Time DESC"));
   csv (out => "${gitrepodir}/KtcValues.csv", sep_char => ",", headers => [qw( Player_ID Sleeper_ID Player_Name Value)], in => $dbh->selectall_arrayref ("SELECT k.player_id,k.sleeper_id,k.player_name,k.value FROM KeepTradeCut k ORDER BY k.value DESC"));
   csv (out => "${gitrepodir}/DevyKtcValues.csv", sep_char => ",", headers => [qw( Player_ID Player_Name Value)], in => $dbh->selectall_arrayref ("SELECT k.player_id,k.player_name,k.value FROM DevyKeepTradeCut k ORDER BY k.value DESC"));
   csv (out => "${gitrepodir}/TradeCount_2022.csv", sep_char => ";", headers => [qw( Sleeper_ID ADP Player_Name Last_Month Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec All_Year )], in => $dbh->selectall_arrayref ("SELECT t.PlayerID,t.ADP,t.PlayerName,t.LastM,t.s${season}01,t.s${season}02,t.s${season}03,t.s${season}04,t.s${season}05,t.s${season}06,t.s${season}07,t.s${season}08,t.s${season}09,t.s${season}10,t.s${season}11,t.s${season}12,t.s${season} FROM TradeStats_2022 t ORDER BY -ADP DESC"));
