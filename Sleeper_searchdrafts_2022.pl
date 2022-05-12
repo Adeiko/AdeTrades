@@ -23,11 +23,11 @@ my $o_minsearchage = 7;
 my $o_maxusers = 25;
 my $o_maxdrafts = 25;
 my $sport = "nfl";
-my $seasonleagues = "2021";
+my $seasonleagues = "2022";
 my $seasondrafts = "2022";
 my $countdrafts = 0;
 my @correctScorings = ("dynasty","dynasty_2qb","dynasty_ppr","dynasty_half_ppr","dynasty_std");
-
+my @BannedPicks = ('4046','6797','1466','6794','4034'); #Players searched to discard 'rookie drafts' with them (Mahomes/Herbert/Kelce/Jefferson/CMC)
 check_options();
 
 # DateTime variables
@@ -132,32 +132,36 @@ sub get_leagues { # Get All leagues from a User
 sub get_numberpicks {
   my $leagueID = shift;
   my $draftpicksjson = get_json("https://api.sleeper.app/v1/draft/${leagueID}/picks");
-  if (defined($o_rookie)){
-    my @BannedPicks = ('4046','6797','1466','6794','4034'); #If Mahomes/Herbert/Kelce/Jefferson/CMC and Rookie, return 0.
-    foreach my $draftpick ( @$draftpicksjson ) {
+  my $pickcounter = 0;
+  foreach my $draftpick ( @$draftpicksjson ) {
+    $pickcounter++;
+    last if ($pickcounter > 50);
+    if ($draftpick->{picked_by} eq ""){ # If has no userID, discard it and ignore it
+      insert_newdraft($leagueID);
+      return 0;
+    }
+    if (defined($o_rookie)){ # Drafts with less than 10 rounds but with veteran players... discard them and add as scraped.
       if (grep(/$draftpick->{player_id}/, @BannedPicks)){
         insert_newdraft($leagueID);
         return 0;
       }
     }
-  }
-  if (defined($o_picks)){ #If only want draft with picks, check for kickers and if none
-    foreach my $draftpick ( @$draftpicksjson ) {
+    if (defined($o_picks)){ #If only want draft with picks, check for kickers and if none
       if ($draftpick->{metadata}->{position} eq "K"){
         return keys @$draftpicksjson;
       }
     }
-    return 0;
-  }
-  if (defined($o_nosimple)){ #If only want draft with picks, check for kickers and if none
-    foreach my $draftpick ( @$draftpicksjson ) {
+    if (defined($o_nosimple)){ #If only want draft with picks, check for kickers and if none
       if ($draftpick->{metadata}->{years_exp} == 0){
         return keys @$draftpicksjson;
       }
     }
-    return 0;
   }
-  return keys @$draftpicksjson; # Return number of picks
+  if ( (defined($o_picks)) || (defined($o_nosimple)) ){
+    return 0;
+  }else{
+    return keys @$draftpicksjson; # Return number of picks
+  }
 }
 
 sub get_leagueusers { # Gets all Users from a League
@@ -209,6 +213,11 @@ sub get_Drafts { # Gets All Draft for a User With certain settings
       next unless (grep(/^$draft->{metadata}->{scoring_type}$/, @correctScorings)); # To Filter non-Dynasty
       next unless ( ($draft->{settings}->{teams} == 12) || ($draft->{settings}->{teams} == 14) ); # To filter 12/14 team leagues
       next unless (exists($draft->{settings}->{slots_super_flex})); # To Filter non-SF
+      next if (exists($draft->{settings}->{slots_def})); # To Filter leagues with Defenses
+      next if (exists($draft->{settings}->{slots_db})); # To Filter leagues with IDP
+      next if (exists($draft->{settings}->{slots_lb})); # To Filter leagues with IDP
+      next if (exists($draft->{settings}->{slots_dl})); # To Filter leagues with IDP
+      next if (exists($draft->{settings}->{slots_idp_flex})); # To Filter leagues with IDP
       if (defined($draft->{settings}->{slots_te})){
           next unless ($draft->{settings}->{slots_te} < 2); # To 2TE Drafts
       }
@@ -286,8 +295,8 @@ sub help {
     Max number of drafts to search for. (default 25)
 -M, --maxusers
     Max number of users to scan (default 25)
--n, --nosimple
-    Only Draft that cointains at least a Rookie Player.
+-n, --norookies
+    Only Startup Draft that contain rookie players.
 -r, --rookies
     Only Rookie Drafts (< 10 rounds).
 -p, --picks
@@ -310,7 +319,7 @@ sub check_options {
     'u:s'   => \$o_username,        'username:s'      => \$o_username,
     'r'     => \$o_rookie,          'rookies'         => \$o_rookie,
     'p'     => \$o_picks,           'picks'           => \$o_picks,
-    'n'     => \$o_nosimple,        'nosimple'        => \$o_nosimple,
+    'n'     => \$o_nosimple,       'nosimple'        => \$o_nosimple,
     't:i'   => \$o_teams,           'teams:i'         => \$o_teams,
     'a:i'   => \$o_maxage,          'maxage:i'        => \$o_maxage,
     'A:i'   => \$o_minsearchage,    'minage:i'        => \$o_minsearchage,
