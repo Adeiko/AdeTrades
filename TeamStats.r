@@ -30,9 +30,18 @@ team_data <- pbp %>%
     Total_Plays_gp = round(Total_Plays/(max(week)-1),2),
     Total_Plays_Pass_per = round(sum(pass)/Total_Plays,2),
     Total_Plays_Rush_per = round(sum(rush)/Total_Plays,2),
-    Pass_Over_Expectation_Down_1_2 = round(mean(pass_oe[down<=2&!is.na(pass_oe)]),2),
-    Pass_Over_Expectation_Down_1_2_3 = round(mean(pass_oe[down=3&!is.na(pass_oe)]),2),
-    Pass_Over_Expectation = round(mean(pass_oe[down<=3&!is.na(pass_oe)]),2),
+    Total_Yards = sum(yards_gained[sack==0]),
+    Total_Yards_gp = round(sum(yards_gained[sack==0])/(max(week)-1),2),
+    Total_Yards_Rush_per = round(sum(rushing_yards[!is.na(rushing_yards)])/sum(yards_gained[sack==0]),2),
+    Total_Yards_Pass_per = round(sum(passing_yards[!is.na(passing_yards)])/sum(yards_gained[sack==0]),2),
+    Total_TD = sum(rush_touchdown,pass_touchdown),
+    Total_TD_gp = round(sum(rush_touchdown,pass_touchdown)/(max(week)-1),2),
+    Total_TD_Pass_per = round(sum(pass_touchdown)/sum(rush_touchdown,pass_touchdown),2),
+    Total_TD_Rush_per = round(sum(rush_touchdown)/sum(rush_touchdown,pass_touchdown),2),
+    Pass_Over_Expectation_Down_1_2 = round(mean(pass_oe[down<=2&!is.na(pass_oe)]),2)/100,
+    Pass_Over_Expectation_Down_1_2_3 = round(mean(pass_oe[down=3&!is.na(pass_oe)]),2)/100,
+    Pass_Over_Expectation_Neutral_Down_1_2_3 = round(mean(pass_oe[down=3&!is.na(pass_oe)&score_differential <= 3 & score_differential  <= 3]),2)/100,
+    Pass_Over_Expectation = round(mean(pass_oe[down<=3&!is.na(pass_oe)]),2)/100,
     Total_Plays_Lead = sum(rush,pass[score_differential > 3]),
     Total_Plays_Lead_per = round(Total_Plays_Lead/Total_Plays,2),
     Rush_Plays_Lead = sum(rush[score_differential > 3]),
@@ -51,7 +60,6 @@ team_data <- pbp %>%
     Rush_Plays_Trail_per = round(Rush_Plays_Trail/Total_Plays_Trail,2),
     Pass_Plays_Trail = sum(pass[score_differential < -3]),
     Pass_Plays_Trail_per = round(Pass_Plays_Trail/Total_Plays_Trail,2),
-    Total_Yards = sum(yards_gained[sack==0]),
     #Passing
     Pass_Dropbacks = sum(pass),
     Pass_Dropbacks_gp = round(Pass_Dropbacks/(max(week)-1),2),
@@ -69,11 +77,14 @@ team_data <- pbp %>%
     Pass_TD_gp = round(Pass_TD/(max(week)-1),2),
     Pass_AirYards = sum (air_yards[!is.na(air_yards)]),
     Pass_AirYards_gp = round(Pass_AirYards/(max(week)-1),2),
-    Pass_CPOE = round(mean(cpoe[!is.na(cpoe)]),2),
+    Pass_CPOE = round(mean(cpoe[!is.na(cpoe)]),2)/100,
     Pass_Sacks = sum(sack),
     Pass_Sacks_gp = round(Pass_Sacks/(max(week)-1),2),
     Pass_Sack_Yards = sum(yards_gained[sack==1]),
     Pass_Sack_Yards_gp = round(Pass_Sack_Yards/(max(week)-1),2),
+    Pass_throwaway = sum(pass[!is.na(air_yards)&air_yards==0]),
+    Pass_throwaway_gp = round(sum(pass[!is.na(air_yards)&air_yards==0])/(max(week)-1),2),
+    Pass_Throwaway_per = round(sum(pass[!is.na(air_yards)&air_yards==0])/sum(pass),2),
     #Rushing
     Rush_Att = sum(rush),
     Rush_Att_gp = round(Rush_Att/(max(week)-1),2),
@@ -108,6 +119,7 @@ team_data <- pbp %>%
     #Receptions
     Rec_YAC = sum(yards_after_catch[!is.na(yards_after_catch)]),
     Rec_YAC_gp = round(Rec_YAC/(max(week)-1),2),
+    Rec_Tar = sum(pass_attempt)-sum(pass_attempt[!is.na(air_yards)&air_yards==0]),
     Rec_Tar_RB = sum(pass_attempt[!is.na(recpos)&(recpos=="RB"|recpos=="FB")]),
     Rec_Tar_RB_gp = round(Rec_Tar_RB/(max(week)-1),2),
     Rec_Rec_RB = sum(complete_pass[!is.na(recpos)&(recpos=="RB"|recpos=="FB")]),
@@ -126,9 +138,9 @@ team_data <- pbp %>%
     Rec_Rec_TE_gp = round(Rec_Rec_TE/(max(week)-1),2),
     Rec_TD_TE = sum(pass_touchdown[!is.na(recpos)&recpos=="TE"]),
     Rec_TD_TE_gp = round(Rec_TD_TE/(max(week)-1),2),
-    Rec_MS_RB = round(Rec_Tar_RB/sum(pass_attempt),2),
-    Rec_MS_WR = round(Rec_Tar_WR/sum(pass_attempt),2),
-    Rec_MS_TE = round(Rec_Tar_TE/sum(pass_attempt),2),
+    Rec_MS_RB = round(Rec_Tar_RB/Rec_Tar,2),
+    Rec_MS_WR = round(Rec_Tar_WR/Rec_Tar,2),
+    Rec_MS_TE = round(Rec_Tar_TE/Rec_Tar,2),
     Rec_TD_MS_RB = round(Rec_TD_RB/sum(pass_touchdown),2),
     Rec_TD_MS_WR = round(Rec_TD_WR/sum(pass_touchdown),2),
     Rec_TD_MS_TE = round(Rec_TD_TE/sum(pass_touchdown),2),
@@ -144,5 +156,3 @@ team_data <- pbp %>%
   )
 
 write.csv(team_data,paste0("TeamData.csv"), row.names = FALSE)
-
-
