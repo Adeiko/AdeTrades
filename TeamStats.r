@@ -20,7 +20,7 @@ pbp <- pbp[rosters, recpos := i.position, on = .(receiver_id = gsis_id, season =
 pbp <- pbp[rosters, rushpos := i.position, on = .(rusher_id = gsis_id, season = season)]
 
 pbp<- pbp %>%
-  dplyr::filter(rush == 1 | pass == 1,qb_kneel==0,!is.na(epa),!is.na(posteam),season_type=="REG",!(play_type=="no_play"),dplyr::case_when(season==2021 ~ week<=17,T ~ week<=16))%>%
+  dplyr::filter(rush == 1 | pass == 1,qb_kneel==0,!(qtr==5),!is.na(epa),!is.na(posteam),season_type=="REG",!(play_type=="no_play"),dplyr::case_when(season==2021 ~ week<=17,T ~ week<=16))%>%
   dplyr::group_by(posteam,season)
 
 team_data <- pbp %>%
