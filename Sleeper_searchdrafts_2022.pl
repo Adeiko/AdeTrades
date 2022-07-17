@@ -13,7 +13,7 @@ use Term::ProgressBar;
 use DBI;
 use Data::Dumper;
 
-my ($o_help,$o_verb,$o_username,$o_picks,$o_teams,$o_nosimple,$o_simple,$o_single,$o_drafting,$o_currentdrafttype);
+my ($o_help,$o_verb,$o_username,$o_picks,$o_teams,$o_nosimple,$o_simple,$o_single,$o_drafting,$o_currentdrafttype,$o_mintrades);
 my (@possibleusers,@leaguelist,@expandedusers,@dlist,@Slist,@Rlist);
 my ($user,$blist,$ulist);
 
@@ -240,13 +240,20 @@ sub get_Drafts { # Gets All Draft for a User With certain settings
         }
       }
       next unless (get_numberpicks($draft->{draft_id}) > 0);
+      if (!(defined($draft->{league_id}))){ # To Filter Mocks
+        verb("Skipped ".$draft->{draft_id}." since it has no leagueID");
+      }
+      if ((defined $o_mintrades)&&($o_mintrades>0)){
+        my $tradesjson = get_json("https://api.sleeper.app/v1/league/".$draft->{league_id}."/traded_picks");
+        if (scalar @$tradesjson < $o_mintrades){
+           verb("Skipped ".$draft->{draft_id}." since it has only ".scalar @$tradesjson." trades (min $o_mintrades)");
+           next;
+        }
+      }
       insert_newdraft($draft->{draft_id});
       if ($dt2 > $dt1){ # Skip if draft is in the "future"
         verb("Skipped ".$draft->{draft_id}." since it seems to be in the future. Date: ".$dt2.".");
         next;
-      }
-      if (!(defined($draft->{league_id}))){ # To Filter Mocks
-        verb("Skipped ".$draft->{draft_id}." since it has no leagueID");
       }
       next unless (defined($draft->{league_id}));
       if ($draft->{type} eq "auction"){ # To discard auctions
@@ -326,18 +333,18 @@ sub get_Drafts { # Gets All Draft for a User With certain settings
 sub print_drafts{
   my $currentu = shift;
   print "Have found";
-  print " ".scalar(@Rlist)." Rookie drafts (> ${o_rookie})," if ($o_rookie >0);
   print " ".scalar(@Slist)." Startup drafts (> ${o_startup})" if ($o_startup >0);
+  print " ".scalar(@Rlist)." Rookie drafts (> ${o_rookie})," if ($o_rookie >0);
   print " from ${countdrafts} detected on ${currentu} users.\n";
-  if (($o_rookie >0) and (scalar(@Rlist)>0)) {
-    print "Rookie Drafts:\n";
-    foreach my $draftID (@Rlist){
-      print "https://sleeper.app/draft/nfl/${draftID}\n";
-    }
-  }
   if (($o_startup >0) and (scalar(@Slist)>0)){
     print "Startup Drafts:\n";
     foreach my $draftID (@Slist){
+      print "https://sleeper.app/draft/nfl/${draftID}\n";
+    }
+  }
+  if (($o_rookie >0) and (scalar(@Rlist)>0)) {
+    print "Rookie Drafts:\n";
+    foreach my $draftID (@Rlist){
       print "https://sleeper.app/draft/nfl/${draftID}\n";
     }
   }
@@ -410,6 +417,8 @@ sub help {
     Min age of user latest scrapedate (to make them rescrape). (default 5)
 -M, --maxusers <INTEGER>
     Max number of users to scan (default 25)
+-t, --mintrades <INTEGER>
+    Min trades to qualify (default 0)
 -d, --drafting
     Only search for drafts currently Drafting.
 -t, --teams <INTEGER>
@@ -454,10 +463,11 @@ sub check_options {
     'p'     => \$o_picks,           'picks'           => \$o_picks,
     'n'     => \$o_nosimple,        'nosimple'        => \$o_nosimple,
     'q'     => \$o_simple,          'simple'          => \$o_simple,
+    't:i'   => \$o_mintrades,       'mintrades'       => \$o_mintrades,
     'u:s'   => \$o_username,        'username:s'      => \$o_username,
     's'     => \$o_single,          'singleuser'      => \$o_single,
     'y:i'   => \$seasonleagues,     'year:i'          => \$seasonleagues,
-    'P'     => \$o_progressbar,     'progressbar'     => \$o_progressbar,
+    'P'     => \$o_progressbar,     'noprogressbar'   => \$o_progressbar,
     'v'     => \$o_verb,            'verbose'         => \$o_verb
   );
   if(defined($o_help)) {
@@ -469,7 +479,7 @@ sub check_options {
     help();
     exit 0;
   }
-  if ((defined($o_progressbar)) || (defined($o_verb))){
+  if (defined($o_verb)){
     $o_progressbar = 1;
   }
   if ((defined($o_nosimple)) and (defined($o_simple))){
