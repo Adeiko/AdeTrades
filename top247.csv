@@ -1,980 +1,983 @@
 playername;position;highschool;state;metrics;score;natrank;posrank;sttrank;college
-"Trey Cornist";RB;"Winton Woods (Cincinnati, OH)";OH;"5-11 / 209";84;NA;95;51;"Georgia Tech"
-"Gavin Hunter";ATH;"Mililani (Mililani, HI)";HI;"6-2 / 190";87;NA;71;6;Arizona
-"Josh Palmer";TE;"Autauga Academy (Prattville, AL)";AL;"6-5 / 215";85;NA;53;39;
-"Nic Strong";RB;"Randolph School (Huntsville, AL)";AL;"5-10 / 175";79;NA;140;63;
-"Rasheem Biles";ATH;"Pickerington Central (Pickerington, OH)";OH;"6-2 / 180";86;NA;93;31;Pittsburgh
-"Spencer Lyons";ATH;"Catholic Central (Novi, MI)";MI;"6-2 / 215";79;NA;226;48;
-"Cruz Estrada";ATH;"Mater Dei Catholic (Chula Vista, CA)";CA;"6-0 / 190";81;NA;188;256;
-"DeAndra Burns";WR;"El Dorado (El Dorado, AR)";AR;"5-9 / 150";87;NA;112;5;"Arkansas State"
-"James Scott";RB;"Franklin (Seattle, WA)";WA;"5-9 / 205";74;NA;171;133;
-"Steve Hall";RB;"Mary Institute & St Louis Country Day (Saint Louis, MO)";MO;"5-10 / 200";79;NA;139;43;
-"Mateo Poso";ATH;"Branham (San Jose, CA)";CA;"6-1 / 224";83;NA;161;189;
-"Ty Stamey";TE;"Klein Collins (Spring, TX)";TX;"6-5 / 240";82;NA;86;233;Louisiana
-"Shamar Porter";WR;"Ensworth (Nashville, TN)";TN;"6-3 / 192";92;186;21;3;Kentucky
-"James Minor";RB;"Winton Woods (Cincinnati, OH)";OH;"5-10 / 200";76;NA;167;112;
-"Jakob Dixon";WR;"Pleasure Ridge Park (Louisville, KY)";KY;"6-4 / 197";86;NA;165;11;Kentucky
-"Briggs Bartosh";ATH;"Park Hill South (Riverside, MO)";MO;"5-10 / 180";81;NA;197;38;
-"Pierce Walsh";TE;"Benet Academy (Lisle, IL)";IL;"6-4 / 210";85;NA;57;25;Minnesota
-"Max Cutforth";QB;"Skyview (Nampa, ID)";ID;"6-2 / 170";78;NA;148;19;
-"Ayden Greene";WR;"Powell (Powell, TN)";TN;"6-0.5 / 167";89;NA;43;10;Cincinnati
-"Cort Halsey";TE;"Menlo (Atherton, CA)";CA;"6-3 / 205";77;NA;119;419;
-"Kevin Concepcion";WR;"Julius L. Chambers (Charlotte, NC)";NC;"5-11 / 173";87;NA;107;21;
-"Nicholas Fernandez";ATH;"San Pedro (San Pedro, CA)";CA;"6-4 / 250";86;NA;84;115;
-"Mahki Rolle";ATH;"North Miami Beach Senior (Miami, FL)";FL;"6-2 / 190";84;NA;157;221;"Northern Illinois"
-"CJ Tiller";QB;"Rancho Cucamonga (Rancho Cucamonga, CA)";CA;"6-2 / 190";87;NA;31;67;"Boise State"
-"Kyle Parker";WR;"Lovejoy (Lucas, TX)";TX;"5-10 / 175";88;NA;55;67;LSU
-"Grant Gray";WR;"Norco (Norco, CA)";CA;"6-3 / 180";88;NA;64;45;UCLA
-"Joshua Manning";WR;"Lee's Summit (Lees Summit, MO)";MO;"6-3 / 190";90;NA;29;7;Missouri
-"Hezekiah Anahu-Ambrosio";ATH;"Timpview (Provo, UT)";UT;"5-11 / 190";84;NA;143;22;Nevada
-"Pierce Clarkson";QB;"St. John Bosco (Bellflower, CA)";CA;"6-0 / 190";90;NA;17;21;Louisville
-"Jackson Arnold";QB;"Guyer (Denton, TX)";TX;"6-1 / 205";98;15;5;2;Oklahoma
-"Montrel Hatten";WR;"Carthage (Carthage, TX)";TX;"6-0 / 175";88;NA;62;73;"Oregon State"
-"Keyjuan Brown";RB;"South Atlanta (Atlanta, GA)";GA;"5-9 / 205";87;NA;46;71;Purdue
-"Blake Boda";QB;"Cocoa (Cocoa, FL)";FL;"6-3 / 173";77;NA;162;284;
-"Logan Blake";TE;"Hun School (Princeton, NJ)";NJ;"6-6 / 215";86;NA;47;15;Rutgers
-"Jacob Kilzer";QB;"Maple Grove (Osseo, MN)";MN;"6-2 / 196";79;NA;141;19;
-"Sergio Snider";RB;"Martin (Arlington, TX)";TX;"5-10 / 185";85;NA;82;210;
-"Marquese Williams";RB;"Bishop McDevitt (Harrisburg, PA)";PA;"5-8 / 175";87;NA;41;14;Minnesota
-"Jaquaize Pettaway";WR;"Langham Creek (Houston, TX)";TX;"5-11 / 170";95;40;6;5;Oklahoma
-"Major Givens";RB;"Steele Canyon (Spring Valley, CA)";CA;"5-9 / 180";84;NA;85;153;"Montana State"
-"Tre' Hartwell";RB;"Independence (Thompson's Station, TN)";TN;"5-11.5 / 219";83;NA;96;53;
-"Samuel Singleton";RB;"Fleming Island (Orange Park, FL)";FL;"5-11 / 180";90;NA;14;53;"Florida State"
-"Tovie Martin";TE;"Clovis (Clovis, CA)";CA;"6-4 / 245";76;NA;120;432;
-"Kenneth Jones";RB;"West Bloomfield (West Bloomfield, MI)";MI;"5-10 / 190";79;NA;144;52;"Grand Valley State"
-"Jesse Ofurie";WR;"St. John's Prep (Danvers, MA)";MA;"6-2 / 195";87;NA;113;8;Rutgers
-"Saimone Davis";TE;"Nolan Catholic (Fort Worth, TX)";TX;"6-5 / 220";86;NA;44;145;BYU
-"Suntarine Perkins";ATH;"Raleigh (Raleigh, MS)";MS;"6-3 / 200";94;77;5;1;"Ole Miss"
-"Beni Ngoyi";WR;"Lincoln (Lincoln, NE)";NE;"6-4 / 180";88;NA;69;5;"Iowa State"
-"John-Keawe Sagapolutele";QB;"Punahou (Honolulu, HI)";HI;"6-1 / 185";82;NA;105;14;Hawaii
-"Marquez Taylor";ATH;"Mckenzie (Mckenzie, TN)";TN;"5-10 / 171";86;NA;99;29;
-"Parker Jenkins";RB;"Klein Forest (Houston, TX)";TX;"5-10 / 185";88;NA;25;74;Houston
-"Daisjaun Mercer";ATH;"Hopkinsville (Hopkinsville, KY)";KY;"- / -";79;NA;228;18;"Miami (OH)"
-"Carson Rhodes";TE;"Nevada (Nevada, IA)";IA;"6-7 / 245";85;NA;60;14;"Iowa State"
-"Demarkus Brown";ATH;"Mount Pleasant (Mount Pleasant, TN)";TN;"6-1 / 170";83;NA;164;58;
-"Kenny Johnson";WR;"Dallastown Area (Dallastown, PA)";PA;"6-1 / 190";87;NA;109;16;Pittsburgh
-"Masen Uribe";RB;"Eastside Catholic (Sammamish, WA)";WA;"5-10 / 182";75;NA;169;127;
-"Aidan Hall";ATH;"Harlan Community (Harlan, IA)";IA;"6-1 / 200";85;NA;118;15;Iowa
-"Owen Sieben";QB;"Terry Fox (Port Coquitlam, BC)";BC;"6-4 / 203";73;NA;187;2;
-"Deondre Johnson";ATH;"Newburgh Free Academy (Newburgh, NY)";NY;"6-8 / 200";86;NA;102;5;Rutgers
-"Grayson Loftis";QB;"Gaffney (Greer, SC)";SC;"6-2 / 205";87;NA;33;7;Duke
-"Tyler Garrett";TE;"Mission College Preparatory Catholic (San Luis Obispo, CA)";CA;"6-5 / 190";77;NA;117;395;
-"Jack Jacobs";QB;"St. Francis (La Canada Flintridge, CA)";CA;"6-6 / 205";83;NA;91;197;
-"Donte Hawthorne";RB;"Colonial Forge (Stafford, VA)";VA;"6-0 / 200";85;NA;67;34;Virginia
 "Thomas Williams";ATH;"Powdersville (Greenville, SC)";SC;"5-10 / 180";87;NA;68;10;"Virginia Tech"
-"Arthur Jenkins";WR;"Dillard (Fort Lauderdale, FL)";FL;"6-3 / 190";84;NA;204;203;"Florida Atlantic"
-"Emory Williams";QB;"Milton (Milton, FL)";FL;"6-4.5 / 190";87;NA;34;98;Miami
-"Gage Sliter";QB;"Glacier (Kalispell, MT)";MT;"6-1 / 185";77;NA;166;13;
-"Nakai Poole";WR;"Norcross (Norcross, GA)";GA;"6-3 / 205";87;NA;81;57;"Mississippi State"
-"Joshua Robinson";RB;"Bolingbrook (Bolingbrook, IL)";IL;"6-2 / 210";83;NA;107;38;
-"Carson Dunn";RB;"Fishers (Fishers, IN)";IN;"5-10 / 185";77;NA;160;41;
-"Jonathan Humpal";RB;"Lewis Central (Council Bluffs, IA)";IA;"5-10 / 165";82;NA;113;22;
-"Nayati Hendrix";ATH;"Kaiser (Fontana, CA)";CA;"5-11 / 170";81;NA;185;252;
-"Vicari Swain";ATH;"Central (Carrollton, GA)";GA;"6-0 / 175";87;NA;51;56;
-"Brock Glenn";QB;"Lausanne Collegiate School (Memphis, TN)";TN;"6-2 / 195";90;NA;19;6;"Ohio State"
-"Jazel Riley IV";QB;"Golden (Golden, CO)";CO;"6-1 / 210";80;NA;131;17;
-"Camron Heard";WR;"Furr (Houston, TX)";TX;"5-11 / 165";88;NA;54;66;"Oklahoma State"
-"Will Randle";TE;"Isidore Newman (New Orleans, LA)";LA;"6-3 / 220";85;NA;64;37;Texas
-"Braxton Woodson";QB;"Lake Brantley (Altamonte Springs, FL)";FL;"6-3 / 195";82;NA;107;259;Navy
-"Malachi Nelson";QB;"Los Alamitos (Los Alamitos, CA)";CA;"6-3 / 182";98;5;4;2;USC
-"Richie Munoz";QB;"La Salle (Pasadena, CA)";CA;"6-0 / 195";84;NA;71;156;
-"Henry Garrity";TE;"Brother Rice (Bloomfield Hills, MI)";MI;"6-4 / 205";83;NA;76;26;
-"Mychal Yharbrough";ATH;"Belleville (Belleville, MI)";MI;"6-1 / 175";84;NA;150;24;"Miami (OH)"
-"Lonnie Johnson";WR;"Timber Creek (Keller, TX)";TX;"6-3 / 205";85;NA;167;196;SMU
-"Miles Thompson";ATH;"Washington (Sioux Falls, SD)";SD;"6-0 / 165";82;NA;181;3;"Northern Illinois"
-"Ethan Clemons";ATH;"Calabasas (Calabasas, CA)";CA;"6-0 / 180";80;NA;202;290;
-"Nathaniel Joseph";WR;"Edison (Miami, FL)";FL;"5-8 / 170";93;110;15;23;Miami
-"Darrell Sweeting";ATH;"The Benjamin School (North Palm Beach, FL)";FL;"5-10 / 175";85;NA;138;191;Charlotte
-"Collin Dixon";ATH;"Tallmadge (Tallmadge, OH)";OH;"6-2 / 205";86;NA;92;29;Wisconsin
-"Keaton Kubecka";WR;"Westlake (Austin, TX)";TX;"6-2 / 195";84;NA;198;213;Kansas
-"Austin Gonzalez";QB;"Lovejoy (Lucas, TX)";TX;"5-10 / 170";76;NA;176;239;"Southern Miss"
-"Ty Bryant";ATH;"Frederick Douglass (Lexington, KY)";KY;"6-0 / 175";86;NA;86;9;Kentucky
-"Mateaki Helu";ATH;"Tooele (Tooele, UT)";UT;"6-0 / 200";86;NA;89;9;Utah
-"Karaaz Johnson";WR;"St. Augustine (Knoxville, TN)";TN;"5-6.5 / 127";84;NA;217;39;
-"Kadin Semonza";QB;"Mission Viejo (Mission Viejo, CA)";CA;"6-0.5 / 190";86;NA;50;102;"Ball State"
-"Curtis Douglas";ATH;"Santaluces Community (Lake Worth, FL)";FL;"6-0 / 200";83;NA;169;235;
-"Kamari Moulton";RB;"Cardinal Gibbons (Fort Lauderdale, FL)";FL;"5-9 / 180";86;NA;62;133;
-"Deakon Tonielli";TE;"Oswego (Oswego, IL)";IL;"6-6 / 215";90;NA;17;3;Michigan
-"Silas Evans";WR;"George Washington (Denver, CO)";CO;"6-1 / 180";84;NA;225;12;"Colorado State"
-"Osize Daniyan";ATH;"Mount Juliet (Mount Juliet, TN)";TN;"5-11.5 / 187";86;NA;100;30;
-"Erik McCarty";ATH;"McAlester (Mcalester, OK)";OK;"6-2 / 180";87;NA;57;6;Oklahoma
-"Jakivion Calip";RB;"Olentangy Orange (Columbus, OH)";OH;"5-11 / 181";83;NA;101;56;"Central Michigan"
-"Micah Tease";ATH;"Booker T. Washington (Tulsa, OK)";OK;"5-11 / 180";93;119;9;2;Arkansas
-"Karmello English";WR;"Central (Phenix City, AL)";AL;"5-11 / 175";91;231;25;16;Auburn
-"Deion Brown";RB;"Kirkwood (Saint Louis, MO)";MO;"5-8 / 155";82;NA;115;35;"Eastern Michigan"
-"Brooks Bentley";QB;"Venice (Venice, FL)";FL;"6-3.5 / 186";80;NA;125;275;
-"Sedrick Irvin Jr.";RB;"Columbus (Miami, FL)";FL;"5-10 / 190";90;NA;20;59;Stanford
-"Keany Parks";RB;"Bradford (Kenosha, WI)";WI;"6-1 / 180";79;NA;145;10;
-"Mekhi Jenkins";RB;"Royal Oak (Royal Oak, MI)";MI;"5-9 / 185";77;NA;162;61;"Central Michigan"
-"Jaron Tibbs";WR;"Cathedral (Indianapolis, IN)";IN;"6-4 / 190";85;NA;182;15;Purdue
-"Mana Tapusoa";RB;"Blue Springs (Blue Springs, MO)";MO;"5-11 / 205";79;NA;138;40;
-"Carson Conklin";QB;"Centennial (Corona, CA)";CA;"6-1 / 175";86;NA;52;107;
-"Carter Shaw";ATH;"Sacred Heart Prep (Atherton, CA)";CA;"6-2 / 180";82;NA;170;214;
-"Jaiden Acker";TE;"Kenowa Hills (Grand Rapids, MI)";MI;"6-4 / 215";78;NA;108;56;
-"Ernest Thomas";WR;"North Forney (Forney, TX)";TX;"6-2 / 185";86;NA;137;159;Campbell
-"Anthony Evans";WR;"Judson (Converse, TX)";TX;"5-11 / 167";88;NA;58;70;
-"Luke Ash";RB;"Clackamas (Clackamas, OR)";OR;"5-8 / 150";77;NA;156;37;
-"Anthony Colandrea";QB;"Lakewood (Saint Petersburg, FL)";FL;"6-0 / 175";86;NA;57;147;Virginia
-"Isaiah Birl";ATH;"Walnut Hills (Cincinnati, OH)";OH;"6-1 / 190";85;NA;120;40;Army
-"Asa Newsom";ATH;"Waverly-Shell Rock (Waverly, IA)";IA;"6-4 / 205";86;NA;91;10;
-"Marcus Stokes";QB;"Nease (Ponte Vedra Beach, FL)";FL;"6-1.5 / 190";92;154;12;31;Florida
-"Edward Schultz";WR;"Mission Viejo (Mission Viejo, CA)";CA;"6-1 / 195";85;NA;181;138;Colorado
-"Tyler Bourland";TE;"Valley Christian (San Jose, CA)";CA;"6-5 / 230";81;NA;91;244;
-"Devin Samples";RB;"Long Beach Poly (Long Beach, CA)";CA;"5-7 / 190";80;NA;129;281;
-"Khamari Anderson";TE;"Cass Technical (Detroit, MI)";MI;"6-4 / 225";89;NA;21;5;Cincinnati
-"Jelani McDonald";ATH;"Connally (Waco, TX)";TX;"6-2 / 190";91;202;17;34;"Oklahoma State"
-"Rashad Davis";WR;"Northwestern (Miami, FL)";FL;"5-11 / 170";83;NA;246;238;"Georgia Southern"
-"Makai Lemon";ATH;"Los Alamitos (Los Alamitos, CA)";CA;"6-0 / 180";96;24;2;6;USC
-"Tyler Brown";WR;"Greenville (Greenville, SC)";SC;"5-11 / 170";87;NA;117;12;Minnesota
-"Rickie Collins";QB;"Woodlawn (Baton Rouge, LA)";LA;"6-2 / 190";92;178;13;7;LSU
-"Colin Houck";QB;"Parkview (Lilburn, GA)";GA;"6-2 / 175";84;NA;72;122;
-"Nicholaus Iamaleava";QB;"Warren (Downey, CA)";CA;"6-5 / 195";98;3;3;1;Tennessee
-"Carnell Tate";WR;"IMG Academy (Bradenton, FL)";FL;"6-2 / 185";97;20;4;5;"Ohio State"
-"Cameron Seldon";ATH;"Northumberland (Heathsville, VA)";VA;"6-1 / 220";96;30;3;2;Tennessee
-"Dylan Edwards";RB;"Derby (Derby, KS)";KS;"5-9 / 165";90;NA;16;3;"Notre Dame"
-"Chris Palfreeman";WR;"All Saints Episcopal (Fort Worth, TX)";TX;"5-8 / 155";86;NA;123;146;"Texas Tech"
-"Dante Moore";QB;"Martin Luther King (Detroit, MI)";MI;"6-2.5 / 210";98;2;2;1;Oregon
-"Roy Gardner";ATH;"Mountain House (Mountain House, CA)";CA;"5-10 / 150";81;NA;184;249;
-"Davoun Fuse";ATH;"Washington (Washington, PA)";PA;"6-4 / 190";85;NA;125;21;Rutgers
-"Joey Wassler";TE;"St. Xavier (Cincinnati, OH)";OH;"6-5 / 225";82;NA;83;65;
-"Barry Tate";WR;"Northeast Guilford (Mcleansville, NC)";NC;"5-9 / 150";84;NA;214;34;
-"Payton Faker";QB;"Kennedy Catholic (Tacoma, WA)";WA;"6-2 / 195";75;NA;179;123;
-"Antwaan Mays";WR;"Gulliver Prep (Miami, FL)";FL;"6-1 / 180";84;NA;220;207;
-"Landen Chambers";RB;"Fossil Ridge (Keller, TX)";TX;"5-11 / 210";83;NA;103;229;BYU
-"Taeshaun Lyons";WR;"Tennyson (Hayward, CA)";CA;"6-2 / 170";89;NA;51;33;
-"Justin Brown";WR;"Blackman (Murfreesboro, TN)";TN;"6-0 / 183";88;NA;59;12;"Mississippi State"
-"Keyon Brown";WR;"James Rickards (Tallahassee, FL)";FL;"6-3 / 188";87;NA;99;101;Oklahoma
-"Asaad Waseem";WR;"Ocoee (Ocoee, FL)";FL;"6-0 / 170";87;NA;101;103;
-"Jake Davies";TE;"Yorkville (Yorkville, IL)";IL;"6-6 / 237";78;NA;113;74;
-"Zion Taylor";WR;"Norcross (Norcross, GA)";GA;"6-1 / 185";86;NA;136;82;"Georgia Tech"
-"Kael Combs";WR;"Nixa (Nixa, MO)";MO;"6-4 / 190";86;NA;125;20;
-"Henry Masters";TE;"Tigard (Portland, OR)";OR;"6-3 / 195";77;NA;116;41;
-"Kenyon Sadiq";ATH;"Skyline Senior (Idaho Falls, ID)";ID;"6-3 / 220";92;149;11;1;
-"Ty Perkins";WR;"Ironton (Ironton, OH)";OH;"6-3 / 190";87;NA;94;24;Cincinnati
-"Lontrell Turner";WR;"Duncanville (Duncanville, TX)";TX;"5-11 / 180";86;NA;151;170;
-"Dontavius Braswell";RB;"Washington County (Sandersville, GA)";GA;"5-11 / 200";91;210;7;21;"South Carolina"
-"Quran Boyd";ATH;"Kempsville (Virginia Beach, VA)";VA;"5-10 / 185";85;NA;124;37;Duke
-"Ryan Niblett";WR;"Aldine Eisenhower (Houston, TX)";TX;"5-10 / 170";95;57;10;8;Texas
-"Jeremiah McClure";WR;"Mater Dei Catholic (Chula Vista, CA)";CA;"6-2 / 195";88;NA;66;47;
-"Omarion Blakes";WR;"McEvans (Shaw, MS)";MS;"5-11 / 175";85;NA;183;23;
-"Deric English";WR;"Saguaro (Scottsdale, AZ)";AZ;"6-4 / 210";90;NA;36;8;
-"Jason Hewlett";ATH;"Chaney (Youngstown, OH)";OH;"6-3 / 200";87;NA;64;20;Cincinnati
-"Jeremiah Collins";ATH;"Oakland (Murfreesboro, TN)";TN;"6-2 / 160";89;NA;36;11;
-"Marquis Johnson";WR;"Dickinson (Dickinson, TX)";TX;"5-11 / 176";86;NA;159;180;Missouri
-"Dylan Braithwaite";WR;"Holy Trinity Diocesan (Hicksville, NY)";NY;"5-10 / 175";86;NA;158;7;Rutgers
-"Bryson Washington";ATH;"Franklin (Franklin, TX)";TX;"5-11 / 197";87;NA;52;92;Baylor
-"Nyziah Hunter";WR;"Salinas (Salinas, CA)";CA;"6-2 / 192";89;NA;49;32;California
-"Ja'Kobi Lane";WR;"Red Mountain (Mesa, AZ)";AZ;"6-4 / 175";90;NA;30;7;
-"Tamarcus Cooley";WR;"Rolesville (Rolesville, NC)";NC;"6-0 / 195";87;NA;108;23;"NC State"
-"Elijah Rogers";ATH;"Oak Ridge (Oak Ridge, TN)";TN;"6-1 / 190";83;NA;163;55;Campbell
-"Earl Woods";QB;"Hueytown (Birmingham, AL)";AL;"5-11 / 185";80;NA;134;62;
-"Jayvontay Conner";TE;"East Forsyth (Kernersville, NC)";NC;"6-4 / 230";85;NA;61;32;"Ole Miss"
-"Ben Marshall";TE;"Blackman (Murfreesboro, TN)";TN;"6-5 / 217";84;NA;71;50;
-"Zack Marshall";ATH;"Carlsbad (Carlsbad, CA)";CA;"6-4 / 220";87;NA;74;92;
-"Lamar Seymore";WR;"Miami Central (Miami, FL)";FL;"6-2 / 185";87;NA;111;107;Pittsburgh
-"Jackson McGohan";TE;"Miamisburg (Miamisburg, OH)";OH;"6-4 / 208";87;NA;36;19;Cincinnati
-"Javien Brownlee";WR;"Northmont (Clayton, OH)";OH;"5-10 / 170";86;NA;142;33;"Kent State"
-"Tucker Ashcraft";TE;"O'Dea (Seattle, WA)";WA;"6-5 / 235";85;NA;55;20;Colorado
-"Romeo Clark";RB;"Warren (Downey, CA)";CA;"5-11 / 210";84;NA;90;176;
-"Jashon Benjamin";RB;"Pahokee (Pahokee, FL)";FL;"5-8 / 180";84;NA;89;209;
-"Ty Lockwood";TE;"Independence (Thompson's Station, TN)";TN;"6-5 / 225";93;136;9;2;Alabama
-"Da'Marion Williams";ATH;"Antelope (Antelope, CA)";CA;"5-9 / 175";78;NA;245;361;
-"Gabe Hoffmann";TE;"Eastside Catholic (Sammamish, WA)";WA;"6-6 / 245";83;NA;77;29;
-"Mason Muaau";WR;"St. Louis (Honolulu, HI)";HI;"6-5 / 210";86;NA;161;8;"Colorado State"
-"Dylan Wade";TE;"Jones (Orlando, FL)";FL;"6-4 / 240";88;NA;30;88;Maryland
-"Eli Holstein";QB;"Zachary (Zachary, LA)";LA;"6-4 / 222";93;103;10;5;Alabama
-"Jeremiah Augustin";ATH;"Jupiter Christian School (Jupiter, FL)";FL;"6-5.5 / 180";83;NA;166;228;
-"Creed Whittemore";ATH;"F. W. Buchholz (Gainesville, FL)";FL;"5-11.5 / 175";92;161;12;33;Florida
-"Cam Smith";ATH;"Fitch (Youngstown, OH)";OH;"5-11 / 185";85;NA;127;41;"Iowa State"
-"R.J. Mukes III";ATH;"Wayne (Dayton, OH)";OH;"5-11 / 170";80;NA;212;83;"Ball State"
-"Marcell Baylor";WR;"Radford (Radford, VA)";VA;"6-3 / 195";86;NA;143;30;"Virginia Tech"
-"Scottre Humphrey";RB;"Rainier Beach (Seattle, WA)";WA;"5-11 / 210";81;NA;125;38;
-"Jaxon Potter";QB;"Santa Margarita Catholic (Rancho Santa Margarita, CA)";CA;"6-4 / 180";86;NA;49;99;UAB
-"Will Prichard";QB;"Santaluces Community (Lake Worth, FL)";FL;"6-2 / 195";77;NA;154;283;
-"Deago Benson";RB;"Midlothian (Midlothian, TX)";TX;"6-0 / 200";86;NA;63;168;"Washington State"
-"Jarriett Buie";WR;"Jesuit (Tampa, FL)";FL;"6-3 / 182";86;NA;164;154;
-"Alex Mota";ATH;"Marion (Marion, IA)";IA;"6-1 / 175";87;NA;61;7;Iowa
-"Dallas Winner-Johnson";TE;"Cardinal Ritter College Prep (Saint Louis, MO)";MO;"6-4 / 200";78;NA;105;48;
-"Winston Moore";WR;"Mary Institute & St Louis Country Day (Saint Louis, MO)";MO;"5-11 / 180";84;NA;209;31;
-"Keith Reynolds";WR;"Adelanto (Adelanto, CA)";CA;"5-10 / 160";84;NA;218;168;Washington
+"King Miller";RB;"Calabasas (Calabasas, CA)";CA;"6-0 / 200";84;NA;93;180;
+"Justyn Reid";TE;"Newnan (Newnan, GA)";GA;"6-5 / 230";84;NA;75;128;"Georgia Tech"
 "Vincent Holmes";ATH;"San Jacinto (San Jacinto, CA)";CA;"6-0 / 180";90;NA;21;20;Washington
-"Kelby Valsin";WR;"Bowie (Arlington, TX)";TX;"6-1 / 180";86;NA;153;171;"Texas Tech"
-"Drew Novak";QB;"Western Brown (Mount Orab, OH)";OH;"6-6 / 190";75;NA;183;115;
-"Tad Hudson";QB;"William Amos Hough (Cornelius, NC)";NC;"6-3 / 220";90;NA;21;12;"North Carolina"
-"Christian Hamilton";WR;"Hickory Ridge (Harrisburg, NC)";NC;"6-0 / 175";90;NA;34;11;"North Carolina"
-"Gavin Shaigineik";QB;"Tesoro (Rancho Santa Margarita, CA)";CA;"6-1 / 160";80;NA;124;289;
-"Ethan Fullerton";ATH;"Notre Dame (Sherman Oaks, CA)";CA;"5-10 / 160";79;NA;233;341;
-"Allen Mitchell";RB;"Lutheran Of St Charles County (Saint Louis, MO)";MO;"5-10 / 185";86;NA;52;21;
-"Anthony White";ATH;"Abernathy (Abernathy, TX)";TX;"6-0 / 180";88;NA;44;83;
-"Jaedn Skeete";WR;"Catholic Memorial (West Roxbury, MA)";MA;"6-0 / 160";85;NA;179;10;"Boston College"
-"Jaylin Townsend";ATH;"Beecher (Mount Morris, MI)";MI;"6-1 / 160";79;NA;216;39;
-"Apollos Cook";WR;"Airport (West Columbia, SC)";SC;"6-2 / 200";85;NA;172;20;Duke
-"Drew Pickett";RB;"Russell County (Deatsville, AL)";AL;"5-10 / 185";86;NA;57;36;"Wake Forest"
-"Jamell James";RB;"Fitch (Youngstown, OH)";OH;"5-10 / 215";78;NA;152;102;
-"Vincent Drolet";WR;"Choate Rosemary Hall (Wallingford, CT)";CT;"6-5 / 220";84;NA;226;7;Duke
-"Nicholas Deloach";WR;"Cahokia (East Saint Louis, IL)";IL;"6-2 / 175";86;NA;162;23;Missouri
-"RJ Johnson";ATH;"Eagles Landing Christian Academy (McDonough, GA)";GA;"6-2 / 180";87;NA;66;60;Arkansas
-"Quindarrius Jones";ATH;"Meridian (Meridian, MS)";MS;"6-2 / 187";86;NA;105;17;"Florida State"
-"Jaelon Barbarin";ATH;"Chaminade (Simi Valley, CA)";CA;"5-9 / 180";84;NA;154;170;
-"Derek Taylor";TE;"Hilmar (Hilmar, CA)";CA;"6-4 / 210";81;NA;89;238;
-"Jacobe Robinson";QB;"Henderson (Henderson, TX)";TX;"6-3.5 / 210";87;NA;28;90;"Boston College"
-"Kamaehu Kaawalauole";WR;"James Campbell (Ewa Beach, HI)";HI;"6-5 / 210";84;NA;223;9;"San Jose State"
-"Ty Dieffenbach";QB;"Agoura (Agoura Hills, CA)";CA;"6-5 / 190";83;NA;87;193;UNLV
-"Skyler Cassel";QB;"West Valley (Yakima, WA)";WA;"6-1 / 180";77;NA;165;101;
-"Will Stallings";RB;"Bishop Gorman (Las Vegas, NV)";NV;"6-0 / 222";85;NA;77;10;Tennessee
-"Jordan Gile";QB;"Chattanooga Christian School (Chattanooga, TN)";TN;"6-0 / 190";80;NA;128;66;
-"David Clement";TE;"Christian Brothers Academy (Albany, NY)";NY;"6-7 / 265";86;NA;50;6;Syracuse
-"Takye Heath";ATH;"Highland Springs (Highland Springs, VA)";VA;"5-9 / 165";86;NA;83;24;"Virginia Tech"
-"Zack Myers";ATH;"Christ School (Arden, NC)";NC;"6-1 / 190";90;NA;22;9;"NC State"
-"Trey Holly";RB;"Union Parish (Farmerville, LA)";LA;"5-8 / 180";87;NA;37;24;LSU
-"Caleb Loveland";QB;"Burley Senior (Burley, ID)";ID;"6-2 / 190";75;NA;186;55;
-"Ardell Banks";WR;"Washington (Massillon, OH)";OH;"6-4 / 180";87;NA;95;26;Toledo
-"Paul Kessler";QB;"Venice (Los Angeles, CA)";CA;"6-5 / 215";80;NA;132;312;
-"Max Carroll";ATH;"Briarcrest Christian (Memphis, TN)";TN;"6-3 / 205";88;NA;43;16;
-"Kylen Webb";ATH;"Sumner High (Riverview, FL)";FL;"6-1 / 180";90;NA;19;54;Clemson
-"Mark Hamper";ATH;"West Linn (West Linn, OR)";OR;"6-2 / 200";83;NA;160;11;
-"Andrew Metzger";TE;"Regis Jesuit (Aurora, CO)";CO;"6-5 / 235";85;NA;54;7;Colorado
-"Christian Johnson";QB;"River Rouge (River Rouge, MI)";MI;"6-2 / 210";77;NA;163;66;
-"Bryson Rodgers";WR;"Wiregrass Ranch (Zephyrhills, FL)";FL;"6-0.5 / 175";90;NA;37;66;"Ohio State"
-"Spencer Jones";WR;"Our Lady Good Counsel HS (Olney, MD)";MD;"6-3 / 190";84;NA;206;28;Duke
-"Maddox Varella";QB;"Oak Ridge (El Dorado Hills, CA)";CA;"6-1 / 190";78;NA;151;371;
-"Tralon Mitchell";ATH;"Southern Nash (Bailey, NC)";NC;"6-2 / 185";86;NA;101;26;"Virginia Tech"
-"Jeremiah Calvin";ATH;"John Muir (Pasadena, CA)";CA;"6-3 / 240";87;NA;56;78;
-"Brayden Dorman";QB;"Vista Ridge (Colorado Springs, CO)";CO;"6-4.5 / 206";90;NA;20;2;Arizona
-"Reese Mooney";QB;"Denham Springs (Denham Springs, LA)";LA;"6-1 / 200";87;NA;35;26;Liberty
-"Kaleb Jackson";RB;"Liberty Magnet (Baton Rouge, LA)";LA;"5-10 / 200";91;213;9;11;LSU
-"Johnny Thompson";RB;"Oaks Christian (Westlake Village, CA)";CA;"5-10 / 190";86;NA;50;108;
-"Eric Denham";WR;"St. John Bosco (Bellflower, CA)";CA;"5-11 / 200";84;NA;200;154;
-"Malik Leverett";WR;"Greenbrier (Evans, GA)";GA;"6-3 / 200";89;NA;45;37;"East Carolina"
-"Kalib Hicks";RB;"Ryan (Denton, TX)";TX;"5-11 / 195";87;NA;39;108;Oklahoma
-"Tymir Wynn";ATH;"KIPP Columbus (Columbus, OH)";OH;"5-11 / 165";82;NA;176;68;
-"Sawyer Deerman";RB;"American Christian Academy (Tuscaloosa, AL)";AL;"5-10 / 175";82;NA;114;56;
-"Riley Paran";RB;"Bellarmine Prep (San Jose, CA)";CA;"5-10 / 185";74;NA;172;459;
-"Zamir Hall";RB;"Ridgeview (Bakersfield, CA)";CA;"5-8 / 160";75;NA;170;450;
-"Jordan Louie";RB;"Meadowcreek (Norcross, GA)";GA;"5-11 / 205";86;NA;65;95;"West Virginia"
-"Chance Guadiz";QB;"Rainier Beach (Seattle, WA)";WA;"6-1 / 205";76;NA;168;115;
-"Nate Johnson";ATH;"Clearwater Central Catholic (Clearwater, FL)";FL;"5-9 / 165";86;NA;78;117;"Boston College"
-"Dakota Patterson";ATH;"Boyle County (Danville, KY)";KY;"6-1.5 / 194";90;NA;26;2;
-"Luke Elliott";QB;"Washington (Tacoma, WA)";WA;"6-5 / 170";75;NA;181;125;
-"Avery Johnson";QB;"Maize (Maize, KS)";KS;"6-2 / 175";93;97;9;1;"Kansas State"
-"JT Smith Jr";ATH;"William Amos Hough (Cornelius, NC)";NC;"5-9 / 199";86;NA;94;24;
-"Devin Roche";RB;"Dunbar (Baltimore, MD)";MD;"5-9 / 177";84;NA;87;27;
-"AJ Newberry";RB;"South Grand Prairie (Grand Prairie, TX)";TX;"6-0 / 200";86;NA;54;156;Colorado
-"Hilton Alexander II";WR;"Douglas County (Douglasville, GA)";GA;"5-11 / 160";87;NA;110;69;"Wake Forest"
-"Logan Minton";TE;"Lafayette (Ballwin, MO)";MO;"6-7 / 210";78;NA;109;51;"Southern Illinois"
-"Josiah Phillips";WR;"Sierra Canyon (Chatsworth, CA)";CA;"6-4.5 / 190";87;NA;105;91;
-"Malachi Singleton";QB;"North Cobb (Kennesaw, GA)";GA;"6-1 / 225";91;234;14;23;Arkansas
-"Carlos Wilson";ATH;"Inderkum (Sacramento, CA)";CA;"5-11 / 160";90;NA;24;23;Utah
-"Myles Libman";WR;"Pinnacle (Phoenix, AZ)";AZ;"6-1 / 185";85;NA;170;18;
-"Ki'Marree Washington";RB;"Lakes (Lakewood, WA)";WA;"5-9 / 180";77;NA;163;102;
-"Aidan Mizell";WR;"Boone (Orlando, FL)";FL;"6-2 / 180";92;148;16;30;Florida
-"Soren Erickson";TE;"St Charles North (Saint Charles, IL)";IL;"6-4 / 238";75;NA;122;85;
-"Kahlil Tate";ATH;"Kenwood Academy (Chicago, IL)";IL;"6-2 / 185";87;NA;69;12;Iowa
-"Daquayvious Sorey";WR;"Chipley (Campbellton, FL)";FL;"6-2 / 185";92;188;22;43;
-"Dante Lovett";ATH;"DeMatha Catholic (Hyattsville, MD)";MD;"6-1 / 185";87;NA;63;11;"Virginia Tech"
-"Tyler Jefferson";ATH;"Columbia (Lake City, FL)";FL;"6-1 / 235";85;NA;133;183;"Central Michigan"
-"Ethan O'Connor";ATH;"Los Alamitos (Los Alamitos, CA)";CA;"6-1 / 170";88;NA;39;54;
-"Tegan Sweaney";QB;"Rocky Mountain (Meridian, ID)";ID;"6-3 / 190";77;NA;155;28;
-"Joquez Smith";RB;"Jesuit (Tampa, FL)";FL;"5-6.5 / 190";84;NA;84;199;Temple
-"J.T. Foreman";RB;"Turlock (Turlock, CA)";CA;"5-10 / 195";81;NA;123;251;
-"Adam Moore";TE;"Northwestern (Miami, FL)";FL;"6-2 / 220";85;NA;62;166;
-"Morgan Pearson";WR;"Plainview (Ardmore, OK)";OK;"6-2 / 225";86;NA;126;11;
-"Noah Rogers";WR;"Rolesville (Rolesville, NC)";NC;"6-2 / 195";95;42;7;1;"Ohio State"
-"Jacobe Fowler";RB;"Lake Gibson (Lakeland, FL)";FL;"5-11 / 210";82;NA;117;247;
-"Dijon Stanley";ATH;"Granada Hills (Granada Hills, CA)";CA;"6-1 / 175";89;NA;31;31;Utah
-"Chico Holt";TE;"Strake Jesuit (Houston, TX)";TX;"6-5 / 220";86;NA;49;176;Northwestern
-"Kainoa Carvalho";WR;"Kahuku (Kahuku, HI)";HI;"5-7 / 165";87;NA;97;7;Utah
-"Riley Williams";TE;"IMG Academy (Bradenton, FL)";FL;"6-6 / 240";94;85;4;19;Miami
-"Jelani Thurman";TE;"Langston Hughes (Fairburn, GA)";GA;"6-5 / 230";94;69;3;5;"Ohio State"
-"Elijah Davis";RB;"Riverside Academy (Reserve, LA)";LA;"5-9 / 215";86;NA;53;31;Louisiana
-"Keldric Luster";QB;"McKinney (McKinney, TX)";TX;"5-10 / 227";83;NA;90;228;SMU
-"Anthony Alonzo";ATH;"Oakland Technical (Oakland, CA)";CA;"5-11 / 180";80;NA;211;321;
-"Matthew Klopfenstein";TE;"Horizon (Scottsdale, AZ)";AZ;"6-5 / 226";90;NA;18;9;Baylor
-"Mykel Morman";ATH;"Dr. Henry Wise (Upper Marlboro, MD)";MD;"6-1 / 175";85;NA;137;26;Maryland
-"C.J. Jacobsen";TE;"Rocky Mountain (Meridian, ID)";ID;"6-5 / 230";87;NA;40;2;
-"Dalton Brooks";ATH;"Shiner (Shiner, TX)";TX;"6-1 / 185";93;106;8;21;"Texas A&M"
-"Zion Agnew";ATH;"Ridge View (Columbia, SC)";SC;"5-11 / 165";85;NA;116;23;"East Carolina"
-"Aidan Gray";QB;"Naperville North (Naperville, IL)";IL;"6-3 / 200";87;NA;38;10;Northwestern
-"Caron Tyler";QB;"Chaparral (Temecula, CA)";CA;"5-11 / 180";81;NA;114;266;
-"Carmelo Taylor";WR;"Patrick Henry (Roanoke, VA)";VA;"5-11 / 160";89;NA;47;7;"Penn State"
-"William Watson III";QB;"Springfield Central (Springfield, MA)";MA;"6-0 / 175";86;NA;56;9;Nebraska
-"Randy Reece";WR;"South Oak Cliff (Dallas, TX)";TX;"5-9 / 175";84;NA;221;219;SMU
-"Luke Jacobs";ATH;"Viewmont (Bountiful, UT)";UT;"6-1 / 175";79;NA;230;40;
-"Sedrick Alexander";RB;"LBJ (Austin, TX)";TX;"5-8 / 190";87;NA;40;114;Vanderbilt
-"Tyrone West";WR;"Humble (Humble, TX)";TX;"6-1 / 190";88;NA;63;76;"Texas Tech"
-"Keyone Jenkins";QB;"Miami Central (Miami, FL)";FL;"5-10 / 160";79;NA;144;279;FIU
-"Nathan Leacock";WR;"Millbrook (Raleigh, NC)";NC;"6-3 / 200";87;NA;92;18;Tennessee
-"Jax Leatherwood";QB;"Scripps Ranch (San Diego, CA)";CA;"6-6 / 215";87;NA;40;89;Nevada
-"Darius Cowens";QB;"Warren (Downey, CA)";CA;"6-0 / 170";86;NA;48;98;
-"Preston Everhart";WR;"Hun School (Dublin, OH)";OH;"5-10 / 170";83;NA;247;34;Temple
-"Breeon Ishmail";ATH;"Hamilton (Hamilton, OH)";OH;"6-5 / 200";83;NA;165;62;
-"Dante Barone";TE;"Hun School (Princeton, NJ)";NJ;"6-3 / 245";84;NA;66;24;Rutgers
-"Cole LaCrue";QB;"Broomfield (Broomfield, CO)";CO;"6-2 / 190";80;NA;133;18;
-"Marquise Palmer";ATH;"East St. Louis (East Saint Louis, IL)";IL;"5-11 / 175";79;NA;221;59;
-"Reid Mikeska";TE;"Bridgeland (Cypress, TX)";TX;"6-5.5 / 233";86;NA;42;138;Miami
-"Parker Leise";QB;"IMG Academy (Bradenton, FL)";FL;"6-2 / 215";80;NA;121;274;
-"Crew McChesney";WR;"Lone Peak (American Fork, UT)";UT;"5-10 / 170";83;NA;232;30;
-"Lafayette Kaiuway";TE;"Sam Houston (Arlington, TX)";TX;"6-5 / 245";88;NA;26;71;TCU
-"Markus Dixon";TE;"Archbishop Wood (Warminster, PA)";PA;"6-4 / 230";87;NA;31;12;Clemson
-"Samuel Cooper";QB;"University City (San Diego, CA)";CA;"6-3 / 215";87;NA;41;94;
-"Adarius Redmond";WR;"Powell (Powell, TN)";TN;"6-1 / 185";90;NA;35;7;
-"Sam Peters";TE;"Maple Grove (Osseo, MN)";MN;"6-4 / 225";85;NA;52;7;Minnesota
-"Ronan Hanafin";ATH;"Buckingham Browne & Nichols School (Cambridge, MA)";MA;"6-3 / 210";92;166;13;4;
-"Dru DeShields";QB;"West Branch (Beloit, OH)";OH;"6-3 / 180";76;NA;172;111;"Eastern Illinois"
-"Samaje Featherstone";RB;"Freedom (Oakley, CA)";CA;"5-9 / 180";80;NA;130;284;
-"Darius Taylor";RB;"Walled Lake Western (Walled Lake, MI)";MI;"5-11 / 187";87;NA;38;13;Minnesota
-"Ben Dutton";ATH;"King's Schools (Seattle, WA)";WA;"6-4 / 230";78;NA;240;57;
-"Darian Mensah";QB;"St Joseph (San Luis Obispo, CA)";CA;"6-3 / 215";78;NA;150;350;
-"Demetrion Cannon";WR;"Trinity Catholic (Saint Louis, MO)";MO;"6-0 / 180";84;NA;210;33;
-"Kyon Calhoun";WR;"Cocoa (Cocoa, FL)";FL;"6-5 / 183";86;NA;160;148;
-"Pearce Spurlin";TE;"South Walton (Santa Rosa Beach, FL)";FL;"6-6 / 220";94;68;2;18;Georgia
-"David Rasor";QB;"Corona Del Mar (Newport Beach, CA)";CA;"6-1 / 195";84;NA;69;151;"UC Davis"
-"CJ Davis";ATH;"Northrop (Fort Wayne, IN)";IN;"6-0 / 175";82;NA;173;22;Marshall
-"Duran Parish";WR;"Biloxi (Biloxi, MS)";MS;"5-11.5 / 169";85;NA;193;24;Vanderbilt
-"Cayden Dawson";TE;"University City (San Diego, CA)";CA;"6-4 / 230";87;NA;33;80;"Boise State"
-"Robert Luckas";WR;"Glades Central (Belle Glade, FL)";FL;"6-3 / 210";85;NA;188;168;
-"Jeremiyah Love";ATH;"Christian Brothers College (Saint Louis, MO)";MO;"6-0 / 190";94;87;7;4;
-"Kenric Lanier";WR;"Decatur (Decatur, GA)";GA;"6-1.5 / 180";88;NA;76;50;Vanderbilt
-"Ryan Damron";QB;"Henry County (Paris, TN)";TN;"5-11 / 179";82;NA;100;64;
-"Derrick Rogers";WR;"Jones (Orlando, FL)";FL;"6-1 / 170";86;NA;150;134;Maryland
-"Aronne Herring";RB;"New Bern (New Bern, NC)";NC;"5-10 / 175";83;NA;105;38;
-"Trech Kekahuna";ATH;"Bishop Gorman (Las Vegas, NV)";NV;"5-11 / 180";85;NA;122;12;Wisconsin
-"Hayden John";ATH;"Anacortes (Anacortes, WA)";WA;"6-2 / 190";78;NA;239;56;Idaho
-"Pokaiaua Haunga";ATH;"Timpview (Provo, UT)";UT;"5-11 / 200";87;NA;59;7;BYU
-"Cole Cabana";RB;"Dexter (Dexter, MI)";MI;"6-0 / 180";90;NA;17;3;Michigan
-"Richard Young";RB;"Lehigh Senior (Lehigh Acres, FL)";FL;"5-11 / 200";95;37;3;10;Alabama
-"Lavon Brown";WR;"Sierra Canyon (Chatsworth, CA)";CA;"6-1 / 180";87;NA;96;81;"Colorado State"
-"Giovanni Lopez";QB;"James Clemens (Madison, AL)";AL;"6-1 / 210";84;NA;80;52;"South Alabama"
-"Dieter Barr";QB;"St. Pius X-St. Matthias Academy (DOWNEY, CA)";CA;"6-3 / 170";84;NA;76;163;
-"Justyn Reid";TE;"Newnan (Newnan, GA)";GA;"6-5 / 230";84;NA;74;126;"Georgia Tech"
-"Braylen Ragland";QB;"Bartlett (Memphis, TN)";TN;"6-0 / 195";87;NA;36;21;"Georgia State"
-"Mac Markway";TE;"DeSmet (Saint Louis, MO)";MO;"6-4 / 250";92;163;13;6;LSU
-"Seamus Gilmartin";TE;"Junipero Serra (San Mateo, CA)";CA;"6-4 / 215";82;NA;82;215;
-"Manny Covey";RB;"Bradford (Starke, FL)";FL;"5-11 / 175";87;NA;45;110;Cincinnati
-"Josiah Davis";RB;"North Salem (Salem, OR)";OR;"5-10 / 210";80;NA;137;21;
-"Ben Yundt";RB;"Mountain View Senior (Bend, OR)";OR;"5-7 / 166";72;NA;176;65;
-"Cedric Hawkins";RB;"Stuttgart (Stuttgart, AR)";AR;"5-8 / 170";78;NA;146;8;"Arkansas State"
-"Kaden Feagin";ATH;"Arthur Sr (Arthur, IL)";IL;"6-3 / 221";89;NA;30;6;Illinois
-"Justin Taylor";ATH;"Nazareth Academy (La Grange Park, IL)";IL;"6-1 / 185";85;NA;117;30;Wisconsin
-"Robert Jones III";QB;"Oswego East (Oswego, IL)";IL;"6-2 / 175";78;NA;152;76;Navy
-"Miles Tucker";ATH;"Amador Valley (Pleasanton, CA)";CA;"6-0 / 185";78;NA;244;356;
-"Trey Kukuk";QB;"Capistrano Valley (Mission Viejo, CA)";CA;"6-1 / 180";82;NA;96;223;
-"Khalil Barnes";ATH;"North Oconee (Bogart, GA)";GA;"6-1 / 185";86;NA;95;86;"Wake Forest"
-"Mason Kidd";QB;"Mountain View (Lawrenceville, GA)";GA;"6-4 / 192";82;NA;106;135;"Northern Illinois"
-"Robert Stafford";ATH;"Eau Gallie (Melbourne, FL)";FL;"5-11 / 171";92;185;16;42;Miami
-"Khalil Yarbo";RB;"Graham-Kapowsin (Tacoma, WA)";WA;"6-0 / 210";77;NA;157;83;
-"TJ McWilliams";WR;"North Central (Indianapolis, IN)";IN;"6-1 / 170";84;NA;207;17;Purdue
-"Kalen Cobb";WR;"DeMatha Catholic (Hyattsville, MD)";MD;"6-4 / 215";85;NA;184;21;
-"Luke Rucker";QB;"Seminole (Sanford, FL)";FL;"6-2 / 190";81;NA;111;263;"Florida Atlantic"
-"Carson Black";QB;"Nation Ford (Fort Mill, SC)";SC;"6-2 / 186";86;NA;54;16;Memphis
-"Jamarion Wilcox";RB;"South Paulding (Douglasville, GA)";GA;"5-9 / 195";85;NA;76;106;
-"Colby White";QB;"Mission College Preparatory Catholic (San Luis Obispo, CA)";CA;"6-2 / 195";77;NA;161;412;
-"Matthew Fredrick";TE;"East (Salt Lake City, UT)";UT;"6-5 / 230";86;NA;51;14;BYU
-"Montravius Lloyd";ATH;"Lakewood (Saint Petersburg, FL)";FL;"6-0 / 205";86;NA;103;144;Pittsburgh
-"Javonte Vereen";TE;"Havelock (Havelock, NC)";NC;"6-4 / 209";89;NA;20;13;"NC State"
-"Colton Joseph";QB;"Newport Harbor (Newport Beach, CA)";CA;"6-2 / 190";80;NA;127;301;
-"Daidren Zipperer";WR;"Lakeland (Lakeland, FL)";FL;"6-1 / 170";84;NA;197;197;
-"Trey Fasani";QB;"Ripon Christian Schools (Ripon, CA)";CA;"6-2 / 200";81;NA;110;248;
-"Kayde Bodine";QB;"Sumner (Sumner, WA)";WA;"6-0 / 165";75;NA;180;124;
-"JJ Foust";ATH;"Powell (Powell, TN)";TN;"5-11 / 193";82;NA;177;63;
-"Rickey Hunt Jr.";RB;"Millwood (Oklahoma City, OK)";OK;"5-10 / 180";86;NA;61;12;
-"Jerry Kaminski";QB;"Sun Prairie (Sun Prairie, WI)";WI;"6-2 / 190";76;NA;170;12;
-"Keenan Tarbet";ATH;"Loyola (Los Angeles, CA)";CA;"6-4 / 205";79;NA;227;336;
-"Jake Foye";RB;"Santa Margarita Catholic (Rancho Santa Margarita, CA)";CA;"5-10 / 195";80;NA;132;286;
-"Christian Davis";RB;"Miamisburg (Miamisburg, OH)";OH;"6-0 / 190";85;NA;72;39;
-"Derrick Bohler";WR;"Miami Palmetto (Miami, FL)";FL;"6-1 / 195";85;NA;189;169;
-"CJ Hester";RB;"Wyoming (Cincinnati, OH)";OH;"5-11 / 190";83;NA;102;59;"Western Michigan"
-"Art Williams";ATH;"Rocky Mountain (Meridian, ID)";ID;"6-0 / 195";81;NA;190;11;Idaho
-"Jaden Rashada";QB;"Pittsburg (Pittsburg, CA)";CA;"6-4 / 185";97;17;6;5;Miami
-"Jaren Hamilton";WR;"F. W. Buchholz (Gainesville, FL)";FL;"6-1 / 188";89;NA;48;71;
-"Caleb McMickle";QB;"Fellowship Christian School (Roswell, GA)";GA;"6-1 / 190";85;NA;59;99;Houston
-"Will Floyd";WR;"Seattle Prep School (Seattle, WA)";WA;"6-3 / 175";83;NA;243;31;
-"Brayden Holmes";ATH;"Milton (Alpharetta, GA)";GA;"6-2 / 180";85;NA;112;98;
-"Traylon Ray";WR;"North Florida Christian (Tallahassee, FL)";FL;"6-2 / 180";88;NA;71;86;
-"Isaiah Augustave";RB;"Naples (Naples, FL)";FL;"6-2 / 195";92;190;5;44;Arkansas
-"Bryce Harrison";TE;"Apopka (Apopka, FL)";FL;"6-3 / 225";79;NA;102;277;"Northern Illinois"
-"Ryan McCulloch";ATH;"Rio Hondo Preparatory School (Arcadia, CA)";CA;"6-3 / 235";85;NA;140;146;California
-"KJ Reed";WR;"Mission Viejo (Mission Viejo, CA)";CA;"5-11 / 175";86;NA;145;122;
-"Gavin Porch";WR;"Los Alamitos (Los Alamitos, CA)";CA;"5-9 / 160";85;NA;166;126;
-"Vic Sutton";QB;"Madison Central (Madison, MS)";MS;"6-3 / 200";85;NA;64;22;"Louisiana Tech"
-"Dereun Dortch";QB;"San Jacinto (San Jacinto, CA)";CA;"6-0 / 200";80;NA;118;279;
-"Luke Talich";ATH;"Cody (Cody, WY)";WY;"6-3 / 185";82;NA;180;1;
-"Braedyn Moore";ATH;"Stephen T Badin (Hamilton, OH)";OH;"6-1.5 / 190";90;NA;28;8;Cincinnati
-"Tre Spivey";WR;"Hamilton (Chandler, AZ)";AZ;"6-4 / 185";86;NA;132;13;
-"Omaree Walker";WR;"Don Bosco Prep (Ramsey, NJ)";NJ;"5-10 / 170";84;NA;201;27;
-"Jordan Fisher";RB;"Westview (Portland, OR)";OR;"5-8 / 170";83;NA;98;8;
-"Davonte Johnson";ATH;"Kenwood Academy (Chicago, IL)";IL;"5-11 / 170";80;NA;200;48;
-"Nathan VanTimmeren";TE;"Catholic Central (Grand Rapids, MI)";MI;"6-5 / 215";79;NA;101;50;"Central Michigan"
-"Chase Hendricks";WR;"St. Mary's (Saint Louis, MO)";MO;"5-11 / 185";87;NA;90;17;
-"Jaquerrius Gray";ATH;"Oak Grove (Hattiesburg, MS)";MS;"5-8 / 160";86;NA;107;18;"Southern Miss"
-"Sam West";TE;"Greensburg Community (Greensburg, IN)";IN;"6-5 / 205";87;NA;35;9;Indiana
-"Kai Hall";RB;"St Vincent De Paul (Petaluma, CA)";CA;"5-8 / 180";80;NA;128;278;
-"Durell Robinson";RB;"St. Frances Academy (Baltimore, MD)";MD;"6-1 / 190";86;NA;55;13;
-"Zach Lutmer";ATH;"Central Lyon (Rock Rapids, IA)";IA;"6-1 / 190";85;NA;110;13;Iowa
-"Keymarion Gibson";ATH;"Ottawa Hills (Grand Rapids, MI)";MI;"6-2 / 257";78;NA;236;55;
-"Kam Franklin";ATH;"Oak Grove (Oak Grove, LA)";LA;"6-3 / 185";87;NA;58;23;"Oklahoma State"
-"Charles Greer";RB;"De La Salle (Concord, CA)";CA;"5-11 / 180";85;NA;70;124;"Fresno State"
-"TyLyric Coleman";ATH;"Dan River (Ringgold, VA)";VA;"6-3 / 175";85;NA;132;40;Virginia
-"Jaylen Johnson";RB;"Appling County (Baxley, GA)";GA;"5-9 / 190";85;NA;78;108;
-"Bryson Harrison";QB;"Lassiter (Marietta, GA)";GA;"6-1 / 195";82;NA;108;139;"Georgia State"
-"Jordyn Potts";QB;"Powell (Powell, TN)";TN;"6-0 / 175";80;NA;130;68;"Tennessee Tech"
-"Ryne Shackelford";WR;"Keystone (Lagrange, OH)";OH;"6-0 / 175";87;NA;87;21;Purdue
-"Rasean Randall";ATH;"Cass Technical (Detroit, MI)";MI;"6-4 / 210";79;NA;231;53;"Northern Illinois"
-"Braeden Wisloski";ATH;"Southern Columbia Area HS (Catawissa, PA)";PA;"5-11 / 185";87;NA;76;15;Maryland
-"Evan Tomich";QB;"Mayfair (Lakewood, CA)";CA;"6-2 / 180";87;NA;39;82;
-"Qu'Ran Gossett";RB;"Bishop Garcia Diego (Santa Barbara, CA)";CA;"5-10 / 210";78;NA;149;349;
-"Marquis Roby Jr.";QB;"Desert Pines (Las Vegas, NV)";NV;"6-1 / 190";83;NA;82;19;
-"Jesse Anderson";ATH;"Cardinal Gibbons (Fort Lauderdale, FL)";FL;"6-0 / 175";86;NA;106;151;Pittsburgh
-"Heston Miller";ATH;"West Plains (West Plains, MO)";MO;"6-0.5 / 200";84;NA;147;32;"Missouri State"
-"Exavious Reed";TE;"Callaway (Hogansville, GA)";GA;"6-3.5 / 220";84;NA;73;125;"Southern Miss"
-"Dane Parker";ATH;"Puyallup (Puyallup, WA)";WA;"6-1 / 180";78;NA;238;55;
-"Javin Simpkins";RB;"Norland (Miami, FL)";FL;"5-9 / 183";89;NA;22;68;"Georgia Tech"
-"Raheim Jeter";QB;"Spartanburg (Duncan, SC)";SC;"6-3 / 220";86;NA;44;13;
-"Jace Villers";ATH;"Auburn Riverside (Auburn, WA)";WA;"6-3 / 195";81;NA;195;44;
-"Anthony Eager";WR;"McGill Toolen (Mobile, AL)";AL;"6-1 / 170";86;NA;149;38;"South Alabama"
-"Israel Polk";ATH;"St. John Bosco (Bellflower, CA)";CA;"6-2.5 / 170";87;NA;55;69;
-"Jarred Sample";WR;"Cy Ranch (Cypress, TX)";TX;"5-10 / 170";86;NA;118;126;Kansas
-"Darren Lawrence";WR;"Seminole (Sanford, FL)";FL;"6-2 / 190";89;NA;42;69;"Florida State"
-"LJ Martin";RB;"Canutillo (El Paso, TX)";TX;"6-1 / 207";88;NA;26;75;Stanford
-"Marquise Collins";RB;"College Station (College Station, TX)";TX;"5-10 / 190";86;NA;49;143;Duke
-"Cooper Flanagan";TE;"De La Salle (Concord, CA)";CA;"6-5 / 228";93;123;8;10;"Notre Dame"
-"Taveonte Webster";ATH;"Wilson (Tacoma, WA)";WA;"6-4 / 200";78;NA;241;70;
-"Jahreece Lynch";ATH;"North Surry (Mount Airy, NC)";NC;"6-2 / 185";82;NA;175;40;
-"Jamari Haynes";WR;"Plantation (Fort Lauderdale, FL)";FL;"5-9 / 160";83;NA;231;226;
+"Kai Remigio";RB;"Mater Dei (Santa Ana, CA)";CA;"5-10 / 185";79;NA;143;333;
+"Jackson McGohan";TE;"Miamisburg (Miamisburg, OH)";OH;"6-4 / 208";87;NA;36;19;Cincinnati
+"Noah Vaughn";RB;"Maryville (Maryville, TN)";TN;"5-9 / 185";83;NA;110;60;Virginia
+"Mekhi Jenkins";RB;"Royal Oak (Royal Oak, MI)";MI;"5-9 / 185";77;NA;163;61;"Central Michigan"
+"Justin Brown";WR;"Blackman (Murfreesboro, TN)";TN;"6-0 / 183";88;NA;59;12;"Mississippi State"
+"Walker Lyons";TE;"Folsom (Folsom, CA)";CA;"6-4 / 230";93;102;7;9;Stanford
+"Kade McIntyre";ATH;"Archbishop Bergan (Fremont, NE)";NE;"6-4 / 205";88;NA;42;3;Oklahoma
+"Max Carroll";ATH;"Briarcrest Christian (Memphis, TN)";TN;"6-3 / 205";88;NA;43;16;TCU
+"Jahlil McClain";ATH;"St. John Bosco (Bellflower, CA)";CA;"5-10 / 180";90;NA;25;25;Louisville
+"Kyon Calhoun";WR;"Cocoa (Cocoa, FL)";FL;"6-5 / 183";86;NA;159;148;
+"Fin Jones";TE;"Venice (Venice, FL)";FL;"6-5 / 230";82;NA;88;258;"Florida Atlantic"
+"Logan Minton";TE;"Lafayette (Ballwin, MO)";MO;"6-7 / 210";78;NA;111;51;"Southern Illinois"
+"Jaiden Pickett";ATH;"Riverside (Milwaukee, WI)";WI;"6-3 / 190";80;NA;208;8;"North Dakota State"
+"Delanie Majors";WR;"Overton (Nashville, TN)";TN;"5-9 / 170";84;NA;219;46;
+"Rashid Williams";WR;"Pittsburg (Pittsburg, CA)";CA;"6-2 / 185";90;244;27;15;Washington
+"Ismael Cisse";WR;"Cherry Creek (Englewood, CO)";CO;"6-1 / 180";87;NA;97;5;
 "Cole Adams";WR;"Owasso (Owasso, OK)";OK;"5-10 / 180";89;NA;50;5;Alabama
-"Jordan Harris";RB;"Alcoa (Alcoa, TN)";TN;"5-10 / 170";85;NA;79;38;
-"Jurrion Dickey";WR;"Valley Christian (East Palo Alto, CA)";CA;"6-3 / 210";98;14;2;4;Oregon
-"Andrew Harren";TE;"Sauk Rapids-rice Senior (Sauk Rapids, MN)";MN;"6-5 / 200";78;NA;111;25;
+"Jaden Mikhael";TE;"Niceville (Niceville, FL)";FL;"6-4 / 231";82;NA;86;256;
+"Andy Jean";WR;"Northwestern (Miami, FL)";FL;"6-1 / 180";88;NA;70;85;Florida
+"Taeshaun Lyons";WR;"Tennyson (Hayward, CA)";CA;"6-2 / 170";89;NA;51;33;
+"Chico Holt";TE;"Strake Jesuit (Houston, TX)";TX;"6-5 / 220";86;NA;49;177;Northwestern
+"Bo Edmundson";QB;"Lake Travis (Austin, TX)";TX;"6-3 / 195";86;NA;42;129;"Michigan State"
+"Carson Conklin";QB;"Centennial (Corona, CA)";CA;"6-1 / 175";86;NA;52;107;
+"Qu'Ran Gossett";RB;"Bishop Garcia Diego (Santa Barbara, CA)";CA;"5-10 / 210";78;NA;150;350;
+"Jamarion Wilcox";RB;"South Paulding (Douglasville, GA)";GA;"5-9 / 195";85;NA;76;106;
+"Jaden Rashada";QB;"Pittsburg (Pittsburg, CA)";CA;"6-4 / 185";97;17;6;5;Miami
+"Elijah Rogers";ATH;"Oak Ridge (Oak Ridge, TN)";TN;"6-1 / 190";83;NA;163;55;Campbell
+"Mikey Matthews";WR;"Mission Viejo (Mission Viejo, CA)";CA;"5-10 / 185";88;NA;65;46;
+"Joquez Smith";RB;"Jesuit (Tampa, FL)";FL;"5-6.5 / 190";84;NA;85;204;Temple
+"Joshua Franklin";ATH;"Crete-Monee (Crete, IL)";IL;"6-0 / 173";79;NA;219;56;"Western Michigan"
+"Michael Parkes";WR;"Bayside (Palm Bay, FL)";FL;"6-1 / 185";87;NA;103;104;"Iowa State"
+"Ky McNulty";WR;"Baldwin County (Bay Minette, AL)";AL;"6-4 / 180";84;NA;202;53;
+"Kasen Weisman";QB;"South Paulding (Douglasville, GA)";GA;"6-2 / 180";85;NA;65;109;Kansas
+"Ayden Greene";WR;"Powell (Powell, TN)";TN;"6-0.5 / 167";89;NA;43;10;Cincinnati
+"Steve Hall";RB;"Mary Institute & St Louis Country Day (Saint Louis, MO)";MO;"5-10 / 200";79;NA;140;43;
+"Jackson Brousseau";QB;"Lehi (Lehi, UT)";UT;"6-5 / 215";83;NA;85;25;"Colorado State"
+"Jordyn Bailey";WR;"Ryan (Denton, TX)";TX;"5-9 / 160";86;NA;120;134;TCU
+"Paul Billups";WR;"Western Branch (Chesapeake, VA)";VA;"6-2 / 185";86;NA;118;21;
+"Colbey Lamberth";QB;"Dickson County (Dickson, TN)";TN;"6-3 / 211";85;NA;66;39;"Eastern Kentucky"
+"Ben Pfaff";RB;"Bellarmine Prep (San Jose, CA)";CA;"5-11 / 190";78;NA;151;358;
+"Marco Lainez III";QB;"Hun School (Skillman, NJ)";NJ;"6-2.5 / 225";88;NA;24;7;Iowa
+"Jaden Platt";TE;"Eaton (Haslet, TX)";TX;"6-4.5 / 235";94;88;5;16;Stanford
+"Parker Leise";QB;"IMG Academy (Bradenton, FL)";FL;"6-2 / 215";80;NA;121;275;
+"Brendan Anderson";QB;"Mountain Ridge (Glendale, AZ)";AZ;"6-1 / 180";82;NA;104;39;
+"Gemari Sands";RB;"St. Thomas Aquinas (Fort Lauderdale, FL)";FL;"5-10 / 190";84;NA;94;222;
+"Nayati Hendrix";ATH;"Kaiser (Fontana, CA)";CA;"5-11 / 170";81;NA;186;253;
+"Donald Stephens";RB;"Grant (Portland, OR)";OR;"6-0 / 200";78;NA;149;31;
+"Jason Hewlett";ATH;"Chaney (Youngstown, OH)";OH;"6-3 / 200";87;NA;64;20;Cincinnati
+"Carlos Matheney";RB;"Tumwater (Olympia, WA)";WA;"6-0 / 195";81;NA;127;41;Idaho
+"Jeremiah Shack";WR;"Mandarin (Jacksonville, FL)";FL;"6-3 / 191";86;NA;130;119;Liberty
+"Baylin Brooks";WR;"Loyola (Los Angeles, CA)";CA;"6-2 / 195";86;NA;121;100;"San Diego State"
+"Yazeed Haynes";WR;"North Penn (Fort Washington, PA)";PA;"6-1 / 170";88;NA;75;10;Georgia
+"Ronan Hanafin";ATH;"Buckingham Browne & Nichols School (Cambridge, MA)";MA;"6-3 / 210";92;166;13;4;
+"Samuel Singleton";RB;"Fleming Island (Orange Park, FL)";FL;"5-11 / 180";90;NA;14;53;"Florida State"
+"J.J. Payne";ATH;"Northwood (Nappanee, IN)";IN;"6-4 / 180";79;NA;221;28;
+"Trech Kekahuna";ATH;"Bishop Gorman (Las Vegas, NV)";NV;"5-11 / 180";85;NA;122;12;Wisconsin
+"Nygel Osborne";RB;"Los Alamitos (Los Alamitos, CA)";CA;"5-11 / 190";86;NA;51;112;
+"Osize Daniyan";ATH;"Mount Juliet (Mount Juliet, TN)";TN;"5-11.5 / 187";86;NA;100;30;
+"J.T. Foreman";RB;"Turlock (Turlock, CA)";CA;"5-10 / 195";81;NA;124;252;
+"Noah Rogers";WR;"Rolesville (Rolesville, NC)";NC;"6-2 / 195";95;42;7;1;"Ohio State"
+"Jamal Roberts";RB;"St Mary's (Saint Louis, MO)";MO;"6-1 / 200";85;NA;73;26;Missouri
+"Jamari Johnson";ATH;"Inglewood (Inglewood, CA)";CA;"6-5 / 250";89;NA;32;34;Louisville
+"Kadin Semonza";QB;"Mission Viejo (Mission Viejo, CA)";CA;"6-0.5 / 190";86;NA;50;102;"Ball State"
+"Marquis Roby Jr.";QB;"Desert Pines (Las Vegas, NV)";NV;"6-1 / 190";83;NA;82;19;
+"Christopher Johnson";RB;"Dillard (Fort Lauderdale, FL)";FL;"5-11 / 178";87;NA;35;89;
+"Rodney Gallagher";WR;"Laurel Highlands (Uniontown, PA)";PA;"5-10 / 160";92;153;18;3;"West Virginia"
+"Zeke Moore";TE;"Roswell (Roswell, GA)";GA;"6-2 / 240";83;NA;81;132;"Florida Atlantic"
+"Connor Walendzak";RB;"Perrysburg (Perrysburg, OH)";OH;"5-11 / 195";83;NA;105;60;Toledo
+"Austin Novosad";QB;"Dripping Springs (Dripping Springs, TX)";TX;"6-3 / 185";94;89;8;17;Baylor
+"Jaxon Potter";QB;"Santa Margarita Catholic (Rancho Santa Margarita, CA)";CA;"6-4 / 180";86;NA;49;99;UAB
+"DeAndre Moore Jr.";WR;"St. John Bosco (Bellflower, CA)";CA;"6-0 / 185";94;66;11;7;Louisville
+"Sean Williams";WR;"St. John's (Washington, DC)";DC;"6-1 / 175";85;NA;176;6;Maryland
+"Vic Sutton";QB;"Madison Central (Madison, MS)";MS;"6-3 / 200";85;NA;64;22;"Louisiana Tech"
+"Hunter Provience";TE;"Christian (El Cajon, CA)";CA;"6-5 / 230";83;NA;82;214;
+"Mahki Rolle";ATH;"North Miami Beach Senior (Miami, FL)";FL;"6-2 / 190";84;NA;157;224;"Northern Illinois"
+"Crew McChesney";WR;"Lone Peak (American Fork, UT)";UT;"5-10 / 170";83;NA;234;30;
+"Ryan Damron";QB;"Henry County (Paris, TN)";TN;"5-11 / 179";82;NA;100;64;
+"Aronne Herring";RB;"New Bern (New Bern, NC)";NC;"5-10 / 175";83;NA;106;38;
+"Nyziah Hunter";WR;"Salinas (Salinas, CA)";CA;"6-2 / 192";89;NA;49;32;California
+"Kooper Ebel";ATH;"Hartley-Melvin-Sanborn (Hartley, IA)";IA;"6-3 / 200";86;NA;108;12;"Iowa State"
+"Jacobe Robinson";QB;"Henderson (Henderson, TX)";TX;"6-3.5 / 210";87;NA;28;90;"Boston College"
+"Malachi Riley";WR;"Centennial (Corona, CA)";CA;"6-2 / 178";88;NA;68;50;
+"Will Floyd";WR;"Seattle Prep School (Seattle, WA)";WA;"6-3 / 175";83;NA;245;31;
+"Luke Elliott";QB;"Washington (Tacoma, WA)";WA;"6-5 / 170";75;NA;181;125;
+"Deshaun Buchanan";ATH;"Basha (Chandler, AZ)";AZ;"5-11 / 200";84;NA;145;23;Idaho
+"Marcus Ransom";ATH;"Harper Creek (Battle Creek, MI)";MI;"6-3 / 205";79;NA;223;45;
+"Trey Holly";RB;"Union Parish (Farmerville, LA)";LA;"5-8 / 180";87;NA;37;24;LSU
+"Jaren Hamilton";WR;"F. W. Buchholz (Gainesville, FL)";FL;"6-1 / 188";89;NA;48;71;
+"Ja'Braxton Boone";WR;"Ridgeland (Ridgeland, MS)";MS;"6-1 / 195";85;NA;197;27;
+"Kevin Concepcion";WR;"Julius L. Chambers (Charlotte, NC)";NC;"5-11 / 173";87;NA;106;21;
+"Kayden Davis";RB;"Alliance (Alliance, OH)";OH;"6-1 / 205";81;NA;123;75;"Youngstown State"
+"Masen Uribe";RB;"Eastside Catholic (Sammamish, WA)";WA;"5-10 / 182";75;NA;170;127;
+"Aaron Gates";ATH;"Trinity Christian School (Sharpsburg, GA)";GA;"6-0 / 180";88;NA;38;45;Florida
+"Kanye Clark";WR;"Capital Christian (Sacramento, CA)";CA;"5-11 / 165";84;NA;223;171;
+"River Lien";QB;"Glacier Peak (Snohomish, WA)";WA;"6-0 / 197";77;NA;159;78;
+"Anthony Evans";WR;"Judson (Converse, TX)";TX;"5-11 / 167";88;NA;58;70;
+"Mason Norberg";TE;"Folsom (Folsom, CA)";CA;"6-2 / 215";81;NA;91;241;
+"Jakeb Vallence";QB;"Cheney (Cheney, WA)";WA;"6-3 / 200";77;NA;167;106;
+"Christian Hunt";QB;"Redondo Union HS (Redondo Beach, CA)";CA;"6-5 / 210";83;NA;93;207;
+"Riley Paran";RB;"Bellarmine Prep (San Jose, CA)";CA;"5-10 / 185";74;NA;173;460;
+"Jamari Haynes";WR;"Plantation (Fort Lauderdale, FL)";FL;"5-9 / 160";83;NA;233;227;
+"Junior Sherrill";WR;"Lipscomb Academy (Nashville, TN)";TN;"5-10 / 175";84;NA;220;48;Vanderbilt
+"Jermaine Mathews";ATH;"Winton Woods (Cincinnati, OH)";OH;"6-0 / 175";89;NA;34;10;"Ohio State"
+"Luke Rucker";QB;"Seminole (Sanford, FL)";FL;"6-2 / 190";81;NA;111;264;"Florida Atlantic"
+"Conner Cravaack";TE;"Madeira (Cincinnati, OH)";OH;"6-5 / 220";79;NA;100;85;Akron
+"Jermaine Foster";WR;"Glenville (Cleveland, OH)";OH;"6-0 / 185";83;NA;239;57;
+"Mykel Morman";ATH;"Dr. Henry Wise (Upper Marlboro, MD)";MD;"6-1 / 175";85;NA;137;26;Maryland
+"Traylon Ray";WR;"North Florida Christian (Tallahassee, FL)";FL;"6-2 / 180";88;NA;71;86;
+"Jakob Dixon";WR;"Pleasure Ridge Park (Louisville, KY)";KY;"6-4 / 197";86;NA;164;11;Kentucky
+"Braeden Wisloski";ATH;"Southern Columbia Area HS (Catawissa, PA)";PA;"5-11 / 185";87;NA;76;15;Maryland
+"Joel Kpassou";ATH;"Solon (Solon, OH)";OH;"5-10 / 167";80;NA;210;81;"Ball State"
+"Amini Amone";RB;"East (Salt Lake City, UT)";UT;"5-11 / 190";82;NA;113;31;Nevada
+"Trevor Duncan";ATH;"Knoxville Catholic (Knoxville, TN)";TN;"6-5.5 / 277";88;NA;49;18;Tennessee
+"Jonathan Humpal";RB;"Lewis Central (Council Bluffs, IA)";IA;"5-10 / 165";82;NA;114;22;
+"Jake Strong";QB;"Northwest (Justin, TX)";TX;"6-2 / 200";86;NA;43;130;"Texas Tech"
+"Vance Bolyard";TE;"Northern Guilford (Greensboro, NC)";NC;"6-5 / 230";85;NA;57;31;Duke
+"Jackson Holman";WR;"Mission Viejo (Mission Viejo, CA)";CA;"6-3 / 200";87;NA;102;90;Arizona
 "Kade Eldridge";ATH;"Lynden Christian School (Lynden, WA)";WA;"6-4.5 / 235";88;NA;37;10;USC
-"Xavier Rice";QB;"Loyola (Los Angeles, CA)";CA;"6-3 / 185";85;NA;58;131;
-"Khai Prean";ATH;"St. James (Saint James, LA)";LA;"6-0 / 190";90;NA;27;15;
+"Omaree Walker";WR;"Don Bosco Prep (Ramsey, NJ)";NJ;"5-10 / 170";84;NA;208;27;Campbell
+"Ben Yundt";RB;"Mountain View Senior (Bend, OR)";OR;"5-7 / 166";72;NA;177;65;
+"Robert Long";QB;"St. Peters Prep (Fairfield, CT)";CT;"5-11 / 200";84;NA;70;25;Maryland
+"Ayden Williams";WR;"Ridgeland (Ridgeland, MS)";MS;"6-3 / 195";91;228;24;2;
+"Jaylen Johnson";RB;"Appling County (Baxley, GA)";GA;"5-9 / 190";85;NA;78;108;
+"Lincoln Kienholz";QB;"T.F. Riggs (Pierre, SD)";SD;"6-3 / 185";86;NA;45;1;Washington
+"Jaidyn Doss";WR;"Raymore-Peculiar (Peculiar, MO)";MO;"6-0 / 195";89;NA;46;11;Nebraska
+"Justice Haynes";RB;"Buford (Buford, GA)";GA;"5-10 / 200";94;81;4;7;Alabama
+"Lavon Brown";WR;"Sierra Canyon (Chatsworth, CA)";CA;"6-1 / 180";87;NA;95;81;"Colorado State"
+"Rickey Hunt Jr.";RB;"Millwood (Oklahoma City, OK)";OK;"5-10 / 180";86;NA;61;12;
+"Kai Black";WR;"Urbandale (Urbandale, IA)";IA;"6-4 / 205";86;NA;133;8;"Iowa State"
+"Jevell Fugerson";WR;"Lee County (Leesburg, GA)";GA;"6-1 / 182";86;NA;154;92;
+"Jacobe Johnson";ATH;"Mustang (Mustang, OK)";OK;"6-3 / 183";93;126;10;3;
+"Jaedn Skeete";WR;"Catholic Memorial (West Roxbury, MA)";MA;"6-0 / 160";85;NA;178;10;"Boston College"
+"Dan Smith";WR;"Provine (Jackson, MS)";MS;"5-10.5 / 179";84;NA;203;28;
+"Brady McKelheer";QB;"Eastside Catholic (Sammamish, WA)";WA;"6-0 / 170";77;NA;158;77;
+"Daniel Andrade";QB;"Bonita (La Verne, CA)";CA;"6-3 / 200";84;NA;75;164;
+"Colton Joseph";QB;"Newport Harbor (Newport Beach, CA)";CA;"6-2 / 190";80;NA;127;302;
+"Braedyn Moore";ATH;"Stephen T Badin (Hamilton, OH)";OH;"6-1.5 / 190";90;NA;28;8;Cincinnati
+"Tovie Martin";TE;"Clovis (Clovis, CA)";CA;"6-4 / 245";76;NA;122;433;
+"Rico Watkins";WR;"James Rickards (Tallahassee, FL)";FL;"5-11 / 160";86;NA;140;129;Massachusetts
+"Onterrio Smith Jr.";ATH;"Folsom (Folsom, CA)";CA;"6-2 / 175";86;NA;79;97;
+"Caron Tyler";QB;"Chaparral (Temecula, CA)";CA;"5-11 / 180";81;NA;114;267;
+"Jelani McDonald";ATH;"Connally (Waco, TX)";TX;"6-2 / 190";91;202;17;34;"Oklahoma State"
+"Joey Stout";RB;"John H. Pitman (Turlock, CA)";CA;"5-10 / 165";76;NA;167;440;
+"Jackson Arnold";QB;"Guyer (Denton, TX)";TX;"6-1 / 205";98;15;5;2;Oklahoma
+"Jaquez Keyes";RB;"Ironton (Ironton, OH)";OH;"6-1 / 207";87;NA;43;25;Wisconsin
+"Dylan Rizk";QB;"Cardinal Gibbons (Fort Lauderdale, FL)";FL;"6-2 / 210";84;NA;81;218;UCF
+"Jashon Benjamin";RB;"Pahokee (Pahokee, FL)";FL;"5-8 / 180";84;NA;90;214;
+"Omarion Blakes";WR;"McEvans (Shaw, MS)";MS;"5-11 / 175";85;NA;182;23;
+"Dieter Barr";QB;"St. Pius X-St. Matthias Academy (DOWNEY, CA)";CA;"6-3 / 170";84;NA;76;165;
+"Judge Collier";ATH;"Legion Collegiate Academy (Rock Hill, SC)";SC;"6-1 / 185";86;NA;104;17;"South Carolina"
+"Seth Davis";RB;"Katy (Katy, TX)";TX;"5-7 / 170";87;NA;42;116;"Mississippi State"
+"Jalen Kennedy";RB;"Pleasant Grove (Elk Grove, CA)";CA;"5-10 / 150";77;NA;159;394;
+"Blake Murphy";QB;"American Heritage (Fort Lauderdale, FL)";FL;"5-10 / 175";81;NA;113;268;Louisiana-Monroe
+"Dylan Gutierrez";QB;"Damien (La Verne, CA)";CA;"5-11 / 190";80;NA;120;286;
+"Deakon Tonielli";TE;"Oswego (Oswego, IL)";IL;"6-6 / 215";90;NA;17;3;Michigan
 "Malachi Coleman";ATH;"Lincoln East (Lincoln, NE)";NE;"6-5 / 190";94;76;4;1;
-"Teremun Lott";ATH;"Inlet Grove Community (West Palm Beach, FL)";FL;"6-0 / 170";85;NA;134;185;Illinois
-"Dash Dorsey";ATH;"St. Francis (Wheaton, IL)";IL;"5-11 / 175";80;NA;205;51;
-"Jalen Brown";WR;"Gulliver Prep (Miami, FL)";FL;"6-1 / 170";95;52;9;14;LSU
+"Scottre Humphrey";RB;"Rainier Beach (Seattle, WA)";WA;"5-11 / 210";81;NA;126;38;
+"Marshaun Brown";WR;"Bishop Manogue (Reno, NV)";NV;"6-4 / 185";83;NA;246;20;
+"R.J. Mukes III";ATH;"Wayne (Dayton, OH)";OH;"5-11 / 170";80;NA;213;83;"Ball State"
+"Aidan Chiles";QB;"Downey (Downey, CA)";CA;"6-4 / 195";88;NA;27;53;"Oregon State"
+"Sam Peters";TE;"Maple Grove (Osseo, MN)";MN;"6-4 / 225";85;NA;53;7;Minnesota
+"Orel Gray";ATH;"University Christian (Jacksonville, FL)";FL;"5-11 / 185";84;NA;144;209;
+"Gavin Shaigineik";QB;"Tesoro (Rancho Santa Margarita, CA)";CA;"6-1 / 160";80;NA;124;290;
+"Miles Thompson";ATH;"Washington (Sioux Falls, SD)";SD;"6-0 / 165";82;NA;182;3;"Northern Illinois"
+"Charlie Gilliam";QB;"Eagles Landing Christian Academy (McDonough, GA)";GA;"6-2.5 / 180";85;NA;68;114;"Wake Forest"
+"Brennan Wooten";TE;"Cathedral (Indianapolis, IN)";IN;"6-4 / 225";85;NA;59;16;"Western Michigan"
+"London Montgomery";RB;"Scranton Prep (Scranton, PA)";PA;"5-10 / 180";88;NA;31;8;"Penn State"
+"Asa Newsom";ATH;"Waverly-Shell Rock (Waverly, IA)";IA;"6-4 / 205";86;NA;91;10;
+"Bryce Cohoon";WR;"Maize (Maize, KS)";KS;"6-2 / 175";84;NA;230;15;Syracuse
+"Gavin Hunter";ATH;"Mililani (Mililani, HI)";HI;"6-2 / 190";87;NA;71;6;Arizona
+"CJ Adams";WR;"Pebblebrook (Mableton, GA)";GA;"6-3 / 210";87;NA;105;66;"South Carolina"
+"Tennel Bryant";WR;"Archbishop Moeller (Cincinnati, OH)";OH;"5-10 / 162";86;NA;139;32;
+"Cayden Lee";WR;"Kennesaw Mountain (Kennesaw, GA)";GA;"5-11 / 175";88;NA;74;49;
+"Kam Franklin";ATH;"Oak Grove (Oak Grove, LA)";LA;"6-3 / 185";87;NA;58;23;"Oklahoma State"
+"Jaxon Smolik";QB;"Dowling Catholic (West Des Moines, IA)";IA;"6-2 / 200";87;NA;30;6;"Penn State"
+"Tanner Lemaster";TE;"Washington (Washington Court House, OH)";OH;"6-6 / 235";86;NA;48;34;Kentucky
+"Anthony Brown";WR;"Springfield (Springfield, OH)";OH;"5-10 / 170";88;NA;67;13;Kentucky
+"Shaborne Demps";WR;"Glades Central (Belle Glade, FL)";FL;"5-8 / 170";87;NA;114;109;Purdue
+"Ryne Shackelford";WR;"Keystone (Lagrange, OH)";OH;"6-0 / 175";87;NA;86;21;Purdue
+"Mason Kidd";QB;"Mountain View (Lawrenceville, GA)";GA;"6-4 / 192";82;NA;106;138;"Northern Illinois"
+"Max Drag";TE;"Chapin (Chapin, SC)";SC;"6-4 / 230";80;NA;99;32;"Appalachian State"
+"Benjamin Hall";RB;"North Cobb (Kennesaw, GA)";GA;"5-10 / 225";86;NA;60;91;Michigan
+"Jake Stearney";QB;"Loyola Academy (Wilmette, IL)";IL;"6-3 / 180";78;NA;145;69;Colgate
+"Connor Cox";TE;"The Bolles School (Jacksonville, FL)";FL;"6-5 / 220";85;NA;64;176;"South Carolina"
+"Amare Thomas";WR;"Pinson Valley (Pinson, AL)";AL;"5-10 / 180";87;NA;92;26;Virginia
+"Peter Clarke";TE;"NFL Academy (London, EN)";EN;"6-6 / 248";86;NA;52;1;Temple
+"Keldric Luster";QB;"McKinney (McKinney, TX)";TX;"5-10 / 227";83;NA;90;230;SMU
+"Joe Jackson";ATH;"Ridge Community (Davenport, FL)";FL;"5-11 / 185";87;NA;75;105;"Kansas State"
+"TeKai Kirby";TE;"St. Thomas Aquinas (Fort Lauderdale, FL)";FL;"6-3 / 210";83;NA;80;234;Virginia
+"Caleb McMickle";QB;"Fellowship Christian School (Roswell, GA)";GA;"6-1 / 190";85;NA;59;99;Houston
+"Max Bateman";ATH;"Lone Peak (American Fork, UT)";UT;"6-3 / 215";80;NA;199;36;
+"Christian Ross";ATH;"Dale County (Midland City, AL)";AL;"6-4 / 215";85;NA;130;44;Memphis
+"Jared Quenga";ATH;"Cosumnes Oaks (Elk Grove, CA)";CA;"5-10 / 160";78;NA;247;364;
+"Brandon Inniss";WR;"American Heritage (Fort Lauderdale, FL)";FL;"6-0 / 190";97;19;3;4;"Ohio State"
+"Duran Parish";WR;"Biloxi (Biloxi, MS)";MS;"5-11.5 / 169";85;NA;192;24;Vanderbilt
+"Caleb Loveland";QB;"Burley Senior (Burley, ID)";ID;"6-2 / 190";75;NA;186;55;
+"Devon Rivers";RB;"Heritage (Brentwood, CA)";CA;"5-7 / 170";85;NA;71;132;"Fresno State"
+"Demitrius Bell";ATH;"Blackman (Murfreesboro, TN)";TN;"6-1 / 175";88;NA;50;19;"Michigan State"
+"Ardell Banks";WR;"Washington (Massillon, OH)";OH;"6-4 / 180";87;NA;94;26;Toledo
+"Traâquan Johnson";ATH;"Gibbs (Saint Petersburg, FL)";FL;"6-0 / 195";85;NA;136;190;"Tennessee Tech"
+"Collin Dixon";ATH;"Tallmadge (Tallmadge, OH)";OH;"6-2 / 205";86;NA;92;29;Wisconsin
+"Carlos Wilson";ATH;"Inderkum (Sacramento, CA)";CA;"5-11 / 160";90;NA;24;23;Utah
+"Owen Colpaert";ATH;"Dakota (Macomb, MI)";MI;"6-4 / 210";79;NA;226;47;
+"Sedrick Irvin Jr.";RB;"Columbus (Miami, FL)";FL;"5-10 / 190";90;NA;20;59;Stanford
+"David Rasor";QB;"Corona Del Mar (Newport Beach, CA)";CA;"6-1 / 195";84;NA;69;152;"UC Davis"
+"Derek Taylor";TE;"Hilmar (Hilmar, CA)";CA;"6-4 / 210";81;NA;90;239;
+"Willtrell Hartson";RB;"Washington (Massillon, OH)";OH;"5-9 / 200";86;NA;56;35;
+"DJ Cloyd";ATH;"Columbia (Columbia, MS)";MS;"6-2 / 190";83;NA;170;35;Tulane
+"Jacob Jones";QB;"West Jessamine (Lexington, KY)";KY;"6-1 / 180";82;NA;95;15;
+"Spencer Shannon";TE;"Mater Dei (Santa Ana, CA)";CA;"6-7 / 240";88;NA;23;39;Texas
+"Nathan Leacock";WR;"Millbrook (Raleigh, NC)";NC;"6-3 / 200";87;NA;91;18;Tennessee
+"William Fowles";WR;"Dade Christian School (Hialeah, FL)";FL;"6-2 / 195";87;NA;77;90;Louisville
+"Brayden Holmes";ATH;"Milton (Alpharetta, GA)";GA;"6-2 / 180";85;NA;112;98;
+"Carmelo Taylor";WR;"Patrick Henry (Roanoke, VA)";VA;"5-11 / 160";89;NA;47;7;"Penn State"
+"Paul Kessler";QB;"Venice (Los Angeles, CA)";CA;"6-5 / 215";80;NA;132;313;
+"Famah Toure";WR;"Irvington (Pleasantville, NJ)";NJ;"6-3 / 195";86;NA;134;14;Rutgers
+"Robert Stafford";ATH;"Eau Gallie (Melbourne, FL)";FL;"5-11 / 171";92;185;16;42;Miami
+"Richard Young";RB;"Lehigh Senior (Lehigh Acres, FL)";FL;"5-11 / 200";95;37;3;10;Alabama
+"Marquise Collins";RB;"College Station (College Station, TX)";TX;"5-10 / 190";86;NA;49;143;Duke
+"Tyree Patterson";WR;"Eustis (Eustis, FL)";FL;"6-2 / 175";86;NA;151;136;Florida
+"Nathaniel Joseph";WR;"Edison (Miami, FL)";FL;"5-8 / 170";93;110;15;23;Miami
+"Tiger Bachmeier";WR;"Murrieta Valley (Murrieta, CA)";CA;"6-1 / 180";90;NA;38;26;Stanford
+"Jarred Sample";WR;"Cy Ranch (Cypress, TX)";TX;"5-10 / 170";86;NA;117;126;Kansas
+"Carnell Tate";WR;"IMG Academy (Bradenton, FL)";FL;"6-2 / 185";97;20;4;5;"Ohio State"
+"Anquan Willis";ATH;"Rider (Wichita Falls, TX)";TX;"6-0 / 220";90;235;18;42;"Texas Tech"
+"Cody Mikulich";RB;"Bloomington North (Bloomington, IN)";IN;"5-11 / 185";77;NA;162;42;
+"Tamarcus Cooley";WR;"Rolesville (Rolesville, NC)";NC;"6-0 / 195";87;NA;107;23;"NC State"
+"Nathan Guinn";TE;"Vero Beach (Vero Beach, FL)";FL;"6-5 / 220";83;NA;79;233;Illinois
+"Quindarrius Jones";ATH;"Meridian (Meridian, MS)";MS;"6-2 / 187";86;NA;105;17;"Florida State"
+"Kamron Taylor";RB;"Jurupa Hills (Fontana, CA)";CA;"5-10 / 170";88;NA;34;63;
+"Devyn Turner";RB;"St. Francis (Allen, TX)";TX;"5-9 / 180";85;NA;81;143;
+"Semaj Morgan";WR;"West Bloomfield (West Bloomfield, MI)";MI;"5-10 / 175";88;NA;61;9;Michigan
+"Kaleb Jackson";RB;"Liberty Magnet (Baton Rouge, LA)";LA;"5-10 / 200";91;213;9;11;LSU
+"McCae Hillstead";QB;"Skyridge (Lehi, UT)";UT;"5-11 / 175";85;NA;60;15;"Utah State"
+"Randy Pittman";TE;"A. Crawford Mosley (Lynn Haven, FL)";FL;"6-2 / 230";87;NA;32;96;
+"Mateo Poso";ATH;"Branham (San Jose, CA)";CA;"6-1 / 224";83;NA;161;190;
+"Kai Hall";RB;"St Vincent De Paul (Petaluma, CA)";CA;"5-8 / 180";80;NA;129;279;
+"Luke Duncan";QB;"Miramonte (Orinda, CA)";CA;"6-5 / 195";88;NA;26;52;UCLA
+"Michael Mitchell";RB;"Middleburg (Middleburg, FL)";FL;"6-0 / 195";86;NA;47;115;Utah
+"Zackary Drawdy";WR;"Yulee (Yulee, FL)";FL;"6-2.5 / 180";85;NA;189;171;Connecticut
+"Ty Dieffenbach";QB;"Agoura (Agoura Hills, CA)";CA;"6-5 / 190";83;NA;87;194;UNLV
+"Apollos Cook";WR;"Airport (West Columbia, SC)";SC;"6-2 / 200";85;NA;171;20;Duke
+"Giovanni Lopez";QB;"James Clemens (Madison, AL)";AL;"6-1 / 210";84;NA;80;55;"South Alabama"
+"Anthony Albanez";ATH;"St. Bonaventure (Ventura, CA)";CA;"6-0 / 195";80;NA;205;310;
+"Jahreece Lynch";ATH;"North Surry (Mount Airy, NC)";NC;"6-2 / 185";82;NA;176;40;
+"Hawkins Polley";TE;"Stratford (Houston, TX)";TX;"6-4 / 245";86;NA;43;140;Baylor
+"Chris Lawson Jr.";WR;"Ridge View (Columbia, SC)";SC;"6-1 / 172";85;NA;175;21;"Appalachian State"
+"Orlando Greenlow";WR;"Lawndale (Lawndale, CA)";CA;"6-5 / 210";84;NA;209;158;
+"Kyle Williams";ATH;"Harrisburg (Harrisburg, PA)";PA;"6-0 / 185";80;NA;214;32;Temple
+"Devin Roche";RB;"Dunbar (Baltimore, MD)";MD;"5-9 / 177";84;NA;88;27;
+"Davonte Johnson";ATH;"Kenwood Academy (Chicago, IL)";IL;"5-11 / 170";80;NA;201;48;
+"Micah Mays";ATH;"The Benjamin School (North Palm Beach, FL)";FL;"6-2 / 175";89;NA;35;76;"Wake Forest"
+"Riley Williams";TE;"IMG Academy (Bradenton, FL)";FL;"6-6 / 240";94;85;4;19;Miami
+"Dakotah Mayo";WR;"Christian Brothers College (Saint Louis, MO)";MO;"5-10 / 160";85;NA;167;23;
+"Broc Lowry";QB;"Canfield (Canfield, OH)";OH;"6-3 / 195";85;NA;61;38;Indiana
+"Dereun Dortch";QB;"San Jacinto (San Jacinto, CA)";CA;"6-0 / 200";80;NA;118;280;
+"Javin Simpkins";RB;"Norland (Miami, FL)";FL;"5-9 / 183";89;NA;22;68;"Georgia Tech"
+"Ryan Browne";QB;"Milford Academy (New Berlin, NY)";NY;"6-5 / 207";82;NA;101;11;
+"Makai Lemon";ATH;"Los Alamitos (Los Alamitos, CA)";CA;"6-0 / 180";96;24;2;6;USC
+"Devin McCuin";ATH;"Jacksonville (Jacksonville, TX)";TX;"5-11 / 180";86;NA;87;154;UTSA
+"Frank Covey";ATH;"Prospect (Mount Prospect, IL)";IL;"6-2 / 185";87;NA;70;14;Northwestern
+"Lex Thomas";QB;"Heritage (Wake Forest, NC)";NC;"5-11 / 193";87;NA;37;20;"NC State"
+"Reed Harris";ATH;"Great Falls (Great Falls, MT)";MT;"6-4 / 200";87;NA;54;1;"Boston College"
+"A.C. Mason-Young";ATH;"Covington (Covington, TN)";TN;"5-11 / 170";84;NA;152;44;
+"Ben Fosnot";TE;"William Mason (Mason, OH)";OH;"6-6 / 230";77;NA;120;108;
+"Kenneth Jones";RB;"West Bloomfield (West Bloomfield, MI)";MI;"5-10 / 190";79;NA;145;52;"Grand Valley State"
+"Ty Bryant";ATH;"Frederick Douglass (Lexington, KY)";KY;"6-0 / 175";86;NA;86;9;Kentucky
+"Chance Guadiz";QB;"Rainier Beach (Seattle, WA)";WA;"6-1 / 205";76;NA;168;115;
+"Sergio Snider";RB;"Martin (Arlington, TX)";TX;"5-10 / 185";85;NA;83;210;
+"Jeremiah Coney";RB;"Hermitage (Richmond, VA)";VA;"6-0.5 / 194";85;NA;82;39;"Appalachian State"
+"Nico Mosley";RB;"Mater Dei Catholic (Chula Vista, CA)";CA;"5-8 / 175";80;NA;137;297;
+"Antwaan Mays";WR;"Gulliver Prep (Miami, FL)";FL;"6-1 / 180";84;NA;204;201;
+"Jordan Louie";RB;"Meadowcreek (Norcross, GA)";GA;"5-11 / 205";86;NA;65;95;"West Virginia"
+"Christopher Vizzina";QB;"Briarwood Christian (Birmingham, AL)";AL;"6-4 / 207";95;38;7;4;Clemson
+"Myles Libman";WR;"Pinnacle (Phoenix, AZ)";AZ;"6-1 / 185";85;NA;169;18;
+"Bryson Waterman";ATH;"Bakersfield Christian (Bakersfield, CA)";CA;"6-1 / 180";81;NA;192;260;
+"Deegan Martinho";RB;"Eagle (Eagle, ID)";ID;"6-0 / 190";78;NA;148;20;
+"Zachary Card";WR;"Pittsburg (Pittsburg, CA)";CA;"5-10 / 165";87;NA;82;74;"Oregon State"
+"Dempsy James";QB;"Spanaway Lake (Spanaway, WA)";WA;"6-1 / 185";80;NA;116;53;
+"Deljay Bailey";QB;"Petal (Biloxi, MS)";MS;"6-1 / 200";83;NA;89;33;
+"Ricky Ahumaraeze";WR;"Liberty (Liberty, MO)";MO;"6-4 / 195";87;NA;90;18;Northwestern
+"Andrew Rappleyea";TE;"Milton Academy (Milton, MA)";MA;"6-5 / 225";88;NA;27;6;"Penn State"
+"Jaylen Gardner";WR;"TMI Episcopal (San Antonio, TX)";TX;"6-0 / 190";86;NA;119;133;UTSA
+"Keaton Kubecka";WR;"Westlake (Austin, TX)";TX;"6-2 / 195";84;NA;199;214;Kansas
+"Pearce Spurlin";TE;"South Walton (Santa Rosa Beach, FL)";FL;"6-6 / 220";94;68;2;18;Georgia
+"Ethan O'Connor";ATH;"Los Alamitos (Los Alamitos, CA)";CA;"6-1 / 170";88;NA;39;54;
+"Julien Randolph";TE;"Independence (Ashburn, VA)";VA;"6-5 / 210";87;NA;38;18;"North Carolina"
+"Angelo Stockstill";ATH;"Simeon (Chicago, IL)";IL;"6-4 / 175";79;NA;218;55;"Western Michigan"
+"Mikal Harrison-Pilot";ATH;"Temple (Temple, TX)";TX;"6-0 / 190";92;167;14;31;
+"Daquayvious Sorey";WR;"Chipley (Campbellton, FL)";FL;"6-2 / 185";92;188;22;43;
+"Soren Erickson";TE;"St Charles North (Saint Charles, IL)";IL;"6-4 / 238";75;NA;124;85;
+"Pierce Walsh";TE;"Benet Academy (Lisle, IL)";IL;"6-4 / 210";85;NA;58;25;Minnesota
+"Shamar Easter";TE;"Ashdown (Ashdown, AR)";AR;"6-5 / 225";92;150;11;1;Arkansas
+"Bryce Schondelmyer";QB;"Springfield (Springfield, OH)";OH;"6-2 / 195";76;NA;171;110;
+"Marquise Palmer";ATH;"East St. Louis (East Saint Louis, IL)";IL;"5-11 / 175";79;NA;222;59;
+"Tremel Miles";ATH;"Inderkum (Sacramento, CA)";CA;"6-5 / 210";85;NA;111;128;
+"Indiana Wijay";QB;"Pasadena (Pasadena, CA)";CA;"6-4 / 200";82;NA;103;235;
+"Drew Pickett";RB;"Russell County (Deatsville, AL)";AL;"5-10 / 185";86;NA;57;36;"Wake Forest"
+"Aidan Hall";ATH;"Harlan Community (Harlan, IA)";IA;"6-1 / 200";85;NA;118;15;Iowa
+"Rohan Fluellen";ATH;"Gilmer (Gilmer, TX)";TX;"6-0 / 170";88;NA;41;80;TCU
+"Markus Dixon";TE;"Archbishop Wood (Warminster, PA)";PA;"6-4 / 230";87;NA;31;12;Clemson
+"Cade Clyde";TE;"Connell (Connell, WA)";WA;"6-3 / 250";80;NA;96;46;
+"Harvey Broussard";WR;"St. Martinville Senior (Saint Martinville, LA)";LA;"6-2.5 / 175";85;NA;170;35;
+"Chris Dawn Jr.";WR;"Horn (Mesquite, TX)";TX;"5-7 / 155";85;NA;168;199;"Arkansas State"
+"Kedrick Reescano";RB;"New Caney (New Caney, TX)";TX;"5-11 / 190";89;NA;24;61;"Michigan State"
+"Evan Tomich";QB;"Mayfair (Lakewood, CA)";CA;"6-2 / 180";87;NA;39;82;
+"Evan Pierce";QB;"Tesoro (Rancho Santa Margarita, CA)";CA;"6-1 / 195";78;NA;146;344;
+"Cedric Hawkins";RB;"Stuttgart (Stuttgart, AR)";AR;"5-8 / 170";78;NA;147;8;"Arkansas State"
+"Rico Flores";WR;"Folsom (Folsom, CA)";CA;"6-1 / 190";90;246;28;16;"Notre Dame"
+"Jordan Napier";WR;"Jurupa Hills (Fontana, CA)";CA;"6-2 / 195";84;NA;210;159;"San Diego State"
+"Kaden Feagin";ATH;"Arthur Sr (Arthur, IL)";IL;"6-3 / 221";89;NA;30;6;Illinois
+"Noah Braham";TE;"University (Morgantown, WV)";WV;"6-2 / 225";85;NA;66;3;"West Virginia"
+"Ryder Burton";QB;"Springville (Springville, UT)";UT;"6-2 / 180";85;NA;63;17;BYU
+"Daylan Smothers";RB;"West Charlotte (Charlotte, NC)";NC;"5-11 / 182";88;NA;30;15;Oklahoma
+"Ejani Shakir";WR;"Winslow Twp (Atco, NJ)";NJ;"6-0 / 175";90;NA;32;3;"Penn State"
+"Anthony Benjamin";WR;"Dunbar (Fort Myers, FL)";FL;"5-8 / 140";84;NA;225;213;
+"Miles Tucker";ATH;"Amador Valley (Pleasanton, CA)";CA;"6-0 / 185";78;NA;245;357;
+"Karaaz Johnson";WR;"St. Augustine (Knoxville, TN)";TN;"5-6.5 / 127";84;NA;221;39;
+"Amaris Shaw";ATH;"Winter Park (Winter Park, FL)";FL;"6-0 / 170";88;NA;40;84;
+"Tre Spivey";WR;"Hamilton (Chandler, AZ)";AZ;"6-4 / 185";86;NA;131;13;
+"Elija Walton";ATH;"North Marion (Citra, FL)";FL;"6-4 / 210";85;NA;139;192;"Georgia Southern"
+"CJ Hester";RB;"Wyoming (Cincinnati, OH)";OH;"5-11 / 190";83;NA;103;59;"Western Michigan"
+"Javieon Butler";WR;"Scott Central (Forest, MS)";MS;"6-5 / 194";85;NA;193;25;"Southern Miss"
+"Eric Denham";WR;"St. John Bosco (Bellflower, CA)";CA;"5-11 / 200";84;NA;207;155;
+"Ian Duarte";WR;"Eagle (Eagle, ID)";ID;"5-8 / 170";86;NA;123;4;
+"Samuel Gamino";RB;"Rigby (Rigby, ID)";ID;"5-10 / 195";72;NA;174;59;
+"Khalil Yarbo";RB;"Graham-Kapowsin (Tacoma, WA)";WA;"6-0 / 210";77;NA;158;83;
+"Charmar Brown";RB;"Creighton Preparatory School (Omaha, NE)";NE;"6-0 / 200";78;NA;154;13;"North Dakota State"
+"Re'Shaun Sanford";RB;"Harker Heights (Harker Heights, TX)";TX;"5-7 / 165";83;NA;107;232;Houston
+"Ike Daniels";RB;"Mountain View (Stafford, VA)";VA;"5-10 / 185";86;NA;48;23;Syracuse
+"Luke Leighton";ATH;"Sheldon (Eugene, OR)";OR;"6-5 / 190";81;NA;197;15;
+"Dylan Greeson";ATH;"De La Salle (Concord, CA)";CA;"5-10 / 190";78;NA;243;348;
+"Chris Parson";QB;"Ravenwood (Brentwood, TN)";TN;"6-0.5 / 200";88;NA;25;13;"Mississippi State"
+"Kenric Lanier";WR;"Decatur (Decatur, GA)";GA;"6-1.5 / 180";88;NA;76;50;Vanderbilt
+"Charlie Pace";RB;"Colquitt County (Moultrie, GA)";GA;"5-10 / 185";82;NA;120;141;"Georgia State"
+"Jaiden Acker";TE;"Kenowa Hills (Grand Rapids, MI)";MI;"6-4 / 215";78;NA;110;56;
+"Gage Sliter";QB;"Glacier (Kalispell, MT)";MT;"6-1 / 185";77;NA;166;13;
+"Christopher Williams";ATH;"Francis Parker School (San Diego, CA)";CA;"5-10 / 170";86;NA;96;121;
+"Jayden Whitaker";QB;"Brownsburg (Brownsburg, IN)";IN;"6-2 / 170";79;NA;140;30;"Western Illinois"
+"Keenan Kuntz";ATH;"Mead (Spokane, WA)";WA;"6-1 / 180";81;NA;195;43;
 "Justin Marshall";WR;"Merrillville (Merrillville, IN)";IN;"5-11 / 175";87;NA;83;8;"Colorado State"
-"Noah Vaughn";RB;"Maryville (Maryville, TN)";TN;"5-9 / 185";83;NA;109;60;Virginia
-"Jordan Napier";WR;"Jurupa Hills (Fontana, CA)";CA;"6-2 / 195";84;NA;203;158;"San Diego State"
+"Tre' Hartwell";RB;"Independence (Thompson's Station, TN)";TN;"5-11.5 / 219";83;NA;97;53;
+"Ja'koby Banks";WR;"Fort Bend Marshall (Missouri City, TX)";TX;"5-9 / 175";87;NA;101;123;Houston
+"Jayden Mandal";QB;"Buchanan (Clovis, CA)";CA;"6-0 / 205";84;NA;78;173;"Fresno State"
+"Marcus Higgs";RB;"Warren (Downey, CA)";CA;"5-11 / 220";83;NA;112;208;
+"Dante Kelly";ATH;"Leflore County (Itta Bena, MS)";MS;"6-3 / 203";84;NA;149;30;"Mississippi State"
+"Sedrick Alexander";RB;"LBJ (Austin, TX)";TX;"5-8 / 190";87;NA;40;114;Vanderbilt
+"Braylen Ragland";QB;"Bartlett (Memphis, TN)";TN;"6-0 / 195";87;NA;36;21;"Georgia State"
+"Micah Tease";ATH;"Booker T. Washington (Tulsa, OK)";OK;"5-11 / 180";93;119;9;2;Arkansas
+"Vandrevius Jacobs";WR;"Vero Beach (Vero Beach, FL)";FL;"6-0 / 167";87;NA;78;92;"Florida State"
+"Zamariyon Kendall";RB;"Lausanne Collegiate School (Memphis, TN)";TN;"5-11 / 202";85;NA;74;36;
+"Sincere Rodriguez";RB;"Stranahan (Fort Lauderdale, FL)";FL;"5-11 / 200";82;NA;119;253;
+"Khalil Barnes";ATH;"North Oconee (Bogart, GA)";GA;"6-1 / 185";86;NA;95;86;"Wake Forest"
+"Samuel Cooper";QB;"University City (San Diego, CA)";CA;"6-3 / 215";87;NA;41;94;
+"Abu Sama";ATH;"Southeast Polk (Des Moines, IA)";IA;"5-10 / 180";85;NA;119;16;"Iowa State"
+"Parker Awad";QB;"Edison (Huntington Beach, CA)";CA;"6-1 / 185";80;NA;135;314;
+"Ahmad Haston";QB;"Palm Beach Central (West Palm Beach, FL)";FL;"6-2.5 / 190";82;NA;97;246;Massachusetts
+"Delon Thompson";RB;"St. Bonaventure (Ventura, CA)";CA;"5-9 / 189";83;NA;101;192;
+"Morgan Pearson";WR;"Plainview (Ardmore, OK)";OK;"6-2 / 225";86;NA;125;11;
+"Dijon Stanley";ATH;"Granada Hills (Granada Hills, CA)";CA;"6-1 / 175";89;NA;31;31;Utah
+"Ray Woods";QB;"Homewood (Birmingham, AL)";AL;"6-2 / 175";81;NA;115;62;
+"Josh Palmer";TE;"Autauga Academy (Prattville, AL)";AL;"6-5 / 215";85;NA;54;39;
+"Hayden Garrison";QB;"Chelsea (Chelsea, AL)";AL;"6-5 / 180";80;NA;122;63;
+"Carter Shaw";ATH;"Sacred Heart Prep (Atherton, CA)";CA;"6-2 / 180";82;NA;171;215;
+"Earl Woods";QB;"Hueytown (Birmingham, AL)";AL;"5-11 / 185";80;NA;134;65;
+"Jayden Limar";RB;"Lake Stevens (Lake Stevens, WA)";WA;"5-11 / 190";90;247;12;3;"Notre Dame"
+"Lontrell Turner";WR;"Duncanville (Duncanville, TX)";TX;"5-11 / 180";86;NA;150;171;
+"Fredrick Moore";WR;"Cardinal Ritter College Prep (Saint Louis, MO)";MO;"6-0 / 175";89;NA;52;12;Michigan
+"Tre Richardson";ATH;"Highland Park (Topeka, KS)";KS;"5-10 / 165";85;NA;129;12;"New Mexico State"
+"Will Prichard";QB;"Santaluces Community (Lake Worth, FL)";FL;"6-2 / 195";77;NA;154;284;
+"London Humphreys";WR;"CPA (Nashville, TN)";TN;"6-2 / 195";88;NA;73;17;Vanderbilt
+"Mason Mini";TE;"Terra Nova (Pacifica, CA)";CA;"6-4 / 210";76;NA;123;446;Idaho
+"Kelby Valsin";WR;"Bowie (Arlington, TX)";TX;"6-1 / 180";86;NA;152;172;"Texas Tech"
+"Jeremiah McClure";WR;"Mater Dei Catholic (Chula Vista, CA)";CA;"6-2 / 195";88;NA;66;47;
+"William Watson III";QB;"Springfield Central (Springfield, MA)";MA;"6-0 / 175";86;NA;56;9;Nebraska
+"Jacob Kilzer";QB;"Maple Grove (Osseo, MN)";MN;"6-2 / 196";79;NA;141;19;
+"Keany Parks";RB;"Bradford (Kenosha, WI)";WI;"6-1 / 180";79;NA;146;10;
+"Quinten Joyner";RB;"Manor (Manor, TX)";TX;"5-10 / 190";91;212;8;36;USC
+"Ezell Jolly";RB;"Ridge Point (Missouri City, TX)";TX;"6-0 / 175";85;NA;68;186;
+"Ashton Cozart";WR;"Marcus (Flower Mound, TX)";TX;"6-3.5 / 193";92;152;17;29;Oregon
+"Donte Hawthorne";RB;"Colonial Forge (Stafford, VA)";VA;"6-0 / 200";85;NA;67;34;Virginia
+"Darius Taylor";RB;"Walled Lake Western (Walled Lake, MI)";MI;"5-11 / 187";87;NA;38;13;Minnesota
+"Dane Reed";ATH;"Inglewood (Inglewood, CA)";CA;"5-8 / 170";85;NA;115;134;Campbell
+"A'Marion Peterson";RB;"Hirschi (Wichita Falls, TX)";TX;"6-0 / 200";90;NA;13;46;USC
+"Damian Henderson";ATH;"Los Alamitos (Los Alamitos, CA)";CA;"6-3 / 185";84;NA;155;176;"Colorado State"
+"Peyton Jones";RB;"Maury (Norfolk, VA)";VA;"5-11 / 180";86;NA;58;29;Duke
+"Deric English";WR;"Saguaro (Scottsdale, AZ)";AZ;"6-4 / 210";90;NA;36;8;
+"Joey Schlaffer";TE;"Exeter Township (Reading, PA)";PA;"6-6 / 215";86;NA;45;18;"Penn State"
+"Kyler Ronquillo";ATH;"Yelm (Yelm, WA)";WA;"5-10 / 175";82;NA;173;35;"Portland State"
+"Blake Boda";QB;"Cocoa (Cocoa, FL)";FL;"6-3 / 173";77;NA;162;285;
+"Ernest Thomas";WR;"North Forney (Forney, TX)";TX;"6-2 / 185";86;NA;136;160;Campbell
+"KC Spears";ATH;"Winton Woods (Cincinnati, OH)";OH;"5-10 / 190";79;NA;224;91;
+"Jalyn Thompson";TE;"Dowling Catholic (West Des Moines, IA)";IA;"6-4 / 220";79;NA;102;25;
+"Jack Jacobs";QB;"St. Francis (La Canada Flintridge, CA)";CA;"6-6 / 205";83;NA;91;198;
+"DJ Oliver";RB;"Port St. Joe (Port Saint Joe, FL)";FL;"6-0 / 237";85;NA;80;180;USF
+"Kamron Sandlin";ATH;"Anniston (Anniston, AL)";AL;"6-4 / 220";85;NA;135;46;"South Carolina"
+"Drew Viotto";QB;"Walled Lake Western (Walled Lake, MI)";MI;"6-4 / 215";85;NA;62;20;Minnesota
+"Leeshaun Mumpfield";QB;"Cass Technical (Detroit, MI)";MI;"5-10 / 175";76;NA;173;73;
+"Emory Williams";QB;"Milton (Milton, FL)";FL;"6-4.5 / 190";87;NA;34;98;Miami
+"Xavier Terrell";RB;"St. Thomas Aquinas (Fort Lauderdale, FL)";FL;"5-8 / 175";85;NA;75;159;"Florida Atlantic"
+"Pokaiaua Haunga";ATH;"Timpview (Provo, UT)";UT;"5-11 / 200";87;NA;59;7;BYU
+"Daisjaun Mercer";ATH;"Hopkinsville (Hopkinsville, KY)";KY;"- / -";79;NA;229;18;"Miami (OH)"
+"Henry Garrity";TE;"Brother Rice (Bloomfield Hills, MI)";MI;"6-4 / 205";83;NA;77;26;
+"Koron Hayward";WR;"Mandarin (Jacksonville, FL)";FL;"6-4.5 / 199";85;NA;190;174;"Georgia Southern"
+"Teremun Lott";ATH;"Inlet Grove Community (West Palm Beach, FL)";FL;"6-0 / 170";85;NA;134;185;Illinois
+"Jace Villers";ATH;"Auburn Riverside (Auburn, WA)";WA;"6-3 / 195";81;NA;196;44;
+"Cayden Dawson";TE;"University City (San Diego, CA)";CA;"6-4 / 230";87;NA;33;80;"Boise State"
+"Brandon Hills";WR;"Vista Ridge (Colorado Springs, CO)";CO;"5-8 / 150";84;NA;227;11;"Washington State"
+"Kole Hunsaker";QB;"Lakeside (Nine Mile Falls, WA)";WA;"6-2 / 170";76;NA;175;117;
+"Dakota Patterson";ATH;"Boyle County (Danville, KY)";KY;"6-1.5 / 194";90;NA;26;2;
+"Barry Jackson";WR;"Cedar Grove (Ellenwood, GA)";GA;"5-11 / 175";86;NA;156;94;Nebraska
+"Kamari Moulton";RB;"Cardinal Gibbons (Fort Lauderdale, FL)";FL;"5-9 / 180";86;NA;62;133;
+"Oliver Fisher";TE;"Sherwood (Sherwood, OR)";OR;"6-5 / 225";84;NA;71;7;"Boise State"
+"Kamaehu Kaawalauole";WR;"James Campbell (Ewa Beach, HI)";HI;"6-5 / 210";84;NA;226;9;"San Jose State"
+"Rickie Collins";QB;"Woodlawn (Baton Rouge, LA)";LA;"6-2 / 190";92;178;13;7;LSU
+"Jordan Fisher";RB;"Westview (Portland, OR)";OR;"5-8 / 170";83;NA;99;8;
+"Keith Reynolds";WR;"Adelanto (Adelanto, CA)";CA;"5-10 / 160";84;NA;222;170;Washington
+"Beni Ngoyi";WR;"Lincoln (Lincoln, NE)";NE;"6-4 / 180";88;NA;69;5;"Iowa State"
+"Marcell Baylor";WR;"Radford (Radford, VA)";VA;"6-3 / 195";86;NA;142;30;"Virginia Tech"
+"Camron Heard";WR;"Furr (Houston, TX)";TX;"5-11 / 165";88;NA;54;66;"Oklahoma State"
+"Trey Roberts";WR;"American Fork (American Fork, UT)";UT;"6-2 / 195";83;NA;231;23;
+"Dylan Lonergan";QB;"Brookwood (Snellville, GA)";GA;"6-2 / 215";93;113;11;11;Alabama
+"JJ Kohl";QB;"Ankeny (Ankeny, IA)";IA;"6-7 / 230";90;NA;15;3;"Iowa State"
+"David Clement";TE;"Christian Brothers Academy (Albany, NY)";NY;"6-7 / 265";86;NA;50;6;Syracuse
+"Robbie Mascheroni";WR;"Campolindo (Moraga, CA)";CA;"6-4 / 190";84;NA;211;160;
+"Davion Dozier";WR;"Moody (Moody, AL)";AL;"6-4 / 195";86;NA;146;37;Arkansas
+"Jamell James";RB;"Fitch (Youngstown, OH)";OH;"5-10 / 215";78;NA;153;102;
+"Xavier Rice";QB;"Loyola (Los Angeles, CA)";CA;"6-3 / 185";85;NA;58;131;
+"Dante Dowdell";RB;"Picayune Memorial (Picayune, MS)";MS;"6-1.5 / 210";88;NA;28;6;Oregon
+"Dane Parker";ATH;"Puyallup (Puyallup, WA)";WA;"6-1 / 180";78;NA;239;55;
+"Kahlil Tate";ATH;"Kenwood Academy (Chicago, IL)";IL;"6-2 / 185";87;NA;69;12;Iowa
+"Jason Duclona";ATH;"Estero (Estero, FL)";FL;"6-1 / 175";86;NA;90;122;Rutgers
+"Derrick Bohler";WR;"Miami Palmetto (Miami, FL)";FL;"6-1 / 195";85;NA;188;169;
+"Israel Polk";ATH;"St. John Bosco (Bellflower, CA)";CA;"6-2.5 / 170";87;NA;55;69;
+"Brock Thomas";QB;"Sheldon (Eugene, OR)";OR;"6-0 / 165";83;NA;83;9;
+"Jeremiah Augustin";ATH;"Jupiter Christian School (Jupiter, FL)";FL;"6-5.5 / 180";83;NA;166;229;
+"Daidren Zipperer";WR;"Lakeland (Lakeland, FL)";FL;"6-1 / 170";84;NA;198;199;
+"John-Keawe Sagapolutele";QB;"Punahou (Honolulu, HI)";HI;"6-1 / 185";82;NA;105;14;Hawaii
+"Darrell Sweeting";ATH;"The Benjamin School (North Palm Beach, FL)";FL;"5-10 / 175";85;NA;138;191;Charlotte
+"Sam Leavitt";QB;"West Linn (West Linn, OR)";OR;"6-1 / 185";86;NA;47;2;"Washington State"
+"Breeon Ishmail";ATH;"Hamilton (Hamilton, OH)";OH;"6-5 / 200";83;NA;165;62;
+"Braylon James";WR;"Stony Point (Round Rock, TX)";TX;"6-2 / 185";93;96;14;18;"Notre Dame"
+"Konner Barrett";QB;"Gulf Coast (Naples, FL)";FL;"6-0 / 185";81;NA;112;265;
+"Christopher Arviso II";QB;"Mountain Pointe (Phoenix, AZ)";AZ;"6-1 / 175";79;NA;138;48;
+"Tad Hudson";QB;"William Amos Hough (Cornelius, NC)";NC;"6-3 / 220";90;NA;21;12;"North Carolina"
+"Josh Richards";WR;"East Orange Campus (East Orange, NJ)";NJ;"6-3 / 175";83;NA;247;33;Maryland
+"Nolan Ray";RB;"Brother Rice (Bloomfield Hills, MI)";MI;"6-0 / 195";86;NA;59;16;Maryland
+"Javorian Wimberly";WR;"Palm Beach Central (West Palm Beach, FL)";FL;"6-0 / 180";85;NA;186;167;"Central Michigan"
+"Jeremiyah Love";ATH;"Christian Brothers College (Saint Louis, MO)";MO;"6-0 / 190";94;87;7;4;
+"Jake Jackson";WR;"Madison (San Diego, CA)";CA;"6-5 / 185";83;NA;242;202;
+"Ja'Kobi Lane";WR;"Red Mountain (Mesa, AZ)";AZ;"6-4 / 175";90;NA;30;7;
+"Joaqinn Thomas";ATH;"Granite Hills (El Cajon, CA)";CA;"5-9 / 175";80;NA;204;294;
+"Demarkus Brown";ATH;"Mount Pleasant (Mount Pleasant, TN)";TN;"6-1 / 170";83;NA;164;58;
+"Braxton Woodson";QB;"Lake Brantley (Altamonte Springs, FL)";FL;"6-3 / 195";82;NA;107;260;Navy
+"Omarion Miller";WR;"North Caddo (Vivian, LA)";LA;"6-2 / 190";91;221;23;12;Nebraska
+"Carlos Hernandez";WR;"Monrovia (Monrovia, CA)";CA;"6-0 / 170";83;NA;243;203;"Washington State"
+"Richie Munoz";QB;"Bishop Amat (La Puente, CA)";CA;"6-0 / 195";84;NA;71;157;
+"Luke Ash";RB;"Clackamas (Clackamas, OR)";OR;"5-8 / 150";77;NA;157;37;
+"Dawson Wahl";QB;"Mountain View (Meridian, ID)";ID;"6-3 / 190";78;NA;147;18;
+"Spencer Jones";WR;"Our Lady Good Counsel HS (Olney, MD)";MD;"6-3 / 190";84;NA;212;28;Duke
+"Will Monney";TE;"Springville (Springville, UT)";UT;"6-4 / 205";79;NA;105;38;
+"Zion Fowler";WR;"St. Peters Prep (Jersey City, NJ)";NJ;"6-1 / 185";86;NA;127;12;Pittsburgh
+"Jeremiah Calvin";ATH;"John Muir (Pasadena, CA)";CA;"6-3 / 240";87;NA;56;78;
+"D'Mariun Perteet";RB;"South Panola (Batesville, MS)";MS;"5-10 / 200";80;NA;134;41;
+"Joey Wassler";TE;"St. Xavier (Cincinnati, OH)";OH;"6-5 / 225";82;NA;84;65;
+"Bryce Harrison";TE;"Apopka (Apopka, FL)";FL;"6-3 / 225";79;NA;104;278;"Northern Illinois"
+"Raymond Valencia";ATH;"Chaparral (Temecula, CA)";CA;"6-0 / 170";85;NA;113;133;
+"Garrison Monroe";ATH;"Shakopee (Shakopee, MN)";MN;"6-0 / 190";84;NA;146;10;Minnesota
+"Blake Baker";QB;"Clackamas (Clackamas, OR)";OR;"6-0 / 170";75;NA;178;55;
+"Kyson Brown";RB;"Lancaster (Lancaster, TX)";TX;"5-10 / 195";86;NA;66;184;
+"Olsen Patt Henry";TE;"First Baptist Academy (Naples, FL)";FL;"6-3 / 215";90;NA;16;56;Clemson
+"Leo Pulalasi";ATH;"Lakes (Lakewood, WA)";WA;"6-1 / 205";86;NA;97;13;BYU
+"Mikhi Varady-Brown";ATH;"Notre Dame (Sherman Oaks, CA)";CA;"5-8 / 165";79;NA;233;341;
+"Jalen Hale";WR;"Longview (Longview, TX)";TX;"6-2 / 175";94;74;12;13;
+"Durell Robinson";RB;"St. Frances Academy (Baltimore, MD)";MD;"6-1 / 190";86;NA;55;13;
+"Jamison Patton";ATH;"Ankeny (Des Moines, IA)";IA;"6-2 / 190";88;NA;46;5;"Iowa State"
+"James Scott";RB;"Franklin (Seattle, WA)";WA;"5-9 / 205";74;NA;172;133;
+"Trey Kukuk";QB;"Capistrano Valley (Mission Viejo, CA)";CA;"6-1 / 180";82;NA;96;224;
+"Darius Cowens";QB;"Warren (Downey, CA)";CA;"6-0 / 170";86;NA;48;98;
+"Roderick Robinson II";RB;"Lincoln (San Diego, CA)";CA;"6-1 / 230";90;NA;18;22;UCLA
+"Parker Pettit";QB;"Sandpoint (Sandpoint, ID)";ID;"6-1 / 200";76;NA;177;48;
+"Edward Schultz";WR;"Mission Viejo (Mission Viejo, CA)";CA;"6-1 / 195";85;NA;180;138;Colorado
+"Ryan McCulloch";ATH;"Rio Hondo Preparatory School (Arcadia, CA)";CA;"6-3 / 235";85;NA;140;147;California
+"Nasir Addison";WR;"Irvington (Irvington, NJ)";NJ;"6-1 / 190";85;NA;172;20;Kentucky
+"Jordan Jackson";ATH;"Fairfield (Fairfield, OH)";OH;"5-11 / 175";87;NA;53;16;"West Virginia"
+"Richard Stallworth";QB;"Yuma Catholic (Yuma, AZ)";AZ;"6-2 / 205";77;NA;164;53;
+"John Randle Jr.";RB;"Heights (Wichita, KS)";KS;"6-0 / 180";90;NA;19;4;
+"Jordan Gile";QB;"Chattanooga Christian School (Chattanooga, TN)";TN;"6-0 / 190";80;NA;128;66;
+"Raymond Cottrell";WR;"Milton (Milton, FL)";FL;"6-2 / 203";92;165;19;35;Georgia
+"Miles Hall";ATH;"Skyline (Salt Lake City, UT)";UT;"6-2 / 195";86;NA;109;13;BYU
+"Chase Hendricks";WR;"St. Mary's (Saint Louis, MO)";MO;"5-11 / 185";87;NA;89;17;
+"Ahmari Borden";WR;"Robert F Munroe Day School (Quincy, FL)";FL;"6-3 / 180";88;NA;60;80;Stanford
+"RJ Johnson";ATH;"Eagles Landing Christian Academy (McDonough, GA)";GA;"6-2 / 180";87;NA;66;60;Arkansas
+"Makhail Wood";WR;"Mill Creek (Hoschton, GA)";GA;"5-10.5 / 150";83;NA;237;129;"Eastern Michigan"
+"Takye Heath";ATH;"Highland Springs (Highland Springs, VA)";VA;"5-9 / 165";86;NA;83;24;"Virginia Tech"
+"Tyler Garrett";TE;"Mission College Preparatory Catholic (San Luis Obispo, CA)";CA;"6-5 / 190";77;NA;119;396;
+"JJ Foust";ATH;"Powell (Powell, TN)";TN;"5-11 / 193";82;NA;178;63;
+"Barry Tate";WR;"Northeast Guilford (Mcleansville, NC)";NC;"5-9 / 150";84;NA;218;34;
+"Dallas Winner-Johnson";TE;"Cardinal Ritter College Prep (Saint Louis, MO)";MO;"6-4 / 200";78;NA;107;48;
+"Cody Smith";TE;"Liberty Ranch (Galt, CA)";CA;"6-7 / 240";78;NA;117;383;Idaho
+"Montravius Lloyd";ATH;"Lakewood (Saint Petersburg, FL)";FL;"6-0 / 205";86;NA;103;144;Pittsburgh
+"Shamar Porter";WR;"Ensworth (Nashville, TN)";TN;"6-3 / 192";92;186;21;3;Kentucky
+"James Rothstein";TE;"Amador Valley (Pleasanton, CA)";CA;"6-6 / 240";81;NA;93;246;
+"Mac Markway";TE;"DeSmet (Saint Louis, MO)";MO;"6-4 / 250";92;163;13;6;LSU
+"Lonnie Adkism";WR;"Miller (Corpus Christi, TX)";TX;"6-0 / 180";84;NA;201;215;"Sam Houston"
+"Brandon Johnson";RB;"Highland (Palmdale, CA)";CA;"5-9 / 185";85;NA;84;144;Arizona
+"Jeremiah Collins";ATH;"Oakland (Murfreesboro, TN)";TN;"6-2 / 160";89;NA;36;11;
+"Joey Neumann";TE;"Antioch Community (Antioch, IL)";IL;"6-4 / 215";78;NA;112;73;"South Dakota State"
+"Tralon Mitchell";ATH;"Southern Nash (Bailey, NC)";NC;"6-2 / 185";86;NA;101;26;"Virginia Tech"
+"Edward Robinson";RB;"Maple Heights (Maple Heights, OH)";OH;"5-11 / 190";84;NA;95;50;
+"Jackson Carver";TE;"The Loomis Chaffee School (Culver, IN)";IN;"6-6 / 220";88;NA;28;3;Miami
+"Jaquaize Pettaway";WR;"Langham Creek (Houston, TX)";TX;"5-11 / 170";95;40;6;5;Oklahoma
+"Tyson Edwards";ATH;"Overton (Nashville, TN)";TN;"6-2 / 175";84;NA;153;49;Memphis
+"Robert Jones III";QB;"Oswego East (Oswego, IL)";IL;"6-2 / 175";78;NA;152;76;Navy
+"Cameron Cook";RB;"Stony Point (Round Rock, TX)";TX;"5-10 / 180";90;NA;15;50;TCU
+"Deondre Johnson";ATH;"Newburgh Free Academy (Newburgh, NY)";NY;"6-8 / 200";86;NA;102;5;Rutgers
+"Silas Evans";WR;"George Washington (Denver, CO)";CO;"6-1 / 180";84;NA;228;12;"Colorado State"
+"Jesse Ofurie";WR;"St. John's Prep (Danvers, MA)";MA;"6-2 / 195";87;NA;112;8;Rutgers
+"Christian Abney";QB;"Zionsville (Zionsville, IN)";IN;"6-5 / 215";76;NA;174;46;"Ball State"
+"Jai Hundley";RB;"Oak Ridge (Oak Ridge, TN)";TN;"5-9 / 195";83;NA;109;56;
+"Kyle Parker";WR;"Lovejoy (Lucas, TX)";TX;"5-10 / 175";88;NA;55;67;LSU
+"Devin Samples";RB;"Long Beach Poly (Long Beach, CA)";CA;"5-7 / 190";80;NA;130;282;
+"Heston Miller";ATH;"West Plains (West Plains, MO)";MO;"6-0.5 / 200";84;NA;147;32;"Missouri State"
+"Adarius Redmond";WR;"Powell (Powell, TN)";TN;"6-1 / 185";90;NA;35;7;
+"Tyson Cooreman";ATH;"Randolph Secondary (Randolph, MN)";MN;"6-4 / 210";78;NA;236;21;"Northern Iowa"
+"Ethan Clark";RB;"Clarkston (Clarkston, MI)";MI;"6-1 / 195";80;NA;132;35;
+"Malik Leverett";WR;"Greenbrier (Evans, GA)";GA;"6-3 / 200";89;NA;45;37;"East Carolina"
+"Sam Van Dyne";QB;"Liberty North (Liberty, MO)";MO;"6-3 / 205";84;NA;74;27;
+"Cooper Jensen";TE;"Glacier Peak (Snohomish, WA)";WA;"6-5 / 210";88;NA;25;12;"Oregon State"
+"Vilay Nakkoun";ATH;"Orlando Christian Prep (Orlando, FL)";FL;"5-11 / 175";84;NA;156;223;Rutgers
+"Grant Tucker";ATH;"Charlotte Christian (Charlotte, NC)";NC;"6-3 / 184";90;NA;23;10;
+"Jazel Riley IV";QB;"Golden (Golden, CO)";CO;"6-1 / 210";80;NA;131;17;
+"Bryson Harrison";QB;"Lassiter (Marietta, GA)";GA;"6-1 / 195";82;NA;108;142;"Georgia State"
+"Austin Gonzalez";QB;"Lovejoy (Lucas, TX)";TX;"5-10 / 170";76;NA;176;241;"Southern Miss"
+"Dalton Brooks";ATH;"Shiner (Shiner, TX)";TX;"6-1 / 185";93;106;8;21;"Texas A&M"
+"Raheim Jeter";QB;"Spartanburg (Duncan, SC)";SC;"6-3 / 220";86;NA;44;13;
+"Braden Awls";ATH;"Central Catholic (Toledo, OH)";OH;"6-0 / 180";84;NA;148;45;Toledo
+"Brandon High";RB;"Grand Oaks (Spring, TX)";TX;"5-10 / 205";88;NA;29;82;UTSA
+"Arch Manning";QB;"Isidore Newman (New Orleans, LA)";LA;"6-4 / 215";98;1;1;1;Texas
+"Nate Johnson";ATH;"Clearwater Central Catholic (Clearwater, FL)";FL;"5-9 / 165";86;NA;78;117;"Boston College"
+"Mack Howard";QB;"Oxford (Oxford, MS)";MS;"6-2 / 185";86;NA;53;11;Utah
+"Bridger Davies";TE;"Corner Canyon (Draper, UT)";UT;"6-4 / 215";80;NA;98;37;
+"Tony Martin";ATH;"Miramar (Hollywood, FL)";FL;"5-10 / 175";80;NA;216;277;Marshall
+"Devin Hyatt";WR;"IMG Academy (Bradenton, FL)";FL;"6-2 / 194";88;NA;53;78;
+"Nakai Poole";WR;"Norcross (Norcross, GA)";GA;"6-3 / 205";87;NA;81;57;"Mississippi State"
 "Marcel Reed";QB;"Montgomery Bell Academy (Nashville, TN)";TN;"6-1 / 175";90;NA;22;9;"Ole Miss"
-"Konner Barrett";QB;"Gulf Coast (Naples, FL)";FL;"6-0 / 185";81;NA;112;264;
+"Jabari Mitchell";ATH;"Reynoldsburg (Reynoldsburg, OH)";OH;"6-3 / 206";81;NA;184;71;"Kent State"
+"Christian Johnson";QB;"River Rouge (River Rouge, MI)";MI;"6-2 / 210";77;NA;163;66;
+"Levontai Summersett";ATH;"North Fort Myers (North Fort Myers, FL)";FL;"5-10 / 192";83;NA;168;235;"Florida A&M"
+"Khalifa Keith";RB;"Parker (Birmingham, AL)";AL;"6-2 / 217";83;NA;111;56;Kentucky
+"Jonathan Stromberg";TE;"Skyview (Vancouver, WA)";WA;"6-5 / 205";78;NA;108;71;
+"Kenyon Agurs";ATH;"Inglewood (Inglewood, CA)";CA;"6-5 / 235";83;NA;167;212;
+"Shatavious Hogan";WR;"Miami Jackson (Miami, FL)";FL;"6-3 / 205";85;NA;195;194;"Central Michigan"
+"Vicari Swain";ATH;"Central (Carrollton, GA)";GA;"6-0 / 175";87;NA;51;56;"South Carolina"
+"Zach Johnson";TE;"Lake City (Coeur D Alene, ID)";ID;"6-3 / 205";84;NA;68;7;
+"Grant Larkin";ATH;"Neuqua Valley (Naperville, IL)";IL;"6-0 / 180";80;NA;200;47;"North Dakota State"
+"Johnny Thompson";RB;"Oaks Christian (Westlake Village, CA)";CA;"5-10 / 190";86;NA;50;108;
+"Zach Lutmer";ATH;"Central Lyon (Rock Rapids, IA)";IA;"6-1 / 190";85;NA;110;13;Iowa
+"Aiden Ramos";RB;"Bishop Amat (La Puente, CA)";CA;"5-10 / 210";81;NA;122;248;
+"Dawson Pendergrass";ATH;"Mineola (Mineola, TX)";TX;"6-3 / 212";86;NA;82;148;Baylor
+"Landen Chambers";RB;"Fossil Ridge (Keller, TX)";TX;"5-11 / 210";83;NA;104;231;BYU
+"Asaad Waseem";WR;"Ocoee (Ocoee, FL)";FL;"6-0 / 170";87;NA;100;103;
+"Taveonte Webster";ATH;"Wilson (Tacoma, WA)";WA;"6-4 / 200";78;NA;242;70;
+"Kylen Webb";ATH;"Sumner High (Riverview, FL)";FL;"6-1 / 180";90;NA;19;54;Clemson
+"Seth Fao";ATH;"Phineas Banning Senior (Wilmington, CA)";CA;"6-3 / 230";85;NA;141;150;
+"Grant Gray";WR;"Norco (Norco, CA)";CA;"6-3 / 180";88;NA;64;45;UCLA
+"Thomas Howard";ATH;"Frederick Douglass (Lexington, KY)";KY;"6-3 / 205";84;NA;142;13;
+"Owen Sieben";QB;"Terry Fox (Port Coquitlam, BC)";BC;"6-4 / 203";73;NA;187;2;
+"Mason Williams";TE;"Mogadore (Mogadore, OH)";OH;"6-4 / 235";84;NA;70;49;Ohio
+"Jackson Bowers";TE;"Mountain View (Mesa, AZ)";AZ;"6-5 / 225";91;222;14;4;BYU
+"Jayvontay Conner";TE;"East Forsyth (Kernersville, NC)";NC;"6-4 / 230";85;NA;62;32;"Ole Miss"
+"Benjamin Brahmer";WR;"Pierce (Pierce, NE)";NE;"6-5 / 185";87;NA;85;7;Nebraska
+"Reid Mikeska";TE;"Bridgeland (Cypress, TX)";TX;"6-5.5 / 233";86;NA;42;138;Miami
+"Courtland Simmons";ATH;"Davidson Academy (Nashville, TN)";TN;"5-10 / 185";85;NA;126;40;
+"Tripp Riordan";TE;"Wakeland (Frisco, TX)";TX;"6-4.5 / 245";86;NA;41;131;SMU
+"Joshua Manning";WR;"Lee's Summit (Lees Summit, MO)";MO;"6-3 / 190";90;NA;29;7;Missouri
+"Chris Culliver";WR;"Maiden (Maiden, NC)";NC;"6-3 / 174";87;NA;84;16;"North Carolina"
+"Isaiah Augustave";RB;"Naples (Naples, FL)";FL;"6-2 / 195";92;190;5;44;Arkansas
+"Vincent Drolet";WR;"Choate Rosemary Hall (Wallingford, CT)";CT;"6-5 / 220";84;NA;229;7;Duke
+"Isaiah Hardge";WR;"St. Thomas Aquinas (Fort Lauderdale, FL)";FL;"5-10 / 160";86;NA;153;138;Colorado
+"Ethan Clemons";ATH;"Calabasas (Calabasas, CA)";CA;"6-0 / 180";80;NA;203;291;
+"A.D. Norton";ATH;"Stebbins (Dayton, OH)";OH;"6-0 / 195";80;NA;211;82;Akron
+"Sawyer Deerman";RB;"American Christian Academy (Tuscaloosa, AL)";AL;"5-10 / 175";82;NA;115;60;
+"Jalen Brown";WR;"Gulliver Prep (Miami, FL)";FL;"6-1 / 170";95;52;9;14;LSU
+"Za'Ron Collins";WR;"Monsignor Pace (Opa Locka, FL)";FL;"6-2.5 / 165";84;NA;205;202;
+"Ryan Staub";QB;"West Ranch (Stevenson Ranch, CA)";CA;"6-1 / 190";85;NA;67;145;Colorado
+"Jake Davies";TE;"Yorkville (Yorkville, IL)";IL;"6-6 / 237";78;NA;115;74;
+"Derrick Rogers";WR;"Jones (Orlando, FL)";FL;"6-1 / 170";86;NA;149;134;Maryland
+"Luke Gall";RB;"Carthage (Carthage, MO)";MO;"5-11 / 200";80;NA;135;39;"Air Force"
+"Khai Prean";ATH;"St. James (Saint James, LA)";LA;"6-0 / 190";90;NA;27;15;
+"Wesley Greaves";WR;"A&M Consolidated (College Station, TX)";TX;"6-2 / 185";84;NA;206;216;Colorado
+"Kainoa Carvalho";WR;"Kahuku (Kahuku, HI)";HI;"5-7 / 165";87;NA;96;7;Utah
+"Datrell Jones";RB;"Catholic Memorial (West Roxbury, MA)";MA;"5-9 / 175";90;NA;21;5;"Boston College"
+"Tyrone West";WR;"Humble (Humble, TX)";TX;"6-1 / 190";88;NA;63;76;"Texas Tech"
+"Anthony White";ATH;"Abernathy (Abernathy, TX)";TX;"6-0 / 180";88;NA;44;83;
+"Jake Hill";ATH;"Snow Canyon (Saint George, UT)";UT;"6-3 / 195";79;NA;230;39;
+"Briggs Bartosh";ATH;"Park Hill South (Riverside, MO)";MO;"5-10 / 180";81;NA;198;38;
+"Cam Smith";ATH;"Fitch (Youngstown, OH)";OH;"5-11 / 185";85;NA;127;41;"Iowa State"
+"Luke Hasz";TE;"Bixby (Bixby, OK)";OK;"6-3 / 245";92;158;12;4;Arkansas
+"Mason McHugh";QB;"IMG Academy (Bradenton, FL)";FL;"6-3 / 194";80;NA;117;274;"Appalachian State"
+"Mark Fletcher";RB;"American Heritage (Fort Lauderdale, FL)";FL;"6-1 / 225";91;232;11;50;"Ohio State"
+"Chance Fitzgerald";WR;"Nolensville (Nolensville, TN)";TN;"6-3 / 184";86;NA;143;28;
+"Jake Foye";RB;"Santa Margarita Catholic (Rancho Santa Margarita, CA)";CA;"5-10 / 195";80;NA;133;287;
+"Major Givens";RB;"Steele Canyon (Spring Valley, CA)";CA;"5-9 / 180";84;NA;86;154;"Montana State"
+"Jakivion Calip";RB;"Olentangy Orange (Columbus, OH)";OH;"5-11 / 181";83;NA;102;56;"Central Michigan"
+"Trey Fasani";QB;"Ripon Christian Schools (Ripon, CA)";CA;"6-2 / 200";81;NA;110;249;
+"Ethan Crawford";QB;"Hillcrest (Tuscaloosa, AL)";AL;"6-0 / 195";82;NA;98;59;"Southern Miss"
+"Journey McKoy";ATH;"De La Salle (Concord, CA)";CA;"5-10 / 170";83;NA;162;193;Nevada
+"Rasheem Biles";ATH;"Pickerington Central (Pickerington, OH)";OH;"6-2 / 180";86;NA;93;31;Pittsburgh
+"Nathan VanTimmeren";TE;"Catholic Central (Grand Rapids, MI)";MI;"6-5 / 215";79;NA;103;50;"Central Michigan"
+"Solomon Davis";ATH;"Charter Oak (Covina, CA)";CA;"6-0 / 183";87;NA;73;87;Arizona
+"Luke Talich";ATH;"Cody (Cody, WY)";WY;"6-3 / 185";82;NA;181;1;
+"Ka'Morreun Pimpton";TE;"North Crowley (Fort Worth, TX)";TX;"6-5 / 210";87;NA;34;106;Vanderbilt
+"Rohan Davy";ATH;"St. John's (Washington, DC)";DC;"5-10 / 190";84;NA;151;8;Cincinnati
+"Jax Leatherwood";QB;"Scripps Ranch (San Diego, CA)";CA;"6-6 / 215";87;NA;40;89;Nevada
+"Layton Duncan";WR;"Brophy College Preparatory (Phoenix, AZ)";AZ;"6-1 / 185";83;NA;236;31;
+"Collins Acheampong";ATH;"Santa Margarita Catholic (Rancho Santa Margarita, CA)";CA;"6-7 / 254";90;NA;20;19;Michigan
+"Dylan Edwards";RB;"Derby (Derby, KS)";KS;"5-9 / 165";90;NA;16;3;"Notre Dame"
+"Trey Cornist";RB;"Winton Woods (Cincinnati, OH)";OH;"5-11 / 209";84;NA;96;51;"Georgia Tech"
+"DeAndra Burns";WR;"El Dorado (El Dorado, AR)";AR;"5-9 / 150";87;NA;111;5;"Arkansas State"
+"Jmaury Davis";ATH;"Clarendon (Clarendon, TX)";TX;"6-2 / 190";87;NA;62;107;"Texas Tech"
+"Logan Blake";TE;"Hun School (Princeton, NJ)";NJ;"6-6 / 215";86;NA;47;15;Rutgers
+"Dylan Wade";TE;"Jones (Orlando, FL)";FL;"6-4 / 240";88;NA;30;88;Maryland
+"Ethan Davis";TE;"Collins Hill (Suwanee, GA)";GA;"6-5 / 221";93;99;6;9;Tennessee
+"Jeremiah Cobb";RB;"Montgomery Catholic Preparatory (Montgomery, AL)";AL;"5-11 / 186";91;206;6;15;Auburn
+"Elijah Davis";RB;"Riverside Academy (Reserve, LA)";LA;"5-9 / 215";86;NA;53;31;Louisiana
+"Desirrio Riles";ATH;"University Christian (Jacksonville, FL)";FL;"6-3 / 225";86;NA;88;120;
+"Donavyn Pellot";ATH;"Silverado (Las Vegas, NV)";NV;"6-2 / 210";85;NA;121;11;
+"Kahi Graham";QB;"St. Louis (Honolulu, HI)";HI;"6-0 / 190";80;NA;123;17;
+"JT Smith Jr";ATH;"William Amos Hough (Cornelius, NC)";NC;"5-9 / 199";86;NA;94;24;
+"Nehuel Garcia";QB;"La Mirada (La Mirada, CA)";CA;"6-3 / 185";79;NA;142;340;
+"Keymarion Gibson";ATH;"Ottawa Hills (Grand Rapids, MI)";MI;"6-2 / 257";78;NA;237;55;
+"Gabe Downing";QB;"Olympia (Olympia, WA)";WA;"6-0 / 183";78;NA;149;58;"Portland State"
+"Nicholas Fernandez";ATH;"San Pedro (San Pedro, CA)";CA;"6-4 / 250";86;NA;84;115;
+"Jacob Page";WR;"Blackman (Murfreesboro, TN)";TN;"6-2.5 / 176";87;NA;88;22;
+"Jaden Greathouse";WR;"Westlake (Austin, TX)";TX;"6-2 / 215";90;238;26;43;"Notre Dame"
+"Ty Perkins";WR;"Ironton (Ironton, OH)";OH;"6-3 / 190";87;NA;93;24;Cincinnati
+"Jaden Hamm";TE;"Eudora (Eudora, KS)";KS;"6-7 / 235";90;NA;19;5;Arkansas
+"Javance Tupouata-Johnson";QB;"Chaminade (West Hills, CA)";CA;"6-4 / 200";87;NA;32;79;"San Diego State"
+"Muwaffaq Parkman";ATH;"Hillside (Hillside, NJ)";NJ;"6-0 / 175";84;NA;159;28;Syracuse
+"Graham Smith";ATH;"Lyons Township (La Grange, IL)";IL;"6-5 / 210";80;NA;209;53;Yale
+"Jacobe Fowler";RB;"Lake Gibson (Lakeland, FL)";FL;"5-11 / 210";82;NA;118;251;
+"Malachi Nelson";QB;"Los Alamitos (Los Alamitos, CA)";CA;"6-3 / 182";98;5;4;2;USC
+"Cooper Flanagan";TE;"De La Salle (Concord, CA)";CA;"6-5 / 228";93;123;8;10;"Notre Dame"
+"Ryan Manning";WR;"St. Frances Academy (Baltimore, MD)";MD;"5-11 / 170";85;NA;184;22;Maryland
+"Ethan Fullerton";ATH;"Notre Dame (Sherman Oaks, CA)";CA;"5-10 / 160";79;NA;234;342;
+"Zack Myers";ATH;"Christ School (Arden, NC)";NC;"6-1 / 190";90;NA;22;9;"NC State"
+"Zack Marshall";ATH;"Carlsbad (Carlsbad, CA)";CA;"6-4 / 220";87;NA;74;92;
+"Lawson Luckie";TE;"Norcross (Norcross, GA)";GA;"6-3 / 225";93;139;10;12;Georgia
+"Keivin Boone-Nelson";ATH;"Inderkum (Sacramento, CA)";CA;"5-11 / 160";80;NA;202;288;
+"Brock Murtaugh";ATH;"Millard South (Omaha, NE)";NE;"6-2 / 200";79;NA;225;12;
+"Drew Cowart";QB;"American Leadership Academy (Queen Creek, AZ)";AZ;"6-2 / 190";79;NA;139;49;
+"Chris Snyder Jr.";ATH;"Mater Dei Catholic (Chula Vista, CA)";CA;"6-0 / 175";88;NA;47;61;
+"Jambres Dubar";RB;"Anna (Anna, TX)";TX;"6-0 / 190";88;NA;27;81;"Boise State"
+"Sam Smith";WR;"Wauseon (Wauseon, OH)";OH;"6-4 / 205";83;NA;240;58;Toledo
+"Quentin Thomas";WR;"Eagles Landing (McDonough, GA)";GA;"6-0 / 200";85;NA;173;105;Liberty
+"Santino Acevedo";ATH;"Cardinal Newman (Santa Rosa, CA)";CA;"6-0 / 190";81;NA;193;261;
+"Trey Gibson";RB;"Hobart (Hobart, IN)";IN;"6-0 / 190";72;NA;176;49;
+"Jahbari Kuykendall";RB;"Westside (Houston, TX)";TX;"5-6 / 170";83;NA;98;227;"North Texas"
+"Tory Johnson Jr.";WR;"Oscar Smith (Chesapeake, VA)";VA;"6-4 / 210";86;NA;132;28;"West Virginia"
+"Jeremiah Alston";ATH;"Redford Union (Redford, MI)";MI;"6-2 / 190";82;NA;180;32;"Central Michigan"
+"Khai Taylor";ATH;"Pittsburg (Pittsburg, CA)";CA;"6-1 / 165";82;NA;172;222;Nevada
+"Treyaun Webb";RB;"Trinity Christian Academy (Jacksonville, FL)";FL;"6-1 / 205";91;220;10;48;Florida
+"Charles Greer";RB;"De La Salle (Concord, CA)";CA;"5-11 / 180";85;NA;70;124;"Fresno State"
+"James Minor";RB;"Winton Woods (Cincinnati, OH)";OH;"5-10 / 200";76;NA;168;112;
+"Jesse Miller";TE;"Greene County (Jefferson, IA)";IA;"6-6 / 215";78;NA;114;27;"South Dakota"
+"Ryan Henning";RB;"Lincoln (Lincoln, CA)";CA;"5-10 / 185";78;NA;155;374;"Air Force"
+"Kael Combs";WR;"Nixa (Nixa, MO)";MO;"6-4 / 190";86;NA;124;20;
+"Dash Dorsey";ATH;"St. Francis (Wheaton, IL)";IL;"5-11 / 175";80;NA;206;51;
+"Dru DeShields";QB;"West Branch (Beloit, OH)";OH;"6-3 / 180";76;NA;172;111;"Eastern Illinois"
+"Curron Borders";RB;"Antelope (Antelope, CA)";CA;"5-7 / 180";81;NA;125;262;
+"TyLyric Coleman";ATH;"Dan River (Ringgold, VA)";VA;"6-3 / 175";85;NA;132;40;Virginia
+"Gabarri Johnson";QB;"Lincoln (Tacoma, WA)";WA;"6-0 / 200";90;NA;18;5;Missouri
+"Cruz Estrada";ATH;"Mater Dei Catholic (Chula Vista, CA)";CA;"6-0 / 190";81;NA;189;257;
+"Colby White";QB;"Mission College Preparatory Catholic (San Luis Obispo, CA)";CA;"6-2 / 195";77;NA;161;413;
+"Mana Tapusoa";RB;"Blue Springs (Blue Springs, MO)";MO;"5-11 / 205";79;NA;139;40;
+"Kristian Ingman";TE;"Rocklin (Rocklin, CA)";CA;"6-5 / 235";81;NA;89;238;
+"Dante Lovett";ATH;"DeMatha Catholic (Hyattsville, MD)";MD;"6-1 / 185";87;NA;63;11;"Virginia Tech"
+"Will Randle";TE;"Isidore Newman (New Orleans, LA)";LA;"6-3 / 220";85;NA;65;37;Texas
+"Arthur Jenkins";WR;"Dillard (Fort Lauderdale, FL)";FL;"6-3 / 190";84;NA;200;200;"Florida Atlantic"
+"Bryson Washington";ATH;"Franklin (Franklin, TX)";TX;"5-11 / 197";87;NA;52;92;Baylor
+"Parker Jenkins";RB;"Klein Forest (Houston, TX)";TX;"5-10 / 185";88;NA;25;74;Houston
+"Romeo Clark";RB;"Warren (Downey, CA)";CA;"5-11 / 210";84;NA;91;178;
+"Hayden Oviatt";ATH;"Wamego (Wamego, KS)";KS;"6-1 / 200";82;NA;179;16;Army
+"Naseri Danielson";ATH;"St. Mary's (Stockton, CA)";CA;"6-2 / 195";85;NA;123;139;
+"Max Cutforth";QB;"Skyview (Nampa, ID)";ID;"6-2 / 170";78;NA;148;19;
+"Aidan Fortenberry";RB;"Clovis West (Fresno, CA)";CA;"6-0 / 205";78;NA;152;370;
+"Cal Swanson";QB;"Ardmore (Ardmore, OK)";OK;"6-3 / 185";84;NA;79;17;Illinois
+"Jerry Kaminski";QB;"Sun Prairie (Sun Prairie, WI)";WI;"6-2 / 190";76;NA;170;12;
+"Jaivian Thomas";RB;"McClymonds (Oakland, CA)";CA;"5-10 / 175";80;NA;136;296;
+"Devon Dampier";QB;"Saguaro (Scottsdale, AZ)";AZ;"6-0 / 190";84;NA;73;24;
+"James White";TE;"Lewiston Senior (Lewiston, ID)";ID;"6-4 / 222";81;NA;94;12;
+"Andre Davis";WR;"Blue Valley (Overland Park, KS)";KS;"6-4 / 200";87;NA;87;7;"Kansas State"
+"Isiah Kendall";WR;"Newport (Newport, AR)";AR;"6-4 / 175";88;NA;56;3;"Jackson State"
+"Keyone Jenkins";QB;"Miami Central (Miami, FL)";FL;"5-10 / 160";79;NA;144;280;FIU
+"Surahz Buncom";ATH;"Mater Dei Catholic (Chula Vista, CA)";CA;"6-4 / 175";87;NA;72;83;Kansas
+"Marquis Johnson";WR;"Dickinson (Dickinson, TX)";TX;"5-11 / 176";86;NA;158;181;Missouri
+"Davoun Fuse";ATH;"Washington (Washington, PA)";PA;"6-4 / 190";85;NA;125;21;Rutgers
+"Christian Davis";RB;"Miamisburg (Miamisburg, OH)";OH;"6-0 / 190";85;NA;72;39;
+"Deion Brown";RB;"Kirkwood (Saint Louis, MO)";MO;"5-8 / 155";82;NA;116;35;"Eastern Michigan"
+"Javonte Vereen";TE;"Havelock (Havelock, NC)";NC;"6-4 / 209";89;NA;20;13;"NC State"
+"Angus Hubbard";QB;"Capital (Olympia, WA)";WA;"6-6 / 215";77;NA;160;100;
+"Kendrick Bell";QB;"Park Hill (Kansas City, MO)";MO;"6-3 / 180";79;NA;136;42;
+"KJ Reed";WR;"Mission Viejo (Mission Viejo, CA)";CA;"5-11 / 175";86;NA;144;122;
+"Nollenn Tabaska";TE;"Brookfield East (Brookfield, WI)";WI;"6-7 / 230";82;NA;85;5;Army
+"Tyler Williams";WR;"Lakeland (Lakeland, FL)";FL;"6-3 / 180";92;182;20;40;
+"Khamari Anderson";TE;"Cass Technical (Detroit, MI)";MI;"6-4 / 225";89;NA;21;5;Cincinnati
+"Tyler Little";TE;"Galena (Galena, KS)";KS;"6-4 / 240";84;NA;69;13;
+"Richemard Mellien";ATH;"First Baptist Academy (Naples, FL)";FL;"6-1 / 200";85;NA;131;181;
+"Stephon Daily";WR;"Sierra Linda (Tolleson, AZ)";AZ;"6-4 / 175";84;NA;217;26;"Colorado State"
+"Lafayette Kaiuway";TE;"Sam Houston (Arlington, TX)";TX;"6-5 / 245";88;NA;26;71;TCU
+"Andrew Harren";TE;"Sauk Rapids-rice Senior (Sauk Rapids, MN)";MN;"6-5 / 200";78;NA;113;25;
+"Nolan Delong";ATH;"Durant (Durant, IA)";IA;"6-1 / 198";82;NA;175;20;
+"Exavious Reed";TE;"Callaway (Hogansville, GA)";GA;"6-3.5 / 220";84;NA;74;127;"Southern Miss"
+"Aidan Mizell";WR;"Boone (Orlando, FL)";FL;"6-2 / 180";92;148;16;30;Florida
+"Santana Fleming";WR;"Western (Fort Lauderdale, FL)";FL;"5-10 / 160";86;NA;138;124;
+"Lonnie Johnson";WR;"Timber Creek (Keller, TX)";TX;"6-3 / 205";85;NA;166;197;SMU
+"AJ Szymanski";TE;"Loyola Blakefield (Towson, MD)";MD;"6-5 / 245";84;NA;73;30;Maryland
+"JeyQuan Smith";ATH;"Cajon (San Bernardino, CA)";CA;"5-10 / 175";88;NA;48;64;
+"Taron Dickens";QB;"Northwestern (Miami, FL)";FL;"5-11 / 175";82;NA;99;248;
+"Aidan Gray";QB;"Naperville North (Naperville, IL)";IL;"6-3 / 200";87;NA;38;10;Northwestern
+"Logan Lester";WR;"Kenwood Academy (Chicago, IL)";IL;"6-3 / 188";83;NA;241;41;"Western Michigan"
+"CJ Tiller";QB;"Rancho Cucamonga (Rancho Cucamonga, CA)";CA;"6-2 / 190";87;NA;31;67;"Boise State"
+"Demetrion Cannon";WR;"Trinity Catholic (Saint Louis, MO)";MO;"6-0 / 180";84;NA;216;33;
+"Roy Gardner";ATH;"Mountain House (Mountain House, CA)";CA;"5-10 / 150";81;NA;185;250;
+"Noble Johnson";WR;"Rockwall (Rockwall, TX)";TX;"6-2 / 205";88;NA;72;84;Clemson
+"Tre Wisner";RB;"DeSoto (DeSoto, TX)";TX;"5-11 / 180";89;NA;23;59;Texas
+"Sam West";TE;"Greensburg Community (Greensburg, IN)";IN;"6-5 / 205";87;NA;35;9;Indiana
+"Javien Brownlee";WR;"Northmont (Clayton, OH)";OH;"5-10 / 170";86;NA;141;33;"Kent State"
+"Will Anciaux";TE;"Kapaun Mt Carmel Catholic (Wichita, KS)";KS;"6-6 / 220";86;NA;46;9;"Kansas State"
+"Jaylin Townsend";ATH;"Beecher (Mount Morris, MI)";MI;"6-1 / 160";79;NA;217;39;
+"Jaxson Percoats";ATH;"Buhach Colony (Atwater, CA)";CA;"5-11 / 175";81;NA;190;259;
+"Lamar Seymore";WR;"Miami Central (Miami, FL)";FL;"6-2 / 185";87;NA;110;107;Pittsburgh
+"Ethan Hamby";QB;"Dakota (Macomb, MI)";MI;"6-2 / 205";75;NA;184;75;
+"Franklyn Johnson";ATH;"Little Elm (Little Elm, TX)";TX;"6-0 / 175";86;NA;85;153;"Boise State"
+"Zaccheus Cooper";RB;"Saguaro (Scottsdale, AZ)";AZ;"5-10 / 190";79;NA;142;46;
 "Delano Franklin";ATH;"Bishop Amat (La Puente, CA)";CA;"5-11 / 165";86;NA;81;111;
 "Kenny Minchey";QB;"Pope John Paul II (Hendersonville, TN)";TN;"6-1.5 / 207";90;NA;16;5;Pittsburgh
-"Drew Viotto";QB;"Walled Lake Western (Walled Lake, MI)";MI;"6-4 / 215";85;NA;62;20;Minnesota
-"Kaden Moorman";ATH;"Franklin County (Frankfort, KY)";KY;"5-10 / 205";87;NA;60;6;Kentucky
-"Mason Williams";TE;"Mogadore (Mogadore, OH)";OH;"6-4 / 235";84;NA;69;49;Ohio
-"Brandon High";RB;"Grand Oaks (Spring, TX)";TX;"5-10 / 205";88;NA;29;82;UTSA
-"Mason McHugh";QB;"IMG Academy (Bradenton, FL)";FL;"6-3 / 194";80;NA;117;273;"Appalachian State"
-"Joshua Franklin";ATH;"Crete-Monee (Crete, IL)";IL;"6-0 / 173";79;NA;218;56;"Western Michigan"
-"Logan Lester";WR;"Kenwood Academy (Chicago, IL)";IL;"6-3 / 188";83;NA;239;41;"Western Michigan"
-"Tyson Cooreman";ATH;"Randolph Secondary (Randolph, MN)";MN;"6-4 / 210";78;NA;235;21;"Northern Iowa"
-"Zach Johnson";TE;"Lake City (Coeur D Alene, ID)";ID;"6-3 / 205";84;NA;67;7;
-"Sam Smith";WR;"Wauseon (Wauseon, OH)";OH;"6-4 / 205";83;NA;238;58;Toledo
-"Jackson Olsen";WR;"Ridgeline (MILLVILLE, UT)";UT;"6-3 / 175";83;NA;230;27;"Utah State"
-"Kyson Brown";RB;"Lancaster (Lancaster, TX)";TX;"5-10 / 195";86;NA;66;183;
-"Bo Edmundson";QB;"Lake Travis (Austin, TX)";TX;"6-3 / 195";86;NA;42;129;"Michigan State"
-"Bryce Schondelmyer";QB;"Springfield (Springfield, OH)";OH;"6-2 / 195";76;NA;171;110;
-"Dan Smith";WR;"Provine (Jackson, MS)";MS;"5-10.5 / 179";84;NA;213;29;
-"Luke Duncan";QB;"Miramonte (Orinda, CA)";CA;"6-5 / 195";88;NA;26;52;UCLA
-"Julien Randolph";TE;"Independence (Ashburn, VA)";VA;"6-5 / 210";87;NA;38;18;"North Carolina"
-"Rashid Williams";WR;"Pittsburg (Pittsburg, CA)";CA;"6-2 / 185";90;244;27;15;Washington
-"Marques Neal";ATH;"Channelview (Channelview, TX)";TX;"5-11 / 185";87;NA;67;118;
-"Dylan Gutierrez";QB;"Damien (La Verne, CA)";CA;"5-11 / 190";80;NA;120;285;
-"Jaxon Smolik";QB;"Dowling Catholic (West Des Moines, IA)";IA;"6-2 / 200";87;NA;30;6;
-"Sincere Rodriguez";RB;"Stranahan (Fort Lauderdale, FL)";FL;"5-11 / 200";82;NA;118;250;
-"Anquan Willis";ATH;"Rider (Wichita Falls, TX)";TX;"6-0 / 220";90;235;18;42;"Texas Tech"
-"Trey Roberts";WR;"American Fork (American Fork, UT)";UT;"6-2 / 195";83;NA;229;23;
-"Nolan Delong";ATH;"Durant (Durant, IA)";IA;"6-1 / 198";82;NA;174;20;
-"A.C. Mason-Young";ATH;"Covington (Covington, TN)";TN;"5-11 / 170";84;NA;152;44;
-"Seth Fao";ATH;"Phineas Banning Senior (Wilmington, CA)";CA;"6-3 / 230";85;NA;141;149;
-"Joseph Walker Jr.";WR;"Warren Central (Indianapolis, IN)";IN;"6-4 / 200";84;NA;208;18;"Western Michigan"
-"Amini Amone";RB;"East (Salt Lake City, UT)";UT;"5-11 / 190";82;NA;112;31;Nevada
-"Frank Covey";ATH;"Prospect (Mount Prospect, IL)";IL;"6-2 / 185";87;NA;70;14;Northwestern
-"Nyckoles Harbor";ATH;"Archbishop Carroll (Washington, DC)";DC;"6-5 / 225";98;9;1;1;
-"Treyaun Webb";RB;"Trinity Christian Academy (Jacksonville, FL)";FL;"6-1 / 205";91;220;10;48;Florida
-"Jahlil McClain";ATH;"St. John Bosco (Bellflower, CA)";CA;"5-10 / 180";90;NA;25;25;Louisville
-"Rico Flores";WR;"Folsom (Folsom, CA)";CA;"6-1 / 190";90;246;28;16;"Notre Dame"
-"Jonah Wilson";WR;"Dekaney (Houston, TX)";TX;"6-3 / 195";90;NA;40;56;Texas
-"Collin Hurst";QB;"Western (Fort Lauderdale, FL)";FL;"5-10 / 160";79;NA;143;278;
-"James Rothstein";TE;"Amador Valley (Pleasanton, CA)";CA;"6-6 / 240";81;NA;92;245;
-"Chris Snyder Jr.";ATH;"Mater Dei Catholic (Chula Vista, CA)";CA;"6-0 / 175";88;NA;47;61;
-"Ethan Crawford";QB;"Hillcrest (Tuscaloosa, AL)";AL;"6-0 / 195";82;NA;98;55;"Southern Miss"
-"Jaylen Gardner";WR;"TMI Episcopal (San Antonio, TX)";TX;"6-0 / 190";86;NA;120;133;UTSA
-"Reed Harris";ATH;"Great Falls (Great Falls, MT)";MT;"6-4 / 200";87;NA;54;1;"Boston College"
-"Ayden Williams";WR;"Ridgeland (Ridgeland, MS)";MS;"6-3 / 195";91;228;24;2;
-"Connor Cox";TE;"The Bolles School (Jacksonville, FL)";FL;"6-5 / 220";85;NA;63;176;"South Carolina"
-"Tyler Little";TE;"Galena (Galena, KS)";KS;"6-4 / 240";84;NA;68;13;
-"Elija Walton";ATH;"North Marion (Citra, FL)";FL;"6-4 / 210";85;NA;139;192;"Georgia Southern"
-"Cody Smith";TE;"Liberty Ranch (Galt, CA)";CA;"6-7 / 240";78;NA;115;382;Idaho
-"Cayden Lee";WR;"Kennesaw Mountain (Kennesaw, GA)";GA;"5-11 / 175";88;NA;74;49;
-"Jaxson Percoats";ATH;"Buhach Colony (Atwater, CA)";CA;"5-11 / 175";81;NA;189;258;
-"Luke Gall";RB;"Carthage (Carthage, MO)";MO;"5-11 / 200";80;NA;134;39;"Air Force"
-"Charlie Gilliam";QB;"Eagles Landing Christian Academy (McDonough, GA)";GA;"6-2.5 / 180";85;NA;68;114;"Wake Forest"
-"Lawson Luckie";TE;"Norcross (Norcross, GA)";GA;"6-3 / 225";93;139;10;12;Georgia
-"Datrell Jones";RB;"Catholic Memorial (West Roxbury, MA)";MA;"5-9 / 175";90;NA;21;5;"Boston College"
-"Rodney Gallagher";WR;"Laurel Highlands (Uniontown, PA)";PA;"5-10 / 160";92;153;18;3;"West Virginia"
-"Brandon Inniss";WR;"American Heritage (Fort Lauderdale, FL)";FL;"6-0 / 190";97;19;3;4;"Ohio State"
-"Taron Dickens";QB;"Northwestern (Miami, FL)";FL;"5-11 / 175";82;NA;99;245;
-"Tanner Lemaster";TE;"Washington (Washington Court House, OH)";OH;"6-6 / 235";86;NA;48;34;Kentucky
-"David Wells";WR;"Lakes (Lakewood, WA)";WA;"6-0 / 170";85;NA;175;19;"Oregon State"
-"Layton Duncan";WR;"Brophy College Preparatory (Phoenix, AZ)";AZ;"6-1 / 185";83;NA;234;31;
-"Terrell Washington Jr.";RB;"Wylie East (Wylie, TX)";TX;"5-9.5 / 200";86;NA;64;169;Purdue
-"Jackson Carver";TE;"The Loomis Chaffee School (Culver, IN)";IN;"6-6 / 220";88;NA;28;3;Miami
-"Jackson House";QB;"Dunham School (Baton Rouge, LA)";LA;"6-0 / 185";75;NA;182;43;
-"Dempsy James";QB;"Spanaway Lake (Spanaway, WA)";WA;"6-1 / 185";80;NA;116;53;
-"Jaden Platt";TE;"Eaton (Haslet, TX)";TX;"6-4.5 / 235";94;88;5;16;Stanford
-"Dawson Pendergrass";ATH;"Mineola (Mineola, TX)";TX;"6-3 / 212";86;NA;82;148;Baylor
-"Re'Shaun Sanford";RB;"Harker Heights (Harker Heights, TX)";TX;"5-7 / 165";83;NA;106;230;Houston
-"Arch Manning";QB;"Isidore Newman (New Orleans, LA)";LA;"6-4 / 215";98;1;1;1;Texas
-"Brendan Anderson";QB;"Mountain Ridge (Glendale, AZ)";AZ;"6-1 / 180";82;NA;104;39;
-"Michael Mitchell";RB;"Middleburg (Middleburg, FL)";FL;"6-0 / 195";86;NA;47;115;Utah
-"Donielle Hayes";WR;"Pine Forest (Pensacola, FL)";FL;"6-0 / 180";86;NA;148;130;Minnesota
-"Julian Thomas";RB;"Cascade (Everett, WA)";WA;"5-6 / 175";72;NA;174;138;
-"Collins Acheampong";ATH;"Santa Margarita Catholic (Rancho Santa Margarita, CA)";CA;"6-7 / 254";90;NA;20;19;Michigan
-"Tyler Douglas";QB;"Ocean Township (Oakhurst, NJ)";NJ;"6-2 / 190";83;NA;94;29;Temple
-"Christopher Johnson";RB;"Dillard (Fort Lauderdale, FL)";FL;"5-11 / 178";87;NA;35;89;
-"Damian Henderson";ATH;"Los Alamitos (Los Alamitos, CA)";CA;"6-3 / 185";84;NA;155;174;"Colorado State"
-"Mikey Matthews";WR;"Mission Viejo (Mission Viejo, CA)";CA;"5-10 / 185";88;NA;65;46;
-"Eugene Wilson III";ATH;"Gaither (Tampa, FL)";FL;"5-11 / 165";92;183;15;41;Florida
-"Hayden Garrison";QB;"Chelsea (Chelsea, AL)";AL;"6-5 / 180";80;NA;122;60;
-"Julian Lundy";WR;"Rancho Cucamonga (Rancho Cucamonga, CA)";CA;"6-2 / 170";83;NA;242;204;
-"Charmar Brown";RB;"Creighton Preparatory School (Omaha, NE)";NE;"6-0 / 200";78;NA;153;13;"North Dakota State"
-"Fredrick Moore";WR;"Cardinal Ritter College Prep (Saint Louis, MO)";MO;"6-0 / 175";89;NA;52;12;Michigan
-"Charlie Pace";RB;"Colquitt County (Moultrie, GA)";GA;"5-10 / 185";82;NA;119;138;"Georgia State"
-"Tre Richardson";ATH;"Highland Park (Topeka, KS)";KS;"5-10 / 165";85;NA;129;12;"New Mexico State"
-"Jayden Mandal";QB;"Buchanan (Clovis, CA)";CA;"6-0 / 205";84;NA;78;171;"Fresno State"
-"Leeshaun Mumpfield";QB;"Cass Technical (Detroit, MI)";MI;"5-10 / 175";76;NA;173;73;
-"Que'Sean Brown";WR;"East Forsyth (Kernersville, NC)";NC;"5-8 / 150";85;NA;180;30;Duke
-"Zaccheus Cooper";RB;"Saguaro (Scottsdale, AZ)";AZ;"5-10 / 190";79;NA;141;46;
-"Ejani Shakir";WR;"Winslow Twp (Atco, NJ)";NJ;"6-0 / 175";90;NA;32;3;"Penn State"
-"Jacob Page";WR;"Blackman (Murfreesboro, TN)";TN;"6-2.5 / 176";87;NA;89;22;
-"Eddie Combs";WR;"Rockledge (ROCKLEDGE, FL)";FL;"5-11 / 165";86;NA;129;118;
-"Jambres Dubar";RB;"Anna (Anna, TX)";TX;"6-0 / 190";88;NA;27;81;"Boise State"
-"Cedric Anton";TE;"Rabun Gap-Nacoochee School (Rabun Gap, GA)";GA;"6-2.5 / 243";81;NA;94;140;"Eastern Michigan"
-"Wesley Fair";ATH;"Wichita Collegiate School (Wichita, KS)";KS;"6-2 / 180";87;NA;65;6;"Kansas State"
-"Jack Wagner";QB;"Tualatin (Tualatin, OR)";OR;"6-3 / 180";83;NA;84;10;Idaho
-"Tray Tolliver";WR;"Columbia (Lake City, FL)";FL;"5-9 / 170";85;NA;192;175;
-"Kai Black";WR;"Urbandale (Urbandale, IA)";IA;"6-4 / 205";86;NA;134;8;"Iowa State"
-"Keenan Kuntz";ATH;"Mead (Spokane, WA)";WA;"6-1 / 180";81;NA;194;43;
-"Parker Pettit";QB;"Sandpoint (Sandpoint, ID)";ID;"6-1 / 200";76;NA;177;48;
-"Mikal Harrison-Pilot";ATH;"Temple (Temple, TX)";TX;"6-0 / 190";92;167;14;31;
-"Trevor Duncan";ATH;"Knoxville Catholic (Knoxville, TN)";TN;"6-5.5 / 277";88;NA;49;18;Tennessee
-"Conner Noah";ATH;"Kelso (Kelso, WA)";WA;"5-11 / 198";81;NA;193;37;Nevada
-"Angus Hubbard";QB;"Capital (Olympia, WA)";WA;"6-6 / 215";77;NA;160;100;
-"Ike Daniels";RB;"Mountain View (Stafford, VA)";VA;"5-10 / 185";86;NA;48;23;Syracuse
-"Fin Jones";TE;"Venice (Venice, FL)";FL;"6-5 / 230";82;NA;87;256;"Florida Atlantic"
-"Carson Hansen";ATH;"Lakeville South (Lakeville, MN)";MN;"6-1 / 190";85;NA;114;6;"Iowa State"
-"Bryson Vowell";WR;"Anderson County (Clinton, TN)";TN;"6-4 / 185";86;NA;156;33;
-"Ray Woods";QB;"Homewood (Birmingham, AL)";AL;"6-2 / 175";81;NA;115;59;
-"Joe Jackson";ATH;"Ridge Community (Davenport, FL)";FL;"5-11 / 185";87;NA;75;105;"Kansas State"
-"Abu Sama";ATH;"Southeast Polk (Des Moines, IA)";IA;"5-10 / 180";85;NA;119;16;"Iowa State"
-"Walker Lyons";TE;"Folsom (Folsom, CA)";CA;"6-4 / 230";93;102;7;9;Stanford
-"Deshaun Buchanan";ATH;"Basha (Chandler, AZ)";AZ;"5-11 / 200";84;NA;145;23;Idaho
-"Santana Fleming";WR;"Western (Fort Lauderdale, FL)";FL;"5-10 / 160";86;NA;139;124;
-"Harvey Broussard";WR;"St. Martinville Senior (Saint Martinville, LA)";LA;"6-2.5 / 175";85;NA;171;35;
 "Steven Curtis";ATH;"Cardinal Newman (West Palm Beach, FL)";FL;"6-5 / 230";85;NA;128;178;
-"Brock Murtaugh";ATH;"Millard South (Omaha, NE)";NE;"6-2 / 200";79;NA;224;12;
-"Roderick Robinson II";RB;"Lincoln (San Diego, CA)";CA;"6-1 / 230";90;NA;18;22;UCLA
-"Kahi Graham";QB;"St. Louis (Honolulu, HI)";HI;"6-0 / 190";80;NA;123;17;
-"Krystian Williams";WR;"Collegiate School (Richmond, VA)";VA;"6-2 / 170";87;NA;79;14;"Virginia Tech"
-"Anthony Albanez";ATH;"St. Bonaventure (Ventura, CA)";CA;"6-0 / 195";80;NA;204;309;
-"Demarion Crest-Daniels";WR;"Parkland (El Paso, TX)";TX;"6-3 / 185";87;NA;100;122;"Texas Tech"
-"Jonathan Stromberg";TE;"Skyview (Vancouver, WA)";WA;"6-5 / 205";78;NA;106;71;
-"Courtland Simmons";ATH;"Davidson Academy (Nashville, TN)";TN;"5-10 / 185";85;NA;126;40;
-"Mark Fletcher";RB;"American Heritage (Fort Lauderdale, FL)";FL;"6-1 / 225";91;232;11;50;"Ohio State"
-"Orlando Greenlow";WR;"Lawndale (Lawndale, CA)";CA;"6-5 / 210";84;NA;202;157;
-"Brennan Parachek";TE;"Dexter (Dexter, MI)";MI;"6-6 / 235";89;NA;22;8;"Michigan State"
-"Deegan Martinho";RB;"Eagle (Eagle, ID)";ID;"6-0 / 190";78;NA;147;20;
-"Dorian Thomas";TE;"Kentridge (Kent, WA)";WA;"6-4 / 220";88;NA;24;9;"Oregon State"
-"Paul Billups";WR;"Western Branch (Chesapeake, VA)";VA;"6-2 / 185";86;NA;119;21;
-"Vilay Nakkoun";ATH;"Orlando Christian Prep (Orlando, FL)";FL;"5-11 / 175";84;NA;156;220;Rutgers
-"Jmaury Davis";ATH;"Clarendon (Clarendon, TX)";TX;"6-2 / 190";87;NA;62;107;"Texas Tech"
-"Sam Leavitt";QB;"West Linn (West Linn, OR)";OR;"6-1 / 185";86;NA;47;2;"Washington State"
-"Dawson Wahl";QB;"Mountain View (Meridian, ID)";ID;"6-3 / 190";78;NA;147;18;
-"D'Mariun Perteet";RB;"South Panola (Batesville, MS)";MS;"5-10 / 200";80;NA;133;39;
-"Jahbari Kuykendall";RB;"Westside (Houston, TX)";TX;"5-6 / 170";83;NA;97;225;"North Texas"
-"Jalen Kennedy";RB;"Pleasant Grove (Elk Grove, CA)";CA;"5-10 / 150";77;NA;158;393;
-"Cody Mikulich";RB;"Bloomington North (Bloomington, IN)";IN;"5-11 / 185";77;NA;161;42;
-"Brayson Hubbard";ATH;"Ocean Springs (Ocean Springs, MS)";MS;"6-2 / 190";87;NA;77;9;Alabama
-"Jaivian Thomas";RB;"McClymonds (Oakland, CA)";CA;"5-10 / 175";80;NA;135;295;
-"Keivin Boone-Nelson";ATH;"Inderkum (Sacramento, CA)";CA;"5-11 / 160";80;NA;201;287;
-"Quinten Joyner";RB;"Manor (Manor, TX)";TX;"5-10 / 190";91;212;8;36;USC
-"Joey Scarantino";QB;"Timberline (Boise, ID)";ID;"6-4 / 175";75;NA;185;53;
-"Jordan Jackson";ATH;"Fairfield (Fairfield, OH)";OH;"5-11 / 175";87;NA;53;16;"West Virginia"
-"Oliver Fisher";TE;"Sherwood (Sherwood, OR)";OR;"6-5 / 225";84;NA;70;7;"Boise State"
-"Jason Duclona";ATH;"Estero (Estero, FL)";FL;"6-1 / 175";86;NA;90;122;Rutgers
-"Chiddi Obiazor";TE;"Eden Prairie (Eden Prairie, MN)";MN;"6-5 / 240";83;NA;75;11;"Kansas State"
-"Kenyon Nelson";QB;"Lincoln (Stockton, CA)";CA;"6-0 / 185";80;NA;119;283;
-"Jaxson Lavender";WR;"Lovejoy (Lucas, TX)";TX;"5-9 / 160";86;NA;138;160;SMU
-"Jayden Whitaker";QB;"Brownsburg (Brownsburg, IN)";IN;"6-2 / 170";79;NA;140;30;"Western Illinois"
-"Davion Dozier";WR;"Moody (Moody, AL)";AL;"6-4 / 195";86;NA;147;37;Arkansas
-"Luke Leighton";ATH;"Sheldon (Eugene, OR)";OR;"6-5 / 190";81;NA;196;15;
-"TeKai Kirby";TE;"St. Thomas Aquinas (Fort Lauderdale, FL)";FL;"6-3 / 210";83;NA;79;233;Virginia
-"Trey Gibson";RB;"Hobart (Hobart, IN)";IN;"6-0 / 190";72;NA;175;49;
-"Donavyn Pellot";ATH;"Silverado (Las Vegas, NV)";NV;"6-2 / 210";85;NA;121;11;
-"James White";TE;"Lewiston Senior (Lewiston, ID)";ID;"6-4 / 222";81;NA;93;12;
-"Leon Griffin III";ATH;"Bayside (Virginia Beach, VA)";VA;"5-11 / 185";84;NA;158;42;Duke
-"Adam Damante";QB;"American Leadership Academy Gilbert North (Gilbert, AZ)";AZ;"6-2 / 180";79;NA;137;45;"Northern Arizona"
-"Brandon Hills";WR;"Vista Ridge (Colorado Springs, CO)";CO;"5-8 / 150";84;NA;224;11;"Washington State"
-"Ryan Oliver";QB;"Lakeridge (Lake Oswego, OR)";OR;"6-2 / 190";77;NA;156;32;
-"Rohan Fluellen";ATH;"Gilmer (Gilmer, TX)";TX;"6-0 / 170";88;NA;41;80;TCU
-"Connor Walendzak";RB;"Perrysburg (Perrysburg, OH)";OH;"5-11 / 195";83;NA;104;60;Toledo
-"Richemard Mellien";ATH;"First Baptist Academy (Naples, FL)";FL;"6-1 / 200";85;NA;131;181;
-"Peyton Jones";RB;"Maury (Norfolk, VA)";VA;"5-11 / 180";86;NA;58;29;Duke
-"Tyree Patterson";WR;"Eustis (Eustis, FL)";FL;"6-2 / 175";86;NA;152;136;Florida
-"Zackary Drawdy";WR;"Yulee (Yulee, FL)";FL;"6-2.5 / 180";85;NA;190;171;Connecticut
-"Delon Thompson";RB;"St. Bonaventure (Ventura, CA)";CA;"5-9 / 189";83;NA;100;191;
-"Semaj Morgan";WR;"West Bloomfield (West Bloomfield, MI)";MI;"5-10 / 175";88;NA;61;9;Michigan
-"Jai Hundley";RB;"Oak Ridge (Oak Ridge, TN)";TN;"5-9 / 195";83;NA;108;56;
-"Dante Dowdell";RB;"Picayune Memorial (Picayune, MS)";MS;"6-1.5 / 210";88;NA;28;6;Oregon
-"Ismael Cisse";WR;"Cherry Creek (Englewood, CO)";CO;"6-1 / 180";87;NA;98;5;
-"Robert Lockhart III";WR;"Langston Hughes (Fairburn, GA)";GA;"5-7 / 175";90;NA;41;35;"Jackson State"
-"Jaidyn Doss";WR;"Raymore-Peculiar (Peculiar, MO)";MO;"6-0 / 195";89;NA;46;11;Nebraska
-"Graham Smith";ATH;"Lyons Township (La Grange, IL)";IL;"6-5 / 210";80;NA;208;53;Yale
-"Johntay Cook II";WR;"DeSoto (DeSoto, TX)";TX;"6-0 / 175";95;47;8;6;Texas
-"Jamison Patton";ATH;"Ankeny (Des Moines, IA)";IA;"6-2 / 190";88;NA;46;5;"Iowa State"
-"Jackson Bowers";TE;"Mountain View (Mesa, AZ)";AZ;"6-5 / 225";91;222;14;4;BYU
-"Dylan Rizk";QB;"Cardinal Gibbons (Fort Lauderdale, FL)";FL;"6-2 / 210";84;NA;81;214;UCF
-"Niko Lopez";WR;"Santa Margarita Catholic (Rancho Santa Margarita, CA)";CA;"6-3 / 210";86;NA;130;116;"Colorado State"
-"Donald Stephens";RB;"Grant (Portland, OR)";OR;"6-0 / 200";78;NA;148;31;
-"Malachi Pierce";ATH;"Edison (Huntington Beach, CA)";CA;"6-4 / 190";81;NA;187;255;
-"Braylon James";WR;"Stony Point (Round Rock, TX)";TX;"6-2 / 185";93;96;14;18;"Notre Dame"
-"Kaleb Black";WR;"Klein Oak (Spring, TX)";TX;"5-9 / 165";83;NA;233;227;Memphis
-"London Humphreys";WR;"CPA (Nashville, TN)";TN;"6-2 / 195";88;NA;73;17;Vanderbilt
-"Kamron Sandlin";ATH;"Anniston (Anniston, AL)";AL;"6-4 / 220";85;NA;135;46;"South Carolina"
-"J.J. Payne";ATH;"Northwood (Nappanee, IN)";IN;"6-4 / 180";79;NA;220;28;
-"Chance Fitzgerald";WR;"Nolensville (Nolensville, TN)";TN;"6-3 / 184";86;NA;144;28;
-"Jacob Rothwell";ATH;"Castro Valley (Castro Valley, CA)";CA;"6-3 / 205";78;NA;243;353;
-"Jake Jackson";WR;"Madison (San Diego, CA)";CA;"6-5 / 185";83;NA;240;201;
-"Christopher Vizzina";QB;"Briarwood Christian (Birmingham, AL)";AL;"6-4 / 207";95;38;7;4;Clemson
-"Chris Lawson Jr.";WR;"Ridge View (Columbia, SC)";SC;"6-1 / 172";85;NA;176;21;"Appalachian State"
-"Caleb Sanchez";QB;"St. John Bosco (Bellflower, CA)";CA;"6-3 / 220";80;NA;126;297;
-"Chris Parson";QB;"Ravenwood (Brentwood, TN)";TN;"6-0.5 / 200";88;NA;25;13;
-"AJ Szymanski";TE;"Loyola Blakefield (Towson, MD)";MD;"6-5 / 245";84;NA;72;30;Maryland
-"Devin Hyatt";WR;"IMG Academy (Bradenton, FL)";FL;"6-2 / 194";88;NA;53;78;
-"Dylan Wittke";QB;"Buford (Buford, GA)";GA;"6-1 / 192";84;NA;77;123;"Virginia Tech"
-"Raymond Cottrell";WR;"Milton (Milton, FL)";FL;"6-2 / 203";92;165;19;35;Georgia
-"Nygel Osborne";RB;"Los Alamitos (Los Alamitos, CA)";CA;"5-11 / 190";86;NA;51;112;
-"Jaylen Abston";QB;"Lebanon (Lebanon, TN)";TN;"6-3 / 180";83;NA;92;57;
-"Ahmari Borden";WR;"Robert F Munroe Day School (Quincy, FL)";FL;"6-3 / 180";88;NA;60;80;Stanford
-"Raymond Valencia";ATH;"Chaparral (Temecula, CA)";CA;"6-0 / 170";85;NA;113;133;
-"Quaran Williams";ATH;"Parkway North (Saint Louis, MO)";MO;"6-2 / 180";79;NA;219;41;"Miami (OH)"
-"Nick Afato";ATH;"Yuba City (Yuba City, CA)";CA;"6-0 / 200";81;NA;182;243;
-"Diallo Washington";ATH;"Folsom (Folsom, CA)";CA;"6-3 / 215";78;NA;247;365;
-"Surahz Buncom";ATH;"Mater Dei Catholic (Chula Vista, CA)";CA;"6-4 / 175";87;NA;72;83;Kansas
-"Kamron Taylor";RB;"Jurupa Hills (Fontana, CA)";CA;"5-10 / 170";88;NA;34;63;
-"Shatavious Hogan";WR;"Miami Jackson (Miami, FL)";FL;"6-3 / 205";85;NA;196;194;"Central Michigan"
-"Ka'Morreun Pimpton";TE;"North Crowley (Fort Worth, TX)";TX;"6-5 / 210";87;NA;34;106;Vanderbilt
-"Jake Hill";ATH;"Snow Canyon (Saint George, UT)";UT;"6-3 / 195";79;NA;229;39;
-"Sesi Vailahi";RB;"West (Salt Lake City, UT)";UT;"5-11 / 190";83;NA;99;24;
-"Gabe Downing";QB;"Olympia (Olympia, WA)";WA;"6-0 / 183";78;NA;149;58;"Portland State"
-"Koron Hayward";WR;"Mandarin (Jacksonville, FL)";FL;"6-4.5 / 199";85;NA;191;174;"Georgia Southern"
-"Brennan Wooten";TE;"Cathedral (Indianapolis, IN)";IN;"6-4 / 225";85;NA;58;16;"Western Michigan"
-"Nathan Guinn";TE;"Vero Beach (Vero Beach, FL)";FL;"6-5 / 220";83;NA;78;232;Illinois
-"Journey McKoy";ATH;"De La Salle (Concord, CA)";CA;"5-10 / 170";83;NA;162;192;Nevada
-"Will Monney";TE;"Springville (Springville, UT)";UT;"6-4 / 205";79;NA;103;38;
-"Tiger Bachmeier";WR;"Murrieta Valley (Murrieta, CA)";CA;"6-1 / 180";90;NA;38;26;Stanford
-"Zachariah Branch";WR;"Bishop Gorman (Las Vegas, NV)";NV;"5-10 / 172";98;10;1;1;USC
-"Tennel Bryant";WR;"Archbishop Moeller (Cincinnati, OH)";OH;"5-10 / 162";86;NA;140;32;
-"Tre Wisner";RB;"DeSoto (DeSoto, TX)";TX;"5-11 / 180";89;NA;23;59;Texas
-"Jeremiah Cobb";RB;"Montgomery Catholic Preparatory (Montgomery, AL)";AL;"5-11 / 186";91;206;6;15;Auburn
-"Jermaine Foster";WR;"Glenville (Cleveland, OH)";OH;"6-0 / 185";83;NA;237;57;
-"Leo Pulalasi";ATH;"Lakes (Lakewood, WA)";WA;"6-1 / 205";86;NA;97;13;BYU
-"Dylan Van";RB;"Christian Brothers College (Saint Louis, MO)";MO;"6-0 / -";79;NA;143;46;
-"Cameron Cook";RB;"Stony Point (Round Rock, TX)";TX;"5-10 / 180";90;NA;15;50;TCU
-"Jevell Fugerson";WR;"Lee County (Leesburg, GA)";GA;"6-1 / 182";86;NA;155;92;
-"Kyler Ronquillo";ATH;"Yelm (Yelm, WA)";WA;"5-10 / 175";82;NA;172;35;"Portland State"
-"MarâKai Shaw";RB;"Adelanto (Adelanto, CA)";CA;"6-0 / 215";84;NA;86;160;
-"Ahmad Haston";QB;"Palm Beach Central (West Palm Beach, FL)";FL;"6-2.5 / 190";82;NA;97;244;Massachusetts
-"Richard Dandridge";WR;"Homestead (Homestead, FL)";FL;"5-10 / 160";87;NA;114;108;Temple
-"DeAndre Moore Jr.";WR;"St. John Bosco (Bellflower, CA)";CA;"6-0 / 185";94;66;11;7;Louisville
-"Stephon Daily";WR;"Sierra Linda (Tolleson, AZ)";AZ;"6-4 / 175";84;NA;212;26;"Colorado State"
-"Vandrevius Jacobs";WR;"Vero Beach (Vero Beach, FL)";FL;"6-0 / 167";87;NA;78;92;"Florida State"
-"Jamari Johnson";ATH;"Inglewood (Inglewood, CA)";CA;"6-5 / 250";89;NA;32;34;Louisville
-"Jalen Hale";WR;"Longview (Longview, TX)";TX;"6-2 / 175";94;74;12;13;
-"Broc Lowry";QB;"Canfield (Canfield, OH)";OH;"6-3 / 195";85;NA;61;38;Indiana
-"Lamar Patterson";WR;"St. Frances Academy (Baltimore, MD)";MD;"5-9 / 171";85;NA;186;23;
-"Josh Richards";WR;"East Orange Campus (East Orange, NJ)";NJ;"6-3 / 175";83;NA;245;33;Maryland
-"Bo Burklow";TE;"CPA (Nashville, TN)";TN;"6-3.5 / 230";80;NA;96;65;"Coastal Carolina"
-"Christian Hunt";QB;"Redondo Union HS (Redondo Beach, CA)";CA;"6-5 / 210";83;NA;93;206;
-"Joaqinn Thomas";ATH;"Granite Hills (El Cajon, CA)";CA;"5-9 / 175";80;NA;203;293;
-"Zachary Card";WR;"Pittsburg (Pittsburg, CA)";CA;"5-10 / 165";87;NA;82;74;"Oregon State"
-"Aidan Fortenberry";RB;"Clovis West (Fresno, CA)";CA;"6-0 / 205";78;NA;151;369;
-"Zane Flores";QB;"Gretna (Gretna, NE)";NE;"6-3.5 / 190";89;NA;23;2;"Oklahoma State"
-"Will Anciaux";TE;"Kapaun Mt Carmel Catholic (Wichita, KS)";KS;"6-6 / 220";86;NA;46;9;"Kansas State"
-"Kelton Henderson";ATH;"Lehigh Senior (Lehigh Acres, FL)";FL;"5-11 / 175";89;NA;33;72;"South Carolina"
-"Micah Mays";ATH;"The Benjamin School (North Palm Beach, FL)";FL;"6-2 / 175";89;NA;35;76;"Wake Forest"
-"Ryan Henning";RB;"Lincoln (Lincoln, CA)";CA;"5-10 / 185";78;NA;154;373;"Air Force"
-"Nehuel Garcia";QB;"La Mirada (La Mirada, CA)";CA;"6-3 / 185";79;NA;142;339;
-"Owen Colpaert";ATH;"Dakota (Macomb, MI)";MI;"6-4 / 210";79;NA;225;47;
-"Quentin Thomas";WR;"Eagles Landing (McDonough, GA)";GA;"6-0 / 200";85;NA;174;105;Liberty
-"Za'Ron Collins";WR;"Monsignor Pace (Opa Locka, FL)";FL;"6-2.5 / 165";84;NA;227;224;
-"Dante Kelly";ATH;"Leflore County (Itta Bena, MS)";MS;"6-3 / 203";84;NA;149;28;"Mississippi State"
-"Levontai Summersett";ATH;"North Fort Myers (North Fort Myers, FL)";FL;"5-10 / 192";83;NA;168;234;"Florida A&M"
-"Bryce Cohoon";WR;"Maize (Maize, KS)";KS;"6-2 / 175";84;NA;228;15;Syracuse
-"Brady Drogosh";QB;"De La Salle Collegiate (Warren, MI)";MI;"6-4 / 200";87;NA;29;12;Cincinnati
-"Kedrick Reescano";RB;"New Caney (New Caney, TX)";TX;"5-11 / 190";89;NA;24;61;"Michigan State"
-"Cade Clyde";TE;"Connell (Connell, WA)";WA;"6-3 / 250";80;NA;95;46;
-"Traâquan Johnson";ATH;"Gibbs (Saint Petersburg, FL)";FL;"6-0 / 195";85;NA;136;190;"Tennessee Tech"
-"Junior Sherrill";WR;"Lipscomb Academy (Nashville, TN)";TN;"5-10 / 175";84;NA;216;48;Vanderbilt
-"Jackson Brousseau";QB;"Lehi (Lehi, UT)";UT;"6-5 / 215";83;NA;85;25;"Colorado State"
-"Jacobe Johnson";ATH;"Mustang (Mustang, OK)";OK;"6-3 / 183";93;126;10;3;
-"Jaquez Keyes";RB;"Ironton (Ironton, OH)";OH;"6-1 / 207";87;NA;43;25;Wisconsin
-"Paul Davis";WR;"Hart County (Hartwell, GA)";GA;"6-1 / 188";90;NA;39;33;
-"Jaden Hamm";TE;"Eudora (Eudora, KS)";KS;"6-7 / 235";90;NA;19;5;Arkansas
-"Ryan Browne";QB;"Milford Academy (New Berlin, NY)";NY;"6-5 / 207";82;NA;101;11;
-"Zeke Moore";TE;"Roswell (Roswell, GA)";GA;"6-2 / 240";83;NA;80;130;"Florida Atlantic"
-"LaNorris Sellers";QB;"South Florence (Florence, SC)";SC;"6-2.5 / 217";86;NA;46;15;Syracuse
-"Jacob Winters";QB;"Jackson (Jackson, OH)";OH;"6-2 / 215";81;NA;109;70;Ohio
-"Randy Pittman";TE;"A. Crawford Mosley (Lynn Haven, FL)";FL;"6-2 / 230";87;NA;32;96;
-"Jermaine Mathews";ATH;"Winton Woods (Cincinnati, OH)";OH;"6-0 / 175";89;NA;34;10;"Ohio State"
-"Kavaughn Clark";RB;"Centennial (Peoria, AZ)";AZ;"5-8 / 180";81;NA;120;40;
-"London Montgomery";RB;"Scranton Prep (Scranton, PA)";PA;"5-10 / 180";88;NA;31;8;"Penn State"
-"Brandon Johnson";RB;"Highland (Palmdale, CA)";CA;"5-9 / 185";85;NA;83;143;Arizona
-"Kayden Davis";RB;"Alliance (Alliance, OH)";OH;"6-1 / 205";81;NA;122;75;"Youngstown State"
-"Montrell Wade";WR;"Tyler High (Tyler, TX)";TX;"6-0.5 / 182";87;NA;116;124;"Boston College"
-"Kresean Kizzy";ATH;"Liberty (Bakersfield, CA)";CA;"5-10 / 165";80;NA;214;327;
-"King Miller";RB;"Calabasas (Calabasas, CA)";CA;"6-0 / 200";84;NA;92;178;
-"Hunter Provience";TE;"Christian (El Cajon, CA)";CA;"6-5 / 230";83;NA;81;213;
-"Jabari Mitchell";ATH;"Reynoldsburg (Reynoldsburg, OH)";OH;"6-3 / 206";81;NA;183;71;"Kent State"
-"Nico Mosley";RB;"Mater Dei Catholic (Chula Vista, CA)";CA;"5-8 / 175";80;NA;136;296;
-"Jahiem White";RB;"William Penn (York, PA)";PA;"5-9 / 180";88;NA;32;11;"West Virginia"
-"Devin McCuin";ATH;"Jacksonville (Jacksonville, TX)";TX;"5-11 / 180";86;NA;87;153;UTSA
-"Andrew Rappleyea";TE;"Milton Academy (Milton, MA)";MA;"6-5 / 225";88;NA;27;6;"Penn State"
-"Ashton Lloyd";TE;"Blue Earth Area Senior (Blue Earth, MN)";MN;"6-4 / 240";78;NA;104;22;
-"Jake Stearney";QB;"Loyola Academy (Wilmette, IL)";IL;"6-3 / 180";78;NA;145;69;Colgate
-"A'Marion Peterson";RB;"Hirschi (Wichita Falls, TX)";TX;"6-0 / 200";90;NA;13;46;USC
-"Ja'koby Banks";WR;"Fort Bend Marshall (Missouri City, TX)";TX;"5-9 / 175";87;NA;102;123;Houston
-"Lex Thomas";QB;"Heritage (Wake Forest, NC)";NC;"5-11 / 193";87;NA;37;20;"NC State"
-"Rohan Davy";ATH;"St. John's (Washington, DC)";DC;"5-10 / 190";84;NA;151;8;Cincinnati
-"Ryan Staub";QB;"West Ranch (Stevenson Ranch, CA)";CA;"6-1 / 190";85;NA;67;144;Colorado
-"Kenyon Agurs";ATH;"Inglewood (Inglewood, CA)";CA;"6-5 / 235";83;NA;167;211;
-"Kanye Clark";WR;"Capital Christian (Sacramento, CA)";CA;"5-11 / 165";84;NA;219;169;
-"Bryson Waterman";ATH;"Bakersfield Christian (Bakersfield, CA)";CA;"6-1 / 180";81;NA;191;259;
-"Solomon Davis";ATH;"Charter Oak (Covina, CA)";CA;"6-0 / 183";87;NA;73;87;Arizona
-"Jordyn Bailey";WR;"Ryan (Denton, TX)";TX;"5-9 / 160";86;NA;121;134;TCU
-"Aaron Gates";ATH;"Trinity Christian School (Sharpsburg, GA)";GA;"6-0 / 180";88;NA;38;45;Florida
-"Noble Johnson";WR;"Rockwall (Rockwall, TX)";TX;"6-2 / 205";88;NA;72;84;Clemson
-"Jakeb Vallence";QB;"Cheney (Cheney, WA)";WA;"6-3 / 200";77;NA;167;106;
-"Daylan Smothers";RB;"West Charlotte (Charlotte, NC)";NC;"5-11 / 182";88;NA;30;15;Oklahoma
-"Ben Pfaff";RB;"Bellarmine Prep (San Jose, CA)";CA;"5-11 / 190";78;NA;150;357;
-"Conner Cravaack";TE;"Madeira (Cincinnati, OH)";OH;"6-5 / 220";79;NA;98;85;Akron
-"Jackson Holman";WR;"Mission Viejo (Mission Viejo, CA)";CA;"6-3 / 200";87;NA;103;90;Arizona
-"Miles Hall";ATH;"Skyline (Salt Lake City, UT)";UT;"6-2 / 195";86;NA;109;13;BYU
-"Spencer Shannon";TE;"Mater Dei (Santa Ana, CA)";CA;"6-7 / 240";88;NA;23;39;Texas
-"Ryder Burton";QB;"Springville (Springville, UT)";UT;"6-2 / 180";85;NA;63;17;BYU
-"Mason Norberg";TE;"Folsom (Folsom, CA)";CA;"6-2 / 215";81;NA;90;240;
-"Javorian Wimberly";WR;"Palm Beach Central (West Palm Beach, FL)";FL;"6-0 / 180";85;NA;187;167;"Central Michigan"
-"Onterrio Smith Jr.";ATH;"Folsom (Folsom, CA)";CA;"6-2 / 175";86;NA;79;97;
-"Naseri Danielson";ATH;"St. Mary's (Stockton, CA)";CA;"6-2 / 195";85;NA;123;139;
-"Kai Remigio";RB;"Mater Dei (Santa Ana, CA)";CA;"5-10 / 185";79;NA;142;332;
-"Mikhi Varady-Brown";ATH;"Notre Dame (Sherman Oaks, CA)";CA;"5-8 / 165";79;NA;232;340;
-"Zach Ortwerth";TE;"St. Louis University (Saint Louis, MO)";MO;"6-4 / 220";87;NA;37;15;Iowa
-"Vance Bolyard";TE;"Northern Guilford (Greensboro, NC)";NC;"6-5 / 230";85;NA;56;31;Duke
-"Ky McNulty";WR;"Baldwin County (Bay Minette, AL)";AL;"6-4 / 180";84;NA;211;50;
-"A.D. Norton";ATH;"Stebbins (Dayton, OH)";OH;"6-0 / 195";80;NA;210;82;Akron
-"Kyle Williams";ATH;"Harrisburg (Harrisburg, PA)";PA;"6-0 / 185";80;NA;213;32;Temple
-"Joey Schlaffer";TE;"Exeter Township (Reading, PA)";PA;"6-6 / 215";86;NA;45;18;"Penn State"
-"Samuel Gamino";RB;"Rigby (Rigby, ID)";ID;"5-10 / 195";72;NA;173;59;
-"Tyson Edwards";ATH;"Overton (Nashville, TN)";TN;"6-2 / 175";84;NA;153;49;Memphis
-"DeSean Bishop";RB;"Karns (Knoxville, TN)";TN;"5-10 / 194";84;NA;88;45;"Coastal Carolina"
-"Jalyn Thompson";TE;"Dowling Catholic (West Des Moines, IA)";IA;"6-4 / 220";79;NA;100;25;
-"Santino Acevedo";ATH;"Cardinal Newman (Santa Rosa, CA)";CA;"6-0 / 190";81;NA;192;260;
-"Jaden Greathouse";WR;"Westlake (Austin, TX)";TX;"6-2 / 215";90;238;26;43;"Notre Dame"
-"Orel Gray";ATH;"University Christian (Jacksonville, FL)";FL;"5-11 / 185";84;NA;144;204;
-"Mateo Flores";RB;"Argonaut (Jackson, CA)";CA;"5-8 / 155";77;NA;164;422;
-"Carlos Hernandez";WR;"Monrovia (Monrovia, CA)";CA;"6-0 / 170";83;NA;241;202;"Washington State"
-"Jeremiah Shack";WR;"Mandarin (Jacksonville, FL)";FL;"6-3 / 191";86;NA;131;119;Liberty
-"KC Spears";ATH;"Winton Woods (Cincinnati, OH)";OH;"5-10 / 190";79;NA;223;91;
-"Dakotah Mayo";WR;"Christian Brothers College (Saint Louis, MO)";MO;"5-10 / 160";85;NA;168;23;
-"Joey Stout";RB;"John H. Pitman (Turlock, CA)";CA;"5-10 / 165";76;NA;166;439;
-"Andre Davis";WR;"Blue Valley (Overland Park, KS)";KS;"6-4 / 200";87;NA;88;7;"Kansas State"
-"Joseph Capra";ATH;"Denver South (Denver, CO)";CO;"6-1 / 170";78;NA;234;19;
-"Cooper Jensen";TE;"Glacier Peak (Snohomish, WA)";WA;"6-5 / 210";88;NA;25;12;"Oregon State"
-"William Fowles";WR;"Dade Christian School (Hialeah, FL)";FL;"6-2 / 195";87;NA;77;90;Louisville
-"George Burhenn";TE;"Mt Vernon (Mount Vernon, IN)";IN;"6-5 / 205";88;NA;29;7;Purdue
-"Yazeed Haynes";WR;"North Penn (Fort Washington, PA)";PA;"6-1 / 170";88;NA;75;10;Georgia
-"Javance Tupouata-Johnson";QB;"Chaminade (West Hills, CA)";CA;"6-4 / 200";87;NA;32;79;"San Diego State"
-"Marcus Ramon-Edwards";ATH;"Trinity Christian School (Lubbock, TX)";TX;"6-3 / 200";86;NA;80;147;"Texas Tech"
-"Marcus Ransom";ATH;"Harper Creek (Battle Creek, MI)";MI;"6-3 / 205";79;NA;222;45;
-"Hogan Carmichael";QB;"Summit (Bend, OR)";OR;"6-5 / 185";77;NA;157;33;
-"Seth Davis";RB;"Katy (Katy, TX)";TX;"5-7 / 170";87;NA;42;116;"Mississippi State"
-"Christian Ross";ATH;"Dale County (Midland City, AL)";AL;"6-4 / 215";85;NA;130;44;Memphis
-"Christopher Williams";ATH;"Francis Parker School (San Diego, CA)";CA;"5-10 / 170";86;NA;96;121;
-"Aidan Chiles";QB;"Downey (Downey, CA)";CA;"6-4 / 195";88;NA;27;53;"Oregon State"
-"Ian Duarte";WR;"Eagle (Eagle, ID)";ID;"5-8 / 170";86;NA;124;4;
-"Anthony Benjamin";WR;"Dunbar (Fort Myers, FL)";FL;"5-8 / 140";84;NA;222;208;
-"Gabarri Johnson";QB;"Lincoln (Tacoma, WA)";WA;"6-0 / 200";90;NA;18;5;Missouri
-"Grant Larkin";ATH;"Neuqua Valley (Naperville, IL)";IL;"6-0 / 180";80;NA;199;47;"North Dakota State"
-"Kendrick Raphael";RB;"Naples (Naples, FL)";FL;"5-11 / 180";87;NA;36;95;Iowa
-"Ashton Cozart";WR;"Marcus (Flower Mound, TX)";TX;"6-3.5 / 193";92;152;17;29;Oregon
-"Keshon Singleton";WR;"Sacred Heart Griffin (Springfield, IL)";IL;"6-2 / 180";83;NA;236;37;"Air Force"
-"Robert Long";QB;"St. Peters Prep (Fairfield, CT)";CT;"5-11 / 200";84;NA;70;25;Maryland
-"Brennan Storer";QB;"Highland Park (Dallas, TX)";TX;"5-11 / 190";83;NA;86;226;"Western Michigan"
-"Jaelen Nichols";ATH;"Central Catholic (Modesto, CA)";CA;"5-10 / 190";81;NA;186;253;
-"Jayden Limar";RB;"Lake Stevens (Lake Stevens, WA)";WA;"5-11 / 190";90;247;12;3;"Notre Dame"
-"Marcus Higgs";RB;"Warren (Downey, CA)";CA;"5-11 / 220";83;NA;111;207;
-"Xavier Terrell";RB;"St. Thomas Aquinas (Fort Lauderdale, FL)";FL;"5-8 / 175";85;NA;75;159;"Florida Atlantic"
-"Benjamin Brahmer";WR;"Pierce (Pierce, NE)";NE;"6-5 / 185";87;NA;86;7;Nebraska
-"Dylan Greeson";ATH;"De La Salle (Concord, CA)";CA;"5-10 / 190";78;NA;242;347;
-"Willtrell Hartson";RB;"Washington (Massillon, OH)";OH;"5-9 / 200";86;NA;56;35;
-"CJ Adams";WR;"Pebblebrook (Mableton, GA)";GA;"6-3 / 210";87;NA;106;66;"South Carolina"
-"Joel Kpassou";ATH;"Solon (Solon, OH)";OH;"5-10 / 167";80;NA;209;81;"Ball State"
-"Famah Toure";WR;"Irvington (Pleasantville, NJ)";NJ;"6-3 / 195";86;NA;135;14;Rutgers
-"Thomas Howard";ATH;"Frederick Douglass (Lexington, KY)";KY;"6-3 / 205";84;NA;142;13;
-"Robby Washington";ATH;"Miami Palmetto (Miami, FL)";FL;"5-10 / 185";94;86;6;20;Miami
-"Edwin Joseph";WR;"Chaminade-Madonna Prep (Hollywood, FL)";FL;"6-0 / 175";87;NA;80;94;
-"Antonio Ferguson";TE;"Apopka (Apopka, FL)";FL;"6-4 / 235";85;NA;59;165;"East Carolina"
-"Nasir Addison";WR;"Irvington (Irvington, NJ)";NJ;"6-1 / 190";85;NA;173;20;Kentucky
-"Blake Murphy";QB;"American Heritage (Fort Lauderdale, FL)";FL;"5-10 / 175";81;NA;113;267;Louisiana-Monroe
-"Malachi Riley";WR;"Centennial (Corona, CA)";CA;"6-2 / 178";88;NA;68;50;
-"Ezell Jolly";RB;"Ridge Point (Missouri City, TX)";TX;"6-0 / 175";85;NA;68;185;
-"Marco Lainez III";QB;"Hun School (Skillman, NJ)";NJ;"6-2.5 / 225";88;NA;24;7;Iowa
-"Ben Fosnot";TE;"William Mason (Mason, OH)";OH;"6-6 / 230";77;NA;118;108;
-"Hank Brown";QB;"Lipscomb Academy (Nashville, TN)";TN;"6-4 / 195";86;NA;55;32;Liberty
-"Braden Awls";ATH;"Central Catholic (Toledo, OH)";OH;"6-0 / 180";84;NA;148;45;Toledo
-"Justice Haynes";RB;"Buford (Buford, GA)";GA;"5-10 / 200";94;81;4;7;Alabama
-"Hawkins Polley";TE;"Stratford (Houston, TX)";TX;"6-4 / 245";86;NA;43;140;Baylor
-"Isaiah Jones";ATH;"Brookfield (Brookfield, OH)";OH;"6-4 / 187";78;NA;237;100;
-"Brady McKelheer";QB;"Eastside Catholic (Sammamish, WA)";WA;"6-0 / 170";77;NA;158;77;
-"Tybo Rogers";RB;"Bakersfield (Bakersfield, CA)";CA;"5-11 / 180";88;NA;33;60;Washington
-"Rueben Owens";RB;"El Campo (El Campo, TX)";TX;"5-11 / 190";96;23;1;3;Louisville
-"Dylan Lonergan";QB;"Brookwood (Snellville, GA)";GA;"6-2 / 215";93;113;11;11;Alabama
-"Robbie Mascheroni";WR;"Campolindo (Moraga, CA)";CA;"6-4 / 190";84;NA;205;159;
-"Zion Fowler";WR;"St. Peters Prep (Jersey City, NJ)";NJ;"6-1 / 185";86;NA;128;12;Pittsburgh
-"Kristian Ingman";TE;"Rocklin (Rocklin, CA)";CA;"6-5 / 235";81;NA;88;237;
-"Cedric Baxter Jr.";RB;"Edgewater (Orlando, FL)";FL;"6-1 / 215";96;31;2;7;Texas
-"Ethan Clark";RB;"Clarkston (Clarkston, MI)";MI;"6-1 / 195";80;NA;131;35;
-"Jake Strong";QB;"Northwest (Justin, TX)";TX;"6-2 / 200";86;NA;43;130;"Texas Tech"
-"River Lien";QB;"Glacier Peak (Snohomish, WA)";WA;"6-0 / 197";77;NA;159;78;
-"Jeremiah Claiborne";RB;"Bishop Alemany (Mission Hills, CA)";CA;"6-1 / 195";81;NA;127;272;
-"Bridger Davies";TE;"Corner Canyon (Draper, UT)";UT;"6-4 / 215";80;NA;97;37;
-"Amaris Shaw";ATH;"Winter Park (Winter Park, FL)";FL;"6-0 / 170";88;NA;40;84;
-"Muwaffaq Parkman";ATH;"Hillside (Hillside, NJ)";NJ;"6-0 / 175";84;NA;159;28;Syracuse
-"Demitrius Bell";ATH;"Blackman (Murfreesboro, TN)";TN;"6-1 / 175";88;NA;50;19;"Michigan State"
-"Max Bateman";ATH;"Lone Peak (American Fork, UT)";UT;"6-3 / 215";80;NA;198;36;
-"Jack Carner";RB;"Pioneer (Woodland, CA)";CA;"6-0 / 175";77;NA;165;426;
-"Christopher Arviso II";QB;"Mountain Pointe (Phoenix, AZ)";AZ;"6-1 / 175";79;NA;138;48;
-"Nollenn Tabaska";TE;"Brookfield East (Brookfield, WI)";WI;"6-7 / 230";82;NA;84;5;Army
-"Brady Probst";TE;"Brownsburg (Brownsburg, IN)";IN;"6-4 / 235";78;NA;107;35;"Illinois State"
-"Angelo Stockstill";ATH;"Simeon (Chicago, IL)";IL;"6-4 / 175";79;NA;217;55;"Western Michigan"
-"Chris Dawn Jr.";WR;"Horn (Mesquite, TX)";TX;"5-7 / 155";85;NA;169;198;"Arkansas State"
-"Malik Elzy";WR;"Simeon (Chicago, IL)";IL;"6-3 / 198";89;NA;44;8;Cincinnati
-"Brady Weingart";QB;"Redwood (Larkspur, CA)";CA;"6-2 / 195";76;NA;169;433;
-"Delanie Majors";WR;"Overton (Nashville, TN)";TN;"5-9 / 170";84;NA;215;46;
-"Jalen Woods";QB;"Woodward Academy (Atlanta, GA)";GA;"6-3 / 200";82;NA;102;133;
-"Cal Swanson";QB;"Ardmore (Ardmore, OK)";OK;"6-3 / 185";84;NA;79;17;Illinois
-"Chris Culliver";WR;"Maiden (Maiden, NC)";NC;"6-3 / 174";87;NA;85;16;"North Carolina"
-"Shamar Easter";TE;"Ashdown (Ashdown, AR)";AR;"6-5 / 225";92;150;11;1;Arkansas
-"Judge Collier";ATH;"Legion Collegiate Academy (Rock Hill, SC)";SC;"6-1 / 185";86;NA;104;17;"South Carolina"
-"Christian Abney";QB;"Zionsville (Zionsville, IN)";IN;"6-5 / 215";76;NA;174;46;"Ball State"
-"Devyn Turner";RB;"St. Francis (Allen, TX)";TX;"5-9 / 180";85;NA;81;208;
-"Devon Dampier";QB;"Saguaro (Scottsdale, AZ)";AZ;"6-0 / 190";84;NA;73;24;
-"Shaborne Demps";WR;"Glades Central (Belle Glade, FL)";FL;"5-8 / 170";87;NA;115;109;Purdue
 "Shelton Sampson Jr.";WR;"Catholic (Baton Rouge, LA)";LA;"6-4 / 181";93;91;13;4;LSU
-"Ryan Bullard";RB;"Killian (Miami, FL)";FL;"5-9 / 175";82;NA;116;246;
-"Joey Neumann";TE;"Antioch Community (Antioch, IL)";IL;"6-4 / 215";78;NA;110;73;"South Dakota State"
-"Khalifa Keith";RB;"Parker (Birmingham, AL)";AL;"6-2 / 217";83;NA;110;53;Kentucky
-"Blake Baker";QB;"Clackamas (Clackamas, OR)";OR;"6-0 / 170";75;NA;178;55;
-"Baylin Brooks";WR;"Loyola (Los Angeles, CA)";CA;"6-2 / 195";86;NA;122;100;"San Diego State"
-"Sean Williams";WR;"St. John's (Washington, DC)";DC;"6-1 / 175";85;NA;177;6;Maryland
-"Dane Reed";ATH;"Inglewood (Inglewood, CA)";CA;"5-8 / 170";85;NA;115;134;Campbell
-"Wesley Greaves";WR;"A&M Consolidated (College Station, TX)";TX;"6-2 / 185";84;NA;199;214;Colorado
-"Jared Quenga";ATH;"Cosumnes Oaks (Elk Grove, CA)";CA;"5-10 / 160";78;NA;246;363;
-"Kasen Weisman";QB;"South Paulding (Douglasville, GA)";GA;"6-2 / 180";85;NA;65;109;Kansas
-"Jaden Mikhael";TE;"Niceville (Niceville, FL)";FL;"6-4 / 231";82;NA;85;254;
-"Mason Mini";TE;"Terra Nova (Pacifica, CA)";CA;"6-4 / 210";76;NA;121;445;Idaho
-"Cordale Russell";WR;"North Mesquite (Mesquite, TX)";TX;"6-2 / 200";90;NA;33;53;TCU
-"Carlos Matheney";RB;"Tumwater (Olympia, WA)";WA;"6-0 / 195";81;NA;126;41;Idaho
-"Ethan Davis";TE;"Collins Hill (Suwanee, GA)";GA;"6-5 / 221";93;99;6;9;Tennessee
-"Hayden Oviatt";ATH;"Wamego (Wamego, KS)";KS;"6-1 / 200";82;NA;178;16;Army
-"Marshaun Brown";WR;"Bishop Manogue (Reno, NV)";NV;"6-4 / 185";83;NA;244;20;
-"Brock Thomas";QB;"Sheldon (Eugene, OR)";OR;"6-0 / 165";83;NA;83;9;
-"Kole Hunsaker";QB;"Lakeside (Nine Mile Falls, WA)";WA;"6-2 / 170";76;NA;175;117;
-"Troy Bean";ATH;"Great Oak (Temecula, CA)";CA;"6-4 / 195";80;NA;206;320;
-"Khai Taylor";ATH;"Pittsburg (Pittsburg, CA)";CA;"6-1 / 165";82;NA;171;221;Nevada
-"Edward Robinson";RB;"Maple Heights (Maple Heights, OH)";OH;"5-11 / 190";84;NA;94;50;
-"Camp Magee";TE;"Edgewater (Orlando, FL)";FL;"6-6 / 210";87;NA;39;102;Northwestern
-"Davin Garinger";QB;"Clarksville (Clarksville, TN)";TN;"6-1 / 175";80;NA;129;67;
-"Tayden Phillips";RB;"Abraham Lincoln (San Jose, CA)";CA;"5-11 / 185";77;NA;159;407;
-"Elijah Caldwell";WR;"Northwestern (Rock Hill, SC)";SC;"6-1 / 190";85;NA;195;25;"West Virginia"
-"Garrison Monroe";ATH;"Shakopee (Shakopee, MN)";MN;"6-0 / 190";84;NA;146;10;Minnesota
-"Jacob Jones";QB;"West Jessamine (Lexington, KY)";KY;"6-1 / 180";82;NA;95;15;
-"Austin Novosad";QB;"Dripping Springs (Dripping Springs, TX)";TX;"6-3 / 185";94;89;8;17;Baylor
-"Makhail Wood";WR;"Mill Creek (Hoschton, GA)";GA;"5-10.5 / 150";83;NA;235;127;"Eastern Michigan"
-"Isiah Kendall";WR;"Newport (Newport, AR)";AR;"6-4 / 175";88;NA;56;3;"Jackson State"
-"Nolan Ray";RB;"Brother Rice (Bloomfield Hills, MI)";MI;"6-0 / 195";86;NA;59;16;Maryland
-"Tripp Riordan";TE;"Wakeland (Frisco, TX)";TX;"6-4.5 / 245";86;NA;41;131;SMU
-"Michael Parkes";WR;"Bayside (Palm Bay, FL)";FL;"6-1 / 185";87;NA;104;104;"Iowa State"
-"Isaiah Spencer";WR;"Madison Central (Madison, MS)";MS;"6-2 / 185";86;NA;127;12;"Southern Miss"
-"Zamariyon Kendall";RB;"Lausanne Collegiate School (Memphis, TN)";TN;"5-11 / 202";85;NA;74;36;
-"Omarion Miller";WR;"North Caddo (Vivian, LA)";LA;"6-2 / 190";91;221;23;12;Nebraska
-"Kade McIntyre";ATH;"Archbishop Bergan (Fremont, NE)";NE;"6-4 / 205";88;NA;42;3;Oklahoma
-"Lincoln Kienholz";QB;"T.F. Riggs (Pierre, SD)";SD;"6-3 / 185";86;NA;45;1;Washington
-"John Randle Jr.";RB;"Heights (Wichita, KS)";KS;"6-0 / 180";90;NA;19;4;
-"Luke Hasz";TE;"Bixby (Bixby, OK)";OK;"6-3 / 245";92;158;12;4;Arkansas
-"Aiden Ramos";RB;"Bishop Amat (La Puente, CA)";CA;"5-10 / 210";81;NA;121;247;
-"Duce Robinson";TE;"Pinnacle (Phoenix, AZ)";AZ;"6-6 / 225";96;29;1;1;
-"Gemari Sands";RB;"St. Thomas Aquinas (Fort Lauderdale, FL)";FL;"5-10 / 190";84;NA;93;219;
-"Benjamin Hall";RB;"North Cobb (Kennesaw, GA)";GA;"5-10 / 225";86;NA;60;91;Michigan
-"Javieon Butler";WR;"Scott Central (Forest, MS)";MS;"6-5 / 194";85;NA;194;25;"Southern Miss"
-"Trey Leckner";ATH;"Glacier Peak (Snohomish, WA)";WA;"6-2 / 215";86;NA;98;15;"Washington State"
-"Andy Jean";WR;"Northwestern (Miami, FL)";FL;"6-1 / 180";88;NA;70;85;Florida
-"JJ Kohl";QB;"Ankeny (Ankeny, IA)";IA;"6-7 / 230";90;NA;15;3;"Iowa State"
-"Tony Martin";ATH;"Miramar (Hollywood, FL)";FL;"5-10 / 175";80;NA;215;276;Marshall
-"Jamal Roberts";RB;"St Mary's (Saint Louis, MO)";MO;"6-1 / 200";85;NA;73;26;Missouri
-"Adam Hopkins";WR;"Thomas County Central (Thomasville, GA)";GA;"6-0 / 170";90;NA;31;26;
-"Barry Jackson";WR;"Cedar Grove (Ellenwood, GA)";GA;"5-11 / 175";86;NA;157;94;Nebraska
-"Daniel Andrade";QB;"Bonita (La Verne, CA)";CA;"6-3 / 200";84;NA;75;162;
-"Tory Johnson Jr.";WR;"Oscar Smith (Chesapeake, VA)";VA;"6-4 / 210";86;NA;133;28;"West Virginia"
-"Micah Gifford";WR;"Weiss (Pflugerville, TX)";TX;"6-2 / 185";88;NA;57;69;Baylor
-"Parker Awad";QB;"Edison (Huntington Beach, CA)";CA;"6-1 / 185";80;NA;135;313;
-"Mack Howard";QB;"Oxford (Oxford, MS)";MS;"6-2 / 185";86;NA;53;11;Utah
-"Indiana Wijay";QB;"Pasadena (Pasadena, CA)";CA;"6-4 / 200";82;NA;103;234;
-"Drew Cowart";QB;"American Leadership Academy (Queen Creek, AZ)";AZ;"6-2 / 190";79;NA;139;49;
-"Israel Carter";QB;"Centennial (Corona, CA)";CA;"6-1 / 180";86;NA;51;104;"Arizona State"
-"Nathan Stewart";WR;"St. Vincent Pallotti (Laurel, MD)";MD;"6-5 / 190";85;NA;178;20;Temple
-"Olsen Patt Henry";TE;"First Baptist Academy (Naples, FL)";FL;"6-3 / 215";90;NA;16;56;Clemson
-"D.J. Porter";WR;"Dorman (Roebuck, SC)";SC;"6-0 / 160";87;NA;84;8;"Appalachian State"
-"Richard Stallworth";QB;"Yuma Catholic (Yuma, AZ)";AZ;"6-2 / 205";77;NA;164;53;
-"Deljay Bailey";QB;"Petal (Biloxi, MS)";MS;"6-1 / 200";83;NA;89;32;
-"Colbey Lamberth";QB;"Dickson County (Dickson, TN)";TN;"6-3 / 211";85;NA;66;39;"Eastern Kentucky"
-"Jack Parker";TE;"Loyola Academy (Wilmette, IL)";IL;"6-5 / 230";79;NA;99;60;"Western Michigan"
-"Ryan Manning";WR;"St. Frances Academy (Baltimore, MD)";MD;"5-11 / 170";85;NA;185;22;Maryland
-"Grant Tucker";ATH;"Charlotte Christian (Charlotte, NC)";NC;"6-3 / 184";90;NA;23;10;
-"Rory Callahan";TE;"Huron (New Boston, MI)";MI;"6-4 / 225";78;NA;114;57;"Central Michigan"
-"Hykeem Williams";WR;"Stranahan (Fort Lauderdale, FL)";FL;"6-3 / 200";96;26;5;6;
-"Anthony Brown";WR;"Springfield (Springfield, OH)";OH;"5-10 / 170";88;NA;67;13;Kentucky
-"Bryce Kooy";RB;"Bothell (Bothell, WA)";WA;"6-1 / 185";75;NA;168;126;
-"Tremel Miles";ATH;"Inderkum (Sacramento, CA)";CA;"6-5 / 210";85;NA;111;128;
-"Evan Pierce";QB;"Tesoro (Rancho Santa Margarita, CA)";CA;"6-1 / 195";78;NA;146;343;
-"McCae Hillstead";QB;"Skyridge (Lehi, UT)";UT;"5-11 / 175";85;NA;60;15;"Utah State"
-"Isaiah Hardge";WR;"St. Thomas Aquinas (Fort Lauderdale, FL)";FL;"5-10 / 160";86;NA;154;138;Colorado
-"Ricky Ahumaraeze";WR;"Liberty (Liberty, MO)";MO;"6-4 / 195";87;NA;91;18;Northwestern
-"Nate White";RB;"King (Milwaukee, WI)";WI;"6-0 / 175";87;NA;44;1;Wisconsin
-"Desirrio Riles";ATH;"University Christian (Jacksonville, FL)";FL;"6-3 / 225";86;NA;88;120;
-"JeyQuan Smith";ATH;"Cajon (San Bernardino, CA)";CA;"5-10 / 175";88;NA;48;64;
-"Devon Rivers";RB;"Heritage (Brentwood, CA)";CA;"5-7 / 170";85;NA;71;132;"Fresno State"
-"Jaiden Pickett";ATH;"Riverside (Milwaukee, WI)";WI;"6-3 / 190";80;NA;207;8;"North Dakota State"
-"Tyler Williams";WR;"Lakeland (Lakeland, FL)";FL;"6-3 / 180";92;182;20;40;
-"Mathias Barnwell";ATH;"Riverbend (Fredericksburg, VA)";VA;"6-6 / 250";89;NA;29;6;"Penn State"
-"Tastean Reddicks";WR;"Dillard (Fort Lauderdale, FL)";FL;"6-1 / 180";86;NA;163;152;"Oregon State"
-"Jesse Miller";TE;"Greene County (Jefferson, IA)";IA;"6-6 / 215";78;NA;112;27;"South Dakota"
-"Rico Watkins";WR;"James Rickards (Tallahassee, FL)";FL;"5-11 / 160";86;NA;141;129;Massachusetts
-"Franklyn Johnson";ATH;"Little Elm (Little Elm, TX)";TX;"6-0 / 175";86;NA;85;152;"Boise State"
-"Sam Van Dyne";QB;"Liberty North (Liberty, MO)";MO;"6-3 / 205";84;NA;74;27;
-"Dominic Nankil";QB;"Mater Dei Catholic (Chula Vista, CA)";CA;"6-1 / 170";83;NA;88;196;
-"Cole Taylor";QB;"C M Russell (Great Falls, MT)";MT;"6-3 / 205";78;NA;153;7;
-"Kooper Ebel";ATH;"Hartley-Melvin-Sanborn (Hartley, IA)";IA;"6-3 / 200";86;NA;108;12;"Iowa State"
-"Jamari Ford";RB;"Northwestern (Miami, FL)";FL;"5-6 / 164";84;NA;91;213;
-"Kaleb Smith";WR;"Reedy (Frisco, TX)";TX;"6-0 / 175";86;NA;146;165;"Texas Tech"
-"DJ Oliver";RB;"Port St. Joe (Port Saint Joe, FL)";FL;"6-0 / 237";85;NA;80;180;USF
-"Brett Norfleet";TE;"Francis Howell (Saint Charles, MO)";MO;"6-7 / 220";90;NA;15;8;Missouri
+"Cole Cabana";RB;"Dexter (Dexter, MI)";MI;"6-0 / 180";90;NA;17;3;Michigan
+"Ryan Oliver";QB;"Lakeridge (Lake Oswego, OR)";OR;"6-2 / 190";77;NA;156;32;
+"Jarriett Buie";WR;"Jesuit (Tampa, FL)";FL;"6-3 / 182";86;NA;163;154;
+"LaNorris Sellers";QB;"South Florence (Florence, SC)";SC;"6-2.5 / 217";86;NA;46;15;Syracuse
+"Maddox Varella";QB;"Oak Ridge (El Dorado Hills, CA)";CA;"6-1 / 190";78;NA;151;372;
+"Brady Drogosh";QB;"De La Salle Collegiate (Warren, MI)";MI;"6-4 / 200";87;NA;29;12;Cincinnati
 "Jaden Booker";RB;"Palmetto Ridge (Naples, FL)";FL;"5-10 / 195";85;NA;69;156;
-"Ethan Hamby";QB;"Dakota (Macomb, MI)";MI;"6-2 / 205";75;NA;184;75;
-"Kendrick Bell";QB;"Park Hill (Kansas City, MO)";MO;"6-3 / 180";79;NA;136;42;
-"Roy Hull";RB;"Eagle (Eagle, ID)";ID;"6-1 / 195";77;NA;155;32;
-"Curron Borders";RB;"Antelope (Antelope, CA)";CA;"5-7 / 180";81;NA;124;261;
+"Jacob Rothwell";ATH;"Castro Valley (Castro Valley, CA)";CA;"6-3 / 205";78;NA;244;354;
+"Marcus Stokes";QB;"Nease (Ponte Vedra Beach, FL)";FL;"6-1.5 / 190";92;154;12;31;Florida
+"Nic Strong";RB;"Randolph School (Huntsville, AL)";AL;"5-10 / 175";79;NA;141;66;
+"Matthew Fredrick";TE;"East (Salt Lake City, UT)";UT;"6-5 / 230";86;NA;51;14;BYU
+"Joey Scarantino";QB;"Timberline (Boise, ID)";ID;"6-4 / 175";75;NA;185;53;
+"Reese Mooney";QB;"Denham Springs (Denham Springs, LA)";LA;"6-1 / 200";87;NA;35;26;Liberty
+"Josiah Phillips";WR;"Sierra Canyon (Chatsworth, CA)";CA;"6-4.5 / 190";87;NA;104;91;
+"Gavin Porch";WR;"Los Alamitos (Los Alamitos, CA)";CA;"5-9 / 160";85;NA;165;126;
+"Brayson Hubbard";ATH;"Ocean Springs (Ocean Springs, MS)";MS;"6-2 / 190";87;NA;77;9;Alabama
+"Kaden Moorman";ATH;"Franklin County (Frankfort, KY)";KY;"5-10 / 205";87;NA;60;6;Kentucky
+"Zamir Hall";RB;"Ridgeview (Bakersfield, CA)";CA;"5-8 / 160";75;NA;171;451;
+"Cordale Russell";WR;"North Mesquite (Mesquite, TX)";TX;"6-2 / 200";90;NA;33;53;TCU
+"Collin Hurst";QB;"Western (Fort Lauderdale, FL)";FL;"5-10 / 160";79;NA;143;279;
+"Malachi Singleton";QB;"North Cobb (Kennesaw, GA)";GA;"6-1 / 225";91;234;14;23;Arkansas
+"Zion Agnew";ATH;"Ridge View (Columbia, SC)";SC;"5-11 / 165";85;NA;116;23;"East Carolina"
+"Tyler Jefferson";ATH;"Columbia (Lake City, FL)";FL;"6-1 / 235";85;NA;133;183;"Central Michigan"
+"Brock Glenn";QB;"Lausanne Collegiate School (Memphis, TN)";TN;"6-2 / 195";90;NA;19;6;"Ohio State"
+"Isaiah Birl";ATH;"Walnut Hills (Cincinnati, OH)";OH;"6-1 / 190";85;NA;120;40;Army
+"Manny Covey";RB;"Bradford (Starke, FL)";FL;"5-11 / 175";87;NA;45;110;Cincinnati
+"MarâKai Shaw";RB;"Adelanto (Adelanto, CA)";CA;"6-0 / 215";84;NA;87;161;
+"Mark Hamper";ATH;"West Linn (West Linn, OR)";OR;"6-2 / 200";83;NA;160;11;
+"Brett Norfleet";TE;"Francis Howell (Saint Charles, MO)";MO;"6-7 / 220";90;NA;15;8;Missouri
+"Caleb Sanchez";QB;"St. John Bosco (Bellflower, CA)";CA;"6-3 / 220";80;NA;126;298;
+"Davin Garinger";QB;"Clarksville (Clarksville, TN)";TN;"6-1 / 175";80;NA;129;67;
+"Marcus Ramon-Edwards";ATH;"Trinity Christian School (Lubbock, TX)";TX;"6-3 / 200";86;NA;80;147;"Texas Tech"
+"Dylan Wittke";QB;"Buford (Buford, GA)";GA;"6-1 / 192";84;NA;77;124;"Virginia Tech"
+"Kenyon Sadiq";ATH;"Skyline Senior (Idaho Falls, ID)";ID;"6-3 / 220";92;149;11;1;
+"Kendrick Raphael";RB;"Naples (Naples, FL)";FL;"5-11 / 180";87;NA;36;95;Iowa
+"Sesi Vailahi";RB;"West (Salt Lake City, UT)";UT;"5-11 / 190";83;NA;100;24;
+"Eli Holstein";QB;"Zachary (Zachary, LA)";LA;"6-4 / 222";93;103;10;5;Alabama
+"Kelton Henderson";ATH;"Lehigh Senior (Lehigh Acres, FL)";FL;"5-11 / 175";89;NA;33;72;"South Carolina"
+"Ty Stamey";TE;"Klein Collins (Spring, TX)";TX;"6-5 / 240";82;NA;87;235;Louisiana
+"Montrel Hatten";WR;"Carthage (Carthage, TX)";TX;"6-0 / 175";88;NA;62;73;"Oregon State"
+"Hank Brown";QB;"Lipscomb Academy (Nashville, TN)";TN;"6-4 / 195";86;NA;55;32;Liberty
+"Ben Marshall";TE;"Blackman (Murfreesboro, TN)";TN;"6-5 / 217";84;NA;72;50;California
+"Jonah Wilson";WR;"Dekaney (Houston, TX)";TX;"6-3 / 195";90;NA;40;56;Texas
+"Brayden Dorman";QB;"Vista Ridge (Colorado Springs, CO)";CO;"6-4.5 / 206";90;NA;20;2;Arizona
+"Dante Moore";QB;"Martin Luther King (Detroit, MI)";MI;"6-2.5 / 210";98;2;2;1;Oregon
+"Rueben Owens";RB;"El Campo (El Campo, TX)";TX;"5-11 / 190";96;23;1;3;Louisville
+"Adam Damante";QB;"American Leadership Academy Gilbert North (Gilbert, AZ)";AZ;"6-2 / 180";79;NA;137;45;"Northern Arizona"
+"Kenyon Nelson";QB;"Lincoln (Stockton, CA)";CA;"6-0 / 185";80;NA;119;284;
+"Tyler Brown";WR;"Greenville (Greenville, SC)";SC;"5-11 / 170";87;NA;116;12;Minnesota
+"Marquese Williams";RB;"Bishop McDevitt (Harrisburg, PA)";PA;"5-8 / 175";87;NA;41;14;Minnesota
+"Hezekiah Anahu-Ambrosio";ATH;"Timpview (Provo, UT)";UT;"5-11 / 190";84;NA;143;22;Nevada
+"Joseph Walker Jr.";WR;"Warren Central (Indianapolis, IN)";IN;"6-4 / 200";84;NA;214;18;"Western Michigan"
+"Jahiem White";RB;"William Penn (York, PA)";PA;"5-9 / 180";88;NA;32;11;"West Virginia"
+"Nate White";RB;"King (Milwaukee, WI)";WI;"6-0 / 175";87;NA;44;1;Wisconsin
+"Quran Boyd";ATH;"Kempsville (Virginia Beach, VA)";VA;"5-10 / 185";85;NA;124;36;Duke
+"Jack Wagner";QB;"Tualatin (Tualatin, OR)";OR;"6-3 / 180";83;NA;84;10;Idaho
+"Hilton Alexander II";WR;"Douglas County (Douglasville, GA)";GA;"5-11 / 160";87;NA;109;69;"Wake Forest"
+"Zion Taylor";WR;"Norcross (Norcross, GA)";GA;"6-1 / 185";86;NA;135;82;"Georgia Tech"
+"Jaron Tibbs";WR;"Cathedral (Indianapolis, IN)";IN;"6-4 / 190";85;NA;181;15;Purdue
+"Kayde Bodine";QB;"Sumner (Sumner, WA)";WA;"6-0 / 165";75;NA;180;124;
+"David Wells";WR;"Lakes (Lakewood, WA)";WA;"6-0 / 170";85;NA;174;19;"Oregon State"
+"Colin Houck";QB;"Parkview (Lilburn, GA)";GA;"6-2 / 175";84;NA;72;122;
+"Tastean Reddicks";WR;"Dillard (Fort Lauderdale, FL)";FL;"6-1 / 180";86;NA;162;152;"Oregon State"
+"Brennan Parachek";TE;"Dexter (Dexter, MI)";MI;"6-6 / 235";89;NA;22;8;"Michigan State"
+"Conner Noah";ATH;"Kelso (Kelso, WA)";WA;"5-11 / 198";81;NA;194;37;Nevada
+"Micah Gifford";WR;"Weiss (Pflugerville, TX)";TX;"6-2 / 185";88;NA;57;69;Baylor
+"Cole Taylor";QB;"C M Russell (Great Falls, MT)";MT;"6-3 / 205";78;NA;153;7;
+"LJ Martin";RB;"Canutillo (El Paso, TX)";TX;"6-1 / 207";88;NA;26;75;Stanford
+"Isaiah Spencer";WR;"Madison Central (Madison, MS)";MS;"6-2 / 185";86;NA;126;12;"Southern Miss"
+"Cort Halsey";TE;"Menlo (Atherton, CA)";CA;"6-3 / 205";77;NA;121;420;
+"Troy Bean";ATH;"Great Oak (Temecula, CA)";CA;"6-4 / 195";80;NA;207;321;
+"Nyckoles Harbor";ATH;"Archbishop Carroll (Washington, DC)";DC;"6-5 / 225";98;9;1;1;
+"Eugene Wilson III";ATH;"Gaither (Tampa, FL)";FL;"5-11 / 165";92;183;15;41;Florida
+"CJ Davis";ATH;"Northrop (Fort Wayne, IN)";IN;"6-0 / 175";82;NA;174;22;Marshall
+"Duce Robinson";TE;"Pinnacle (Phoenix, AZ)";AZ;"6-6 / 225";96;29;1;1;
+"Brady Probst";TE;"Brownsburg (Brownsburg, IN)";IN;"6-4 / 235";78;NA;109;35;"Illinois State"
+"AJ Newberry";RB;"South Grand Prairie (Grand Prairie, TX)";TX;"6-0 / 200";86;NA;54;157;Colorado
+"Carson Black";QB;"Nation Ford (Fort Mill, SC)";SC;"6-2 / 186";86;NA;54;16;Memphis
+"Keshon Singleton";WR;"Sacred Heart Griffin (Springfield, IL)";IL;"6-2 / 180";83;NA;238;37;"Air Force"
+"Cedric Anton";TE;"Rabun Gap-Nacoochee School (Rabun Gap, GA)";GA;"6-2.5 / 243";81;NA;95;143;"Eastern Michigan"
+"Demarion Crest-Daniels";WR;"Parkland (El Paso, TX)";TX;"6-3 / 185";87;NA;99;122;"Texas Tech"
+"Zach Ortwerth";TE;"St. Louis University (Saint Louis, MO)";MO;"6-4 / 220";87;NA;37;15;Iowa
+"Mason Muaau";WR;"St. Louis (Honolulu, HI)";HI;"6-5 / 210";86;NA;160;8;"Colorado State"
+"Curtis Douglas";ATH;"Santaluces Community (Lake Worth, FL)";FL;"6-0 / 200";83;NA;169;236;
+"Keyon Brown";WR;"James Rickards (Tallahassee, FL)";FL;"6-3 / 188";87;NA;98;101;Oklahoma
+"Deago Benson";RB;"Midlothian (Midlothian, TX)";TX;"6-0 / 200";86;NA;63;169;"Washington State"
+"Hogan Carmichael";QB;"Summit (Bend, OR)";OR;"6-5 / 185";77;NA;157;33;
+"Keenan Tarbet";ATH;"Loyola (Los Angeles, CA)";CA;"6-4 / 205";79;NA;228;337;
+"Seamus Gilmartin";TE;"Junipero Serra (San Mateo, CA)";CA;"6-4 / 215";82;NA;83;216;
+"Gabe Hoffmann";TE;"Eastside Catholic (Sammamish, WA)";WA;"6-6 / 245";83;NA;78;29;
+"Josiah Davis";RB;"North Salem (Salem, OR)";OR;"5-10 / 210";80;NA;138;21;
+"Hayden John";ATH;"Anacortes (Anacortes, WA)";WA;"6-2 / 190";78;NA;240;56;Idaho
+"Jacob Winters";QB;"Jackson (Jackson, OH)";OH;"6-2 / 215";81;NA;109;70;Ohio
+"Karmello English";WR;"Central (Phenix City, AL)";AL;"5-11 / 175";91;231;25;16;Auburn
+"Kaleb Smith";WR;"Reedy (Frisco, TX)";TX;"6-0 / 175";86;NA;145;166;"Texas Tech"
+"Dylan Van";RB;"Christian Brothers College (Saint Louis, MO)";MO;"6-0 / -";79;NA;144;46;
+"Israel Carter";QB;"Centennial (Corona, CA)";CA;"6-1 / 180";86;NA;51;104;"Arizona State"
+"Christian Hamilton";WR;"Hickory Ridge (Harrisburg, NC)";NC;"6-0 / 175";90;NA;34;11;"North Carolina"
+"Brennan Storer";QB;"Highland Park (Dallas, TX)";TX;"5-11 / 190";83;NA;86;228;"Western Michigan"
+"Dylan Braithwaite";WR;"Holy Trinity Diocesan (Hicksville, NY)";NY;"5-10 / 175";86;NA;157;7;Rutgers
+"Que'Sean Brown";WR;"East Forsyth (Kernersville, NC)";NC;"5-8 / 150";85;NA;179;30;Duke
+"Donielle Hayes";WR;"Pine Forest (Pensacola, FL)";FL;"6-0 / 180";86;NA;147;130;Minnesota
+"Kaleb Black";WR;"Klein Oak (Spring, TX)";TX;"5-9 / 165";83;NA;235;229;Memphis
+"Eddie Combs";WR;"Rockledge (ROCKLEDGE, FL)";FL;"5-11 / 165";86;NA;128;118;
+"Cole LaCrue";QB;"Broomfield (Broomfield, CO)";CO;"6-2 / 190";80;NA;133;18;
+"Rasean Randall";ATH;"Cass Technical (Detroit, MI)";MI;"6-4 / 210";79;NA;232;53;"Northern Illinois"
+"Tymir Wynn";ATH;"KIPP Columbus (Columbus, OH)";OH;"5-11 / 165";82;NA;177;68;
+"Robert Luckas";WR;"Glades Central (Belle Glade, FL)";FL;"6-3 / 210";85;NA;187;168;
+"Tucker Ashcraft";TE;"O'Dea (Seattle, WA)";WA;"6-5 / 235";85;NA;56;20;Colorado
+"Rory Callahan";TE;"Huron (New Boston, MI)";MI;"6-4 / 225";78;NA;116;57;"Central Michigan"
+"Bryson Vowell";WR;"Anderson County (Clinton, TN)";TN;"6-4 / 185";86;NA;155;33;
+"Malachi Pierce";ATH;"Edison (Huntington Beach, CA)";CA;"6-4 / 190";81;NA;188;256;
+"Carson Rhodes";TE;"Nevada (Nevada, IA)";IA;"6-7 / 245";85;NA;61;14;"Iowa State"
+"Anthony Alonzo";ATH;"Oakland Technical (Oakland, CA)";CA;"5-11 / 180";80;NA;212;322;
+"Adam Moore";TE;"Northwestern (Miami, FL)";FL;"6-2 / 220";85;NA;63;166;
+"Tyler Bourland";TE;"Valley Christian (San Jose, CA)";CA;"6-5 / 230";81;NA;92;245;
+"Adam Hopkins";WR;"Thomas County Central (Thomasville, GA)";GA;"6-0 / 170";90;NA;31;26;
+"Joseph Capra";ATH;"Denver South (Denver, CO)";CO;"6-1 / 170";78;NA;235;19;
+"Alex Mota";ATH;"Marion (Marion, IA)";IA;"6-1 / 175";87;NA;61;7;Iowa
+"Zachariah Branch";WR;"Bishop Gorman (Las Vegas, NV)";NV;"5-10 / 172";98;10;1;1;USC
+"Marques Neal";ATH;"Channelview (Channelview, TX)";TX;"5-11 / 185";87;NA;67;118;
+"Ryan Niblett";WR;"Aldine Eisenhower (Houston, TX)";TX;"5-10 / 170";95;57;10;8;Texas
+"Jamari Ford";RB;"Northwestern (Miami, FL)";FL;"5-6 / 164";84;NA;92;217;
+"Dorian Thomas";TE;"Kentridge (Kent, WA)";WA;"6-4 / 220";88;NA;24;9;"Oregon State"
+"Kavaughn Clark";RB;"Centennial (Peoria, AZ)";AZ;"5-8 / 180";81;NA;121;40;
+"Bo Burklow";TE;"CPA (Nashville, TN)";TN;"6-3.5 / 230";80;NA;97;65;"Coastal Carolina"
+"Carson Hansen";ATH;"Lakeville South (Lakeville, MN)";MN;"6-1 / 190";85;NA;114;6;"Iowa State"
+"Dominic Nankil";QB;"Mater Dei Catholic (Chula Vista, CA)";CA;"6-1 / 170";83;NA;88;197;
+"Tayden Phillips";RB;"Abraham Lincoln (San Jose, CA)";CA;"5-11 / 185";77;NA;160;408;
+"Grayson Loftis";QB;"Gaffney (Greer, SC)";SC;"6-2 / 205";87;NA;33;7;Duke
+"Will Stallings";RB;"Bishop Gorman (Las Vegas, NV)";NV;"6-0 / 222";85;NA;77;10;Tennessee
+"Cedric Baxter Jr.";RB;"Edgewater (Orlando, FL)";FL;"6-1 / 215";96;31;2;7;Texas
+"Dontavius Braswell";RB;"Washington County (Sandersville, GA)";GA;"5-11 / 200";91;210;7;21;"South Carolina"
+"Quaran Williams";ATH;"Parkway North (Saint Louis, MO)";MO;"6-2 / 180";79;NA;220;41;"Miami (OH)"
+"Kalen Cobb";WR;"DeMatha Catholic (Hyattsville, MD)";MD;"6-4 / 215";85;NA;183;21;
+"Skyler Cassel";QB;"West Valley (Yakima, WA)";WA;"6-1 / 180";77;NA;165;101;
+"Brady Weingart";QB;"Redwood (Larkspur, CA)";CA;"6-2 / 195";76;NA;169;434;
+"Kamrean Johnson";WR;"Theodore (Theodore, AL)";AL;"6-5 / 215";85;NA;196;49;Vanderbilt
+"Nicholas Deloach";WR;"Cahokia (East Saint Louis, IL)";IL;"6-2 / 175";86;NA;161;23;Missouri
+"Krystian Williams";WR;"Collegiate School (Richmond, VA)";VA;"6-2 / 170";87;NA;79;14;"Virginia Tech"
+"Spencer Lyons";ATH;"Catholic Central (Novi, MI)";MI;"6-2 / 215";79;NA;227;48;
+"Marquez Taylor";ATH;"Mckenzie (Mckenzie, TN)";TN;"5-10 / 171";86;NA;99;29;
+"Richard Dandridge";WR;"Homestead (Homestead, FL)";FL;"5-10 / 160";87;NA;113;108;Temple
+"Andrew Metzger";TE;"Regis Jesuit (Aurora, CO)";CO;"6-5 / 235";85;NA;55;7;Colorado
+"Kresean Kizzy";ATH;"Liberty (Bakersfield, CA)";CA;"5-10 / 165";80;NA;215;328;
+"Robby Washington";ATH;"Miami Palmetto (Miami, FL)";FL;"5-10 / 185";94;86;6;20;Miami
+"Justin Taylor";ATH;"Nazareth Academy (La Grange Park, IL)";IL;"6-1 / 185";85;NA;117;30;Wisconsin
+"Art Williams";ATH;"Rocky Mountain (Meridian, ID)";ID;"6-0 / 195";81;NA;191;11;Idaho
+"Mateaki Helu";ATH;"Tooele (Tooele, UT)";UT;"6-0 / 200";86;NA;89;9;Utah
+"Wesley Fair";ATH;"Wichita Collegiate School (Wichita, KS)";KS;"6-2 / 180";87;NA;65;6;"Kansas State"
+"Mateo Flores";RB;"Argonaut (Jackson, CA)";CA;"5-8 / 155";77;NA;165;423;
+"Dante Barone";TE;"Hun School (Princeton, NJ)";NJ;"6-3 / 245";84;NA;67;24;Rutgers
+"Cameron Seldon";ATH;"Northumberland (Heathsville, VA)";VA;"6-1 / 220";96;30;3;2;Tennessee
+"Roy Hull";RB;"Eagle (Eagle, ID)";ID;"6-1 / 195";77;NA;156;32;
+"Jalen Woods";QB;"Woodward Academy (Atlanta, GA)";GA;"6-3 / 200";82;NA;102;136;
+"Allen Mitchell";RB;"Lutheran Of St Charles County (Saint Louis, MO)";MO;"5-10 / 185";86;NA;52;21;
+"Elijah Caldwell";WR;"Northwestern (Rock Hill, SC)";SC;"6-1 / 190";85;NA;194;25;"West Virginia"
+"TJ McWilliams";WR;"North Central (Indianapolis, IN)";IN;"6-1 / 170";84;NA;213;17;Purdue
+"Hykeem Williams";WR;"Stranahan (Fort Lauderdale, FL)";FL;"6-3 / 200";96;26;5;6;
+"Creed Whittemore";ATH;"F. W. Buchholz (Gainesville, FL)";FL;"5-11.5 / 175";92;161;12;33;Florida
+"Jurrion Dickey";WR;"Valley Christian (East Palo Alto, CA)";CA;"6-3 / 210";98;14;2;4;Oregon
+"Jelani Thurman";TE;"Langston Hughes (Fairburn, GA)";GA;"6-5 / 230";94;69;3;5;"Ohio State"
+"Jaylen Abston";QB;"Lebanon (Lebanon, TN)";TN;"6-3 / 180";83;NA;92;57;
+"Nicholaus Iamaleava";QB;"Warren (Downey, CA)";CA;"6-5 / 195";98;3;3;1;Tennessee
+"Jack Carner";RB;"Pioneer (Woodland, CA)";CA;"6-0 / 175";77;NA;166;427;
+"Tray Tolliver";WR;"Columbia (Lake City, FL)";FL;"5-9 / 170";85;NA;191;175;
+"Anthony Eager";WR;"McGill Toolen (Mobile, AL)";AL;"6-1 / 170";86;NA;148;38;"South Alabama"
+"Matthew Klopfenstein";TE;"Horizon (Scottsdale, AZ)";AZ;"6-5 / 226";90;NA;18;9;Baylor
+"Ben Dutton";ATH;"King's Schools (Seattle, WA)";WA;"6-4 / 230";78;NA;241;57;
+"Saimone Davis";TE;"Nolan Catholic (Fort Worth, TX)";TX;"6-5 / 220";86;NA;44;145;BYU
+"Johntay Cook II";WR;"DeSoto (DeSoto, TX)";TX;"6-0 / 175";95;47;8;6;Texas
+"Anthony Colandrea";QB;"Lakewood (Saint Petersburg, FL)";FL;"6-0 / 175";86;NA;57;147;Virginia
+"Randy Reece";WR;"South Oak Cliff (Dallas, TX)";TX;"5-9 / 175";84;NA;224;221;SMU
+"Payton Faker";QB;"Kennedy Catholic (Tacoma, WA)";WA;"6-2 / 195";75;NA;179;123;
+"George Burhenn";TE;"Mt Vernon (Mount Vernon, IN)";IN;"6-5 / 205";88;NA;29;7;Purdue
+"Tybo Rogers";RB;"Bakersfield (Bakersfield, CA)";CA;"5-11 / 180";88;NA;33;60;Washington
+"DeSean Bishop";RB;"Karns (Knoxville, TN)";TN;"5-10 / 194";84;NA;89;45;"Coastal Carolina"
+"Ty Lockwood";TE;"Independence (Thompson's Station, TN)";TN;"6-5 / 225";93;136;9;2;Alabama
+"Nick Afato";ATH;"Yuba City (Yuba City, CA)";CA;"6-0 / 200";81;NA;183;244;
+"Trey Leckner";ATH;"Glacier Peak (Snohomish, WA)";WA;"6-2 / 215";86;NA;98;15;"Washington State"
+"Lamar Patterson";WR;"St. Frances Academy (Baltimore, MD)";MD;"5-9 / 171";85;NA;185;23;
+"Henry Masters";TE;"Tigard (Portland, OR)";OR;"6-3 / 195";77;NA;118;41;
+"Zane Flores";QB;"Gretna (Gretna, NE)";NE;"6-3.5 / 190";89;NA;23;2;"Oklahoma State"
+"Jackson House";QB;"Dunham School (Baton Rouge, LA)";LA;"6-0 / 185";75;NA;182;43;
+"Mathias Barnwell";ATH;"Riverbend (Fredericksburg, VA)";VA;"6-6 / 250";89;NA;29;6;"Penn State"
+"Jesse Anderson";ATH;"Cardinal Gibbons (Fort Lauderdale, FL)";FL;"6-0 / 175";86;NA;106;151;Pittsburgh
+"Chris Palfreeman";WR;"All Saints Episcopal (Fort Worth, TX)";TX;"5-8 / 155";86;NA;122;146;"Texas Tech"
+"Drew Novak";QB;"Western Brown (Mount Orab, OH)";OH;"6-6 / 190";75;NA;183;115;
+"Jaelen Nichols";ATH;"Central Catholic (Modesto, CA)";CA;"5-10 / 190";81;NA;187;254;
+"Tyler Douglas";QB;"Ocean Township (Oakhurst, NJ)";NJ;"6-2 / 190";83;NA;94;29;Temple
+"Darian Mensah";QB;"St Joseph (San Luis Obispo, CA)";CA;"6-3 / 215";78;NA;150;351;
+"C.J. Jacobsen";TE;"Rocky Mountain (Meridian, ID)";ID;"6-5 / 230";87;NA;40;2;
+"Erik McCarty";ATH;"McAlester (Mcalester, OK)";OK;"6-2 / 180";87;NA;57;6;Oklahoma
+"Paul Davis";WR;"Hart County (Hartwell, GA)";GA;"6-1 / 188";90;NA;39;33;
+"Edwin Joseph";WR;"Chaminade-Madonna Prep (Hollywood, FL)";FL;"6-0 / 175";87;NA;80;94;
+"Leon Griffin III";ATH;"Bayside (Virginia Beach, VA)";VA;"5-11 / 185";84;NA;158;42;Duke
+"Julian Thomas";RB;"Cascade (Everett, WA)";WA;"5-6 / 175";72;NA;175;138;
+"Malik Elzy";WR;"Simeon (Chicago, IL)";IL;"6-3 / 198";89;NA;44;8;Cincinnati
+"Antonio Ferguson";TE;"Apopka (Apopka, FL)";FL;"6-4 / 235";85;NA;60;165;"East Carolina"
+"Kalib Hicks";RB;"Ryan (Denton, TX)";TX;"5-11 / 195";87;NA;39;108;Oklahoma
+"Jeremiah Claiborne";RB;"Bishop Alemany (Mission Hills, CA)";CA;"6-1 / 195";81;NA;128;273;
+"Brooks Bentley";QB;"Venice (Venice, FL)";FL;"6-3.5 / 186";80;NA;125;276;
+"Keyjuan Brown";RB;"South Atlanta (Atlanta, GA)";GA;"5-9 / 205";87;NA;46;71;Purdue
+"Suntarine Perkins";ATH;"Raleigh (Raleigh, MS)";MS;"6-3 / 200";94;77;5;1;"Ole Miss"
+"Bryson Rodgers";WR;"Wiregrass Ranch (Zephyrhills, FL)";FL;"6-0.5 / 175";90;NA;37;66;"Ohio State"
+"Ashton Lloyd";TE;"Blue Earth Area Senior (Blue Earth, MN)";MN;"6-4 / 240";78;NA;106;22;
+"Bryce Kooy";RB;"Bothell (Bothell, WA)";WA;"6-1 / 185";75;NA;169;126;
+"Camp Magee";TE;"Edgewater (Orlando, FL)";FL;"6-6 / 210";87;NA;39;102;Northwestern
+"Jack Parker";TE;"Loyola Academy (Wilmette, IL)";IL;"6-5 / 230";79;NA;101;60;"Western Michigan"
+"Ryan Bullard";RB;"Killian (Miami, FL)";FL;"5-9 / 175";82;NA;117;249;
 "Chris Gee";ATH;"Paschal (Fort Worth, TX)";TX;"5-11 / 195";88;NA;45;85;
-"Amare Thomas";WR;"Pinson Valley (Pinson, AL)";AL;"5-10 / 180";87;NA;93;26;Virginia
-"Noah Braham";TE;"University (Morgantown, WV)";WV;"6-2 / 225";85;NA;65;3;"West Virginia"
-"Jeremiah Alston";ATH;"Redford Union (Redford, MI)";MI;"6-2 / 190";82;NA;179;32;"Central Michigan"
+"Jaquerrius Gray";ATH;"Oak Grove (Hattiesburg, MS)";MS;"5-8 / 160";86;NA;107;18;"Southern Miss"
+"Robert Lockhart III";WR;"Langston Hughes (Fairburn, GA)";GA;"5-7 / 175";90;NA;41;35;"Jackson State"
+"Mychal Yharbrough";ATH;"Belleville (Belleville, MI)";MI;"6-1 / 175";84;NA;150;24;"Miami (OH)"
+"Luke Jacobs";ATH;"Viewmont (Bountiful, UT)";UT;"6-1 / 175";79;NA;231;40;
+"Pierce Clarkson";QB;"St. John Bosco (Bellflower, CA)";CA;"6-0 / 190";90;NA;17;21;Louisville
+"Winston Moore";WR;"Mary Institute & St Louis Country Day (Saint Louis, MO)";MO;"5-11 / 180";84;NA;215;31;
+"Jaxson Lavender";WR;"Lovejoy (Lucas, TX)";TX;"5-9 / 160";86;NA;137;161;SMU
+"Nathan Stewart";WR;"St. Vincent Pallotti (Laurel, MD)";MD;"6-5 / 190";85;NA;177;20;Temple
+"Kenny Johnson";WR;"Dallastown Area (Dallastown, PA)";PA;"6-1 / 190";87;NA;108;16;Pittsburgh
+"Chiddi Obiazor";TE;"Eden Prairie (Eden Prairie, MN)";MN;"6-5 / 240";83;NA;76;11;"Kansas State"
+"Ki'Marree Washington";RB;"Lakes (Lakewood, WA)";WA;"5-9 / 180";77;NA;164;102;
+"Montrell Wade";WR;"Tyler High (Tyler, TX)";TX;"6-0.5 / 182";87;NA;115;124;"Boston College"
+"Da'Marion Williams";ATH;"Antelope (Antelope, CA)";CA;"5-9 / 175";78;NA;246;362;
+"Darren Lawrence";WR;"Seminole (Sanford, FL)";FL;"6-2 / 190";89;NA;42;69;"Florida State"
+"Samaje Featherstone";RB;"Freedom (Oakley, CA)";CA;"5-9 / 180";80;NA;131;285;
+"Avery Johnson";QB;"Maize (Maize, KS)";KS;"6-2 / 175";93;97;9;1;"Kansas State"
+"Tegan Sweaney";QB;"Rocky Mountain (Meridian, ID)";ID;"6-3 / 190";77;NA;155;28;
+"Isaiah Jones";ATH;"Brookfield (Brookfield, OH)";OH;"6-4 / 187";78;NA;238;100;
+"Jaelon Barbarin";ATH;"Chaminade (Simi Valley, CA)";CA;"5-9 / 180";84;NA;154;172;
+"Joshua Robinson";RB;"Bolingbrook (Bolingbrook, IL)";IL;"6-2 / 210";83;NA;108;38;
+"Julian Lundy";WR;"Rancho Cucamonga (Rancho Cucamonga, CA)";CA;"6-2 / 170";83;NA;244;205;
+"Jackson Olsen";WR;"Ridgeline (MILLVILLE, UT)";UT;"6-3 / 175";83;NA;232;27;"Utah State"
+"Jordyn Potts";QB;"Powell (Powell, TN)";TN;"6-0 / 175";80;NA;130;68;"Tennessee Tech"
+"Jordan Harris";RB;"Alcoa (Alcoa, TN)";TN;"5-10 / 170";85;NA;79;38;
+"Niko Lopez";WR;"Santa Margarita Catholic (Rancho Santa Margarita, CA)";CA;"6-3 / 210";86;NA;129;116;"Colorado State"
+"Carson Dunn";RB;"Fishers (Fishers, IN)";IN;"5-10 / 185";77;NA;161;41;
+"Terrell Washington Jr.";RB;"Wylie East (Wylie, TX)";TX;"5-9.5 / 200";86;NA;64;170;Purdue
