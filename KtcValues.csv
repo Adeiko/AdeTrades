@@ -1,483 +1,484 @@
 Player_ID,Sleeper_ID,Player_Name,Value
 365,4984,"Josh Allen",9999
-542,6794,"Justin Jefferson",9882
-272,4046,"Patrick Mahomes",9838
-599,6797,"Justin Herbert",9639
-372,4881,"Lamar Jackson",8589
-1004,7564,"Ja'Marr Chase",8492
-634,6813,"Jonathan Taylor",8331
-595,6904,"Jalen Hurts",7050
-639,6790,"D'Andre Swift",6838
-379,5849,"Kyler Murray",6824
-601,6770,"Joe Burrow",6524
-1007,7526,"Jaylen Waddle",6471
-310,4039,"Cooper Kupp",6427
-217,5859,"A.J. Brown",6414
-262,2449,"Stefon Diggs",6347
-1033,7588,"Javonte Williams",6200
-1051,7553,"Kyle Pitts",6191
+542,6794,"Justin Jefferson",9855
+272,4046,"Patrick Mahomes",9771
+599,6797,"Justin Herbert",9548
+372,4881,"Lamar Jackson",8615
+1004,7564,"Ja'Marr Chase",8494
+634,6813,"Jonathan Taylor",8260
+595,6904,"Jalen Hurts",7155
+639,6790,"D'Andre Swift",6882
+379,5849,"Kyler Murray",6863
+601,6770,"Joe Burrow",6555
+1007,7526,"Jaylen Waddle",6480
+310,4039,"Cooper Kupp",6421
+262,2449,"Stefon Diggs",6392
+217,5859,"A.J. Brown",6378
+1033,7588,"Javonte Williams",6181
+1051,7553,"Kyle Pitts",6041
+1010,7547,"Amon-Ra St. Brown",6024
 240,,"2021 Early 1st",5987
-1010,7547,"Amon-Ra St. Brown",5885
-366,5012,"Mark Andrews",5811
-1,4866,"Saquon Barkley",5790
-283,4034,"Christian McCaffrey",5758
-1095,,"2023 Early 1st",5726
-1268,8112,"Drake London",5681
-286,3321,"Tyreek Hill",5673
-536,6819,"Michael Pittman",5668
-1031,7528,"Najee Harris",5604
-383,5872,"Deebo Samuel",5500
-277,2133,"Davante Adams",5498
-1224,8155,"Breece Hall",5402
-543,6801,"Tee Higgins",5380
-1094,7523,"Trevor Lawrence",5359
-546,6786,"CeeDee Lamb",5325
-600,6768,"Tua Tagovailoa",5249
-1270,8146,"Garrett Wilson",5195
+366,5012,"Mark Andrews",5800
+536,6819,"Michael Pittman",5707
+286,3321,"Tyreek Hill",5686
+1,4866,"Saquon Barkley",5683
+1268,8112,"Drake London",5680
+1095,,"2023 Early 1st",5675
+283,4034,"Christian McCaffrey",5593
+383,5872,"Deebo Samuel",5550
+1031,7528,"Najee Harris",5549
+277,2133,"Davante Adams",5479
+543,6801,"Tee Higgins",5469
+1224,8155,"Breece Hall",5398
+546,6786,"CeeDee Lamb",5355
+1094,7523,"Trevor Lawrence",5317
+600,6768,"Tua Tagovailoa",5297
+274,4988,"Nick Chubb",5233
+1270,8146,"Garrett Wilson",5215
 374,,"2021 Mid 1st",5179
-273,4018,"Joe Mixon",5172
-952,,"2022 Early 1st",5083
-274,4988,"Nick Chubb",5078
-261,4017,"Deshaun Watson",5057
-1096,,"2023 Mid 1st",4987
-224,5846,"DK Metcalf",4958
-264,1466,"Travis Kelce",4948
-385,4663,"Austin Ekeler",4932
+273,4018,"Joe Mixon",5141
+261,4017,"Deshaun Watson",5127
+952,,"2022 Early 1st",5078
+224,5846,"DK Metcalf",4980
+1096,,"2023 Mid 1st",4954
+385,4663,"Austin Ekeler",4937
 1070,7571,"Rashod Bateman",4932
-371,3294,"Dak Prescott",4856
-271,4029,"Dalvin Cook",4845
-1271,8144,"Chris Olave",4778
-533,6943,"Gabriel Davis",4762
-338,5937,"Diontae Johnson",4759
-631,6828,"AJ Dillon",4747
-1293,,"2024 Early 1st",4747
-226,5045,"Courtland Sutton",4695
-1272,8119,"Jahan Dotson",4673
-1273,8148,"Jameson Williams",4672
-301,4199,"Aaron Jones",4651
-257,1234,"Russell Wilson",4638
-953,,"2022 Mid 1st",4628
+264,1466,"Travis Kelce",4911
+371,3294,"Dak Prescott",4817
+1271,8144,"Chris Olave",4799
+338,5937,"Diontae Johnson",4782
+533,6943,"Gabriel Davis",4778
+271,4029,"Dalvin Cook",4771
+1293,,"2024 Early 1st",4759
+631,6828,"AJ Dillon",4752
+1273,8148,"Jameson Williams",4694
+226,5045,"Courtland Sutton",4673
+301,4199,"Aaron Jones",4656
+953,,"2022 Mid 1st",4634
+1272,8119,"Jahan Dotson",4630
+1269,8135,"Treylon Burks",4614
 1097,,"2023 Late 1st",4612
-304,4983,"D.J. Moore",4600
-1269,8135,"Treylon Burks",4586
-230,4068,"Mike Williams",4570
-1030,7543,"Travis Etienne",4546
-328,5927,"Terry McLaurin",4540
-275,2216,"Mike Evans",4528
-1294,,"2024 Mid 1st",4501
-221,4950,"Christian Kirk",4499
-1015,7591,"Justin Fields",4491
-282,4035,"Alvin Kamara",4490
-299,4037,"Chris Godwin",4479
-545,6783,"Jerry Jeudy",4477
-636,6806,"J.K. Dobbins",4442
+257,1234,"Russell Wilson",4581
+1030,7543,"Travis Etienne",4562
+304,4983,"D.J. Moore",4529
+230,4068,"Mike Williams",4525
+328,5927,"Terry McLaurin",4516
+275,2216,"Mike Evans",4511
+282,4035,"Alvin Kamara",4509
+545,6783,"Jerry Jeudy",4491
+1294,,"2024 Mid 1st",4486
+221,4950,"Christian Kirk",4477
+299,4037,"Chris Godwin",4471
+636,6806,"J.K. Dobbins",4463
+1017,7610,"Trey Lance",4444
+1015,7591,"Justin Fields",4431
 408,,"2021 Late 1st",4425
-296,3198,"Derrick Henry",4396
-1005,7525,"DeVonta Smith",4395
-1017,7610,"Trey Lance",4387
-1012,7596,"Elijah Moore",4376
+1005,7525,"DeVonta Smith",4399
+1012,7596,"Elijah Moore",4386
+1227,8151,"Kenneth Walker III",4381
+296,3198,"Derrick Henry",4374
 311,5848,"Marquise Brown",4357
-85,2028,"Derek Carr",4353
-1227,8151,"Kenneth Walker III",4352
-954,,"2022 Late 1st",4314
-298,4217,"George Kittle",4268
-356,421,"Matthew Stafford",4263
-633,6820,"Clyde Edwards-Helaire",4246
-349,2505,"Darren Waller",4220
-309,3969,"Leonard Fournette",4181
-1295,,"2024 Late 1st",4134
-1279,8137,"George Pickens",4108
-278,3199,"Michael Thomas",4107
-265,1479,"Keenan Allen",4086
-538,6803,"Brandon Aiyuk",4063
-1208,8160,"Kenny Pickett",4020
-235,96,"Aaron Rodgers",3970
-288,5892,"David Montgomery",3904
-1207,8129,"Dameon Pierce",3898
-623,6955,"James Robinson",3890
-396,1166,"Kirk Cousins",3836
-1018,7527,"Mac Jones",3834
-1016,7538,"Zach Wilson",3784
-584,6945,"Antonio Gibson",3783
-247,5844,"T.J. Hockenson",3753
-1053,7600,"Pat Freiermuth",3748
-214,4098,"Kareem Hunt",3676
+85,2028,"Derek Carr",4349
+356,421,"Matthew Stafford",4300
+954,,"2022 Late 1st",4280
+298,4217,"George Kittle",4242
+1279,8137,"George Pickens",4222
+309,3969,"Leonard Fournette",4195
+1295,,"2024 Late 1st",4184
+265,1479,"Keenan Allen",4176
+349,2505,"Darren Waller",4176
+633,6820,"Clyde Edwards-Helaire",4163
+538,6803,"Brandon Aiyuk",4099
+278,3199,"Michael Thomas",4076
+1208,8160,"Kenny Pickett",3994
+235,96,"Aaron Rodgers",3927
+623,6955,"James Robinson",3921
+1207,8129,"Dameon Pierce",3919
+1018,7527,"Mac Jones",3903
+1016,7538,"Zach Wilson",3868
+288,5892,"David Montgomery",3853
+396,1166,"Kirk Cousins",3803
+1053,7600,"Pat Freiermuth",3795
+584,6945,"Antonio Gibson",3743
+214,4098,"Kareem Hunt",3702
 337,,"2021 Early 2nd",3668
-1098,,"2023 Early 2nd",3622
-268,4137,"James Conner",3615
-344,5967,"Tony Pollard",3595
-222,6151,"Miles Sanders",3584
-382,5022,"Dallas Goedert",3569
-307,2197,"Brandin Cooks",3568
-303,5850,"Josh Jacobs",3504
-955,,"2022 Early 2nd",3492
-269,2309,"Amari Cooper",3346
-1283,8168,"Skyy Moore",3340
-911,7090,"Darnell Mooney",3328
-1036,7611,"Rhamondre Stevenson",3291
-280,1426,"DeAndre Hopkins",3261
-413,2306,"Jameis Winston",3258
-1232,8154,"Brian Robinson",3240
-1029,7585,"Davis Mills",3236
-487,5001,"Dalton Schultz",3231
-276,4040,"JuJu Smith-Schuster",3223
-251,5916,"Darrell Henderson",3215
-281,3164,"Ezekiel Elliott",3191
-1013,7561,"Elijah Mitchell",3184
-1099,,"2023 Mid 2nd",3171
-1035,7607,"Michael Carter",3159
+1098,,"2023 Early 2nd",3646
+344,5967,"Tony Pollard",3629
+222,6151,"Miles Sanders",3617
+247,5844,"T.J. Hockenson",3607
+382,5022,"Dallas Goedert",3595
+268,4137,"James Conner",3544
+303,5850,"Josh Jacobs",3543
+307,2197,"Brandin Cooks",3535
+955,,"2022 Early 2nd",3491
+269,2309,"Amari Cooper",3478
+1283,8168,"Skyy Moore",3352
+1036,7611,"Rhamondre Stevenson",3274
+280,1426,"DeAndre Hopkins",3266
+911,7090,"Darnell Mooney",3266
+1013,7561,"Elijah Mitchell",3243
+1232,8154,"Brian Robinson",3237
+276,4040,"JuJu Smith-Schuster",3230
+1029,7585,"Davis Mills",3216
+244,4082,"Curtis Samuel",3203
+487,5001,"Dalton Schultz",3199
+258,3161,"Carson Wentz",3184
+1035,7607,"Michael Carter",3181
+413,2306,"Jameis Winston",3162
+251,5916,"Darrell Henderson",3159
+388,3163,"Jared Goff",3154
 317,,"2021 Mid 2nd",3140
-258,3161,"Carson Wentz",3133
-1248,8167,"Christian Watson",3123
-244,4082,"Curtis Samuel",3119
-100,5955,"Hunter Renfrow",3111
-537,6886,"Chase Claypool",3095
-388,3163,"Jared Goff",3084
-531,6938,"Cam Akers",3084
-1296,,"2024 Early 2nd",3081
-1210,8161,"Malik Willis",3051
-1231,8138,"James Cook",3015
-208,167,"Tom Brady",2963
-233,1992,"Allen Robinson",2915
-956,,"2022 Mid 2nd",2902
-354,5000,"Chase Edmonds",2847
-386,5890,"Damien Harris",2813
-1180,8136,"Rachaad White",2790
-293,4981,"Calvin Ridley",2782
-237,5038,"Michael Gallup",2775
-1100,,"2023 Late 2nd",2774
-1039,7606,"Kadarius Toney",2767
-994,7608,"Khalil Herbert",2761
-395,1837,"Jimmy Garoppolo",2748
+281,3164,"Ezekiel Elliott",3122
+531,6938,"Cam Akers",3122
+1248,8167,"Christian Watson",3120
+1099,,"2023 Mid 2nd",3104
+100,5955,"Hunter Renfrow",3089
+1231,8138,"James Cook",3072
+537,6886,"Chase Claypool",3057
+1210,8161,"Malik Willis",3028
+1296,,"2024 Early 2nd",2998
+233,1992,"Allen Robinson",2994
+956,,"2022 Mid 2nd",2925
+208,167,"Tom Brady",2900
+237,5038,"Michael Gallup",2841
+386,5890,"Damien Harris",2832
+395,1837,"Jimmy Garoppolo",2789
+1180,8136,"Rachaad White",2773
+293,4981,"Calvin Ridley",2765
+1100,,"2023 Late 2nd",2764
+88,5906,"Dawson Knox",2734
+354,5000,"Chase Edmonds",2729
 362,,"2021 Late 2nd",2724
-210,4985,"Rashaad Penny",2717
-88,5906,"Dawson Knox",2708
-1065,7670,"Josh Palmer",2687
-46,5185,"Allen Lazard",2656
-1297,,"2024 Mid 2nd",2653
-1238,8121,"Romeo Doubs",2639
-13,5947,"Jakobi Meyers",2637
-1213,8159,"Desmond Ridder",2593
-1006,7601,"Rondale Moore",2589
-957,,"2022 Late 2nd",2574
-1274,8126,"Wan'Dale Robinson",2556
-87,5870,"Daniel Jones",2544
-1285,8142,"Alec Pierce",2541
-238,6130,"Devin Singletary",2527
-187,1535,"Cordarrelle Patterson",2523
-285,2374,"Tyler Lockett",2489
-215,4892,"Baker Mayfield",2483
-326,5987,"Alexander Mattison",2469
-1257,8131,"Isaiah Likely",2465
-231,3225,"Tyler Boyd",2456
-1266,8205,"Isaih Pacheco",2448
-1298,,"2024 Late 2nd",2404
-1040,7569,"Nico Collins",2391
-1230,8139,"Zamir White",2387
-305,1339,"Zach Ertz",2371
-399,6126,"Irv Smith Jr.",2361
-569,6826,"Cole Kmet",2338
-1032,7567,"Kenneth Gainwell",2338
-23,2307,"Marcus Mariota",2333
-55,4089,"Gerald Everett",2307
-199,5284,"Jeffery Wilson",2252
-267,2320,"Melvin Gordon",2246
-1253,8130,"Trey McBride",2244
-183,1049,"Ryan Tannehill",2243
-308,1689,"Adam Thielen",2242
-1228,8132,"Tyler Allgeier",2237
-579,6824,"Donovan Peoples-Jones",2227
-339,4149,"Jamaal Williams",2218
-1275,8118,"David Bell",2213
-361,4951,"D.J. Chark",2209
-563,6843,"Albert Okwuegbunam",2183
-412,5347,"Nyheim Hines",2175
-1225,8153,"Isaiah Spiller",2168
-560,6847,"Devin Duvernay",2110
-1318,,"Kyle Philips",2107
-373,24,"Matt Ryan",2083
-766,4197,"Isaiah McKenzie",2082
-243,5857,"Noah Fant",2062
-1101,,"2023 Early 3rd",1985
-228,1825,"Jarvis Landry",1963
-1234,8211,"Tyrion Davis-Price",1954
-404,5917,"Mecole Hardman",1921
-1247,8117,"Jalen Tolbert",1887
-1276,8147,"John Metchie",1865
-958,,"2022 Early 3rd",1857
-252,4033,"David Njoku",1849
-159,3271,"Tyler Higbee",1842
-330,4993,"Mike Gesicki",1828
-635,6951,"Eno Benjamin",1812
-165,5110,"Russell Gage",1775
+1238,8121,"Romeo Doubs",2685
+46,5185,"Allen Lazard",2680
+1039,7606,"Kadarius Toney",2678
+994,7608,"Khalil Herbert",2673
+1297,,"2024 Mid 2nd",2671
+210,4985,"Rashaad Penny",2655
+1065,7670,"Josh Palmer",2654
+1213,8159,"Desmond Ridder",2645
+13,5947,"Jakobi Meyers",2632
+957,,"2022 Late 2nd",2629
+1006,7601,"Rondale Moore",2592
+87,5870,"Daniel Jones",2565
+1274,8126,"Wan'Dale Robinson",2563
+238,6130,"Devin Singletary",2555
+215,4892,"Baker Mayfield",2515
+187,1535,"Cordarrelle Patterson",2508
+1285,8142,"Alec Pierce",2498
+326,5987,"Alexander Mattison",2480
+285,2374,"Tyler Lockett",2447
+1040,7569,"Nico Collins",2441
+1257,8131,"Isaiah Likely",2430
+1266,8205,"Isaih Pacheco",2420
+231,3225,"Tyler Boyd",2411
+1230,8139,"Zamir White",2403
+1298,,"2024 Late 2nd",2394
+399,6126,"Irv Smith Jr.",2373
+55,4089,"Gerald Everett",2360
+569,6826,"Cole Kmet",2358
+1032,7567,"Kenneth Gainwell",2356
+305,1339,"Zach Ertz",2335
+1228,8132,"Tyler Allgeier",2329
+23,2307,"Marcus Mariota",2285
+267,2320,"Melvin Gordon",2268
+1253,8130,"Trey McBride",2245
+183,1049,"Ryan Tannehill",2237
+199,5284,"Jeffery Wilson",2237
+308,1689,"Adam Thielen",2217
+579,6824,"Donovan Peoples-Jones",2197
+1275,8118,"David Bell",2196
+339,4149,"Jamaal Williams",2190
+1225,8153,"Isaiah Spiller",2187
+563,6843,"Albert Okwuegbunam",2165
+560,6847,"Devin Duvernay",2145
+412,5347,"Nyheim Hines",2142
+361,4951,"D.J. Chark",2131
+1318,,"Kyle Philips",2112
+243,5857,"Noah Fant",2092
+373,24,"Matt Ryan",2066
+766,4197,"Isaiah McKenzie",1992
+1101,,"2023 Early 3rd",1969
+252,4033,"David Njoku",1959
+228,1825,"Jarvis Landry",1954
+159,3271,"Tyler Higbee",1942
+1234,8211,"Tyrion Davis-Price",1937
+1247,8117,"Jalen Tolbert",1929
+1276,8147,"John Metchie",1867
+958,,"2022 Early 3rd",1865
+404,5917,"Mecole Hardman",1859
+330,4993,"Mike Gesicki",1843
+635,6951,"Eno Benjamin",1828
+165,5110,"Russell Gage",1776
 68,,"2021 Early 3rd",1774
-912,7066,"K.J. Osborn",1773
-1102,,"2023 Mid 3rd",1744
-321,3976,"Mitchell Trubisky",1731
-959,,"2022 Mid 3rd",1706
-541,6805,"KJ Hamler",1705
-290,4036,"Corey Davis",1697
-270,947,"Julio Jones",1663
-291,1352,"Robert Woods",1658
-369,5086,"Marquez Valdes-Scantling",1618
-256,3423,"Robby Anderson",1613
-578,6853,"Van Jefferson",1606
-1201,8228,"Jaylen Warren",1600
-1103,,"2023 Late 3rd",1578
-809,4602,"Robert Tonyan",1567
-212,3214,"Hunter Henry",1546
-1246,8188,"Tyquan Thornton",1542
-1299,,"2024 Early 3rd",1537
-596,6804,"Jordan Love",1533
-1278,8134,"Khalil Shakir",1529
-671,1373,"Geno Smith",1525
-1191,8123,"Hassan Haskins",1521
-1256,8172,"Greg Dulcich",1508
+912,7066,"K.J. Osborn",1746
+1102,,"2023 Mid 3rd",1735
+541,6805,"KJ Hamler",1722
+959,,"2022 Mid 3rd",1714
+290,4036,"Corey Davis",1698
+321,3976,"Mitchell Trubisky",1697
+1201,8228,"Jaylen Warren",1674
+291,1352,"Robert Woods",1631
+270,947,"Julio Jones",1625
+369,5086,"Marquez Valdes-Scantling",1612
+256,3423,"Robby Anderson",1605
+1278,8134,"Khalil Shakir",1605
+578,6853,"Van Jefferson",1582
+1103,,"2023 Late 3rd",1579
+1299,,"2024 Early 3rd",1576
+809,4602,"Robert Tonyan",1563
+596,6804,"Jordan Love",1555
+1256,8172,"Greg Dulcich",1546
+212,3214,"Hunter Henry",1509
+1191,8123,"Hassan Haskins",1500
+1246,8188,"Tyquan Thornton",1500
 59,,"2021 Mid 3rd",1491
-143,3664,"J.D. McKissic",1474
-8,4973,"Hayden Hurst",1469
-1209,8162,"Sam Howell",1455
-960,,"2022 Late 3rd",1452
-43,2749,"Raheem Mostert",1433
-1322,8225,"Daniel Bellinger",1429
-1330,8408,"Jordan Mason",1421
-638,6845,"Zack Moss",1405
-1300,,"2024 Mid 3rd",1402
-1052,7568,"Brevin Jordan",1399
-327,4080,"Zay Jones",1394
-206,4351,"Tim Patrick",1390
-229,4066,"Evan Engram",1371
-618,7083,"Tyler Huntley",1361
-105,5536,"Dontrell Hilliard",1356
-20,3257,"Jacoby Brissett",1346
-255,3200,"Sterling Shepard",1341
-76,5248,"Gus Edwards",1337
-629,7045,"Joshua Kelley",1335
-1292,8164,"Matt Corral",1326
-313,5880,"Parris Campbell",1324
-1301,,"2024 Late 3rd",1322
-279,2078,"Odell Beckham",1317
-1014,7594,"Chuba Hubbard",1313
-1226,8150,"Kyren Williams",1310
-653,2251,"Logan Thomas",1293
-9,5323,"Equanimeous St. Brown",1281
-1305,8219,"Jelani Woods",1272
-334,2319,"DeVante Parker",1261
-384,3202,"Austin Hooper",1259
-1104,,"2023 Early 4th",1250
-10,5970,"Greg Dortch",1213
-540,6814,"Laviska Shenault",1212
-445,6694,"D'Ernest Johnson",1210
-534,6870,"Bryan Edwards",1210
-1085,7565,"Terrace Marshall",1210
-1204,8116,"Pierre Strong Jr.",1210
+8,4973,"Hayden Hurst",1479
+143,3664,"J.D. McKissic",1476
+671,1373,"Geno Smith",1475
+960,,"2022 Late 3rd",1463
+1322,8225,"Daniel Bellinger",1436
+638,6845,"Zack Moss",1435
+1330,8408,"Jordan Mason",1432
+1209,8162,"Sam Howell",1427
+43,2749,"Raheem Mostert",1418
+229,4066,"Evan Engram",1406
+1052,7568,"Brevin Jordan",1404
+206,4351,"Tim Patrick",1378
+618,7083,"Tyler Huntley",1378
+255,3200,"Sterling Shepard",1377
+327,4080,"Zay Jones",1372
+1300,,"2024 Mid 3rd",1366
+20,3257,"Jacoby Brissett",1357
+105,5536,"Dontrell Hilliard",1350
+1301,,"2024 Late 3rd",1347
+279,2078,"Odell Beckham",1334
+653,2251,"Logan Thomas",1329
+629,7045,"Joshua Kelley",1326
+76,5248,"Gus Edwards",1317
+1226,8150,"Kyren Williams",1316
+10,5970,"Greg Dortch",1311
+1292,8164,"Matt Corral",1310
+1014,7594,"Chuba Hubbard",1309
+313,5880,"Parris Campbell",1298
+1305,8219,"Jelani Woods",1293
+9,5323,"Equanimeous St. Brown",1275
+384,3202,"Austin Hooper",1271
+1104,,"2023 Early 4th",1236
+334,2319,"DeVante Parker",1234
+445,6694,"D'Ernest Johnson",1233
 90,,"2021 Late 3rd",1209
-1229,8143,"Jerome Ford",1202
-294,4962,"Sony Michel",1197
-961,,"2022 Early 4th",1184
+534,6870,"Bryan Edwards",1202
+1085,7565,"Terrace Marshall",1193
+914,6927,"Quez Watkins",1190
+1204,8116,"Pierre Strong Jr.",1187
+961,,"2022 Early 4th",1186
+489,5133,"Tyler Conklin",1184
+294,4962,"Sony Michel",1183
+1229,8143,"Jerome Ford",1183
 89,515,"Rob Gronkowski",1182
-882,6074,"Donald Parham",1177
-950,7496,"Nick Westbrook-Ikhine",1177
-914,6927,"Quez Watkins",1169
-489,5133,"Tyler Conklin",1158
-998,7794,"Chris Evans",1153
-1182,8230,"Ty Chandler",1146
-467,6421,"Jalen Guyton",1140
-1261,8111,"Cade Otton",1140
-1280,8140,"Justyn Ross",1140
-1193,8221,"Keaontay Ingram",1138
-153,4454,"Kendrick Bourne",1126
-406,2161,"Jerick McKinnon",1126
-161,5549,"Darrel Williams",1119
-358,4111,"D'Onta Foreman",1118
-1105,,"2023 Mid 4th",1115
-1241,8176,"Danny Gray",1114
-1074,7540,"Amari Rodgers",1108
-484,5122,"Boston Scott",1102
-1284,8223,"Velus Jones",1080
-245,1067,"Marvin Jones",1074
-126,5121,"Braxton Berrios",1073
-1262,8125,"Calvin Austin III",1073
-218,1817,"Sammy Watkins",1049
-1302,,"2024 Early 4th",1044
-752,6850,"Harrison Bryant",1033
-1054,7694,"Tommy Tremble",1031
+540,6814,"Laviska Shenault",1181
+882,6074,"Donald Parham",1168
+161,5549,"Darrel Williams",1161
+1241,8176,"Danny Gray",1156
+998,7794,"Chris Evans",1155
+1193,8221,"Keaontay Ingram",1154
+358,4111,"D'Onta Foreman",1153
+950,7496,"Nick Westbrook-Ikhine",1148
+406,2161,"Jerick McKinnon",1146
+153,4454,"Kendrick Bourne",1143
+1280,8140,"Justyn Ross",1141
+1261,8111,"Cade Otton",1136
+467,6421,"Jalen Guyton",1131
+1182,8230,"Ty Chandler",1091
+1074,7540,"Amari Rodgers",1082
+1105,,"2023 Mid 4th",1081
+1284,8223,"Velus Jones",1072
+576,7049,"Jauan Jennings",1071
+245,1067,"Marvin Jones",1070
+752,6850,"Harrison Bryant",1059
+126,5121,"Braxton Berrios",1058
+484,5122,"Boston Scott",1058
+1262,8125,"Calvin Austin III",1056
+84,4144,"Jonnu Smith",1046
+1302,,"2024 Early 4th",1040
+1054,7694,"Tommy Tremble",1037
+218,1817,"Sammy Watkins",1030
+1069,7587,"Dyami Brown",1025
+335,2410,"Jamison Crowder",1017
 1059,7828,"Noah Gray",1014
-576,7049,"Jauan Jennings",1012
-1073,7533,"Anthony Schwartz",1011
-84,4144,"Jonnu Smith",1010
-250,3242,"Kenyan Drake",1007
-962,,"2022 Mid 4th",998
-335,2410,"Jamison Crowder",994
-539,6798,"Jalen Reagor",991
-498,5113,"Cedrick Wilson",989
-1069,7587,"Dyami Brown",988
-788,,"Cooper Rush",987
-150,4381,"Taysom Hill",970
-242,5024,"James Washington",969
-47,6011,"Gardner Minshew",956
-195,4054,"Mo Alie-Cox",953
-77,6149,"Darius Slayton",948
-1019,7605,"Kyle Trask",944
-609,6271,"Olamide Zaccheaus",936
-785,4147,"Samaje Perine",914
-179,5985,"Foster Moreau",908
-566,6869,"Adam Trautman",905
-1106,,"2023 Late 4th",895
-572,6960,"Tyler Johnson",890
-558,6849,"Denzel Mims",886
-963,,"2022 Late 4th",886
-1120,7720,"Kene Nwangwu",881
-207,2325,"Nelson Agholor",867
-61,4171,"Josh Reynolds",864
-1184,8179,"Snoop Conner",863
-1236,8189,"Trestan Ebner",863
-1303,,"2024 Mid 4th",859
+788,,"Cooper Rush",1001
+150,4381,"Taysom Hill",989
+962,,"2022 Mid 4th",989
+1073,7533,"Anthony Schwartz",986
+498,5113,"Cedrick Wilson",985
+1019,7605,"Kyle Trask",983
+539,6798,"Jalen Reagor",981
+250,3242,"Kenyan Drake",963
+77,6149,"Darius Slayton",958
+47,6011,"Gardner Minshew",947
+1106,,"2023 Late 4th",936
+195,4054,"Mo Alie-Cox",929
+609,6271,"Olamide Zaccheaus",922
+61,4171,"Josh Reynolds",915
+566,6869,"Adam Trautman",907
+179,5985,"Foster Moreau",904
+242,5024,"James Washington",900
+963,,"2022 Late 4th",897
+1303,,"2024 Mid 4th",885
+558,6849,"Denzel Mims",877
+785,4147,"Samaje Perine",876
+207,2325,"Nelson Agholor",873
+1120,7720,"Kene Nwangwu",868
+427,6427,"Ashton Dulin",864
+1236,8189,"Trestan Ebner",864
+572,6960,"Tyler Johnson",861
+1184,8179,"Snoop Conner",855
 219,4273,"Chris Carson",853
-887,6989,"Marquez Callaway",850
-587,6957,"James Proche",842
-223,4055,"O.J. Howard",823
-160,6012,"Travis Homer",822
+160,6012,"Travis Homer",837
+223,4055,"O.J. Howard",833
+587,6957,"James Proche",824
 12,1387,"Rex Burkhead",816
-427,6427,"Ashton Dulin",812
-33,5854,"Drew Lock",797
-1078,7562,"Tutu Atwell",780
-306,4131,"Kenny Golladay",772
-1110,,"Ben Skowronek",765
-378,5052,"Ronald Jones",763
-621,6931,"DeeJay Dallas",760
-626,6885,"Ke'Shawn Vaughn",758
-586,6895,"Quintez Cephus",747
-1255,8145,"Jeremy Ruckert",746
-1119,7602,"Kylen Granson",744
-1258,8110,"Jake Ferguson",744
-1034,7593,"Trey Sermon",735
-845,,"DeAndre Carter",732
-137,2460,"C.J. Uzomah",723
-1320,8210,"Chigoziem Okonkwo",722
-86,5010,"Will Dissly",706
-3,5980,"Myles Gaskin",703
-575,7002,"Juwan Johnson",692
-232,1833,"Damien Williams",685
-220,956,"Mark Ingram",669
-1008,7595,"Tylan Wallace",669
-331,4943,"Sam Darnold",666
-1304,,"2024 Late 4th",666
-993,7609,"Demetric Felton",664
-368,5995,"Justice Hill",658
-15,3328,"Rashard Higgins",655
-1239,8114,"Erik Ezukanma",654
-988,7572,"Kylin Hill",651
-1043,7713,"Jaelon Darden",647
-442,6290,"Scott Miller",645
-1075,7603,"Shi Smith",644
-52,3286,"Demarcus Robinson",634
-1345,8745,"Lance McCutcheon",631
-1055,7554,"Tre' McKitty",630
+33,5854,"Drew Lock",813
+1119,7602,"Kylen Granson",795
+887,6989,"Marquez Callaway",791
+1110,,"Ben Skowronek",781
+1255,8145,"Jeremy Ruckert",771
+306,4131,"Kenny Golladay",769
+845,,"DeAndre Carter",763
+1078,7562,"Tutu Atwell",757
+378,5052,"Ronald Jones",756
+586,6895,"Quintez Cephus",749
+626,6885,"Ke'Shawn Vaughn",740
+1034,7593,"Trey Sermon",738
+3,5980,"Myles Gaskin",734
+137,2460,"C.J. Uzomah",734
+1320,8210,"Chigoziem Okonkwo",723
+621,6931,"DeeJay Dallas",711
+575,7002,"Juwan Johnson",708
+1258,8110,"Jake Ferguson",699
+86,5010,"Will Dissly",697
+1304,,"2024 Late 4th",687
+1008,7595,"Tylan Wallace",681
+232,1833,"Damien Williams",677
+331,4943,"Sam Darnold",672
+220,956,"Mark Ingram",661
+1239,8114,"Erik Ezukanma",660
+993,7609,"Demetric Felton",657
+1043,7713,"Jaelon Darden",649
+368,5995,"Justice Hill",645
+1055,7554,"Tre' McKitty",645
+184,5199,"Byron Pringle",643
+442,6290,"Scott Miller",641
+1075,7603,"Shi Smith",640
+15,3328,"Rashard Higgins",632
+722,7099,"Joe Flacco",631
 249,1848,"James White",629
-184,5199,"Byron Pringle",622
+52,3286,"Demarcus Robinson",624
+988,7572,"Kylin Hill",622
+95,928,"Randall Cobb",612
 65,5845,"Dwayne Haskins",611
-722,7099,"Joe Flacco",610
-95,928,"Randall Cobb",597
-550,6984,"Tony Jones",576
-158,2152,"Teddy Bridgewater",571
-260,5878,"N'Keal Harry",569
-323,4995,"Ian Thomas",558
-1027,7583,"Sam Ehlinger",555
+1345,8745,"Lance McCutcheon",596
+323,4995,"Ian Thomas",583
+260,5878,"N'Keal Harry",580
+550,6984,"Tony Jones",577
+158,2152,"Teddy Bridgewater",572
 96,,"2021 Early 4th",547
-29,2214,"Cameron Brate",541
-389,5026,"Tre'Quan Smith",537
-213,3157,"Will Fuller",536
-289,830,"A.J. Green",524
-48,4319,"Zach Pascal",522
-353,6156,"Benny Snell",521
-692,2359,"Ameer Abdullah",518
-54,2431,"Mike Davis",511
+353,6156,"Benny Snell",542
+389,5026,"Tre'Quan Smith",538
+1027,7583,"Sam Ehlinger",536
+289,830,"A.J. Green",530
+48,4319,"Zach Pascal",529
+692,2359,"Ameer Abdullah",524
+213,3157,"Will Fuller",523
+414,5915,"Andy Isabella",520
+29,2214,"Cameron Brate",518
+54,2431,"Mike Davis",513
 93,,"2021 Mid 4th",511
-1079,7612,"D'Wayne Eskridge",510
-977,2711,"Taylor Heinicke",507
-319,5965,"Miles Boykin",506
+1079,7612,"D'Wayne Eskridge",511
 91,,"2021 Late 4th",505
-1117,7559,"Ihmir Smith-Marsette",502
-414,5915,"Andy Isabella",498
-292,4152,"Marlon Mack",474
-1206,8208,"Tyler Badie",467
-6,6039,"Ty Johnson",466
-1056,7535,"Hunter Long",464
-376,4455,"Matt Breida",462
-99,6144,"Trayveon Williams",446
-527,4741,"Dan Arnold",444
-343,5131,"Justin Jackson",430
-612,6234,"Deonte Harris",425
-421,6088,"Olabisi Johnson",422
-435,6001,"Drew Sample",422
-568,6926,"Brycen Hopkins",414
-920,4198,"Jamal Agnew",408
-583,6857,"Collin Johnson",406
-1080,7716,"John Bates",404
-1254,8127,"Charlie Kolar",402
-625,6918,"Salvon Ahmed",399
-822,3634,"Kalif Raymond",397
-1113,7944,"Mike Strachan",395
-1020,7581,"Kellen Mond",384
-1212,8157,"Bailey Zappe",381
-782,4219,"Jeremy McNichols",377
-557,6996,"JaMycal Hasty",359
-110,4972,"Mason Rudolph",350
-1205,8174,"Kevin Harris",344
-647,827,"Tyrod Taylor",326
-177,5938,"Lil'Jordan Humphrey",304
-795,5089,"Mike White",293
-1037,7537,"Jaret Patterson",286
-1112,7771,"Jake Funk",286
-1038,7599,"Jermar Jefferson",282
-551,6973,"J.J. Taylor",281
-139,6040,"Tyree Jackson",278
-38,2381,"Chris Conley",273
-1202,8220,"Sincere McCormick",271
-144,4435,"Anthony Firkser",267
-1215,8206,"Skylar Thompson",262
-7,5973,"Josh Oliver",236
-524,5154,"Trent Sherfield",233
-347,1386,"Giovani Bernard",230
+1117,7559,"Ihmir Smith-Marsette",503
+977,2711,"Taylor Heinicke",489
+6,6039,"Ty Johnson",487
+292,4152,"Marlon Mack",481
+319,5965,"Miles Boykin",481
+376,4455,"Matt Breida",473
+1056,7535,"Hunter Long",466
+1206,8208,"Tyler Badie",464
+99,6144,"Trayveon Williams",462
+343,5131,"Justin Jackson",455
+527,4741,"Dan Arnold",455
+421,6088,"Olabisi Johnson",443
+435,6001,"Drew Sample",433
+612,6234,"Deonte Harris",432
+1113,7944,"Mike Strachan",426
+1080,7716,"John Bates",405
+568,6926,"Brycen Hopkins",400
+920,4198,"Jamal Agnew",399
+822,3634,"Kalif Raymond",398
+1254,8127,"Charlie Kolar",398
+583,6857,"Collin Johnson",397
+557,6996,"JaMycal Hasty",390
+625,6918,"Salvon Ahmed",380
+782,4219,"Jeremy McNichols",374
+1212,8157,"Bailey Zappe",367
+1020,7581,"Kellen Mond",364
+110,4972,"Mason Rudolph",356
+177,5938,"Lil'Jordan Humphrey",325
+647,827,"Tyrod Taylor",318
+144,4435,"Anthony Firkser",313
+1112,7771,"Jake Funk",312
+1202,8220,"Sincere McCormick",302
+1205,8174,"Kevin Harris",302
+1037,7537,"Jaret Patterson",285
+139,6040,"Tyree Jackson",280
+1038,7599,"Jermar Jefferson",280
+795,5089,"Mike White",270
+38,2381,"Chris Conley",265
+551,6973,"J.J. Taylor",251
+1281,8171,"Kyle Phillips",245
+1215,8206,"Skylar Thompson",243
+49,829,"Andy Dalton",231
+524,5154,"Trent Sherfield",230
+7,5973,"Josh Oliver",228
+347,1386,"Giovani Bernard",226
 188,2331,"Breshad Perriman",225
-1281,8171,"Kyle Phillips",214
-49,829,"Andy Dalton",210
-632,6878,"Anthony McFarland",208
-75,6148,"Preston Williams",201
-1195,8152,"Kennedy Brooks",196
+1195,8152,"Kennedy Brooks",198
+24,4622,"Keelan Cole",196
+18,1144,"Cole Beasley",195
 329,5884,"Kelvin Harmon",191
-198,6334,"Damarea Crockett",185
-562,6846,"Hunter Bryant",176
-1186,8122,"Zonovan Knight",174
-1118,7703,"Jacob Harris",173
-628,7064,"Darrynton Evans",172
-1252,8115,"Jalen Wydermyer",166
-45,4718,"Dare Ogunbowale",165
-18,1144,"Cole Beasley",159
+632,6878,"Anthony McFarland",184
+562,6846,"Hunter Bryant",177
+1186,8122,"Zonovan Knight",175
+628,7064,"Darrynton Evans",174
+1118,7703,"Jacob Harris",174
+75,6148,"Preston Williams",172
+1252,8115,"Jalen Wydermyer",167
+45,4718,"Dare Ogunbowale",166
+198,6334,"Damarea Crockett",166
 403,538,"Emmanuel Sanders",158
-995,7574,"Larry Rountree",157
 1214,8183,"Brock Purdy",157
-24,4622,"Keelan Cole",155
-1211,8158,"Carson Strong",154
+1282,8200,"Kevin Austin",156
+1211,8158,"Carson Strong",150
+14,5130,"Auden Tate",149
 71,2822,"Adam Humphries",149
-14,5130,"Auden Tate",148
+995,7574,"Larry Rountree",148
 1267,8187,"CJ Verdell",145
 411,5009,"Chris Herndon",141
-5,3178,"Josh Doctson",136
-1282,8200,"Kevin Austin",135
 300,1110,"T.Y. Hilton",134
-127,6223,"Juwann Winfree",123
+1122,7729,"Dez Fitzpatrick",126
+5,3178,"Josh Doctson",122
+127,6223,"Juwann Winfree",119
 40,6164,"Kahale Warring",116
 295,536,"Antonio Brown",116
-535,6909,"Lynn Bowden",116
-1122,7729,"Dez Fitzpatrick",110
+535,6909,"Lynn Bowden",108
+31,4531,"Ricky Seals-Jones",100
+630,6908,"Lamical Perine",94
 332,2346,"Devin Funchess",93
 1023,7589,"Ian Book",90
-630,6908,"Lamical Perine",88
-1187,8190,"Abram Smith",88
-31,4531,"Ricky Seals-Jones",81
+1187,8190,"Abram Smith",84
 236,3306,"Jordan Howard",79
+893,7098,"Ty'Son Williams",73
 57,5911,"Jalen Hurd",72
 169,5100,"Jordan Wilkins",69
 357,6178,"Darwin Thompson",69
@@ -485,41 +486,40 @@ Player_ID,Sleeper_ID,Player_Name,Value
 204,5117,"Jordan Thomas",67
 738,1737,"Case Keenum",67
 1111,7539,"Gerrid Doaks",67
-1181,8120,"Jerrion Ealy",66
-598,6823,"Jacob Eason",63
-106,3155,"Laquon Treadwell",62
 64,184,"Adrian Peterson",61
 197,5032,"Jordan Akins",61
 387,2118,"Eric Ebron",61
+1181,8120,"Jerrion Ealy",57
 573,6906,"Antonio Gandy-Golden",52
-717,,"Chase Daniel",52
 1072,7576,"Sage Surratt",52
 991,7563,"Javian Hawkins",51
-4,4274,"David Moore",48
-893,7098,"Ty'Son Williams",47
+106,3155,"Laquon Treadwell",49
+598,6823,"Jacob Eason",48
+4,4274,"David Moore",42
 42,1029,"Nick Foles",41
-225,5170,"Phillip Lindsay",39
+171,4571,"Blake Jarwin",39
 574,6913,"Joe Reed",37
+717,,"Chase Daniel",33
 336,2257,"Carlos Hyde",32
 1265,8166,"Dontario Drummond",31
 39,6045,"Gary Jennings",30
+390,2382,"Duke Johnson",28
 266,2391,"David Johnson",27
 377,954,"Cam Newton",27
 325,1244,"Josh Gordon",25
+506,,"Easton Stick",25
 167,3327,"Alex Collins",24
 56,5962,"KeeSean Johnson",22
 314,5310,"Antonio Callaway",21
-506,,"Easton Stick",21
 79,2588,"Malcolm Brown",20
 172,4150,"Wayne Gallman",20
 340,1706,"Jack Doyle",20
 989,7560,"Pooka Williams",20
 512,4443,"Pharaoh Brown",19
 1068,7541,"Cornell Powell",19
+11,1903,"Taylor Gabriel",16
 83,5873,"Riley Ridley",16
-390,2382,"Duke Johnson",16
 50,6068,"Devine Ozigbo",15
-171,4571,"Blake Jarwin",15
 333,4994,"Kalen Ballage",15
 380,5007,"Keke Coutee",15
 115,333,"Ryan Fitzpatrick",14
@@ -528,8 +528,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 407,2583,"Tyrell Williams",13
 417,6137,"Tommy Sweeney",13
 148,5127,"Kyle Allen",12
-11,1903,"Taylor Gabriel",10
-19,6159,"Mike Weber",10
+21,5924,"Emanuel Hall",11
 124,4421,"Jacob Hollister",10
 1066,7604,"Tamorrion Terry",10
 34,2399,"Ty Montgomery",9
@@ -537,9 +536,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 284,2315,"Todd Gurley",8
 398,1476,"Latavius Murray",8
 156,6136,"Jarrett Stidham",7
-617,7088,"Xavier Jones",7
 41,5587,"Chris Warren",6
-16,4863,"Josh Rosen",5
 22,2452,"Jay Ajayi",5
 32,2279,"Paul Richardson",5
 211,4157,"Tarik Cohen",5
@@ -549,6 +546,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 741,1034,"Brandon Bolden",4
 1183,8217,"Leddie Brown",4
 162,4187,"Brian Hill",3
+225,5170,"Phillip Lindsay",3
 561,6920,"Isaiah Hodgins",3
 1277,8191,"Slade Bolden",3
 27,1911,"Willie Snead",2
@@ -565,8 +563,9 @@ Player_ID,Sleeper_ID,Player_Name,Value
 820,2476,"James O'Shaughnessy",1
 879,4335,"P.J. Walker",1
 2,4125,"Taywan Taylor",0
+16,4863,"Josh Rosen",0
 17,3208,"Kenneth Dixon",0
-21,5924,"Emanuel Hall",0
+19,6159,"Mike Weber",0
 26,1901,"Isaiah Crowell",0
 62,1854,"Quincy Enunwa",0
 72,6139,"Jace Sternberger",0
@@ -603,6 +602,7 @@ Player_ID,Sleeper_ID,Player_Name,Value
 567,6919,"Thaddeus Moss",0
 585,6866,"K.J. Hill",0
 607,6402,"Steven Sims",0
+617,7088,"Xavier Jones",0
 711,533,"Colt McCoy",0
 716,345,"Brian Hoyer",0
 842,2673,"Damiere Byrd",0
